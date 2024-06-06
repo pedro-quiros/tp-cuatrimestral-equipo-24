@@ -20,8 +20,8 @@ namespace Negocio
         }
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true");
-            comando = new SqlCommand(); 
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=TPC_equipo24_BD; integrated security=true");
+            comando = new SqlCommand();
         }
         public void ejecutarLectura()
         {
@@ -80,15 +80,15 @@ namespace Negocio
                 conexion.Close();
             }
         }
-        public void SeterParametros(string nombre,object valor)
+        public void SeterParametros(string nombre, object valor)
         {
-            comando.Parameters.AddWithValue(nombre,valor);
+            comando.Parameters.AddWithValue(nombre, valor);
         }
         public void CerrarConexion()
         {
-            if(lector != null)
-            lector.Close();
-            conexion.Close ();
+            if (lector != null)
+                lector.Close();
+            conexion.Close();
         }
     }
 }
