@@ -19,10 +19,10 @@
         <div class="navegador">
             <a class="nav-brand" href="Default.aspx">[Bytes y Bocados]</a>
 
-            <a class="logoHome" href="Carrito.aspx">
+            <a class="logoHome" href="Default.aspx">
                 <img src="img/icoHome.png" alt="icono de Home Page" />
             </a>
-            <a class="logoCamarero" href="Carrito.aspx">
+            <a class="logoCamarero" href="Pedidos.aspx">
                 <img src="img/icoCamarero.png" alt="icono de camarero" />
             </a>
 
