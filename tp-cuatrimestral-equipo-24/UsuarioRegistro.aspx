@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="UsuarioRegistro.aspx.cs" Inherits="tp_cuatrimestral_equipo_24.Usuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Estilos2.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="mb-3 row">
@@ -34,7 +35,6 @@
                 <option selected>Seleccione una opcion</option>
                 <option value="1">Hombre</option>
                 <option value="2">Mujer</option>
-                <option value="3">Trans</option>
                 <option value="3">Otro</option>
             </select>
         </div>
