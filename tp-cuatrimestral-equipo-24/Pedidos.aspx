@@ -5,8 +5,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <hr />
-
+    <hr/>
+ 
+    <div class="encuadre">
+               
     <div class="mb-3 row">
         <label for="inputPassword" class="col-sm-2 col-form-label">Plato</label>
         <div class="col-sm-10">
@@ -63,9 +65,13 @@
         <label for="inputPassword" class="col-sm-2 col-form-label">Precio</label>
     </div>
 
+         
     <form class="row g-3">
         <div class="col-auto">
             <button type="button" class="btn btn-outline-danger">Cerrar pedido</button>
         </div>
     </form>
+
+   </div>
+
 </asp:Content>

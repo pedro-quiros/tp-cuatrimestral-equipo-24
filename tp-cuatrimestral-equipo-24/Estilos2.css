@@ -1,15 +1,28 @@
-﻿label {
-    position: relative;
-    left: 70px;
+﻿.encuadre {
+    font-size: 1.3rem; /* Tamaño de la fuente del título */
+    font-family: 'Roboto', sans-serif; /* Tipo de fuente */
+    font-weight: bold; /* Negrita */
+    padding: 1.5rem; /* Espaciado interno */
+    max-width: 900px;
+    max-height: 900px;
+    margin: 15px auto;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: lightsteelblue;
 }
-option
-{
+
+label {
+    position: relative;
+    left: 30px;
+}
+option {
     position: relative;
     right: 50px;
 }
 button
 {
     position:relative;
-    left: 70px;
+    left: 750px;
 }
+
 

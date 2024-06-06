@@ -4,6 +4,8 @@
     <link href="Estilos2.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+     <div class="encuadre">
     <div class="mb-3 row">
         <label for="staticEmail" class="col-sm-2 col-form-label">Nombre</label>
         <div class="col-sm-10">
@@ -71,4 +73,5 @@
             <button type="button" class="btn btn-outline-success">Confirmar</button>
         </div>
     </form>
+         </div>
 </asp:Content>
