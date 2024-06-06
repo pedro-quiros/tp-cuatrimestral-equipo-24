@@ -72,6 +72,7 @@
     <Content Include="Estilos2.css" />
     <Content Include="Global.asax" />
     <Content Include="Pedidos.aspx" />
+    <Content Include="UsuarioRegistro.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +101,13 @@
       <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioRegistro.aspx.cs">
+      <DependentUpon>UsuarioRegistro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioRegistro.aspx.designer.cs">
+      <DependentUpon>UsuarioRegistro.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />

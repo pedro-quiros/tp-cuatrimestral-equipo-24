@@ -11,8 +11,7 @@ namespace Dominio
 {
     public class DatosPersonales
 
-    {
-        
+    {        
         public int IdDatosPersonales { get; set; }
         public int Legajo { get; set; }
         public string Nombre { get; set; }

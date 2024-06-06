@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label" >Bebida</label>
+        <label for="inputPassword" class="col-sm-2 col-form-label">Bebida</label>
         <div class="col-sm-10">
             <select class="form-select" aria-label="Default select example">
                 <option selected>Seleccione una opcion</option>
@@ -54,12 +54,18 @@
         </div>
     </div>
     <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Reseña</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="inputPassword">
+        </div>
+    </div>
+    <div class="mb-3 row">
         <label for="inputPassword" class="col-sm-2 col-form-label">Precio</label>
     </div>
 
     <form class="row g-3">
         <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Cerrar pedido</button>
+            <button type="button" class="btn btn-outline-danger">Cerrar pedido</button>
         </div>
     </form>
 </asp:Content>

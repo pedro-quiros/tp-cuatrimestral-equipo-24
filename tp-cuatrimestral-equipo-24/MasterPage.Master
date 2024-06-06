@@ -22,22 +22,23 @@
             <a class="logoHome" href="Default.aspx">
                 <img src="img/icoHome.png" alt="icono de Home Page" />
             </a>
+
             <a class="logoCamarero" href="Pedidos.aspx">
                 <img src="img/icoCamarero.png" alt="icono de camarero" />
             </a>
 
-            <a class="logoDelivery" href="Carrito.aspx">
+            <a class="logoDelivery" href="Default.aspx">
                 <img src="img/icoDelivery.png" alt="icono del delivery" />
             </a>
 
-            <a class="logoReporte" href="Carrito.aspx">
+            <a class="logoReporte" href="Default.aspx">
                 <img src="img/icoReporte.png" alt="icono del reporte" />
             </a>
 
-            <a class="logoConfig" href="Carrito.aspx">
+            <a class="logoConfig" href="Default.aspx">
                 <img src="img/icoConfig.png" alt="icono de configuracion" />
             </a>
-            <a class="logoAgregarUsuario" href="Carrito.aspx">
+            <a class="logoAgregarUsuario" href="UsuarioRegistro.aspx">
                 <img src="img/icoAgregarUsuario.png" alt="icono de agregar usuario" />
             </a>
 
