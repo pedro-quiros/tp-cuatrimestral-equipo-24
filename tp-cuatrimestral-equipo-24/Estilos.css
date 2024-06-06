@@ -1,0 +1,34 @@
+﻿﻿
+.navegador {
+	font-size: 1.5rem; /* Tamaño de la fuente del título */
+	font-family: 'Roboto', sans-serif; /* Tipo de fuente */
+	font-weight: bold; /* Negrita */
+
+	background: linear-gradient(to left, green, white); /* Línea inferior */
+	padding: 1.5rem; /* Espaciado interno */
+}
+
+.navegador a {
+	margin-right: 30px; /* Espacio entre los enlaces */
+	color: black; /* Color del texto */
+	text-decoration: none; /* Eliminar subrayado de enlaces */
+}
+
+	.navegador a:hover {
+		color: #007bff; /* Color del texto al pasar el ratón */
+	}
+
+.time {
+	font-size: 2.5rem; /* Tamaño de la fuente del título */
+	position: absolute;
+	right: 20px; /* Margen derecho */
+}
+
+.footer {
+	color: black;
+	background-color: black;
+	font-size: 1.5rem; /* Tamaño de la fuente del título */
+	font-family: 'Roboto', sans-serif; /* Tipo de fuente */
+	padding: 0.5rem;
+	background: linear-gradient(to left, green, white); /* Línea inferior */
+}
