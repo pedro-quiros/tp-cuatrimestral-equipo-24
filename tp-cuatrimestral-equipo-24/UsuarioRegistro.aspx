@@ -22,12 +22,20 @@
             <input class="form-control" id="inputPassword">
         </div>
     </div>
-    <div class="mb-3 row">
+    <%--<div class="mb-3 row">
         <label for="inputPassword" class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
         <div class="col-sm-10">
             <input class="form-control" id="inputPassword">
+
+        </div>
+    </div>--%>
+    <div class="mb-3 row">
+        <label for="inputFechaNacimiento" class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="inputFechaNacimiento" name="fechaNacimiento">
         </div>
     </div>
+
     <div class="mb-3 row">
         <label for="inputPassword" class="col-sm-2 col-form-label">Genero</label>
         <div class="col-sm-10">
