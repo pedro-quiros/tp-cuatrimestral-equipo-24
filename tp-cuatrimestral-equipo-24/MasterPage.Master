@@ -1,4 +1,4 @@
-﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="tp_cuatrimestral_equipo_24.MasterPage" %>
+﻿﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="tp_cuatrimestral_equipo_24.MasterPage" %>
 
 <!DOCTYPE html>
 
@@ -51,7 +51,7 @@
 
         <br />
         <footer>
-            <div class="footer" style="text-align: center">
+            <div class="footer">
                 Desarrollado por 
                 <a href="https://www.linkedin.com/in/ismael-oreste-8b116a254">Ismael Oreste </a>,
                 <a href="https://www.linkedin.com/in/facundopino/">Facundo Pino</a> y
