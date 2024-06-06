@@ -65,4 +65,10 @@
             <input class="form-control" id="inputPassword">
         </div>
     </div>
+
+    <form class="row g-3">
+        <div class="col-auto">
+            <button type="button" class="btn btn-outline-success">Confirmar</button>
+        </div>
+    </form>
 </asp:Content>
