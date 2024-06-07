@@ -7,17 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace tp_cuatrimestral_equipo_24
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Configuracion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            
-        }
-        protected void btnIngresar_Click(object sender, EventArgs e)
-        {
-           
-            Response.Redirect("Default.aspx");
         }
     }
 }

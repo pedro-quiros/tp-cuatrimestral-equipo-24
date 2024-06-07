@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <asp:Button ID="txtIngresar" runat="server" CssClass="Ingresar" Text="Iniciar Sección" />
+                    <asp:Button ID="txtIngresar" runat="server" CssClass="Ingresar" Text="Iniciar Sesión" OnClick="btnIngresar_Click" />
                     <asp:Button ID="txtRegistrarse" runat="server" CssClass="Ingresar" Text="Registrarse" />
                 </div>
             </div>
@@ -41,4 +41,3 @@
 </form>
 </body>
 </html>
-hola munbdiiiiiii pruebAAA 123

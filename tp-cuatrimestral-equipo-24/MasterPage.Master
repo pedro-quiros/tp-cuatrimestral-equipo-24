@@ -19,26 +19,26 @@
         <div class="navegador">
             <a class="nav-brand" href="Default.aspx">[Bytes y Bocados]</a>
 
-            <a class="logoHome" href="Default.aspx">
+            <a class="logoHome" href="Default.aspx" title="Ir a Home Page">
                 <img src="img/icoHome.png" alt="icono de Home Page" />
             </a>
 
-            <a class="logoCamarero" href="Pedidos.aspx">
+            <a class="logoCamarero" href="Pedidos.aspx" title="Crear pedido">
                 <img src="img/icoCamarero.png" alt="icono de camarero" />
             </a>
 
-            <a class="logoDelivery" href="Default.aspx">
+            <a class="logoDelivery" href="Delivery.aspx" title="Delivery">
                 <img src="img/icoDelivery.png" alt="icono del delivery" />
             </a>
 
-            <a class="logoReporte" href="Default.aspx">
+            <a class="logoReporte" href="Reportes.aspx" title="Ver reportes">
                 <img src="img/icoReporte.png" alt="icono del reporte" />
             </a>
 
-            <a class="logoConfig" href="Default.aspx">
-                <img src="img/icoConfig.png" alt="icono de configuracion" />
+            <a class="logoConfig" href="Configuracion.aspx" title="Configuración">
+                <img src="img/icoConfig.png" alt="icono de configuración" />
             </a>
-            <a class="logoAgregarUsuario" href="UsuarioRegistro.aspx">
+            <a class="logoAgregarUsuario" href="UsuarioRegistro.aspx" title="Gestionar empleados">
                 <img src="img/icoAgregarUsuario.png" alt="icono de agregar usuario" />
             </a>
 

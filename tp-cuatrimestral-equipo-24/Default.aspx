@@ -3,5 +3,5 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<h1>Test</h1>
+<h1>Bienvenido usuario, esta es la home page!</h1>
 </asp:Content>
