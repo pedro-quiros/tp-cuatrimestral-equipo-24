@@ -10,56 +10,49 @@
     <link href="Estilos.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
-    <form id="form1" runat="server">
+    <div class="navegador">
+        <a class="nav-brand" href="Default.aspx">[Bytes y Bocados]</a>
 
-        <div class="navegador">
-            <a class="nav-brand" href="Default.aspx">[Bytes y Bocados]</a>
+        <a class="logoHome" href="Default.aspx" title="Ir a la página de inicio">
+            <img src="img/icoHome.png" alt="ícono de la página de inicio" />
+        </a>
 
-            <a class="logoHome" href="Default.aspx" title="Ir a la página de inicio">
-                <img src="img/icoHome.png" alt="ícono de la página de inicio" />
-            </a>
+        <a class="logoCamarero" href="Pedidos.aspx" title="Crear pedido">
+            <img src="img/icoCamarero.png" alt="ícono de camarero" />
+        </a>
 
-            <a class="logoCamarero" href="Pedidos.aspx" title="Crear pedido">
-                <img src="img/icoCamarero.png" alt="ícono de camarero" />
-            </a>
+        <a class="logoDelivery" href="Delivery.aspx" title="Delivery">
+            <img src="img/icoDelivery.png" alt="ícono de delivery" />
+        </a>
 
-            <a class="logoDelivery" href="Delivery.aspx" title="Delivery">
-                <img src="img/icoDelivery.png" alt="ícono de delivery" />
-            </a>
+        <a class="logoSoporte" href="Soportes.aspx" title="Soporte">
+            <img src="img/ico-soporte.png" alt="ícono de soporte" />
+        </a>
 
-            <a class="logoReporte" href="Soportes.aspx" title="Soporte">
-                <img src="ico-soporte" alt="ícono de reportes" />
-            </a>
+        <a class="logoConfig" href="Configuracion.aspx" title="Configuración">
+            <img src="img/icoConfig.png" alt="ícono de configuración" />
+        </a>
+        <a class="logoAgregarUsuario" href="UsuarioRegistro.aspx" title="Gestionar usuarios">
+            <img src="img/icoAgregarUsuario.png" alt="ícono de agregar usuario" />
+        </a>
 
-            <a class="logoConfig" href="Configuracion.aspx" title="Configuración">
-                <img src="img/icoConfig.png" alt="ícono de configuración" />
-            </a>
-            <a class="logoAgregarUsuario" href="UsuarioRegistro.aspx" title="Gestionar usuarios">
-                <img src="img/icoAgregarUsuario.png" alt="ícono de agregar usuario" />
-            </a>
+        <a class="time" id="time"></a>
+    </div>
 
-            <a class="time" id="time"></a>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
 
+    <br />
+    <footer>
+        <div class="footer">
+            Desarrollado por 
+            <a href="https://www.linkedin.com/in/ismael-oreste-8b116a254">Ismael Oreste</a>,
+            <a href="https://www.linkedin.com/in/facundopino/">Facundo Pino</a> y
+            <a href="https://www.linkedin.com/in/pedroquiros/">Pedro Quiros</a>
         </div>
-
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
-
-        <br />
-        <footer>
-            <div class="footer">
-                Desarrollado por 
-                <a href="https://www.linkedin.com/in/ismael-oreste-8b116a254">Ismael Oreste</a>,
-                <a href="https://www.linkedin.com/in/facundopino/">Facundo Pino</a> y
-                <a href="https://www.linkedin.com/in/pedroquiros/">Pedro Quiros</a>
-
-            </div>
-        </footer>
-    </form>
+    </footer>
 
     <script>
         function updateTime() {

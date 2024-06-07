@@ -3,32 +3,34 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <link href="Estilos2.css" rel="stylesheet" />
-    <!-- SECCTION C O N T A C T O -->
+    <link href="Estilos3.css" rel="stylesheet" />
+     <p class="title">Contactanos</p>
+    <!-- SECCIÓN CONTACTO -->
     <section id="contacto">
-        <h3 class="titulo-seccion">Contactanos</h3>
+    
+      
         <div class="contenedor-form">
-            <form action="https://formspree.io/f/xnqewwap" method="POST">
+            <form id="contactForm" action="https://formspree.io/f/mqkrvvgz" method="POST">
                 <div class="fila mitad">
                     <label>
                         Nombre Completo*:
-                    <input type="text" name="nombre" placeholder="Nombre Completo" class="input-mitad">
+                    <input type="text" name="nombre" placeholder="Nombre Completo" class="input-mitad" required>
                     </label>
                     <label>
                         Dirección de Email*:
-                    <input type="email" name="email" placeholder="Dirección de Email" class="input-mitad">
+                    <input type="email" name="email" placeholder="Dirección de Email" class="input-mitad" required>
                     </label>
                 </div>
                 <div class="fila">
                     <label>
                         Tema*:
-                    <input type="text" name="tema" placeholder="Tema..." class="input-full">
+                    <input type="text" name="tema" placeholder="Tema..." class="input-full" required>
                     </label>
                 </div>
                 <div class="fila">
                     <label>
                         Mensaje*:
-                    <textarea name="mensaje" placeholder="Tu Mensaje..." class="input-full"></textarea>
+                    <textarea name="mensaje" placeholder="Tu Mensaje..." class="input-full" required></textarea>
                     </label>
                 </div>
 
@@ -37,9 +39,16 @@
         </div>
     </section>
     <script>
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            console.log("Formulario enviado");
+        // Agregar escucha de evento cuando el DOM esté completamente cargado
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.getElementById("contactForm");
+            if (form) {
+                form.addEventListener("submit", function (event) {
+                    console.log("Formulario enviado");
+                });
+            } else {
+                console.log("Formulario no encontrado");
+            }
         });
     </script>
-
 </asp:Content>
