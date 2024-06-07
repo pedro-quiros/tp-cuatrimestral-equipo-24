@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuracion.aspx" />
-    <Content Include="Default.aspx" />
     <Content Include="Delivery.aspx" />
     <Content Include="Estilos.css" />
     <Content Include="Estilos2.css" />
@@ -88,13 +87,6 @@
     </Compile>
     <Compile Include="Configuracion.aspx.designer.cs">
       <DependentUpon>Configuracion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Delivery.aspx.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>

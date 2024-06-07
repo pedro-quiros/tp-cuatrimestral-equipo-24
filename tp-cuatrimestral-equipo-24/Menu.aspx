@@ -9,7 +9,7 @@
 
                 <asp:Repeater runat="server" ID="idRep">
                     <itemtemplate>
-
+                        
                         <div class="col-md-3 mb-4 article-card">
                             <div class="card h-100">
                                 <%--                                <img src="<%# Eval("Imagen") %>" class="card-img-top" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt4xXXEwlOngpYGhvok77NVHkRONev9pOY_XHZ3M29aA&s';">--%>
@@ -17,7 +17,7 @@
                                     <h5 class="card-title"><%#Eval("Nombre") %></h5>
                                     <p class="card-text"><%#Eval("Tipo") %></p>
                                     <h3 class="card-text">$ <%#Eval("Precio") %></h3>
-                                    <h3 class="card-text">$ <%#Eval("Stock") %></h3>
+                                    <h3 class="card-text">Cant. <%#Eval("Stock") %></h3>
                                 </div>
 
 
