@@ -31,8 +31,8 @@
                 <img src="img/icoDelivery.png" alt="ícono de delivery" />
             </a>
 
-            <a class="logoReporte" href="Reportes.aspx" title="Ver reportes">
-                <img src="img/icoReporte.png" alt="ícono de reportes" />
+            <a class="logoReporte" href="Soportes.aspx" title="Soporte">
+                <img src="ico-soporte" alt="ícono de reportes" />
             </a>
 
             <a class="logoConfig" href="Configuracion.aspx" title="Configuración">

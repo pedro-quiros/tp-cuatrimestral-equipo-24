@@ -21,7 +21,7 @@
                                 </div>
 
 
-                                <%--                                <div class=" mt-auto d-flex justify-content-around">
+                                <%-- <div class=" mt-auto d-flex justify-content-around">
                                     <asp:Button class="btnEstandar btn btn-secondary" ID="btnDecrementar" runat="server" Text="-" OnClick="btnDecrementar_Click" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
                                     <asp:Label ID="lblCantidad" runat="server" Text="1"></asp:Label>
                                     <asp:Button class="btnEstandar btn btn-secondary" ID="btnIncrementar" runat="server" Text="+" OnClick="btnIncrementar_Click" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
