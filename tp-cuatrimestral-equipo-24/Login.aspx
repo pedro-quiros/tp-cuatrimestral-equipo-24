@@ -14,7 +14,7 @@
         <div>
             <div class="presentacion">
                 <p class="bienvenida">Bienvenidos</p>
-                <h2>AL <span>RESTAURANTE</span>,BYTES Y BOCADOS</h2>
+                <h2>AL <span>RESTAURANTE</span>, BYTES Y BOCADOS</h2>
                 <p class="descripcion">
                     El Restaurantre con la mejor critica en el mundo web 
                      y gastronomico.
@@ -34,8 +34,10 @@
                 <div class="mb-3 row">
                     <asp:Button ID="txtIngresar" runat="server" CssClass="Ingresar" Text="Iniciar Sesión" OnClick="btnIngresar_Click" />
                     <asp:Button ID="txtRegistrarse" runat="server" CssClass="Ingresar" Text="Registrarse" />
-                </div>
-            </div>
+                        
+               </div>
+               <asp:Button ID="txtRecupPass" runat="server" CssClass="Ingresar" Text="Olvide contraseña" />
+             </div>
         </div>
     </section>
 </form>

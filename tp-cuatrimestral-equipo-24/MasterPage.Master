@@ -38,7 +38,9 @@
         <a class="logoAgregarUsuario" href="UsuarioRegistro.aspx" title="Gestionar usuarios">
             <img src="img/icoAgregarUsuario.png" alt="ícono de agregar usuario" />
         </a>
-
+            <a class="logoSalir" href="Default.aspx" title="Salir">
+            <img src="img/icoLogout.png" alt="ícono de Logout" />
+        </a>
         <a class="time" id="time"></a>
     </div>
 
