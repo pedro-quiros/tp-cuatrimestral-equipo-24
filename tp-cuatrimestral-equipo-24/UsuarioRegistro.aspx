@@ -4,7 +4,7 @@
     <link href="Estilos.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <p class="title">Administración de usuarios</p>
     <div class="encuadre">
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Nombre</label>

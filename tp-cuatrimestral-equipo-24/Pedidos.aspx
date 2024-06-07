@@ -4,8 +4,8 @@
     <link href="Estilos.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <hr/>
+<p class="title">Pedidos</p>
+ 
     <div class="encuadre">
         <div class="mb-3 row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Plato</label>

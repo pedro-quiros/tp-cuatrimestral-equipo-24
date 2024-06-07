@@ -1,4 +1,26 @@
-﻿.encuadre {
+﻿@keyframes tituloVerdeFluor {
+	from {
+		text-shadow: 2px 2px 10px green;
+	}
+
+	to {
+		text-shadow: 2px 2px 10px white;
+	}
+
+}
+
+.title {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+	text-decoration:underline;
+    animation-name: tituloVerdeFluor;
+    animation-duration: 2s;
+}
+.encuadre {
 	font-size: 1.3rem; /* Tamaño de la fuente del título */
 	font-family: 'Roboto', sans-serif; /* Tipo de fuente */
 	font-weight: bold; /* Negrita */
