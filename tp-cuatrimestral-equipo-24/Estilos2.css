@@ -2,14 +2,83 @@
     position: relative;
     left: 70px;
 }
-option
-{
+
+option {
     position: relative;
     right: 50px;
 }
-button
-{
-    position:relative;
+
+button {
+    position: relative;
     left: 70px;
 }
+
+/*Login*/
+
+#inicio {
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("https://static.vecteezy.com/system/resources/previews/006/252/012/non_2x/restaurant-logo-initial-letter-b-with-spoon-fork-for-restaurant-logo-icon-design-template-vector.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+}
+
+    #inicio .presentacion {
+        color: #ffffff;
+        max-width: 1100px;
+        height: 100vh;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #inicio .bienvenida {
+        font-size: 16px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    #inicio h2 {
+        font-size: 55px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+        #inicio h2 span {
+            font-size: 25px;
+            color: #0a8c64;
+        }
+
+    #inicio .descripcion {
+        max-width: 700px;
+        margin: 25px auto;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    #inicio a:hover {
+        background-color: #ff5080;
+    }
+
+ .Ingresar {
+    display: inline-block;
+    text-decoration: none; /* No necesario para botones, pero no hace daño */
+    color: #ffffff;
+    background-color: transparent; /* Si deseas que el fondo sea transparente */
+    border-radius: 30px;
+    border: 1px solid #000;
+    padding: 20px 30px;
+    margin-top: 30px;
+    transition: .5s;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+    .Ingresar:hover {
+        background-color: #0a8c64;
+        color: #fff;
+    }
 

@@ -74,6 +74,7 @@
     <Content Include="Pedidos.aspx" />
     <Content Include="UsuarioRegistro.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Login.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -107,6 +108,13 @@
     </Compile>
     <Compile Include="UsuarioRegistro.aspx.designer.cs">
       <DependentUpon>UsuarioRegistro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
