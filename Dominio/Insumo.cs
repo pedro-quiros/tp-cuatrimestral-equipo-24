@@ -11,7 +11,7 @@ namespace Dominio
         public int IdInsumo { get; set; }
         public string Nombre { get; set; }
         public string Tipo { get; set; }
-        public float Precio { get; set; }
+        public decimal Precio { get; set; }
         public int Stock { get; set; }
 
         public Insumo() 
@@ -23,7 +23,7 @@ namespace Dominio
             Stock = 0;
         }
 
-        public Insumo (int idInsumo, string nombre, string tipo, float precio, int stock)
+        public Insumo (int idInsumo, string nombre, string tipo, decimal precio, int stock)
         {
             IdInsumo = idInsumo;
             Nombre = nombre;
