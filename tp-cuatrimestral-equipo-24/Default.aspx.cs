@@ -17,7 +17,7 @@ namespace tp_cuatrimestral_equipo_24
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
            
-            Response.Redirect("Default.aspx");
+            Response.Redirect("Home.aspx");
         }
     }
 }

@@ -73,13 +73,14 @@
     <Content Include="Estilos2.css" />
     <Content Include="Estilos3.css" />
     <Content Include="Global.asax" />
+    <Content Include="Home.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="Reporte.aspx" />
     <Content Include="Soporte.aspx" />
     <Content Include="UsuarioRegistro.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Login.aspx" />
+    <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuracion.aspx.cs">
@@ -98,6 +99,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
@@ -142,12 +150,12 @@
     <Compile Include="UsuarioRegistro.aspx.designer.cs">
       <DependentUpon>UsuarioRegistro.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
