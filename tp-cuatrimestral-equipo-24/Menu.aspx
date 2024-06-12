@@ -1,41 +1,36 @@
 ﻿<%@ Page Title="Menú" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Menu.aspx.cs" Inherits="tp_cuatrimestral_equipo_24.Menu" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="EstilosTarjetas.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p class="title">Menú</p>
     <section class="body-def">
-        <div class="container">
-            <div class="row">
-
+        <div class="container wrap">
+            <div class="row column-4">
                 <asp:Repeater runat="server" ID="idRep">
-                    <itemtemplate>
-                        
+                    <ItemTemplate>
                         <div class="col-md-3 mb-4 article-card">
-                            <div class="card h-100">
-                                <%--                                <img src="<%# Eval("Imagen") %>" class="card-img-top" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt4xXXEwlOngpYGhvok77NVHkRONev9pOY_XHZ3M29aA&s';">--%>
-                                <div class="card-body">
-                                    <h5 class="card-title"><%#Eval("Nombre") %></h5>
-                                    <p class="card-text"><%#Eval("Tipo") %></p>
-                                    <h3 class="card-text">$ <%#Eval("Precio") %></h3>
-                                    <h3 class="card-text">Cant. <%#Eval("Stock") %></h3>
+                            <div class="card h-100 tarjeta-rest" style="background: url('<%# Eval("UrlImagen") %>') center; background-size: cover;">
+                                <div class="wrap-text_tarjeta-rest">
+                                    <h3><%# Eval("Nombre") %></h3>
+                                    <p>
+                                        <%# Eval("Tipo") %><br />
+                                        Cant. <%# Eval("Stock") %>
+                                        <%# Eval("descripcion")%>
+                                    </p>
+                                    <div class="cta-wrap_tarjeta-rest">
+                                        <div class="precio_tarjeta-rest">
+                                            <span>$ <%# Eval("Precio") %></span>
+                                        </div>
+                                        <div class="cta_tarjeta-rest">
+                                            <a href='<%# "DetalleArticulo.aspx?IdArticulo=" + Eval("IdInsumo") %>'>Pedir ahora</a>
+                                        </div>
+                                    </div>
                                 </div>
-
-
-                                <%-- <div class=" mt-auto d-flex justify-content-around">
-                                    <asp:Button class="btnEstandar btn btn-secondary" ID="btnDecrementar" runat="server" Text="-" OnClick="btnDecrementar_Click" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
-                                    <asp:Label ID="lblCantidad" runat="server" Text="1"></asp:Label>
-                                    <asp:Button class="btnEstandar btn btn-secondary" ID="btnIncrementar" runat="server" Text="+" OnClick="btnIncrementar_Click" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
-                                    <asp:Button class="btnEstandar btn btn-success" ID="Button1" runat="server" Text="Agregar al carrito" OnClick="btnAgregarAlCarrito_Click" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
-                                </div>--%>
-
-
-                                <%--                                <div class=" d-grid gap-3 col-9 mx-auto">
-                                    <a href='<%# "DetalleArticulo.aspx?IdArticulo=" + Eval("IdInsumo") %>' class="btnEstandar btn-link-as-button">Detalle del ArtÃculo</a>
-                                </div>--%>
                             </div>
                         </div>
-                    </itemtemplate>
+                    </ItemTemplate>
                 </asp:Repeater>
             </div>
         </div>
