@@ -16,7 +16,7 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
-                InsumoNegocios insumo = new InsumoNegocios();
+                InsumosNegocio insumo = new InsumosNegocio();
                 ListaInsumos = insumo.ListarConSp();
                 Session["Listado"] = ListaInsumos;
                 idRep.DataSource = ListaInsumos;

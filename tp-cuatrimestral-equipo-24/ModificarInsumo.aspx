@@ -10,7 +10,7 @@
 
         <div class="form-group">
             <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtnombre" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>
+            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>
         </div>
 
         <div class="form-group">
@@ -54,6 +54,6 @@
 
     <div class="mt-auto d-flex justify-content-around">
         <a href="Menu.aspx" class="btnEstandar btn btn-primary btn-back">Volver</a>
-        <asp:Button CssClass="btnEstandar btn btn-success" ID="btnModificarInsumo" runat="server" Text="Modificar" OnClick="btnAgregarAlCarrito_Click" CommandArgument='<%# Request.QueryString["IdInsumo"] %>' />
+        <asp:Button CssClass="btnEstandar btn btn-success" ID="btnModificarInsumo" runat="server" Text="Modificar" OnClick="btnModificarInsumo_Click" CommandArgument='<%# Request.QueryString["IdInsumo"] %>' />
     </div>
 </asp:Content>

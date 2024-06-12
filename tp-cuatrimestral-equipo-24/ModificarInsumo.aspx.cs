@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using Dominio;
 using Negocio;
 
@@ -14,7 +15,7 @@ namespace tp_cuatrimestral_equipo_24
         List<Insumo> listaInsumos;
         protected void Page_Load(object sender, EventArgs e)
         {
-            InsumoNegocios negocio = new InsumoNegocios();
+            InsumosNegocio negocio = new InsumosNegocio();
             List<Insumo> listaInsu = new List<Insumo>();
             Insumo insu = new Insumo();
 
@@ -35,7 +36,7 @@ namespace tp_cuatrimestral_equipo_24
                         }
                     }
 
-                    txtnombre.Text = insu.Nombre;
+                    txtNombre.Text = insu.Nombre;
                     txtTipo.Text = insu.Tipo;
                     txtPrecio.Text = insu.Precio.ToString();
                     txtStock.Text = insu.Stock.ToString();
@@ -52,8 +53,36 @@ namespace tp_cuatrimestral_equipo_24
             }
         }
 
-        protected void btnAgregarAlCarrito_Click(object sender, EventArgs e)
+        protected void btnModificarInsumo_Click(object sender, EventArgs e)
         {
+            InsumosNegocio articulosNegocio = new InsumosNegocio();
+            Insumo insu = new Insumo();
+
+            try
+            {
+                insu.IdInsumo = Convert.ToInt32(Request.QueryString["IdInsumo"]);
+                insu.Nombre = txtNombre.Text;
+                insu.Tipo = txtTipo.Text;
+                insu.Precio = decimal.Parse(txtPrecio.Text);
+                insu.Stock = int.Parse(txtStock.Text);
+                insu.UrlImagen = txtImagen.Text;
+                insu.Descripcion = txtDescripcion.Text;
+
+                if (insu.Tipo != "" && insu.Nombre != "" && insu.Descripcion != "" && txtPrecio.Text != "" && txtStock.Text != "")
+                {
+                    articulosNegocio.Modificar(insu);
+
+                    MessageBox.Show("Modificado exitosamente :)");
+                }
+                else
+                {
+                    MessageBox.Show("Complete todos los campos mi estimado/a");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(":(");
+            }
 
         }
     }

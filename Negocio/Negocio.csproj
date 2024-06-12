@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="Globales.cs" />
-    <Compile Include="InsumoNegocios.cs" />
+    <Compile Include="InsumosNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
