@@ -40,15 +40,15 @@ INSERT INTO FormaDePago (Id, Nombre) VALUES
 (4, 'Transferencia Bancaria'),
 (5, 'PayPal');
 GO
-INSERT INTO Insumo (Nombre, Tipo, Precio, Stock) VALUES
-('Asado', 'Plato', 1000, 50),
-('Milanesa', 'Plato', 500, 50),
-('Coca-Cola', 'Bebida', 1500, 200),
-('Pizza', 'Plato', 800, 30),
-('Empanada', 'Plato', 300, 100),
-('Agua Mineral', 'Bebida', 1000, 150),
-('Ensalada', 'Plato', 700, 40),
-('Fanta', 'Bebida', 1400, 180);
+INSERT INTO Insumo (Nombre, Tipo, Precio, Stock,UrlImagen,Descripcion) VALUES
+('Asado', 'Plato', 1000, 50,'https://www.infocampo.com.ar/wp-content/uploads/2018/10/asado.jpg', 'Delicioso asado a la parrilla.'),
+('Milanesa', 'Plato', 500, 50,'https://www.ilolay.com.ar/uploads/recetas/1690929642-MilanesasSinPack.png', 'Milanesa de ternera crujiente.'),
+('Coca-Cola', 'Bebida', 1500, 200,'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomputerhoy.com%2Freportajes%2Flife%2Fcuriosidades-sobre-coca-cola-586931&psig=AOvVaw2vqqc7Xvg9YifhsK-xVaPW&ust=1718234668255000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKDzlY7Z1IYDFQAAAAAdAAAAABAE', 'Refrescante Coca-Cola.'),
+('Pizza', 'Plato', 800, 30,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2hdQeNVlyu20ReOpJcNwdgW0ER5hwxnauQ&s', 'Pizza con queso y pepperoni.'),
+('Empanada', 'Plato', 300, 100,'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.knorr.com%2Fuy%2Fr%2Fempanadas-de-carne.html%2F237001&psig=AOvVaw0V2uGVFZxxqzq_11JvPxJk&ust=1718234737792000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKDNmK3Z1IYDFQAAAAAdAAAAABAE', 'Empanadas caseras variadas.'),
+('Agua Mineral', 'Bebida', 1000, 150,'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.infobae.com%2Fmexico%2F2024%2F01%2F28%2Fcuales-son-los-beneficios-de-tomar-agua-mineral-todos-los-dias%2F&psig=AOvVaw27Wm931wqQx1wPWAle4WkE&ust=1718234771991000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNi5l8DZ1IYDFQAAAAAdAAAAABAE', 'Agua mineral pura y refrescante.'),
+('Ensalada', 'Plato', 700, 40,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFwPCF6CmL42k8stku8w4wTTlL6Oa2-4a0w&s', 'Ensalada fresca con aderezo.'),
+('Fanta', 'Bebida', 1400, 180,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB8PI1p4EYpqirpQa_i9STibb41CPPN8Rcow&s', 'Refrescante Fanta de naranja.');
 GO
 select * from Usuarios
 
