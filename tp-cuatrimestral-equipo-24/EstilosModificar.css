@@ -1,0 +1,175 @@
+﻿.btnEstandar {
+    color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 5px 8px;
+    margin-top: 10px;
+    margin-left: 2px;
+    margin-bottom: 10px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.btnVerDetalle a {
+    text-decoration: none;
+    color: white;
+}
+
+
+.cardImg {
+    height: 300px; /* Ajusta esta altura según tus necesidades */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Oculta cualquier contenido que se desborde del contenedor */
+    background-color: #f8f8f8; /* Opcional: añade un fondo para verificar el tamaño del contenedor */
+}
+
+    .cardImg img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain; /* Ajusta la imagen dentro del contenedor */
+    }
+
+.btn-link-as-button {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    background-color: #0d6efd;
+}
+
+    .btn-link-as-button:hover {
+        background-color: #0b5ed7;
+    }
+
+
+.logoCarrito {
+    margin-left: 10px;
+}
+
+.contador {
+    margin-left: 30px;
+    margin-right: 10px;
+    background-color: black;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+/*SECCION BODY */
+
+body {
+    background-color: #d8d3d0;
+    font-family: 'Segoe UI Symbol', sans-serif;
+}
+
+
+h1 {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+h1 {
+    font-size: 36px;
+    color: #333;
+    background: linear-gradient(to bottom, rgba(255, 219, 51, 0.8) 0%, rgba(255, 51, 51, 0) 100%);
+    padding: 20px;
+    margin-bottom: -15px;
+    z-index: 2;
+    animation: reflect 3s infinite;
+}
+
+#bannerCarrito {
+    background-color: #ffed9d;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 0.5em;
+}
+
+
+.imagen-container {
+    margin-top: 50px;
+    margin-left: 190px;
+    max-width: 1100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+    .imagen-container img {
+        max-width: 30%;
+        margin-bottom: 10px;
+        border: 3px solid #000;
+    }
+
+.fs-1.fw-bolder {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.reflected-header {
+    font-family: 'Roboto', sans-serif;
+    color: #0026ff;
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .reflected-header h1 {
+        font-size: 3rem;
+    }
+/*estilo para detalle*/
+.detalle-articulo {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+    .detalle-articulo .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .detalle-articulo .imagen-container {
+        text-align: center;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .detalle-articulo .imagen-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    .detalle-articulo .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .detalle-articulo .btn {
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
+    }

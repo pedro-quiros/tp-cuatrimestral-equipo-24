@@ -39,3 +39,10 @@
         display: block;
 
     }
+
+    .cta_tarjeta-rest secundary {
+        background-color: #ff0000;
+        padding: 0.25rem 1rem;
+        border-radius: 4px;
+        text-align: center;
+    }

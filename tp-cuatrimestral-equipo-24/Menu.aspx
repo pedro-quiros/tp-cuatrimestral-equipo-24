@@ -17,11 +17,11 @@
                             <p>Cant. <%# Eval("Stock") %></p>
                             <p><%# Eval("descripcion") %></p>
                             <h3>$ <%# Eval("Precio") %></h3>
-                        
-                        <div class="cta_tarjeta-rest">
-                            <a href='<%# "DetalleArticulo.aspx?IdArticulo=" + Eval("IdInsumo") %>'>Pedir ahora</a>
-                        </div>
+
+                            <div class="cta_tarjeta-rest">
+                                <a href='<%# "ModificarInsumo.aspx?IdInsumo=" + Eval("IdInsumo") %>'>Modificar</a>
                             </div>
+                        </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>

@@ -69,13 +69,16 @@
   <ItemGroup>
     <Content Include="Configuracion.aspx" />
     <Content Include="Delivery.aspx" />
+    <Content Include="DetalleInsumo.aspx" />
     <Content Include="Estilos.css" />
     <Content Include="Estilos2.css" />
     <Content Include="Estilos3.css" />
+    <Content Include="EstilosModificar.css" />
     <Content Include="EstilosTarjetas.css" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="Menu.aspx" />
+    <Content Include="ModificarInsumo.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="Reporte.aspx" />
     <Content Include="Soporte.aspx" />
@@ -97,6 +100,13 @@
     </Compile>
     <Compile Include="Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleInsumo.aspx.cs">
+      <DependentUpon>DetalleInsumo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleInsumo.aspx.designer.cs">
+      <DependentUpon>DetalleInsumo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -121,6 +131,13 @@
     </Compile>
     <Compile Include="Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarInsumo.aspx.cs">
+      <DependentUpon>ModificarInsumo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarInsumo.aspx.designer.cs">
+      <DependentUpon>ModificarInsumo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedidos.aspx.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>
