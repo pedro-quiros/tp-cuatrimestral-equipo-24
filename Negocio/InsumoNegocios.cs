@@ -90,7 +90,7 @@ namespace Negocio
 
             try
             {
-                string consulta = "SELECT IdInsumo, Nombre, Tipo, Precio, Stock FROM Insumo;";
+                string consulta = "SELECT IdInsumo, Nombre, Tipo, Precio, Stock,descripcion,UrlImagen FROM Insumo";
 
 
                 datos.SetearConsulta(consulta);
@@ -102,8 +102,10 @@ namespace Negocio
                     aux.IdInsumo = (int)datos.Lector["IdInsumo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Tipo = (string)datos.Lector["Tipo"];
-                    
                     aux.Stock = (int)datos.Lector["Stock"];
+                    aux.Descripcion = (string)datos.Lector["descripcion"];
+                    aux.UrlImagen = (string)datos.Lector["UrlImagen"];
+
                    
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     lista.Add(aux);

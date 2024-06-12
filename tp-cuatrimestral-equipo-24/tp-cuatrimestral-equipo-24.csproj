@@ -72,6 +72,7 @@
     <Content Include="Estilos.css" />
     <Content Include="Estilos2.css" />
     <Content Include="Estilos3.css" />
+    <Content Include="EstilosTarjetas.css" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="Menu.aspx" />
