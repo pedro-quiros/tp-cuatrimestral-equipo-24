@@ -55,7 +55,7 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void btnModificarInsumo_Click(object sender, EventArgs e)
         {
-            InsumosNegocio articulosNegocio = new InsumosNegocio();
+            InsumosNegocio InsumosNegocio = new InsumosNegocio();
             Insumo insu = new Insumo();
 
             try
@@ -70,7 +70,7 @@ namespace tp_cuatrimestral_equipo_24
 
                 if (insu.Tipo != "" && insu.Nombre != "" && insu.Descripcion != "" && txtPrecio.Text != "" && txtStock.Text != "")
                 {
-                    articulosNegocio.Modificar(insu);
+                    InsumosNegocio.Modificar(insu);
 
                     MessageBox.Show("Modificado exitosamente :)");
                 }
