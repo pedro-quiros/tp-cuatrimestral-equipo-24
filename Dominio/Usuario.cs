@@ -15,7 +15,7 @@ namespace Dominio
 
         public string Clave { get; set; }
 
-        public string Puesto { get; set; }
+        public int Puesto { get; set; }
 
         public DatosPersonales datos { get; set; }
 
@@ -24,11 +24,11 @@ namespace Dominio
             Id = 0;
             NombreUsuario = "";
             Clave = "fip12345";
-            Puesto = "";
+            Puesto = 2;
             datos = new DatosPersonales();
         }
 
-        public Usuario (int id, string nombreUsuario, string clave, string puesto, DatosPersonales datos)
+        public Usuario (int id, string nombreUsuario, string clave, int puesto, DatosPersonales datos)
         {
             Id = id;
             NombreUsuario = nombreUsuario;

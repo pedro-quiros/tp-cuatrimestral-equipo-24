@@ -47,6 +47,7 @@
     <Compile Include="Globales.cs" />
     <Compile Include="InsumosNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioGestion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
