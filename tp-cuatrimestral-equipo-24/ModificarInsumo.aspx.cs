@@ -15,38 +15,43 @@ namespace tp_cuatrimestral_equipo_24
         List<Insumo> listaInsumos;
         protected void Page_Load(object sender, EventArgs e)
         {
-            InsumosNegocio negocio = new InsumosNegocio();
-            List<Insumo> listaInsu = new List<Insumo>();
-            Insumo insu = new Insumo();
+            if (!IsPostBack)
+            {
 
-            if (Session["Listado"] != null)
-            {
-                listaInsu = (List<Insumo>)Session["Listado"];
-            }
-            try
-            {
-                if (Request.QueryString["IdInsumo"] != null)
+
+                InsumosNegocio negocio = new InsumosNegocio();
+                List<Insumo> listaInsu = new List<Insumo>();
+                Insumo insu = new Insumo();
+
+                if (Session["Listado"] != null)
                 {
-                    int id = Convert.ToInt32(Request.QueryString["IdInsumo"]);
-                    foreach (Insumo item in listaInsu)
-                    {
-                        if (id == item.IdInsumo)
-                        {
-                            insu = item;
-                        }
-                    }
-
-                    //txtNombre.Value = insu.Nombre;
-                    //txtTipo.Value = insu.Tipo;
-                    //txtPrecio.Value = insu.Precio.ToString();
-                    //txtStock.Value = insu.Stock.ToString();
-                    //txtImagen.Value = insu.UrlImagen.ToString();
-                    //txtDescripcion.Value = insu.Descripcion;
+                    listaInsu = (List<Insumo>)Session["Listado"];
                 }
-            }
-            catch (Exception ex)
-            {
-                Response.Write($"<script>alert('Error: {ex.Message}');</script>");
+                try
+                {
+                    if (Request.QueryString["IdInsumo"] != null)
+                    {
+                        int id = Convert.ToInt32(Request.QueryString["IdInsumo"]);
+                        foreach (Insumo item in listaInsu)
+                        {
+                            if (id == item.IdInsumo)
+                            {
+                                insu = item;
+                            }
+                        }
+
+                        txtNombre.Value = insu.Nombre;
+                        txtTipo.Value = insu.Tipo;
+                        txtPrecio.Value = insu.Precio.ToString();
+                        txtStock.Value = insu.Stock.ToString();
+                        txtImagen.Value = insu.UrlImagen.ToString();
+                        txtDescripcion.Value = insu.Descripcion;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write($"<script>alert('Error: {ex.Message}');</script>");
+                }
             }
         }
 
@@ -78,10 +83,11 @@ namespace tp_cuatrimestral_equipo_24
             }
             catch (Exception ex)
             {
-                MessageBox.Show(":(");
+                MessageBox.Show(ex.ToString());
             }
             finally
             {
+                //Response.Redirect(Request.RawUrl);
                 Response.Redirect("Menu.aspx");
             }
 
