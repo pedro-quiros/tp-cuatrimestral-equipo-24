@@ -82,6 +82,7 @@
     <Content Include="ModificarInsumo.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="Reporte.aspx" />
+    <Content Include="Salon.aspx" />
     <Content Include="Soporte.aspx" />
     <Content Include="UsuarioRegistro.aspx" />
     <Content Include="Web.config" />
@@ -154,6 +155,13 @@
     </Compile>
     <Compile Include="Reporte.aspx.designer.cs">
       <DependentUpon>Reporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Salon.aspx.cs">
+      <DependentUpon>Salon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Salon.aspx.designer.cs">
+      <DependentUpon>Salon.aspx</DependentUpon>
     </Compile>
     <Compile Include="Soporte.aspx.cs">
       <DependentUpon>Soporte.aspx</DependentUpon>
