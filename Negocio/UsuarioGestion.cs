@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                string consulta = "select U.IdUsuario,U.Nombre,U.Puesto from Usuarios U";
+                string consulta = "select U.IdUsuario,U.Nombre,U.Puesto,U.Activo from Usuarios U";
 
                 datos.SetearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -27,7 +27,7 @@ namespace Negocio
                     aux.Id = (int)datos.Lector["IdUsuario"];
                     aux.NombreUsuario = (string)datos.Lector["Nombre"];
                     aux.Puesto = (int)datos.Lector["Puesto"];
-                    aux.Activo = bool.Parse(datos.Lector["Activo"].ToString());
+                    aux.Activo = (bool)datos.Lector["Activo"];
                     lista.Add(aux);
 
                 }
