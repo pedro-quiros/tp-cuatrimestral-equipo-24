@@ -18,7 +18,6 @@ namespace Negocio
             {
                 string consulta = "select U.IdUsuario,U.Nombre,U.Puesto from Usuarios U";
 
-
                 datos.SetearConsulta(consulta);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
@@ -28,7 +27,8 @@ namespace Negocio
                     aux.Id = (int)datos.Lector["IdUsuario"];
                     aux.NombreUsuario = (string)datos.Lector["Nombre"];
                     aux.Puesto = (int)datos.Lector["Puesto"];
-        
+                    lista.Add(aux);
+
                 }
                 return lista;
             }

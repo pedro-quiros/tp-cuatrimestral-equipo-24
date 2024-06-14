@@ -1,10 +1,7 @@
 ﻿using Negocio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using System;
+
 
 namespace tp_cuatrimestral_equipo_24
 {
@@ -12,21 +9,30 @@ namespace tp_cuatrimestral_equipo_24
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            UsuarioGestion UsuarioG = new UsuarioGestion();   
-            dgvUsuario.DataSource = UsuarioG.ListarConSpUsuario();
-            dgvUsuario.DataBind();  
+
+            if (!IsPostBack)
+            {
+                CargarDatosGridView();
+            }
         }
 
         protected void dgvUsuario_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvUsuario.PageIndex = e.NewPageIndex;
-            dgvUsuario.DataBind();
+            CargarDatosGridView();
         }
-        protected void dgvUsuario_SelectedIndexChanged(object sender, GridViewPageEventArgs e)
+
+        protected void dgvUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = dgvUsuario.SelectedDataKey.Value.ToString();
             Response.Redirect("UsuarioRegistro.aspx?id=" + id);
         }
 
+        private void CargarDatosGridView()
+        {
+            UsuarioGestion UsuarioG = new UsuarioGestion();
+            dgvUsuario.DataSource = UsuarioG.ListarConSpUsuario();
+            dgvUsuario.DataBind();
+        }
     }
 }

@@ -50,6 +50,7 @@ INSERT INTO Insumo (Nombre, Tipo, Precio, Stock,UrlImagen,Descripcion) VALUES
 ('Ensalada', 'Plato', 700, 40,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFwPCF6CmL42k8stku8w4wTTlL6Oa2-4a0w&s', 'Ensalada fresca con aderezo.'),
 ('Fanta', 'Bebida', 1400, 180,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB8PI1p4EYpqirpQa_i9STibb41CPPN8Rcow&s', 'Refrescante Fanta de naranja.');
 GO
-select * from Usuarios
 
 select * from Datos_Personales
+select * from Usuarios
+select U.IdUsuario,U.Nombre,U.Puesto from Usuarios U
