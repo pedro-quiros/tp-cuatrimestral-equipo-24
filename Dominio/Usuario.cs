@@ -17,6 +17,8 @@ namespace Dominio
 
         public int Puesto { get; set; }
 
+        public bool Activo { get; set; }
+
         public DatosPersonales datos { get; set; }
 
         public Usuario() 
@@ -26,9 +28,10 @@ namespace Dominio
             Clave = "fip12345";
             Puesto = 2;
             datos = new DatosPersonales();
+            Activo= true;
         }
 
-        public Usuario (int id, string nombreUsuario, string clave, int puesto, DatosPersonales datos)
+        public Usuario (int id, string nombreUsuario, string clave, int puesto, DatosPersonales datos,bool Activado)
         {
             Id = id;
             NombreUsuario = nombreUsuario;
@@ -41,6 +44,7 @@ namespace Dominio
                 Clave = "fip12345";
             }
             Puesto = puesto;
+            Activo = Activado;
             this.datos = datos;
         }
     }

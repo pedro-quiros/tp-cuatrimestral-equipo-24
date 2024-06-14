@@ -63,6 +63,7 @@
         <form class="row g-3">
             <div class="col-auto">
                 <button type="button" class="btn btn-outline-success">Confirmar</button>
+                <asp:Button ID="btnLogico" runat="server" Text="Inactivar" OnClick="btnInactivo_Click" CssClass="btn btn-warning" />
             </div>
         </form>
     </div>

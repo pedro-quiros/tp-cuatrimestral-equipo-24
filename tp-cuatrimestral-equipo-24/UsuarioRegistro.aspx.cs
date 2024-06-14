@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,20 @@ namespace tp_cuatrimestral_equipo_24
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnInactivo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UsuarioGestion usuario = new UsuarioGestion();
+                //usuario.BajaLogica(int.Parse(Txtid));
+                Response.Redirect("Home.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
     }
 }

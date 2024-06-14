@@ -41,6 +41,7 @@
             <asp:BoundField HeaderText="ID Empleado" DataField="Id" />
             <asp:BoundField HeaderText="Usuario" DataField="NombreUsuario" />
             <asp:BoundField HeaderText="Puesto" DataField="Puesto" />
+            <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
             <asp:CommandField HeaderText="Accion" ShowSelectButton="true" SelectText="📝" />
         </Columns>
     </asp:GridView>

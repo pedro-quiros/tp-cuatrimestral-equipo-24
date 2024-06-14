@@ -27,6 +27,7 @@ namespace Negocio
                     aux.Id = (int)datos.Lector["IdUsuario"];
                     aux.NombreUsuario = (string)datos.Lector["Nombre"];
                     aux.Puesto = (int)datos.Lector["Puesto"];
+                    aux.Activo = bool.Parse(datos.Lector["Activo"].ToString());
                     lista.Add(aux);
 
                 }
@@ -35,6 +36,50 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public void BajaLogica(Usuario Usuario)
+        {
+            AccesoDatos Accesodatos = new AccesoDatos();
+            try
+            {
+
+                Accesodatos.setearProcedimiento("BajaLogicaUsuario");
+                Accesodatos.SeterParametros("@Id", Usuario.Id);
+                Accesodatos.EjecutarConsulta();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Accesodatos.CerrarConexion();
+            }
+        }
+
+        public void AltaLogica(Usuario Usuario)
+        {
+            AccesoDatos Accesodatos = new AccesoDatos();
+            try
+            {
+
+                Accesodatos.setearProcedimiento("AltaLogicaUsuario");
+                Accesodatos.SeterParametros("@Id", Usuario.Id);
+                Accesodatos.EjecutarConsulta();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Accesodatos.CerrarConexion();
             }
         }
 
