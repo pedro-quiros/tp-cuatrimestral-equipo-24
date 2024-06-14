@@ -5,33 +5,47 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p class="title">Administración de usuarios</p>
+
     <div class="encuadre">
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Nombre</label>
-            <div class="col-sm-10">
-                <input class="form-control" id="inputNombre">
-            </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblId" runat="server" Text="Id:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtId" runat="server" />
         </div>
-        <div class="mb-3 row">
-            <label for="inputApellido" class="col-sm-2 col-form-label">Apellido</label>
-            <div class="col-sm-10">
-                <input class="form-control" id="inputApellido">
-            </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblusuario" runat="server" Text="Usuario:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtusuario" runat="server" />
         </div>
-        <div class="mb-3 row">
-            <label for="inputDNI" class="col-sm-2 col-form-label">DNI</label>
-            <div class="col-sm-10">
-                <input class="form-control" id="inputDNI">
-            </div>
+
+        <div class="form-group">
+            <asp:Label ID="lbllegajo" runat="server" Text="Legajo:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtLegajo" runat="server" />
         </div>
-        <div class="mb-3 row">
-            <label for="inputFechaNacimiento" class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control" id="inputFechaNacimiento" name="fechaNacimiento">
-            </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtNombre" runat="server" />
         </div>
-        <div class="mb-3 row">
-            <label for="inputGenero" class="col-sm-2 col-form-label">Género</label>
+
+        <div class="form-group">
+            <asp:Label ID="lblApellido" runat="server" Text="Apellido:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtApellido" runat="server" />
+        </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblDni" runat="server" Text="DNI:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtDni" runat="server" />
+        </div>
+
+        <div class="form-group">
+            <asp:Label ID="LblNacimineto" runat="server" Text="Fecha de Nacimiento:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtnacimiento" runat="server" />
+        </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblgenero" runat="server" Text="Genero:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtgenero" runat="server" />
             <div class="col-sm-10">
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Seleccione una opción</option>
@@ -41,29 +55,26 @@
                 </select>
             </div>
         </div>
-        <div class="mb-3 row">
-            <label for="inputTelefono" class="col-sm-2 col-form-label">Teléfono</label>
-            <div class="col-sm-10">
-                <input class="form-control" id="inputTelefono">
-            </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblTelefono" runat="server" Text="Telefono:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtTelefono" runat="server" />
         </div>
-        <div class="mb-3 row">
-            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input class="form-control" id="inputEmail">
-            </div>
+
+        <div class="form-group">
+            <asp:Label ID="LblMail" runat="server" Text="Mail:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtmail" runat="server" />
         </div>
-        <div class="mb-3 row">
-            <label for="inputDomicilio" class="col-sm-2 col-form-label">Domicilio</label>
-            <div class="col-sm-10">
-                <input class="form-control" id="inputDomicilio">
-            </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblDomicilio" runat="server" Text="Domicilio:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtdomicilio" runat="server" />
         </div>
-        
+
         <form class="row g-3">
             <div class="col-auto">
                 <button type="button" class="btn btn-outline-success">Confirmar</button>
-                <asp:Button ID="btnLogico" runat="server" Text="Inactivar" OnClick="btnInactivo_Click" CssClass="btn btn-warning" />
+                <asp:Button ID="btnLogico" runat="server" Text="Inactivar" OnClick="btnInactivo_Click" CssClass="btn btn-outline-success" />
             </div>
         </form>
     </div>
