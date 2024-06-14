@@ -36,15 +36,12 @@ namespace tp_cuatrimestral_equipo_24
                         }
                     }
 
-                    txtNombre.Text = insu.Nombre;
-                    txtTipo.Text = insu.Tipo;
-                    txtPrecio.Text = insu.Precio.ToString();
-                    txtStock.Text = insu.Stock.ToString();
-                    txtImagen.Text = insu.UrlImagen.ToString();
-                    txtDescripcion.Text = insu.Descripcion;
-
-                    //repDetalle.DataSource = insu.UrlImagen;
-                    //repDetalle.DataBind();
+                    //txtNombre.Value = insu.Nombre;
+                    //txtTipo.Value = insu.Tipo;
+                    //txtPrecio.Value = insu.Precio.ToString();
+                    //txtStock.Value = insu.Stock.ToString();
+                    //txtImagen.Value = insu.UrlImagen.ToString();
+                    //txtDescripcion.Value = insu.Descripcion;
                 }
             }
             catch (Exception ex)
@@ -61,14 +58,14 @@ namespace tp_cuatrimestral_equipo_24
             try
             {
                 insu.IdInsumo = Convert.ToInt32(Request.QueryString["IdInsumo"]);
-                insu.Nombre = txtNombre.Text;
-                insu.Tipo = txtTipo.Text;
-                insu.Precio = decimal.Parse(txtPrecio.Text);
-                insu.Stock = int.Parse(txtStock.Text);
-                insu.UrlImagen = txtImagen.Text;
-                insu.Descripcion = txtDescripcion.Text;
+                insu.Nombre = txtNombre.Value;
+                insu.Tipo = txtTipo.Value;
+                insu.Precio = decimal.Parse(txtPrecio.Value);
+                insu.Stock = int.Parse(txtStock.Value);
+                insu.UrlImagen = txtImagen.Value;
+                insu.Descripcion = txtDescripcion.Value;
 
-                if (insu.Tipo != "" && insu.Nombre != "" && insu.Descripcion != "" && txtPrecio.Text != "" && txtStock.Text != "")
+                if (insu.Tipo != "" && insu.Nombre != "" && insu.Descripcion != "" && txtPrecio.Value != "" && txtStock.Value != "")
                 {
                     InsumosNegocio.Modificar(insu);
 
@@ -83,6 +80,11 @@ namespace tp_cuatrimestral_equipo_24
             {
                 MessageBox.Show(":(");
             }
+            finally
+            {
+                Response.Redirect("Menu.aspx");
+            }
+
 
         }
     }

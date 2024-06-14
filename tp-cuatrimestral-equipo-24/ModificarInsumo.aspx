@@ -10,32 +10,38 @@
 
         <div class="form-group">
             <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>
+            <%--<asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>--%>
+            <input type="text" class="form-control" id="txtNombre" runat="server" />
         </div>
 
         <div class="form-group">
             <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtTipo" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>
+            <%--<asp:TextBox ID="txtTipo" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>--%>
+            <input type="text" class="form-control" id="txtTipo" runat="server" />
         </div>
 
         <div class="form-group">
             <asp:Label ID="lblprecio" runat="server" Text="Precio: $" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>
+            <%--<asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>--%>
+            <input type="text" class="form-control" id="txtPrecio" runat="server" />
         </div>
 
         <div class="form-group">
             <asp:Label ID="lblStock" runat="server" Text="Stock:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>
+            <%--<asp:TextBox ID="txtStock" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>--%>
+            <input type="text" class="form-control" id="txtStock" runat="server" />
         </div>
         
         <div class="form-group">
             <asp:Label ID="lblImagen" runat="server" Text="UrlImagen:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtImagen" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>
+            <%--<asp:TextBox ID="txtImagen" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>--%>
+            <input type="text" class="form-control" id="txtImagen" runat="server" />
         </div>
 
         <div class="form-group">
             <asp:Label ID="lbldescripcion" runat="server" Text="Descripcion:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>
+            <input type="text" class="form-control" id="txtDescripcion" runat="server" />
+            <%--<asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" ReadOnly="false"></asp:TextBox>--%>
         </div>
 
 
