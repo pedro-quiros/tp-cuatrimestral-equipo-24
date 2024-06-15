@@ -68,6 +68,7 @@
     <Content Include="Configuracion.aspx" />
     <Content Include="Delivery.aspx" />
     <Content Include="DetalleInsumo.aspx" />
+    <Content Include="EstilosFiltrar.css" />
     <Content Include="Estilos.css" />
     <Content Include="Estilos2.css" />
     <Content Include="Estilos3.css" />

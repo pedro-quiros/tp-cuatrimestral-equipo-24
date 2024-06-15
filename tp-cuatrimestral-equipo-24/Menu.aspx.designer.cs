@@ -15,6 +15,24 @@ namespace tp_cuatrimestral_equipo_24
     {
 
         /// <summary>
+        /// LabelFiltrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelFiltrar;
+
+        /// <summary>
+        /// Filtro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Filtro;
+
+        /// <summary>
         /// idRep control.
         /// </summary>
         /// <remarks>

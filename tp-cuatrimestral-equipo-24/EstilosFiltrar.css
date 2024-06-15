@@ -1,0 +1,34 @@
+﻿.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+    margin-bottom: 40px;
+}
+
+.label-filtrar {
+    display: flex; /* Permite alinear el ícono y el texto en la misma línea */
+    align-items: center; /* Alinea el ícono verticalmente con el texto */
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+
+.input-filtrar {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 400px;
+    box-sizing: border-box; /* Garantiza que el ancho especificado incluya el padding */
+}
+
+    .input-filtrar:focus {
+        outline: none; /* Elimina el contorno al enfocar */
+    }
+
+    .input-filtrar:focus,
+    .input-filtrar:hover {
+        border-color: #007bff; /* Cambia el color del borde al enfocar o pasar el mouse */
+    }

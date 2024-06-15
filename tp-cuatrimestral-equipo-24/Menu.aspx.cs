@@ -16,12 +16,44 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
+                /*
+                InsumosNegocio insumo = new InsumosNegocio();
+                Session.Add("ListadoMenu", insumo.ListarConSp());
+                idRep.DataSource = (List<Insumo>)Session["ListadoMenu"];
+                idRep.DataBind();
+                */
+             
                 InsumosNegocio insumo = new InsumosNegocio();
                 ListaInsumos = insumo.ListarConSp();
                 Session["Listado"] = ListaInsumos;
                 idRep.DataSource = ListaInsumos;
                 idRep.DataBind();
+                
             }
+        }
+        protected void filtro_TextChanged(object sender, EventArgs e)
+        {
+            List<Insumo> ListaFiltrada = new List<Insumo>();
+
+            if (Session["Listado"] != null && Session["Listado"] is List<Insumo>)
+            {
+                if (Filtro.Text == "")
+                {
+                    ListaFiltrada = (List<Insumo>)Session["Listado"];
+                }
+                else
+                {
+                    ListaFiltrada = ((List<Insumo>)Session["Listado"]).FindAll(X => X.Nombre.ToUpper().Contains(Filtro.Text.ToUpper()));
+                }
+            }
+            else
+            {
+                InsumosNegocio insumo = new InsumosNegocio();
+                ListaFiltrada = insumo.ListarConSp();
+                Session["Listado"] = ListaFiltrada;
+            }
+            idRep.DataSource = ListaFiltrada;
+            idRep.DataBind();
         }
     }
 }
