@@ -35,7 +35,7 @@ namespace tp_cuatrimestral_equipo_24
                         }
                         // txtId.Value = usu.Id.ToString();
                         txtId.Value = usu.Id.ToString();
-                        txtNombre.Value = usu.NombreUsuario;
+                        txtUsuario.Value = usu.NombreUsuario;
 
 
 
