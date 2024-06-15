@@ -25,7 +25,7 @@ namespace tp_cuatrimestral_equipo_24
         protected void dgvUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = dgvUsuario.SelectedDataKey.Value.ToString();
-            Response.Redirect("UsuarioRegistro.aspx?id=" + id);
+            Response.Redirect("UsuarioRegistro.aspx?IdUsuario=" + id);
         }
 
         private void CargarDatosGridView()

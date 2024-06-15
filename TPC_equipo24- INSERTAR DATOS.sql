@@ -1,9 +1,9 @@
 use TPC_equipo24_BD
 go 
-INSERT INTO Usuarios (Nombre, Clave, Puesto) VALUES
-('PedroQui', 'claveSegura123', 1),
-('facuPii', 'claveSegura234', 2),
-('Ismaores', 'claveSegura345', 3)
+INSERT INTO Usuarios (Nombre, Clave, Puesto, Activo) VALUES
+('PedroQui', 'claveSegura123', 1 ,1),
+('facuPii', 'claveSegura234', 2, 1),
+('Ismaores', 'claveSegura345', 3, 1)
 GO
 INSERT INTO Datos_Personales (IdDatosPersonales, Legajo, Dni, Nombre, Apellido, FechaNacimiento, Genero, Telefono, Email, Domicilio) VALUES
 ((SELECT ID FROM Usuarios WHERE Nombre = 'PedroQui'), 1001, '12345678A', 'Pedro', 'Quiros', '1990-01-01', 'M', '1234567890', 'Pedro.quieros@example.com', 'Calle Falsa 123'),
@@ -40,7 +40,7 @@ INSERT INTO FormaDePago (Id, Nombre) VALUES
 (4, 'Transferencia Bancaria'),
 (5, 'PayPal');
 GO
-INSERT INTO Insumo (Nombre, Tipo, Precio, Stock,UrlImagen,Descripcion) VALUES
+INSERT INTO Insumo (Nombre, Tipo, Precio, Stock, UrlImagen, Descripcion) VALUES
 ('Asado', 'Plato', 1000, 50,'https://www.infocampo.com.ar/wp-content/uploads/2018/10/asado.jpg', 'Delicioso asado a la parrilla.'),
 ('Milanesa', 'Plato', 500, 50,'https://www.ilolay.com.ar/uploads/recetas/1690929642-MilanesasSinPack.png', 'Milanesa de ternera crujiente.'),
 ('Coca-Cola', 'Bebida', 1500, 200,'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcomputerhoy.com%2Freportajes%2Flife%2Fcuriosidades-sobre-coca-cola-586931&psig=AOvVaw2vqqc7Xvg9YifhsK-xVaPW&ust=1718234668255000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKDzlY7Z1IYDFQAAAAAdAAAAABAE', 'Refrescante Coca-Cola.'),
@@ -53,4 +53,7 @@ GO
 
 select * from Datos_Personales
 select * from Usuarios
+
 select U.IdUsuario,U.Nombre,U.Puesto from Usuarios U
+
+SELECT IdInsumo, Nombre, Tipo, Precio, Stock,Descripcion,UrlImagen FROM Insumo

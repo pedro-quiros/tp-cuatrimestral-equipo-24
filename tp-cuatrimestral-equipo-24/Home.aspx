@@ -46,5 +46,5 @@
         </Columns>
     </asp:GridView>
 
-    <a href="UsuarioRegistro.aspx" class="btn btn-primary">Agregar</a>
+          
 </asp:Content>
