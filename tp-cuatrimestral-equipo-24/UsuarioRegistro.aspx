@@ -10,7 +10,7 @@
 
         <div class="form-group">
             <asp:Label ID="lblId" runat="server" Text="Id:" CssClass="control-label"></asp:Label>
-            <input type="text" class="form-control" id="txtId" runat="server" />
+            <asp:TextBox ID="txtId" CssClass="form-control" runat="server"></asp:TextBox>
         </div>
 
         <div class="form-group">

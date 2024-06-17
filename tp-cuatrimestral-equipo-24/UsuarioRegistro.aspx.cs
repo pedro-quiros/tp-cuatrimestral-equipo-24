@@ -36,7 +36,7 @@ namespace tp_cuatrimestral_equipo_24
 
                         if (usu != null)
                         {
-                            txtId.Value = usu.Id.ToString();
+                            txtId.Text = usu.Id.ToString();
                             txtUsuario.Value = usu.NombreUsuario;
                         }
                         else
@@ -56,8 +56,15 @@ namespace tp_cuatrimestral_equipo_24
         {
             try
             {
+                int idUsuario = Convert.ToInt32(txtId.Text); // Obtener Id del usuario desde txtId
                 UsuarioGestion usuario = new UsuarioGestion();
-                // usuario.BajaLogica(int.Parse(txtId.Value));
+
+                // Crear un objeto Usuario con el Id
+                Usuario usu = new Usuario();
+                usu.Id = idUsuario;
+
+                usuario.BajaLogica(usu); // Pasar el objeto Usuario al método BajaLogica
+
                 Response.Redirect("Home.aspx");
             }
             catch (Exception ex)
@@ -65,5 +72,6 @@ namespace tp_cuatrimestral_equipo_24
                 Session.Add("error", ex);
             }
         }
+        
     }
 }

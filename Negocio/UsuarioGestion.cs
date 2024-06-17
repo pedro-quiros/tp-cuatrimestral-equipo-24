@@ -16,9 +16,8 @@ namespace Negocio
 
             try
             {
-                string consulta = "select U.IdUsuario,U.Nombre,U.Puesto,U.Activo from Usuarios U";
-
-                datos.SetearConsulta(consulta);
+                
+                datos.setearProcedimiento("MostrarUsuario");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -28,6 +27,15 @@ namespace Negocio
                     aux.NombreUsuario = (string)datos.Lector["Nombre"];
                     aux.Puesto = (int)datos.Lector["Puesto"];
                     aux.Activo = (bool)datos.Lector["Activo"];
+                    //aux.Legajo = (int)datos.Lector["Legajo"];
+                    //aux.Nombre = (string)datos.Lector["Nombre"];
+                    //aux.Apellido = (string)datos.Lector["Apellido"];
+                    //aux.Dni = (int)datos.Lector["Dni"];
+                    //aux.Nacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    //aux.Genero = (char)datos.Lector["Genero"];
+                    //aux.Telefono = (int)datos.Lector["Telefono"];
+                    //aux.Email = (string)datos.Lector["Email"];
+                    //aux.Domicilio = (string)datos.Lector["Domicilio"];
                     lista.Add(aux);
 
                 }
@@ -39,14 +47,14 @@ namespace Negocio
             }
         }
 
-        public void BajaLogica(Usuario Usuario)
+        public void BajaLogica(Usuario usuario)
         {
             AccesoDatos Accesodatos = new AccesoDatos();
             try
             {
 
                 Accesodatos.setearProcedimiento("BajaLogicaUsuario");
-                Accesodatos.SeterParametros("@Id", Usuario.Id);
+                Accesodatos.SeterParametros("@Id", usuario.Id);
                 Accesodatos.EjecutarConsulta();
 
             }
