@@ -52,11 +52,9 @@ namespace Negocio
             AccesoDatos Accesodatos = new AccesoDatos();
             try
             {
-
                 Accesodatos.setearProcedimiento("BajaLogicaUsuario");
-                Accesodatos.SeterParametros("@Id", usuario.Id);
+                Accesodatos.SeterParametros("@IdUsuario", usuario.Id);
                 Accesodatos.EjecutarConsulta();
-
             }
             catch (Exception ex)
             {
@@ -76,7 +74,7 @@ namespace Negocio
             {
 
                 Accesodatos.setearProcedimiento("AltaLogicaUsuario");
-                Accesodatos.SeterParametros("@Id", Usuario.Id);
+                Accesodatos.SeterParametros("@IdUsuario", Usuario.Id);
                 Accesodatos.EjecutarConsulta();
 
             }

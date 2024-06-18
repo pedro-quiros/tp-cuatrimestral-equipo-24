@@ -62,16 +62,17 @@ namespace tp_cuatrimestral_equipo_24
                 // Crear un objeto Usuario con el Id
                 Usuario usu = new Usuario();
                 usu.Id = idUsuario;
-
                 usuario.BajaLogica(usu); // Pasar el objeto Usuario al método BajaLogica
+                
+                    Response.Redirect("Home.aspx");
+                
 
-                Response.Redirect("Home.aspx");
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex);
             }
         }
-        
+
     }
 }
