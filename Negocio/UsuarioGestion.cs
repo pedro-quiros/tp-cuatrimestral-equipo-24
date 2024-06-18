@@ -68,7 +68,7 @@ namespace Negocio
             }
         }
 
-        public void AltaLogica(Usuario Usuario)
+        public void AltaLogica(Usuario Usuario, bool activo = true)
         {
             AccesoDatos Accesodatos = new AccesoDatos();
             try

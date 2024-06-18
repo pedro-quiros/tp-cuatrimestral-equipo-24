@@ -51,6 +51,7 @@ namespace tp_cuatrimestral_equipo_24
                     Response.Write($"<script>alert('Error: {ex.Message}');</script>");
                 }
 
+                /// OBTENEMOS EL USUARIO 
                 int idu = Convert.ToInt32(Request.QueryString["IdUsuario"]);
                 foreach (Usuario item in listaUsu)
                 {
@@ -59,6 +60,10 @@ namespace tp_cuatrimestral_equipo_24
                         seleccionado = item;
                     }
                 }
+
+                ///GUARDAMOS EN LA SESSION
+                Session.Add("UsuarioSeleccionado", seleccionado);
+
                 //// configuracion de accion 
                 if (!seleccionado.Activo)
                 {
@@ -76,10 +81,18 @@ namespace tp_cuatrimestral_equipo_24
                 UsuarioGestion usuario = new UsuarioGestion();
                 Usuario usu = new Usuario();
 
-                usu.Id = idUsuario;
+                usu = (Usuario)Session["UsuarioSeleccionado"];
 
-                usuario.BajaLogica(usu);
-                Response.Redirect("Home.aspx");
+                if (usu.Activo == true)
+                {
+                    usuario.BajaLogica(usu);
+                    Response.Redirect("Home.aspx");
+                }
+                else
+                {
+                    usuario.AltaLogica(usu);
+                    Response.Redirect("Home.aspx");
+                }
 
             }
             catch (Exception ex)
