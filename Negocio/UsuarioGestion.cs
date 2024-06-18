@@ -47,11 +47,12 @@ namespace Negocio
             }
         }
 
-        public void BajaLogica(Usuario usuario)
+        public void BajaLogica(Usuario usuario, bool activo = false)
         {
             AccesoDatos Accesodatos = new AccesoDatos();
             try
             {
+                //Accesodatos.AbrirConexion();
                 Accesodatos.setearProcedimiento("BajaLogicaUsuario");
                 Accesodatos.SeterParametros("@IdUsuario", usuario.Id);
                 Accesodatos.EjecutarConsulta();

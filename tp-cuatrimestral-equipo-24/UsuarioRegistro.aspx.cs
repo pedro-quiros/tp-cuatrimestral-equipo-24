@@ -14,6 +14,7 @@ namespace tp_cuatrimestral_equipo_24
             if (!IsPostBack)
             {
                 UsuarioGestion usuarioGest = new UsuarioGestion();
+                Usuario seleccionado = new Usuario();
                 List<Usuario> listaUsu = new List<Usuario>();
 
                 if (Session["Listado"] != null)
@@ -49,6 +50,21 @@ namespace tp_cuatrimestral_equipo_24
                 {
                     Response.Write($"<script>alert('Error: {ex.Message}');</script>");
                 }
+
+                int idu = Convert.ToInt32(Request.QueryString["IdUsuario"]);
+                foreach (Usuario item in listaUsu)
+                {
+                    if (item.Id == idu)
+                    {
+                        seleccionado = item;
+                    }
+                }
+                //// configuracion de accion 
+                if (!seleccionado.Activo)
+                {
+                    btnLogico.Text = "Reactivar";
+                }
+
             }
         }
 
@@ -56,16 +72,14 @@ namespace tp_cuatrimestral_equipo_24
         {
             try
             {
-                int idUsuario = Convert.ToInt32(txtId.Text); // Obtener Id del usuario desde txtId
+                int idUsuario = Convert.ToInt32(txtId.Text);
                 UsuarioGestion usuario = new UsuarioGestion();
-
-                // Crear un objeto Usuario con el Id
                 Usuario usu = new Usuario();
+
                 usu.Id = idUsuario;
-                usuario.BajaLogica(usu); // Pasar el objeto Usuario al método BajaLogica
-                
-                    Response.Redirect("Home.aspx");
-                
+
+                usuario.BajaLogica(usu);
+                Response.Redirect("Home.aspx");
 
             }
             catch (Exception ex)

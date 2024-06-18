@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Dominio;
+using System.Data;
 
 namespace Negocio
 {
@@ -84,6 +85,19 @@ namespace Negocio
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
+
+        //public void AbrirConexion()
+        //{
+        //    if (conexion == null)
+        //    {
+        //        conexion = new SqlConnection("connection_string_here");
+        //    }
+        //    if (conexion.State != ConnectionState.Open)
+        //    {
+        //        conexion.Open();
+        //    }
+        //}
+
         public void CerrarConexion()
         {
             if (lector != null)
