@@ -1,0 +1,66 @@
+﻿#contacto {
+    padding: 100px 15px;
+    background-color: #f3f3f3;
+}
+
+    #contacto .titulo-seccion {
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: #111135;
+        text-decoration: underline;
+        text-decoration-color: #d3d3d3;
+        text-decoration-thickness: 5px;
+    }
+
+    #contacto .contenedor-form {
+        max-width: 1100px;
+        margin: auto;
+    }
+
+        #contacto .contenedor-form .fila {
+            margin-bottom: 15px;
+        }
+
+        #contacto .contenedor-form .mitad {
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+        #contacto .contenedor-form input,
+        #contacto .contenedor-form textarea {
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid #919191;
+            width: 100%; /* Asegura que los inputs y textarea ocupen todo el ancho disponible */
+        }
+
+        #contacto .contenedor-form .mitad input {
+            width: 100%; /* Ajusta el ancho de los inputs cuando están en una fila con dos columnas */
+        }
+
+        #contacto .contenedor-form .input-full {
+            width: 100%;
+        }
+
+    #contacto .btn-enviar {
+        color: green;
+        padding: 20px;
+        border-radius: 20px;
+        width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+        -webkit-align-items: inherit;
+        align-items: inherit;
+    }
+
+#contacto .btn-enviar:hover {
+    background-color: #d3d3d3;
+    color: #111135;
+}

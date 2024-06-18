@@ -10,6 +10,8 @@ INSERT INTO Datos_Personales (IdDatosPersonales, Legajo, Dni, Nombre, Apellido, 
 ((SELECT ID FROM Usuarios WHERE Nombre = 'facuPii'), 1002, '23456789B', 'facundo', 'Pino', '1985-02-02', 'M', '2345678901', 'facu.pino@example.com', 'Avenida Siempreviva 742'),
 ((SELECT ID FROM Usuarios WHERE Nombre = 'Ismaores'), 1003, '23456789B', 'Ismael', 'oreste', '1985-02-02', 'M', '2345678901', 'isma.ores@example.com', 'Avenida Siemprenoviva 747')
 go
+
+select * from Datos_Personales
 INSERT INTO Gerente (Nombre, Apellido, Estado) VALUES
 ('Pedro', 'Quieros', 1),
 ('Facundo', 'Pino', 1)
@@ -57,3 +59,11 @@ select * from Usuarios
 select U.IdUsuario,U.Nombre,U.Puesto from Usuarios U
 
 SELECT IdInsumo, Nombre, Tipo, Precio, Stock,Descripcion,UrlImagen FROM Insumo
+
+
+create proc MostrarUsuario
+as
+select U.IdUsuario,U.Nombre,U.Puesto,U.Activo,DP.Legajo,DP.Nombre,DP.Apellido,DP.Dni,DP.FechaNacimiento,DP.Genero,
+DP.Telefono,DP.Email,DP.Domicilio 
+from Usuarios U
+inner join Datos_Personales DP on DP.IdDatosPersonales = U.IdUsuario

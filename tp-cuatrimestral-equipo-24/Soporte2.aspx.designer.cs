@@ -11,7 +11,7 @@ namespace tp_cuatrimestral_equipo_24
 {
 
 
-    public partial class Soporte
+    public partial class Reportes
     {
     }
 }

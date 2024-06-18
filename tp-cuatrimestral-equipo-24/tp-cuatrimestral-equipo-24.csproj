@@ -73,6 +73,7 @@
     <Content Include="Estilos2.css" />
     <Content Include="Estilos3.css" />
     <Content Include="EstilosModificar.css" />
+    <Content Include="EstilosSoporte.css" />
     <Content Include="EstilosTarjetas.css" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
@@ -82,6 +83,7 @@
     <Content Include="Reporte.aspx" />
     <Content Include="Salon.aspx" />
     <Content Include="Soporte.aspx" />
+    <Content Include="Soporte2.aspx" />
     <Content Include="UsuarioRegistro.aspx" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
@@ -167,6 +169,13 @@
     </Compile>
     <Compile Include="Soporte.aspx.designer.cs">
       <DependentUpon>Soporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Soporte2.aspx.cs">
+      <DependentUpon>Soporte2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Soporte2.aspx.designer.cs">
+      <DependentUpon>Soporte2.aspx</DependentUpon>
     </Compile>
     <Compile Include="UsuarioRegistro.aspx.cs">
       <DependentUpon>UsuarioRegistro.aspx</DependentUpon>
