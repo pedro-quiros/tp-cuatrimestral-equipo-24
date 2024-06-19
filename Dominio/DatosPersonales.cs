@@ -30,7 +30,7 @@ namespace Dominio
             Nombre = "";
             Apellido = "";
             Dni = "";
- //           FechaNacimiento = DateTime.Now;
+            Nacimiento = "";
             Genero = "";
             Telefono = "";
             Email = "";

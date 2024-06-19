@@ -86,18 +86,6 @@ namespace Negocio
             comando.Parameters.AddWithValue(nombre, valor);
         }
 
-        //public void AbrirConexion()
-        //{
-        //    if (conexion == null)
-        //    {
-        //        conexion = new SqlConnection("connection_string_here");
-        //    }
-        //    if (conexion.State != ConnectionState.Open)
-        //    {
-        //        conexion.Open();
-        //    }
-        //}
-
         public void CerrarConexion()
         {
             if (lector != null)

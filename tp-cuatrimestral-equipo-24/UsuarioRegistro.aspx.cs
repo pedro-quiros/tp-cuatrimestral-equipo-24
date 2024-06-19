@@ -40,33 +40,18 @@ namespace tp_cuatrimestral_equipo_24
                         {
                             txtId.Text = usu.Id.ToString();
                             txtUsuario.Value = usu.NombreUsuario;
-                            txtNombre.Value = usu.datos.Nombre;
+                            txtLegajo.Value = usu.datos.Legajo.ToString();
+                            txtNombrePersonal.Value = usu.datos.Nombre.ToString();
                             txtApellido.Value = usu.datos.Apellido;
                            
                             txtEmail.Value = usu.datos.Email;
                             txtDomicilio.Value = usu.datos.Domicilio;
-                            txtNacimiento.Value = usu.datos.Nacimiento;
+                            txtNacimiento.Value = usu.datos.Nacimiento.ToString();
                             ddlGenero.Value = usu.datos.Genero;
                             txtTelefono.Value = usu.datos.Telefono;
 
-                            txtDni.Value = usu.datos.Dni;
+                            txtDni.Value = usu.datos.Dni.ToString();
 
-                          //  txtNacimiento.Value = usu.datos.Nacimiento.ToString("yyyy-MM-dd");
-
-
-                            //  txtDni.Value = usu.datos.Dni.ToString();
-
-
-                            /*
-                             * txtNombre.Text = usu.DatosPersonales.Nombre;
-                              txtApellido.Text = usu.DatosPersonales.Apellido;
-                              txtDni.Text = usu.DatosPersonales.Dni.ToString();
-                              txtFechaNacimiento.Text = usu.DatosPersonales.FechaNacimiento.ToString("yyyy-MM-dd");
-                              txtGenero.Text = usu.DatosPersonales.Genero.ToString();
-                              txtTelefono.Text = usu.DatosPersonales.Telefono.ToString();
-                              txtEmail.Text = usu.DatosPersonales.Email;
-                              txtDomicilio.Text = usu.DatosPersonales.Domicilio;
-                            */
                         }
                         else
                         {

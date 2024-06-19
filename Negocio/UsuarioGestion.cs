@@ -22,23 +22,20 @@ namespace Negocio
                     try
                     {
                         aux.Id = (int)datos.Lector["IdUsuario"];
-                        aux.NombreUsuario = datos.Lector["Nombre"].ToString();
+                        aux.NombreUsuario = datos.Lector["NombreUsuario"].ToString();
                         aux.Puesto = Convert.ToInt32(datos.Lector["Puesto"]);
                         aux.Activo = Convert.ToBoolean(datos.Lector["Activo"]);
                         aux.datos = new DatosPersonales
                         {
+                            Legajo = Convert.ToInt32(datos.Lector["Legajo"]),
                             Nombre = datos.Lector["Nombre"].ToString(),
                             Apellido = datos.Lector["Apellido"].ToString(),
                             Email = datos.Lector["Email"].ToString(),
                             Dni = datos.Lector["Dni"].ToString(),
                             Telefono = datos.Lector["Telefono"].ToString(),
-                            //Nacimiento = datos.Lector["Nacimiento"].ToString(),
+                            Nacimiento = datos.Lector["FechaNacimiento"].ToString(),
                             Genero = datos.Lector["Genero"].ToString(),
-                            //Dni = datos.Lector["Dni"] != DBNull.Value ? datos.Lector["Dni"].ToString() : string.Empty,
                             Domicilio = datos.Lector["Domicilio"].ToString()
-                        
-
-
                         };
                     }
                     catch (InvalidCastException ex)

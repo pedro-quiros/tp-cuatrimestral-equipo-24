@@ -25,9 +25,7 @@
 
         <div class="form-group">
             <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-            <%--  <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server"></asp:TextBox>--%>
-
-           <input type="text" class="form-control" id="txtNombre" runat="server" />
+           <input type="text" class="form-control" id="txtNombrePersonal" runat="server" />
         </div>
 
         <div class="form-group">
