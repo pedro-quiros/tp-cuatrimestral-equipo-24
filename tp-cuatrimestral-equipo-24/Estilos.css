@@ -31,6 +31,7 @@
 	padding: 10px;
 	border-radius: 20px;
 	background-color: lightsteelblue;
+
 }
 
 label {
@@ -46,6 +47,8 @@ option {
 button {
 	position: relative;
 	left: 750px;
+	bottom: 50px;
+	margin-bottom: 20px;
 }
 
 

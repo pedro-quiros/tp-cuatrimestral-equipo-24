@@ -9,7 +9,7 @@
     <div class="encuadre">
 
         <div class="form-group">
-            <asp:Label ID="lblId" runat="server" Text="Id:" CssClass="control-label"></asp:Label>
+            <asp:Label ID="lblId" runat="server" Text="ID:" CssClass="control-label"></asp:Label>
             <asp:TextBox ID="txtId" CssClass="form-control" runat="server"></asp:TextBox>
         </div>
 
@@ -25,7 +25,9 @@
 
         <div class="form-group">
             <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-            <input type="text" class="form-control" id="txtNombre" runat="server" />
+            <%--  <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server"></asp:TextBox>--%>
+
+           <input type="text" class="form-control" id="txtNombre" runat="server" />
         </div>
 
         <div class="form-group">
@@ -33,10 +35,10 @@
             <input type="text" class="form-control" id="txtApellido" runat="server" />
         </div>
 
-        <div class="form-group">
-            <asp:Label ID="lblDni" runat="server" Text="DNI:" CssClass="control-label"></asp:Label>
-            <input type="text" class="form-control" id="txtDni" runat="server" />
-        </div>
+<div class="form-group">
+    <asp:Label ID="lblDni" runat="server" Text="DNI:" CssClass="control-label"></asp:Label>
+    <input type="text" class="form-control" id="txtDni" runat="server" />
+</div>
 
         <div class="form-group">
             <asp:Label ID="LblNacimineto" runat="server" Text="Fecha de Nacimiento:" CssClass="control-label"></asp:Label>
@@ -44,10 +46,9 @@
         </div>
 
         <div class="form-group">
-            <asp:Label ID="lblgenero" runat="server" Text="Genero:" CssClass="control-label"></asp:Label>
-            <input type="text" class="form-control" id="txtgenero" runat="server" />
+            <asp:Label ID="lblgenero" runat="server" Text="Género:" CssClass="control-label"></asp:Label>
             <div class="col-sm-10">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" id="ddlGenero" runat="server" cssclass="form-control">
                     <option selected>Seleccione una opción</option>
                     <option value="1">Hombre</option>
                     <option value="2">Mujer</option>
@@ -57,7 +58,7 @@
         </div>
 
         <div class="form-group">
-            <asp:Label ID="lblTelefono" runat="server" Text="Telefono:" CssClass="control-label"></asp:Label>
+            <asp:Label ID="lblTelefono" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
             <input type="text" class="form-control" id="txtTelefono" runat="server" />
         </div>
 

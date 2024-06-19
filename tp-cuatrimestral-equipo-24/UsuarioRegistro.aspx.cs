@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace tp_cuatrimestral_equipo_24
 {
+
     public partial class UsuarioRegistro : System.Web.UI.Page
     {
         List<Usuario> listaUsuario;
@@ -39,6 +40,25 @@ namespace tp_cuatrimestral_equipo_24
                         {
                             txtId.Text = usu.Id.ToString();
                             txtUsuario.Value = usu.NombreUsuario;
+                            txtNombre.Value = usu.datos.Nombre;
+                            txtApellido.Value = usu.datos.Apellido;
+                           
+                            txtmail.Value = usu.datos.Email;
+
+
+                          //  txtDni.Value = usu.datos.Dni.ToString();
+
+
+                            /*
+                             * txtNombre.Text = usu.DatosPersonales.Nombre;
+                              txtApellido.Text = usu.DatosPersonales.Apellido;
+                              txtDni.Text = usu.DatosPersonales.Dni.ToString();
+                              txtFechaNacimiento.Text = usu.DatosPersonales.FechaNacimiento.ToString("yyyy-MM-dd");
+                              txtGenero.Text = usu.DatosPersonales.Genero.ToString();
+                              txtTelefono.Text = usu.DatosPersonales.Telefono.ToString();
+                              txtEmail.Text = usu.DatosPersonales.Email;
+                              txtDomicilio.Text = usu.DatosPersonales.Domicilio;
+                            */
                         }
                         else
                         {
@@ -73,6 +93,9 @@ namespace tp_cuatrimestral_equipo_24
             }
         }
 
+
+
+
         protected void btnInactivo_Click(object sender, EventArgs e)
         {
             try
@@ -100,6 +123,9 @@ namespace tp_cuatrimestral_equipo_24
                 Session.Add("error", ex);
             }
         }
-
     }
 }
+
+
+
+

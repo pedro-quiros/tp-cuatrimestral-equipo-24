@@ -6,9 +6,9 @@ INSERT INTO Usuarios (Nombre, Clave, Puesto, Activo) VALUES
 ('Ismaores', 'claveSegura345', 3, 1)
 GO
 INSERT INTO Datos_Personales (IdDatosPersonales, Legajo, Dni, Nombre, Apellido, FechaNacimiento, Genero, Telefono, Email, Domicilio) VALUES
-((SELECT ID FROM Usuarios WHERE Nombre = 'PedroQui'), 1001, '12345678A', 'Pedro', 'Quiros', '1990-01-01', 'M', '1234567890', 'Pedro.quieros@example.com', 'Calle Falsa 123'),
-((SELECT ID FROM Usuarios WHERE Nombre = 'facuPii'), 1002, '23456789B', 'facundo', 'Pino', '1985-02-02', 'M', '2345678901', 'facu.pino@example.com', 'Avenida Siempreviva 742'),
-((SELECT ID FROM Usuarios WHERE Nombre = 'Ismaores'), 1003, '23456789B', 'Ismael', 'oreste', '1985-02-02', 'M', '2345678901', 'isma.ores@example.com', 'Avenida Siemprenoviva 747')
+((SELECT IdUsuario FROM Usuarios WHERE Nombre = 'PedroQui'), 1001, '12345678A', 'Pedro', 'Quiros', '1990-01-01', 'M', '1234567890', 'Pedro.quieros@example.com', 'Calle Falsa 123'),
+((SELECT IdUsuario FROM Usuarios WHERE Nombre = 'facuPii'), 1002, '23456789B', 'facundo', 'Pino', '1985-02-02', 'M', '2345678901', 'facu.pino@example.com', 'Avenida Siempreviva 742'),
+((SELECT IdUsuario FROM Usuarios WHERE Nombre = 'Ismaores'), 1003, '23456789B', 'Ismael', 'oreste', '1985-02-02', 'M', '2345678901', 'isma.ores@example.com', 'Avenida Siemprenoviva 747')
 go
 
 select * from Datos_Personales
@@ -67,3 +67,22 @@ select U.IdUsuario,U.Nombre,U.Puesto,U.Activo,DP.Legajo,DP.Nombre,DP.Apellido,DP
 DP.Telefono,DP.Email,DP.Domicilio 
 from Usuarios U
 inner join Datos_Personales DP on DP.IdDatosPersonales = U.IdUsuario
+
+
+ALTER Procedure AltaLogicaUsuario 
+@IdUsuario int 
+as 
+update Usuarios set Activo = 1 where IdUsuario = @IdUsuario
+go
+ALTER Procedure BajaLogicaUsuario 
+@IdUsuario int 
+as 
+update Usuarios set Activo = 0 where IdUsuario = @IdUsuario
+
+
+CREATE PROCEDURE MostrarUsuario2
+AS
+BEGIN
+    SELECT IdUsuario, NombreUsuario, Clave, Puesto, Activo, IdDatosPersonales, Legajo, Nombre, Apellido, Dni, Nacimiento, Genero, Telefono, Email, Domicilio
+    FROM Usuarios
+END

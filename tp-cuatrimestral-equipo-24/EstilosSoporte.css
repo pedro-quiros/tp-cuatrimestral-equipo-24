@@ -26,7 +26,6 @@
         #contacto .contenedor-form .mitad {
             display: flex;
             justify-content: space-between;
-            
         }
 
         #contacto .contenedor-form input,
@@ -44,23 +43,3 @@
         #contacto .contenedor-form .input-full {
             width: 100%;
         }
-
-    #contacto .btn-enviar {
-        color: green;
-        padding: 20px;
-        border-radius: 20px;
-        width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
-        cursor: pointer;
-        transition: 0.3s;
-        font-size: 16px;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: none;
-        -webkit-align-items: inherit;
-        align-items: inherit;
-    }
-
-#contacto .btn-enviar:hover {
-    background-color: #d3d3d3;
-    color: #111135;
-}

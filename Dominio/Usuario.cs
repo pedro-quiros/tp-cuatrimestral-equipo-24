@@ -9,6 +9,8 @@ namespace Dominio
 {
     public class Usuario : DatosPersonales
     {
+      
+
         public int Id { get; set; }
 
         public string NombreUsuario { get; set; }
