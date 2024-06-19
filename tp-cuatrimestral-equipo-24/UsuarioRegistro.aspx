@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <asp:Label ID="LblNacimineto" runat="server" Text="Fecha de Nacimiento:" CssClass="control-label"></asp:Label>
-            <input type="text" class="form-control" id="txtnacimiento" runat="server" />
+            <input type="text" class="form-control" id="txtNacimiento" runat="server" />
         </div>
 
         <div class="form-group">
@@ -64,12 +64,12 @@
 
         <div class="form-group">
             <asp:Label ID="LblMail" runat="server" Text="Mail:" CssClass="control-label"></asp:Label>
-            <input type="text" class="form-control" id="txtmail" runat="server" />
+            <input type="text" class="form-control" id="txtEmail" runat="server" />
         </div>
 
         <div class="form-group">
             <asp:Label ID="lblDomicilio" runat="server" Text="Domicilio:" CssClass="control-label"></asp:Label>
-            <input type="text" class="form-control" id="txtdomicilio" runat="server" />
+            <input type="text" class="form-control" id="txtDomicilio" runat="server" />
         </div>
 
         <form class="row g-3">

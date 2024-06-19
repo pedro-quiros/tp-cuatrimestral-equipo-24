@@ -30,8 +30,9 @@ namespace Negocio
                             Nombre = datos.Lector["Nombre"].ToString(),
                             Apellido = datos.Lector["Apellido"].ToString(),
                             Email = datos.Lector["Email"].ToString(),
-                         //   Dni = Convert.ToInt32(datos.Lector["Dni"]),
-
+                            //   Dni = Convert.ToInt32(datos.Lector["Dni"]),
+                            Domicilio = datos.Lector["Domicilio"].ToString()
+                        
 
 
                         };

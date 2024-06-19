@@ -132,13 +132,13 @@ namespace tp_cuatrimestral_equipo_24
         protected global::System.Web.UI.WebControls.Label LblNacimineto;
 
         /// <summary>
-        /// txtnacimiento control.
+        /// txtNacimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnacimiento;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNacimiento;
 
         /// <summary>
         /// lblgenero control.
@@ -186,13 +186,13 @@ namespace tp_cuatrimestral_equipo_24
         protected global::System.Web.UI.WebControls.Label LblMail;
 
         /// <summary>
-        /// txtmail control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtmail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
 
         /// <summary>
         /// lblDomicilio control.
@@ -204,13 +204,13 @@ namespace tp_cuatrimestral_equipo_24
         protected global::System.Web.UI.WebControls.Label lblDomicilio;
 
         /// <summary>
-        /// txtdomicilio control.
+        /// txtDomicilio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtdomicilio;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDomicilio;
 
         /// <summary>
         /// btnLogico control.
