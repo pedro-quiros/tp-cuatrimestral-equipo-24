@@ -45,7 +45,11 @@ namespace tp_cuatrimestral_equipo_24
                            
                             txtEmail.Value = usu.datos.Email;
                             txtDomicilio.Value = usu.datos.Domicilio;
+                            txtNacimiento.Value = usu.datos.Nacimiento;
+                            ddlGenero.Value = usu.datos.Genero;
+                            txtTelefono.Value = usu.datos.Telefono;
 
+                            txtDni.Value = usu.datos.Dni;
 
                           //  txtNacimiento.Value = usu.datos.Nacimiento.ToString("yyyy-MM-dd");
 
