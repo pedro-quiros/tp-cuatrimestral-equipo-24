@@ -94,5 +94,42 @@ namespace Negocio
                 Accesodatos.CerrarConexion();
             }
         }
+        public void AgregarUsuario(Usuario usuario)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.setearProcedimiento("AgregarUsuario");
+                Datos.SeterParametros("@nombreusuario", usuario.NombreUsuario);
+                Datos.SeterParametros("@clave", usuario.Clave);
+                Datos.SeterParametros("@Puesto", usuario.Puesto);
+                Datos.SeterParametros("@activo", usuario.Activo);
+
+                usuario.datos = new DatosPersonales();
+                {
+                    Datos.SeterParametros("@Legajo", usuario.Legajo);
+                    Datos.SeterParametros("@Dni", usuario.Dni);
+                    Datos.SeterParametros("@Nombre", usuario.Nombre);
+                    Datos.SeterParametros("@Apellido", usuario.Apellido);
+                    Datos.SeterParametros("@Fechanacimiento", usuario.Nacimiento);
+                    Datos.SeterParametros("@genero", usuario.Genero);
+                    Datos.SeterParametros("@telefono", usuario.Telefono);
+                    Datos.SeterParametros("@Email", usuario.Email);
+                    Datos.SeterParametros("@domicilio", usuario.Domicilio);
+                }
+
+                     Datos.EjecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al Agregar el usuario: " + ex.Message, ex);
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
     }
 }

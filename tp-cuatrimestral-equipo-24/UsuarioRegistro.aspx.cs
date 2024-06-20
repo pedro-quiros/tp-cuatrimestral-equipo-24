@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace tp_cuatrimestral_equipo_24
 {
@@ -43,7 +44,7 @@ namespace tp_cuatrimestral_equipo_24
                             txtLegajo.Value = usu.datos.Legajo.ToString();
                             txtNombrePersonal.Value = usu.datos.Nombre.ToString();
                             txtApellido.Value = usu.datos.Apellido;
-                           
+
                             txtEmail.Value = usu.datos.Email;
                             txtDomicilio.Value = usu.datos.Domicilio;
                             txtNacimiento.Value = usu.datos.Nacimiento.ToString();
@@ -117,15 +118,48 @@ namespace tp_cuatrimestral_equipo_24
             }
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnModificar_Click(object sender, EventArgs e)
         {
 
         }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Usuario nuevoUsuario = new Usuario
+                {
+                    NombreUsuario = txtUsuario.Value, // Asumiendo que tienes un TextBox para el nombre de usuario
+                    //Clave = txtClave.Text, // Asumiendo que tienes un TextBox para la clave
+                    //Puesto = int.Parse(txtPuesto.value), // Convierte el texto a int, asumiendo que tienes un TextBox para el puesto
+                    //Activo = chkActivo.Checked, // Asumiendo que tienes un CheckBox para el estado activo
+                    datos = new DatosPersonales
+                    {
+                        Legajo = int.Parse(txtLegajo.Value),
+                        Dni = txtDni.Value,
+                        Nombre = txtNombrePersonal.Value,
+                        Apellido = txtApellido.Value,
+                        Nacimiento = txtNacimiento.Value,
+                        //Genero = ,
+                        Telefono = txtTelefono.Value,
+                        Email = txtEmail.Value,
+                        Domicilio = txtDomicilio.Value
+                    }
+                };
+
+                UsuarioGestion gestionUsuario = new UsuarioGestion();
+                gestionUsuario.AgregarUsuario(nuevoUsuario);
+
+                // Redirigir a otra página o mostrar un mensaje de éxito
+                Response.Redirect("Home.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
+        }
+
+
     }
 }
 

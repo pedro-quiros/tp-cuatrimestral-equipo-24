@@ -65,9 +65,8 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("UsuarioRegistro.aspx");
         }
     }
-
 
 }
