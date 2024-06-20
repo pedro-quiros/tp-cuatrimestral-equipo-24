@@ -30,6 +30,31 @@
             .tablaConEstilo tr:hover {
                 background-color: #ddd;
             }
+        /*Boton Agregar usuario*/
+        .Ingresar {
+            display: inline-block;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #007bff; /* Cambiado a azul */
+            border-radius: 30px;
+            border: 1px solid #007bff; /* Azul */
+            padding: 10px 20px; /* Ajuste de padding */
+            margin-top: 30px;
+            transition: .5s;
+            cursor: pointer;
+        }
+
+            .Ingresar:hover {
+                background-color: #0056b3; /* Color de fondo al pasar el mouse */
+                border: 1px solid #0056b3; /* Azul oscuro */
+                color: #fff;
+            }
+
+        .button-container {
+            width: 40%;
+            margin: 20px auto 0; /* Centrado y con margen superior */
+            text-align: right; /* Alineado a la derecha */
+        }
     </style>
 
 </asp:Content>
@@ -39,12 +64,10 @@
 
 
     <div class="filter-container">
-    <i class="fas fa-search"> Buscar</i>
-    <asp:Label ID="LabelFiltrar" runat="server" Text="" CssClass="label-filtrar"></asp:Label>
-    <asp:TextBox ID="Filtro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" runat="server" CssClass="input-filtrar" />
-</div>
-
-
+        <i class="fas fa-search">Buscar</i>
+        <asp:Label ID="LabelFiltrar" runat="server" Text="" CssClass="label-filtrar"></asp:Label>
+        <asp:TextBox ID="Filtro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" runat="server" CssClass="input-filtrar" />
+    </div>
 
     <asp:GridView CssClass="tablaConEstilo" ID="dgvUsuario" runat="server" DataKeyNames="Id" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvUsuario_SelectedIndexChanged" OnPageIndexChanging="dgvUsuario_PageIndexChanging" AllowPaging="true" PageSize="5">
         <Columns>
@@ -56,5 +79,9 @@
         </Columns>
     </asp:GridView>
 
-          
+    <div class="button-container">
+        <asp:Button ID="btnAgregar" runat="server" CssClass="Ingresar" Text="Agregar" OnClick="btnAgregar_Click" />
+    </div>
+
+
 </asp:Content>

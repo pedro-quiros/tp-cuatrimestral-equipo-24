@@ -63,6 +63,10 @@ namespace tp_cuatrimestral_equipo_24
             dgvUsuario.DataBind();
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

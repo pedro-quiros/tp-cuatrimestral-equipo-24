@@ -116,6 +116,16 @@ namespace tp_cuatrimestral_equipo_24
                 Session.Add("error", ex);
             }
         }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

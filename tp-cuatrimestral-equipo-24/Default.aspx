@@ -16,7 +16,7 @@
                 <p class="bienvenida">Bienvenidos</p>
                 <h2>AL <span>RESTAURANTE</span>, BYTES Y BOCADOS</h2>
                 <p class="descripcion">
-                    El Restaurantre con la mejor critica en el mundo web 
+                    El Restaurante con la mejor critica en el mundo web 
                      y gastronomico.
                 </p>
                 <div class="mb-3 row">

@@ -72,8 +72,8 @@
 
         <form class="row g-3">
             <div class="col-auto">
-                <button type="button" class="btn btn-outline-success">Confirmar</button>
                 <asp:Button ID="btnLogico" runat="server" Text="Inactivar" OnClick="btnInactivo_Click" CssClass="btn btn-outline-success" />
+                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-outline-success" />
             </div>
         </form>
     </div>
