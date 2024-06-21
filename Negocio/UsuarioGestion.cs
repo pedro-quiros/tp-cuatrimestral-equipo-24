@@ -25,18 +25,18 @@ namespace Negocio
                         aux.NombreUsuario = datos.Lector["NombreUsuario"].ToString();
                         aux.Puesto = Convert.ToInt32(datos.Lector["Puesto"]);
                         aux.Activo = Convert.ToBoolean(datos.Lector["Activo"]);
-                        aux.datos = new DatosPersonales
-                        {
-                            Legajo = Convert.ToInt32(datos.Lector["Legajo"]),
-                            Nombre = datos.Lector["Nombre"].ToString(),
-                            Apellido = datos.Lector["Apellido"].ToString(),
-                            Email = datos.Lector["Email"].ToString(),
-                            Dni = datos.Lector["Dni"].ToString(),
-                            Telefono = datos.Lector["Telefono"].ToString(),
-                            Nacimiento = datos.Lector["FechaNacimiento"].ToString(),
-                            Genero = datos.Lector["Genero"].ToString(),
-                            Domicilio = datos.Lector["Domicilio"].ToString()
-                        };
+
+
+                //        aux.Legajo = Convert.ToInt32(datos.Lector["Legajo"]);
+                        aux.Nombre = datos.Lector["Nombre"].ToString();
+                        aux.Apellido = datos.Lector["Apellido"].ToString();
+                        aux.Email = datos.Lector["Email"].ToString();
+                        aux.Dni = datos.Lector["Dni"].ToString();
+                        aux.Telefono = datos.Lector["Telefono"].ToString();
+                        aux.Nacimiento = datos.Lector["FechaNacimiento"].ToString();
+                        aux.Genero = datos.Lector["Genero"].ToString();
+                        aux.Domicilio = datos.Lector["Domicilio"].ToString();
+
                     }
                     catch (InvalidCastException ex)
                     {
@@ -94,6 +94,7 @@ namespace Negocio
                 Accesodatos.CerrarConexion();
             }
         }
+        /*
         public void AgregarUsuario(Usuario usuario)
         {
             AccesoDatos Datos = new AccesoDatos();
@@ -131,5 +132,38 @@ namespace Negocio
                 Datos.CerrarConexion();
             }
         }
+        */
+
+        public void AgregarUsuario(Usuario usuario)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.setearProcedimiento("InsertarUsuario");
+                Datos.SeterParametros("@NombreUsuario", usuario.NombreUsuario);
+                Datos.SeterParametros("@Clave", usuario.Clave);
+                Datos.SeterParametros("@Puesto", usuario.Puesto);
+                Datos.SeterParametros("@Activo", usuario.Activo);
+                Datos.SeterParametros("@DNI", usuario.Dni);
+                Datos.SeterParametros("@Nombre", usuario.Nombre);
+                Datos.SeterParametros("@Apellido", usuario.Apellido);
+                Datos.SeterParametros("@FechaNacimiento", DateTime.Parse(usuario.Nacimiento));
+                Datos.SeterParametros("@Genero", usuario.Genero);
+                Datos.SeterParametros("@Telefono", usuario.Telefono);
+                Datos.SeterParametros("@Email", usuario.Email);
+                Datos.SeterParametros("@Domicilio", usuario.Domicilio);
+
+                Datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al Agregar el usuario: " + ex.Message, ex);
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+
     }
 }

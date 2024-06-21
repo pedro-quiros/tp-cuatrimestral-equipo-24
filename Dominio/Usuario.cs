@@ -7,7 +7,7 @@ using Dominio;
 
 namespace Dominio
 {
-    public class Usuario : DatosPersonales
+    public class Usuario 
     {
       
 
@@ -21,7 +21,19 @@ namespace Dominio
 
         public bool Activo { get; set; }
 
-        public DatosPersonales datos { get; set; }
+        //   public DatosPersonales datos { get; set; }
+   //     public int Legajo { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Dni { get; set; }
+        public string Nacimiento { get; set; }
+        public string Genero { get; set; }
+        public string Telefono { get; set; }
+        public string Email { get; set; }
+        public string Domicilio { get; set; }
+
+
+
 
         public Usuario() 
         {
@@ -29,11 +41,21 @@ namespace Dominio
             NombreUsuario = "";
             Clave = "fip12345";
             Puesto = 2;
-            datos = new DatosPersonales();
+            //datos = new DatosPersonales();
             Activo= true;
+              //  Legajo = 0;
+            Nombre = "";
+            Apellido = "";
+            Dni = "";
+            Nacimiento = "";
+            Genero = "";
+            Telefono = "";
+            Email = "";
+            Domicilio = "";
         }
 
-        public Usuario (int id, string nombreUsuario, string clave, int puesto, DatosPersonales datos,bool Activado)
+        public Usuario (int id, string nombreUsuario, string clave, int puesto, bool Activado, string nombre, string apellido, string dni, string fechaNacimiento, string genero, string telefono, string email, string domicilio)
+
         {
             Id = id;
             NombreUsuario = nombreUsuario;
@@ -47,7 +69,17 @@ namespace Dominio
             }
             Puesto = puesto;
             Activo = Activado;
-            this.datos = datos;
+         //   this.datos = datos;
+
+          //  Legajo = legajo;
+            Nombre = nombre;
+            Apellido = apellido;
+            Dni = dni;
+            Nacimiento = fechaNacimiento;
+            Genero = genero;
+            Telefono = telefono;
+            Email = email;
+            Domicilio = domicilio;
         }
     }
 }

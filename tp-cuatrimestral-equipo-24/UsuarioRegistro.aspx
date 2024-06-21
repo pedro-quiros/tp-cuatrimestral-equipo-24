@@ -18,6 +18,16 @@
             <input type="text" class="form-control" id="txtUsuario" runat="server" />
         </div>
 
+                <div class="form-group">
+            <asp:Label ID="lblClave" runat="server" Text="Password:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtClave" runat="server" />
+        </div>
+
+                <div class="form-group">
+            <asp:Label ID="lblPuesto" runat="server" Text="Puesto:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtPuesto" runat="server" />
+        </div>
+
         <div class="form-group">
             <asp:Label ID="lbllegajo" runat="server" Text="Legajo:" CssClass="control-label"></asp:Label>
             <input type="text" class="form-control" id="txtLegajo" runat="server" />

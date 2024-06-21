@@ -41,17 +41,17 @@ namespace tp_cuatrimestral_equipo_24
                         {
                             txtId.Text = usu.Id.ToString();
                             txtUsuario.Value = usu.NombreUsuario;
-                            txtLegajo.Value = usu.datos.Legajo.ToString();
-                            txtNombrePersonal.Value = usu.datos.Nombre.ToString();
-                            txtApellido.Value = usu.datos.Apellido;
+                         //   txtLegajo.Value = usu.Legajo.ToString();
+                            txtNombrePersonal.Value = usu.Nombre.ToString();
+                            txtApellido.Value = usu.Apellido;
 
-                            txtEmail.Value = usu.datos.Email;
-                            txtDomicilio.Value = usu.datos.Domicilio;
-                            txtNacimiento.Value = usu.datos.Nacimiento.ToString();
-                            ddlGenero.Value = usu.datos.Genero;
-                            txtTelefono.Value = usu.datos.Telefono;
+                            txtEmail.Value = usu.Email;
+                            txtDomicilio.Value = usu.Domicilio;
+                            txtNacimiento.Value = usu.Nacimiento.ToString();
+                            ddlGenero.Value = usu.Genero;
+                            txtTelefono.Value = usu.Telefono;
 
-                            txtDni.Value = usu.datos.Dni.ToString();
+                            txtDni.Value = usu.Dni.ToString();
 
                         }
                         else
@@ -129,22 +129,19 @@ namespace tp_cuatrimestral_equipo_24
             {
                 Usuario nuevoUsuario = new Usuario
                 {
-                    NombreUsuario = txtUsuario.Value, // Asumiendo que tienes un TextBox para el nombre de usuario
-                    //Clave = txtClave.Text, // Asumiendo que tienes un TextBox para la clave
-                    //Puesto = int.Parse(txtPuesto.value), // Convierte el texto a int, asumiendo que tienes un TextBox para el puesto
-                    //Activo = chkActivo.Checked, // Asumiendo que tienes un CheckBox para el estado activo
-                    datos = new DatosPersonales
-                    {
-                        Legajo = int.Parse(txtLegajo.Value),
-                        Dni = txtDni.Value,
-                        Nombre = txtNombrePersonal.Value,
-                        Apellido = txtApellido.Value,
-                        Nacimiento = txtNacimiento.Value,
-                        //Genero = ,
-                        Telefono = txtTelefono.Value,
-                        Email = txtEmail.Value,
-                        Domicilio = txtDomicilio.Value
-                    }
+                    NombreUsuario = txtUsuario.Value,
+                    Clave = txtClave.Value,
+                    Puesto = int.Parse(txtPuesto.Value),
+                    Activo = true,
+                  //  Legajo = int.Parse(txtLegajo.Value),
+                    Dni = txtDni.Value,
+                    Nombre = txtNombrePersonal.Value,
+                    Apellido = txtApellido.Value,
+                    Nacimiento = txtNacimiento.Value,
+                    Genero = ddlGenero.Value,
+                    Telefono = txtTelefono.Value,
+                    Email = txtEmail.Value,
+                    Domicilio = txtDomicilio.Value
                 };
 
                 UsuarioGestion gestionUsuario = new UsuarioGestion();
