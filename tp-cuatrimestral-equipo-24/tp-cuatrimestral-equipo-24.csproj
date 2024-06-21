@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgregarInsumo.aspx" />
     <Content Include="Configuracion.aspx" />
     <Content Include="Delivery.aspx" />
     <Content Include="DetalleInsumo.aspx" />
@@ -88,6 +89,13 @@
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarInsumo.aspx.cs">
+      <DependentUpon>AgregarInsumo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarInsumo.aspx.designer.cs">
+      <DependentUpon>AgregarInsumo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Configuracion.aspx.cs">
       <DependentUpon>Configuracion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

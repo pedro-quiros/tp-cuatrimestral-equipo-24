@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using Dominio;
 using Negocio;
 
@@ -22,13 +23,13 @@ namespace tp_cuatrimestral_equipo_24
                 idRep.DataSource = (List<Insumo>)Session["ListadoMenu"];
                 idRep.DataBind();
                 */
-             
+
                 InsumosNegocio insumo = new InsumosNegocio();
                 ListaInsumos = insumo.ListarConSp();
                 Session["Listado"] = ListaInsumos;
                 idRep.DataSource = ListaInsumos;
                 idRep.DataBind();
-                
+
             }
         }
         protected void filtro_TextChanged(object sender, EventArgs e)
@@ -54,6 +55,16 @@ namespace tp_cuatrimestral_equipo_24
             }
             idRep.DataSource = ListaFiltrada;
             idRep.DataBind();
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            InsumosNegocio negocio = new InsumosNegocio();
+            System.Web.UI.WebControls.Button btn = (System.Web.UI.WebControls.Button)sender;
+            int id = Convert.ToInt32(btn.CommandArgument);
+
+            negocio.eliminar(id);
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

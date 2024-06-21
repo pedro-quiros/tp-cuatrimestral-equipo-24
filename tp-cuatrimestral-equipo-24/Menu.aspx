@@ -8,11 +8,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p class="title">Menú</p>
 
-<div class="filter-container">
-    <i class="fas fa-search"> Buscar</i>
-    <asp:Label ID="LabelFiltrar" runat="server" Text="" CssClass="label-filtrar"></asp:Label>
-    <asp:TextBox ID="Filtro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" runat="server" CssClass="input-filtrar" />
-</div>
+    <div class="filter-container">
+        <i class="fas fa-search">Buscar</i>
+        <asp:Label ID="LabelFiltrar" runat="server" Text="" CssClass="label-filtrar"></asp:Label>
+        <asp:TextBox ID="Filtro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" runat="server" CssClass="input-filtrar" />
+    </div>
 
     <section class="body-def">
         <div class="contenedor-card">
@@ -29,13 +29,21 @@
                             <div class="cta_tarjeta-rest">
                                 <a href='<%# "ModificarInsumo.aspx?IdInsumo=" + Eval("IdInsumo") %>'>Modificar</a>
                             </div>
+                            <div class="mt-auto d-flex justify-content-around">
+                                <asp:Button CssClass="btn-primary" Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
+                            </div>
                         </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-           
+
         </div>
     </section>
-      
+
+            <div class="btn btn-outline-danger">
+                 <a href="AgregarInsumo.aspx">AGREGAR INSUMO</a>
+            </div>
+
+
     <asp:GridView ID="dgvArticulos" runat="server"></asp:GridView>
 </asp:Content>
