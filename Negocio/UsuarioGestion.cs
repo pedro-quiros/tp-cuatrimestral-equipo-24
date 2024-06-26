@@ -144,10 +144,11 @@ namespace Negocio
                 Datos.SeterParametros("@Clave", usuario.Clave);
                 Datos.SeterParametros("@Puesto", usuario.Puesto);
                 Datos.SeterParametros("@Activo", usuario.Activo);
+                Datos.SeterParametros("@Legajo", usuario.Legajo);
                 Datos.SeterParametros("@DNI", usuario.Dni);
                 Datos.SeterParametros("@Nombre", usuario.Nombre);
                 Datos.SeterParametros("@Apellido", usuario.Apellido);
-                Datos.SeterParametros("@FechaNacimiento", DateTime.Parse(usuario.Nacimiento));
+                Datos.SeterParametros("@Nacimiento", usuario.Nacimiento);
                 Datos.SeterParametros("@Genero", usuario.Genero);
                 Datos.SeterParametros("@Telefono", usuario.Telefono);
                 Datos.SeterParametros("@Email", usuario.Email);

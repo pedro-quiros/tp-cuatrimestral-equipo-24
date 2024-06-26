@@ -22,10 +22,10 @@ namespace Dominio
         public bool Activo { get; set; }
 
         //   public DatosPersonales datos { get; set; }
-   //     public int Legajo { get; set; }
+        public int Legajo { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public string Dni { get; set; }
+        public int Dni { get; set; }
         public string Nacimiento { get; set; }
         public string Genero { get; set; }
         public string Telefono { get; set; }
