@@ -9,24 +9,39 @@
     <link href="EstilosSalon.css" rel="stylesheet" />
 <script>
     function mostrarModal(btn) {
-        $('#modalConfirmar').data('btn', btn).modal('show');
-    }
+        var mesaSeleccionada = btn.textContent; // Obtener número de mesa
+        var mesaAbierta = btn.classList.contains('clicked');
 
+        if (mesaAbierta) {
+            // Redireccionar a Pedi2.aspx con el número de mesa en la URL
+            window.location.href = 'Pedi2.aspx?mesa=' + mesaSeleccionada;
+        } else {
+            $('#modalConfirmar').find('.modal-body').text('¿Desea abrir la mesa ' + mesaSeleccionada + '?');
+            $('#modalConfirmar').data('accion', 'abrir');
+            $('#modalConfirmar').data('btn', btn).modal('show');
+        }
+    }
     function confirmarMesa() {
         var btn = $('#modalConfirmar').data('btn');
-        btn.classList.add('clicked');
+        var accion = $('#modalConfirmar').data('accion');
         var mesaSeleccionada = btn.textContent; // Obtener número de mesa
-        $('#modalConfirmar').modal('hide');
 
-        // Mostrar número de mesa seleccionada
-        $('#numeroMesa').text(mesaSeleccionada);
-
-        // Mostrar sección de pedidos
-        $('#seccionPedidos').show();
+        if (accion === 'abrir') {
+            btn.classList.add('clicked');
+            $('#modalConfirmar').modal('hide');
+            $('#numeroMesa').text(mesaSeleccionada); // Mostrar número de mesa seleccionada
+            $('#seccionPedidos').show(); // Mostrar sección de pedidos
+        } else if (accion === 'cerrar') {
+            btn.classList.remove('clicked');
+            $('#modalConfirmar').modal('hide');
+            // Aquí puedes agregar la lógica para cerrar la mesa si es necesario
+        }
     }
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <p class="title">Salón</p>
+
     <div class="salon">
         <div class="mesas">
             <div class="container">
@@ -61,26 +76,24 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal de Confirmación -->
-    <div class="modal fade" id="modalConfirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ¿Desea abrir la mesa seleccionada?
-                </div>
-                <div class="modal-footer">
-                                        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClientClick="confirmarMesa(); return false;" />
-
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" data-dismiss="modal" />
-                </div>
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="modalConfirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea abrir la mesa seleccionada?
+            </div>
+            <div class="modal-footer">
+                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClientClick="confirmarMesa(); return false;" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" data-dismiss="modal" />
             </div>
         </div>
     </div>
+</div>
 </asp:Content>

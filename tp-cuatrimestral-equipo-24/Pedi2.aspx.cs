@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace tp_cuatrimestral_equipo_24
@@ -13,83 +10,37 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
-                // Inicializar la lista de productos vacía al cargar la página por primera vez
-                Session["Productos"] = new List<Producto>();
+                // Obtener el número de mesa desde la URL
+                if (Request.QueryString["mesa"] != null)
+                {
+                    string numeroMesa = Request.QueryString["mesa"];
+                    numeroMesaLabel.Text = numeroMesa; // Asignar el número de mesa al control correspondiente
+                }
+
+                // Simular productos para mostrar en GridView (esto es un ejemplo, puedes cambiar según tus necesidades)
+                List<Producto> productos = new List<Producto>
+                {
+                    new Producto { Productox = "Hamburguesa", Cantidad = 2, Precio = 150 },
+                    new Producto { Productox = "Gaseosa", Cantidad = 3, Precio = 70 },
+                    new Producto { Productox = "Milanesa", Cantidad = 1, Precio = 200 },
+                    new Producto { Productox = "Pizza", Cantidad = 1, Precio = 250 },
+                     new Producto { Productox = "Gaseosa", Cantidad = 3, Precio = 70 },
+
+
+                };
+
+                // Enlazar datos al GridView
+                GridView1.DataSource = productos;
+                GridView1.DataBind();
             }
         }
 
-        protected void ddlMesa_SelectedIndexChanged(object sender, EventArgs e)
+        // Clase de ejemplo para productos
+        public class Producto
         {
-            // Al seleccionar una mesa, se puede realizar alguna acción si es necesario
-            // En este ejemplo, no se realiza ninguna acción especial
-        }
-
-        protected void btnCargarProducto_Click(object sender, EventArgs e)
-        {
-            // Abrir el modal para cargar un producto
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "modalCargarProducto", "$('#modalCargarProducto').modal('show');", true);
-        }
-
-        protected void btnAceptar_Click(object sender, EventArgs e)
-        {
-            // Obtener los valores seleccionados del modal
-            int platoValue = int.Parse(ddlPlato.SelectedValue);
-            int bebidaValue = int.Parse(ddlBebida.SelectedValue);
-
-            // Determinar el nombre y precio del producto seleccionado
-            string nombreProducto = "";
-            int precioProducto = 0;
-
-            if (platoValue != 0)
-            {
-                nombreProducto = ddlPlato.SelectedItem.Text;
-                precioProducto = platoValue;
-            }
-            else if (bebidaValue != 0)
-            {
-                nombreProducto = ddlBebida.SelectedItem.Text;
-                precioProducto = bebidaValue;
-            }
-
-            // Crear un nuevo objeto Producto y agregarlo a la lista en sesión
-            Producto nuevoProducto = new Producto(nombreProducto, precioProducto);
-            List<Producto> productos = (List<Producto>)Session["Productos"];
-            productos.Add(nuevoProducto);
-            Session["Productos"] = productos;
-
-            // Actualizar la lista de productos y el precio total en la interfaz
-            actualizarListaProductos();
-            calcularTotal();
-
-            // Cerrar el modal después de aceptar
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalCargarProducto').modal('hide');", true);
-        }
-
-        private void actualizarListaProductos()
-        {
-            List<Producto> productos = (List<Producto>)Session["Productos"];
-          //  gvProductos.DataSource = productos;
-            //gvProductos.DataBind();
-        }
-
-        private void calcularTotal()
-        {
-            List<Producto> productos = (List<Producto>)Session["Productos"];
-            int total = productos.Sum(p => p.Precio);
-            lblTotal.Text = total.ToString();
-        }
-    }
-
-    // Clase Producto para almacenar información de cada producto
-    public class Producto
-    {
-        public string Nombre { get; set; }
-        public int Precio { get; set; }
-
-        public Producto(string nombre, int precio)
-        {
-            Nombre = nombre;
-            Precio = precio;
+            public string Productox { get; set; }
+            public int Cantidad { get; set; }
+            public decimal Precio { get; set; }
         }
     }
 }
