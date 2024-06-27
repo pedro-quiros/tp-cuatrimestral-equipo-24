@@ -80,6 +80,7 @@
     <Content Include="Home.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="ModificarInsumo.aspx" />
+    <Content Include="Pedi2.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="Reporte.aspx" />
     <Content Include="Salon.aspx" />
@@ -147,6 +148,13 @@
     </Compile>
     <Compile Include="ModificarInsumo.aspx.designer.cs">
       <DependentUpon>ModificarInsumo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedi2.aspx.cs">
+      <DependentUpon>Pedi2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedi2.aspx.designer.cs">
+      <DependentUpon>Pedi2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedidos.aspx.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>

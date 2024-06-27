@@ -36,17 +36,24 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        function mostrarModal(btn) {
-            $('#modalConfirmar').data('btn', btn).modal('show');
-        }
+<script>
+    function mostrarModal(btn) {
+        $('#modalConfirmar').data('btn', btn).modal('show');
+    }
 
-        function confirmarMesa() {
-            var btn = $('#modalConfirmar').data('btn');
-            btn.classList.add('clicked');
-            $('#modalConfirmar').modal('hide');
-        }
-    </script>
+    function confirmarMesa() {
+        var btn = $('#modalConfirmar').data('btn');
+        btn.classList.add('clicked');
+        var mesaSeleccionada = btn.textContent; // Obtener número de mesa
+        $('#modalConfirmar').modal('hide');
+
+        // Mostrar número de mesa seleccionada
+        $('#numeroMesa').text(mesaSeleccionada);
+
+        // Mostrar sección de pedidos
+        $('#seccionPedidos').show();
+    }
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="salon">
@@ -98,8 +105,8 @@
                     ¿Desea abrir la mesa seleccionada?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="confirmarMesa()">Aceptar</button>
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" data-dismiss="modal" />
+                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClientClick="confirmarMesa(); return false;" />
                 </div>
             </div>
         </div>

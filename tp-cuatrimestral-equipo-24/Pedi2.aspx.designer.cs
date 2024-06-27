@@ -11,89 +11,71 @@ namespace tp_cuatrimestral_equipo_24
 {
 
 
-    public partial class Salon
+    public partial class Pedi2
     {
 
         /// <summary>
-        /// btnMesa1 control.
+        /// ddlMesa control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMesa;
 
         /// <summary>
-        /// btnMesa2 control.
+        /// btnCargarProducto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa2;
+        protected global::System.Web.UI.WebControls.Button btnCargarProducto;
 
         /// <summary>
-        /// btnMesa3 control.
+        /// lblTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa3;
+        protected global::System.Web.UI.WebControls.Label lblTotal;
 
         /// <summary>
-        /// btnMesa4 control.
+        /// ddlPlato control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa4;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlato;
 
         /// <summary>
-        /// btnMesa5 control.
+        /// txtCantidadPlato control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa5;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadPlato;
 
         /// <summary>
-        /// btnMesa6 control.
+        /// ddlBebida control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa6;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBebida;
 
         /// <summary>
-        /// btnMesa7 control.
+        /// txtCantidadBebida control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa7;
-
-        /// <summary>
-        /// btnMesa8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa8;
-
-        /// <summary>
-        /// btnCancelar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadBebida;
 
         /// <summary>
         /// btnAceptar control.
@@ -103,5 +85,14 @@ namespace tp_cuatrimestral_equipo_24
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAceptar;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

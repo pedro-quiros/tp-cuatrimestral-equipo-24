@@ -23,6 +23,10 @@
                 <img src="img/icoHome.png" alt="ícono de la página de inicio" />
             </a>
 
+            <a class="logoSalon" href="Salon.aspx" title="Salón">
+                <img src="img/icoSalon.png" alt="ícono de Salón" />
+            </a>
+
             <a class="logoNav" href="Menu.aspx" title="Menú">
                 <img src="img/icoMenu.png" alt="ícono de menú" />
             </a>
