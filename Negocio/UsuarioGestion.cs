@@ -27,13 +27,13 @@ namespace Negocio
                         aux.Activo = Convert.ToBoolean(datos.Lector["Activo"]);
 
 
-                //        aux.Legajo = Convert.ToInt32(datos.Lector["Legajo"]);
+                        aux.Legajo = Convert.ToInt32(datos.Lector["Legajo"]);
                         aux.Nombre = datos.Lector["Nombre"].ToString();
                         aux.Apellido = datos.Lector["Apellido"].ToString();
                         aux.Email = datos.Lector["Email"].ToString();
-                        aux.Dni = datos.Lector["Dni"].ToString();
-                        aux.Telefono = datos.Lector["Telefono"].ToString();
-                        aux.Nacimiento = datos.Lector["FechaNacimiento"].ToString();
+                        aux.Dni = Convert.ToInt32(datos.Lector["Dni"]);
+                        aux.Telefono = Convert.ToInt32(datos.Lector["Telefono"]);
+                        aux.Nacimiento = Convert.ToDateTime(datos.Lector["FechaNacimiento"]);
                         aux.Genero = datos.Lector["Genero"].ToString();
                         aux.Domicilio = datos.Lector["Domicilio"].ToString();
 

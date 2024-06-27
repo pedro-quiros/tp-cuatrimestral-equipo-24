@@ -26,9 +26,9 @@ namespace Dominio
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int Dni { get; set; }
-        public string Nacimiento { get; set; }
+        public DateTime Nacimiento { get; set; }
         public string Genero { get; set; }
-        public string Telefono { get; set; }
+        public int Telefono { get; set; }
         public string Email { get; set; }
         public string Domicilio { get; set; }
 
@@ -41,20 +41,19 @@ namespace Dominio
             NombreUsuario = "";
             Clave = "fip12345";
             Puesto = 2;
-            //datos = new DatosPersonales();
             Activo= true;
-              //  Legajo = 0;
+             Legajo = 0;
             Nombre = "";
             Apellido = "";
-            Dni = "";
-            Nacimiento = "";
+            Dni = 111111;
+            Nacimiento = DateTime.Now;
             Genero = "";
-            Telefono = "";
+            Telefono = 1111111;
             Email = "";
             Domicilio = "";
         }
 
-        public Usuario (int id, string nombreUsuario, string clave, int puesto, bool Activado, string nombre, string apellido, string dni, string fechaNacimiento, string genero, string telefono, string email, string domicilio)
+        public Usuario (int id, string nombreUsuario, string clave, int puesto, bool Activado, string nombre, string apellido, int dni, int legajo, DateTime fechaNacimiento, string genero, int telefono, string email, string domicilio)
 
         {
             Id = id;
@@ -71,7 +70,7 @@ namespace Dominio
             Activo = Activado;
          //   this.datos = datos;
 
-          //  Legajo = legajo;
+          Legajo = legajo;
             Nombre = nombre;
             Apellido = apellido;
             Dni = dni;

@@ -41,15 +41,15 @@ namespace tp_cuatrimestral_equipo_24
                         {
                             txtId.Text = usu.Id.ToString();
                             txtUsuario.Value = usu.NombreUsuario;
-                         //   txtLegajo.Value = usu.Legajo.ToString();
-                            txtNombrePersonal.Value = usu.Nombre.ToString();
+                            txtLegajo.Value = usu.Legajo.ToString();
+                            txtNombrePersonal.Value = usu.Nombre;
                             txtApellido.Value = usu.Apellido;
 
                             txtEmail.Value = usu.Email;
                             txtDomicilio.Value = usu.Domicilio;
                             txtNacimiento.Value = usu.Nacimiento.ToString();
                             ddlGenero.Value = usu.Genero;
-                            txtTelefono.Value = usu.Telefono;
+                            txtTelefono.Value = usu.Telefono.ToString();
 
                             txtDni.Value = usu.Dni.ToString();
 
@@ -137,9 +137,9 @@ namespace tp_cuatrimestral_equipo_24
                     Dni = int.Parse(txtDni.Value),
                     Nombre = txtNombrePersonal.Value,
                     Apellido = txtApellido.Value,
-                    Nacimiento = (txtNacimiento.Value).ToString(),
+                    Nacimiento = Convert.ToDateTime((txtNacimiento.Value)),
                     Genero = ddlGenero.Value,
-                    Telefono = txtTelefono.Value,
+                    Telefono = int.Parse(txtTelefono.Value),
                     Email = txtEmail.Value,
                     Domicilio = txtDomicilio.Value
                 };
