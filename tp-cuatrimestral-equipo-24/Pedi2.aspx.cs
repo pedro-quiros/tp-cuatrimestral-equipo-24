@@ -8,55 +8,157 @@ namespace tp_cuatrimestral_equipo_24
 {
     public partial class Pedi2 : System.Web.UI.Page
     {
+        public List<Insumo> listaInsumos
+        {
+            get { return (List<Insumo>)Session["ListadoInsumos"]; }
+            set { Session["ListadoInsumos"] = value; }
+        }
+
+        public List<Pedido> listaPedidos
+        {
+            get { return (List<Pedido>)Session["Pedidos"]; }
+            set { Session["Pedidos"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Obtener el número de mesa desde la URL
                 if (Request.QueryString["mesa"] != null)
                 {
                     string numeroMesa = Request.QueryString["mesa"];
-                    numeroMesaLabel.Text = numeroMesa; // Asignar el número de mesa al control correspondiente
+                    numeroMesaLabel.Text = numeroMesa;
                 }
 
-                // Instanciar el negocio de insumos y obtener la lista de insumos
                 InsumosNegocio negocioInsumos = new InsumosNegocio();
-                List<Insumo> listaInsumos = negocioInsumos.ListarConSp();
+                listaInsumos = negocioInsumos.ListarConSp();
 
-                // Mostrar los insumos en el GridView
+                listaPedidos = new List<Pedido>();
+
                 GridView1.DataSource = listaInsumos;
                 GridView1.DataBind();
             }
         }
+
         protected void filtro_TextChanged(object sender, EventArgs e)
         {
             List<Insumo> ListaFiltrada = new List<Insumo>();
 
-            if (Session["Listado"] != null && Session["Listado"] is List<Insumo>)
+            if (listaInsumos != null)
             {
                 if (Filtro.Text == "")
                 {
-                    ListaFiltrada = (List<Insumo>)Session["Listado"];
+                    ListaFiltrada = listaInsumos;
                 }
                 else
                 {
-                    ListaFiltrada = ((List<Insumo>)Session["Listado"]).FindAll(X => X.Nombre.ToUpper().Contains(Filtro.Text.ToUpper()));
+                    ListaFiltrada = listaInsumos.FindAll(X => X.Nombre.ToUpper().Contains(Filtro.Text.ToUpper()));
                 }
             }
             else
             {
                 InsumosNegocio insumo = new InsumosNegocio();
                 ListaFiltrada = insumo.ListarConSp();
-                Session["Listado"] = ListaFiltrada;
+                listaInsumos = ListaFiltrada;
             }
             GridView1.DataSource = ListaFiltrada;
             GridView1.DataBind();
         }
 
-        // Clase de ejemplo para productos
-        public class Producto
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            public string Productox { get; set; }
+            if (listaInsumos == null || listaPedidos == null)
+            {
+                // Redirigir al usuario o manejar el caso cuando las listas son nulas
+                return;
+            }
+
+            if (e.CommandName == "Agregar")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                Insumo insumoSeleccionado = listaInsumos[index];
+
+                Pedido pedidoExistente = listaPedidos.Find(p => p.Nombre == insumoSeleccionado.Nombre);
+                if (pedidoExistente != null)
+                {
+                    pedidoExistente.Cantidad++;
+                }
+                else
+                {
+                    Pedido nuevoPedido = new Pedido
+                    {
+                        Nombre = insumoSeleccionado.Nombre,
+                        Cantidad = 1,
+                        Precio = insumoSeleccionado.Precio
+                    };
+                    listaPedidos.Add(nuevoPedido);
+                }
+                insumoSeleccionado.Stock--;
+
+                GridView1.DataSource = listaInsumos;
+                GridView1.DataBind();
+                GridViewPedidos.DataSource = listaPedidos;
+                GridViewPedidos.DataBind();
+                CalcularTotal();
+            }
+        }
+
+        protected void GridViewPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (listaPedidos == null || listaInsumos == null)
+            {
+                // Redirigir al usuario o manejar el caso cuando las listas son nulas
+                return;
+            }
+
+            int index = Convert.ToInt32(e.CommandArgument);
+            Pedido pedidoSeleccionado = listaPedidos[index];
+
+            if (e.CommandName == "Aumentar")
+            {
+                Insumo insumo = listaInsumos.Find(i => i.Nombre == pedidoSeleccionado.Nombre);
+                if (insumo != null && insumo.Stock > 0)
+                {
+                    pedidoSeleccionado.Cantidad++;
+                    insumo.Stock--;
+                }
+            }
+            else if (e.CommandName == "Disminuir")
+            {
+                if (pedidoSeleccionado.Cantidad > 0)
+                {
+                    pedidoSeleccionado.Cantidad--;
+                    Insumo insumo = listaInsumos.Find(i => i.Nombre == pedidoSeleccionado.Nombre);
+                    if (insumo != null)
+                    {
+                        insumo.Stock++;
+                    }
+                }
+            }
+
+            GridView1.DataSource = listaInsumos;
+            GridView1.DataBind();
+            GridViewPedidos.DataSource = listaPedidos;
+            GridViewPedidos.DataBind();
+            CalcularTotal();
+        }
+
+        private void CalcularTotal()
+        {
+            decimal total = 0;
+            if (listaPedidos != null)
+            {
+                foreach (var pedido in listaPedidos)
+                {
+                    total += pedido.Cantidad * pedido.Precio;
+                }
+            }
+            lblTotal.Text = total.ToString("C");
+        }
+
+        public class Pedido
+        {
+            public string Nombre { get; set; }
             public int Cantidad { get; set; }
             public decimal Precio { get; set; }
         }

@@ -12,20 +12,17 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-      <div class="filter-container">
-      <i class="fas fa-search">Buscar</i>
-      <asp:Label ID="LabelFiltrar" runat="server" Text="" CssClass="label-filtrar"></asp:Label>
-      <asp:TextBox ID="Filtro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" runat="server" CssClass="input-filtrar" />
-  </div>
-
-
+    <div class="filter-container">
+        <i class="fas fa-search">Buscar</i>
+        <asp:Label ID="LabelFiltrar" runat="server" Text="" CssClass="label-filtrar"></asp:Label>
+        <asp:TextBox ID="Filtro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" runat="server" CssClass="input-filtrar" />
+    </div>
 
     <div class="container mt-5">
         <h1 class="mb-4">Pedido para mesa <span id="numeroMesa" class="numero-mesa"><asp:Label ID="numeroMesaLabel" runat="server"></asp:Label></span></h1>
-        
-        <!-- Aquí va el contenido de tu página, por ejemplo la tabla de insumos -->
-        <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped">
+
+        <!-- Tabla de insumos -->
+        <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" OnRowCommand="GridView1_RowCommand">
             <Columns>
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Tipo" HeaderText="Tipo" />
@@ -37,7 +34,25 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                <asp:ButtonField ButtonType="Button" CommandName="Agregar" Text="Agregar" />
             </Columns>
         </asp:GridView>
+
+        <h2 class="mt-5">Pedidos</h2>
+        <!-- Tabla de pedidos -->
+        <asp:GridView ID="GridViewPedidos" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" OnRowCommand="GridViewPedidos_RowCommand">
+            <Columns>
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                <asp:BoundField DataField="Precio" HeaderText="Precio" DataFormatString="{0:C}" />
+                <asp:TemplateField HeaderText="Acciones">
+                    <ItemTemplate>
+                        <asp:Button ID="btnAumentar" runat="server" CommandName="Aumentar" CommandArgument='<%# Container.DataItemIndex %>' Text="+" />
+                        <asp:Button ID="btnDisminuir" runat="server" CommandName="Disminuir" CommandArgument='<%# Container.DataItemIndex %>' Text="-" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+        <h3>Total: <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label></h3>
     </div>
 </asp:Content>
