@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 
@@ -17,22 +19,38 @@ namespace tp_cuatrimestral_equipo_24
                     numeroMesaLabel.Text = numeroMesa; // Asignar el número de mesa al control correspondiente
                 }
 
-                // Simular productos para mostrar en GridView (esto es un ejemplo, puedes cambiar según tus necesidades)
-                List<Producto> productos = new List<Producto>
-                {
-                    new Producto { Productox = "Hamburguesa", Cantidad = 2, Precio = 150 },
-                    new Producto { Productox = "Gaseosa", Cantidad = 3, Precio = 70 },
-                    new Producto { Productox = "Milanesa", Cantidad = 1, Precio = 200 },
-                    new Producto { Productox = "Pizza", Cantidad = 1, Precio = 250 },
-                     new Producto { Productox = "Gaseosa", Cantidad = 3, Precio = 70 },
+                // Instanciar el negocio de insumos y obtener la lista de insumos
+                InsumosNegocio negocioInsumos = new InsumosNegocio();
+                List<Insumo> listaInsumos = negocioInsumos.ListarConSp();
 
-
-                };
-
-                // Enlazar datos al GridView
-                GridView1.DataSource = productos;
+                // Mostrar los insumos en el GridView
+                GridView1.DataSource = listaInsumos;
                 GridView1.DataBind();
             }
+        }
+        protected void filtro_TextChanged(object sender, EventArgs e)
+        {
+            List<Insumo> ListaFiltrada = new List<Insumo>();
+
+            if (Session["Listado"] != null && Session["Listado"] is List<Insumo>)
+            {
+                if (Filtro.Text == "")
+                {
+                    ListaFiltrada = (List<Insumo>)Session["Listado"];
+                }
+                else
+                {
+                    ListaFiltrada = ((List<Insumo>)Session["Listado"]).FindAll(X => X.Nombre.ToUpper().Contains(Filtro.Text.ToUpper()));
+                }
+            }
+            else
+            {
+                InsumosNegocio insumo = new InsumosNegocio();
+                ListaFiltrada = insumo.ListarConSp();
+                Session["Listado"] = ListaFiltrada;
+            }
+            GridView1.DataSource = ListaFiltrada;
+            GridView1.DataBind();
         }
 
         // Clase de ejemplo para productos
