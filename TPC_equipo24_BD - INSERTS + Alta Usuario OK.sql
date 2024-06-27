@@ -139,3 +139,37 @@ GO
 
 
 exec MostrarUsuario
+
+
+----------
+
+exec SP_ListarInsumos
+CREATE PROCEDURE SP_ListarInsumos
+AS
+BEGIN
+    SELECT IdInsumo, Nombre, Tipo, Precio, Stock, UrlImagen, Descripcion
+    FROM Insumo
+END
+
+CREATE PROCEDURE SP_ModificarInsumo
+    @IdInsumo INT,
+    @Nombre VARCHAR(50),
+    @Tipo VARCHAR(50),
+    @Precio MONEY,
+    @Stock INT,
+    @UrlImagen VARCHAR(max),
+    @Descripcion VARCHAR(500)
+AS
+BEGIN
+    UPDATE Insumo
+    SET Nombre = @Nombre, Tipo = @Tipo, Precio = @Precio, Stock = @Stock, UrlImagen = @UrlImagen, Descripcion = @Descripcion
+    WHERE IdInsumo = @IdInsumo
+END
+
+CREATE PROCEDURE SP_EliminarInsumo
+    @IdInsumo INT
+AS
+BEGIN
+    DELETE FROM Insumo
+    WHERE IdInsumo = @IdInsumo
+END

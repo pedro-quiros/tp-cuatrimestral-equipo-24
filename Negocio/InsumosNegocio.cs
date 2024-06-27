@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -84,7 +85,44 @@ namespace Negocio
 
         //    }
         //}
-        public List<Insumo> ListarConSp()
+        public List<Insumo> ListarConSpInsumo()
+        {
+            List<Insumo> lista = new List<Insumo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("SP_ListarInsumos");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Insumo aux = new Insumo();
+
+                    aux.IdInsumo = Convert.ToInt32(datos.Lector["IdInsumo"]);
+                    aux.Nombre = datos.Lector["Nombre"].ToString();
+                    aux.Tipo = datos.Lector["Tipo"].ToString();
+                    aux.Stock = Convert.ToInt32(datos.Lector["Stock"]);
+                    aux.Descripcion = datos.Lector["Descripcion"].ToString();
+                    aux.UrlImagen = datos.Lector["UrlImagen"].ToString();
+                    aux.Precio = Convert.ToDecimal(datos.Lector["Precio"]);
+
+                    lista.Add(aux); // Agregar el insumo a la lista dentro del bucle
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los insumos: " + ex.Message, ex);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return lista; // Retornar la lista completa fuera del bucle
+        }
+
+        public List<Insumo> ListarConSp2()
         {
             List<Insumo> lista = new List<Insumo>();
             AccesoDatos datos = new AccesoDatos();

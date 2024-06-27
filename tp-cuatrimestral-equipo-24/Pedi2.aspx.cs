@@ -31,7 +31,7 @@ namespace tp_cuatrimestral_equipo_24
                 }
 
                 InsumosNegocio negocioInsumos = new InsumosNegocio();
-                listaInsumos = negocioInsumos.ListarConSp();
+                listaInsumos = negocioInsumos.ListarConSpInsumo();
 
                 listaPedidos = new List<Pedido>();
 
@@ -58,7 +58,7 @@ namespace tp_cuatrimestral_equipo_24
             else
             {
                 InsumosNegocio insumo = new InsumosNegocio();
-                ListaFiltrada = insumo.ListarConSp();
+                ListaFiltrada = insumo.ListarConSpInsumo();
                 listaInsumos = ListaFiltrada;
             }
             GridView1.DataSource = ListaFiltrada;
