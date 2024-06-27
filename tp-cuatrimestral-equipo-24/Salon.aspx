@@ -2,40 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        .salon {
-            margin: 50px auto; /* Margen arriba y abajo, centrado horizontalmente */
-            background-color: lightblue; /* Color de fondo suave */
-            padding: 50px; /* Espacio alrededor del salón */
-            border: 1px solid #ccc; /* Borde del salón */
-            border-radius: 5px; /* Bordes redondeados del salón */
-            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave */
-            width: 60%; /* Ancho del salón */
-        }
-
-        .mesa-btn {
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            line-height: 100px;
-            text-align: center;
-            border-radius: 50%;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            font-size: 18px;
-            cursor: pointer;
-            margin: 20px;
-            transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
-        }
-
-        .mesa-btn.clicked {
-            background-color: #ff0000; /* Color rojo al hacer clic */
-            color: #fff; /* Texto blanco para contraste */
-        }
-    </style>
+   
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="EstilosSalon.css" rel="stylesheet" />
 <script>
     function mostrarModal(btn) {
         $('#modalConfirmar').data('btn', btn).modal('show');
@@ -105,8 +76,9 @@
                     ¿Desea abrir la mesa seleccionada?
                 </div>
                 <div class="modal-footer">
+                                        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClientClick="confirmarMesa(); return false;" />
+
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" data-dismiss="modal" />
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClientClick="confirmarMesa(); return false;" />
                 </div>
             </div>
         </div>
