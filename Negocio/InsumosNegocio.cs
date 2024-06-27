@@ -121,6 +121,31 @@ namespace Negocio
 
             return lista; // Retornar la lista completa fuera del bucle
         }
+        public void ModificarConSpInsumo(Insumo nuevoInsumo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_ModificarInsumo");
+                datos.SeterParametros("@IdInsumo", nuevoInsumo.IdInsumo);
+                datos.SeterParametros("@Nombre", nuevoInsumo.Nombre);
+                datos.SeterParametros("@Tipo", nuevoInsumo.Tipo);
+                datos.SeterParametros("@Precio", nuevoInsumo.Precio);
+                datos.SeterParametros("@Stock", nuevoInsumo.Stock);
+                datos.SeterParametros("@UrlImagen", nuevoInsumo.UrlImagen);
+                datos.SeterParametros("@Descripcion", nuevoInsumo.Descripcion);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al modificar el insumo: " + ex.Message, ex);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
         public List<Insumo> ListarConSp2()
         {
@@ -159,7 +184,7 @@ namespace Negocio
 
 
 
-        public void Modificar(Insumo nuevoInsumo)
+        public void Modificar2(Insumo nuevoInsumo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
