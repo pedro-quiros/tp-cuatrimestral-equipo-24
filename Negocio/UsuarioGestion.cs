@@ -131,10 +131,12 @@ namespace Negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                Datos.SetearConsulta("Update Usuario2 set NombreUsuario = @NombreUsuario, Puesto=@Puesto,Legajo=@Legajo,DNI=@DNI,Nombre=@Nombre ,Apellido = @Apellido,FechaNacimiento=@Nacimiento,genero=@genero,telefono=@Telefono,Email=@Email,domicilio=@domicilio WHERE IdUsuario = @IdUsuario");
+                //, Puesto = @Puesto
+                Datos.SetearConsulta("Update Usuario2 set NombreUsuario = @NombreUsuario,Legajo=@Legajo,DNI=@DNI,Nombre=@Nombre ,Apellido = @Apellido,FechaNacimiento=@Nacimiento,genero=@genero,telefono=@Telefono,Email=@Email,domicilio=@domicilio WHERE IdUsuario = @IdUsuario");
+                
                 Datos.SeterParametros("@IdUsuario", usuario.Id);
                 Datos.SeterParametros("@NombreUsuario", usuario.NombreUsuario);
-                Datos.SeterParametros("@Puesto", usuario.Puesto);
+                //Datos.SeterParametros("@Puesto", usuario.Puesto);
                 Datos.SeterParametros("@Legajo", usuario.Legajo);
                 Datos.SeterParametros("@DNI", usuario.Dni);
                 Datos.SeterParametros("@Nombre", usuario.Nombre);

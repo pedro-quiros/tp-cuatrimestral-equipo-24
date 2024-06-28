@@ -3,6 +3,8 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Net;
 
 namespace tp_cuatrimestral_equipo_24
 {
@@ -143,21 +145,34 @@ namespace tp_cuatrimestral_equipo_24
                 //{
                 //    throw new Exception("El email es obligatorio.");
                 //}
-                Usuario nuevoUsuario = new Usuario
-                {
-                    Id = Convert.ToInt32(Request.QueryString["IdUsuario"]),
-                    NombreUsuario = txtUsuario.Value,
-                    Puesto = int.Parse(txtPuesto.Value),
-                    Legajo = int.Parse(txtLegajo.Value),
-                    Dni = int.Parse(txtDni.Value),
-                    Nombre = txtNombrePersonal.Value,
-                    Apellido = txtApellido.Value,
-                    Nacimiento = Convert.ToDateTime((txtNacimiento.Value)),
-                    Genero = ddlGenero.Value,
-                    Telefono = int.Parse(txtTelefono.Value),
-                    Email = txtEmail.Value,
-                    Domicilio = txtDomicilio.Value
-                };
+                Usuario nuevoUsuario = new Usuario();
+                //{
+                //    Id = int.Parse(txtId.Text),
+                //    NombreUsuario = txtUsuario.Value,
+                //    Puesto = int.Parse(txtPuesto.Value),
+                //    Legajo = int.Parse(txtLegajo.Value),
+                //    Dni = int.Parse(txtDni.Value),
+                //    Nombre = txtNombrePersonal.Value,
+                //    Apellido = txtApellido.Value,
+                //    Nacimiento = Convert.ToDateTime((txtNacimiento.Value)),
+                //    Genero = ddlGenero.Value,
+                //    Telefono = int.Parse(txtTelefono.Value),
+                //    Email = txtEmail.Value,
+                //    Domicilio = txtDomicilio.Value
+                //};
+
+                    nuevoUsuario.Id = int.Parse(txtId.Text);
+                    nuevoUsuario.NombreUsuario = txtUsuario.Value;
+                    //nuevoUsuario.Puesto = int.Parse(txtPuesto.Value);
+                    nuevoUsuario.Legajo = int.Parse(txtLegajo.Value);
+                    nuevoUsuario.Dni = int.Parse(txtDni.Value);
+                    nuevoUsuario.Nombre = txtNombrePersonal.Value;
+                    nuevoUsuario.Apellido = txtApellido.Value;
+                    nuevoUsuario.Nacimiento = Convert.ToDateTime((txtNacimiento.Value));
+                    nuevoUsuario.Genero = ddlGenero.Value;
+                    nuevoUsuario.Telefono = int.Parse(txtTelefono.Value);
+                    nuevoUsuario.Email = txtEmail.Value;
+                    nuevoUsuario.Domicilio = txtDomicilio.Value;
 
                     UsuarioGestion gestionUsuario = new UsuarioGestion();
                     gestionUsuario.ModificarUsuario(nuevoUsuario);
