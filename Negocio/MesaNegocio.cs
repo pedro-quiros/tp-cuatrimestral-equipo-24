@@ -20,7 +20,7 @@ namespace Negocio
                 {
                     Mesas mesa = new Mesas
                     {
-                        Id = (int)datos.Lector["IdMesa"],
+                        IdMesa = (int)datos.Lector["IdMesa"],
                         Numero = (int)datos.Lector["Numero"],
                         Estado = (bool)datos.Lector["Estado"]
                     };
@@ -47,7 +47,7 @@ namespace Negocio
             try
             {
                 datos.setearProcedimiento("SP_AbrirCerrarMesa");
-                datos.SeterParametros("@Id", idMesa);
+                datos.SeterParametros("@IdMesa", idMesa); // Cambiado a "@IdMesa"
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -57,7 +57,6 @@ namespace Negocio
             finally
             {
                 datos.CerrarConexion();
-               // datos.impiarParametros();
             }
         }
     }

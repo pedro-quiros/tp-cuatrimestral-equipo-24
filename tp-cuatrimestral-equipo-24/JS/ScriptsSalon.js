@@ -1,44 +1,47 @@
-﻿// scripts.js
-
-function mostrarModal(btn) {
-    var mesaSeleccionada = btn.textContent.trim(); // Obtener número de mesa eliminando espacios en blanco
-    var mesaAbierta = btn.classList.contains('btn-danger'); // Verificar clase para determinar estado de la mesa
+﻿function mostrarModal(btn) {
+    var numeroMesa = btn.getAttribute('data-numeromesa');
+    var idMesa = btn.getAttribute('data-idmesa');
+    var mesaAbierta = btn.classList.contains('btn-danger');
 
     if (mesaAbierta) {
-        // Redireccionar a Pedi2.aspx con el número de mesa en la URL
-        window.location.href = 'Pedi2.aspx?mesa=' + mesaSeleccionada;
+        window.location.href = 'Pedi2.aspx?mesa=' + numeroMesa;
     } else {
-        $('#modalConfirmar').find('.modal-body').text('¿Desea abrir la mesa ' + mesaSeleccionada + '?');
+        $('#modalConfirmar .modal-body').text('¿Desea abrir la mesa ' + numeroMesa + '?');
         $('#modalConfirmar').data('accion', 'abrir');
-        $('#modalConfirmar').data('btn', btn).modal('show');
+        $('#modalConfirmar').data('btn', btn);
+        $('#modalConfirmar').data('idMesa', idMesa);
+        $('#modalConfirmar').modal('show');
     }
 }
 
 function confirmarMesa() {
     var btn = $('#modalConfirmar').data('btn');
     var accion = $('#modalConfirmar').data('accion');
-    var mesaSeleccionada = btn.textContent.trim(); // Obtener número de mesa eliminando espacios en blanco
+    var idMesa = $('#modalConfirmar').data('idMesa');
 
     if (accion === 'abrir') {
-        // Aquí puedes agregar lógica adicional si es necesaria antes de confirmar la acción
         $.ajax({
             type: "POST",
             url: "Salon.aspx/ConfirmarAbrirCerrarMesa",
-            data: JSON.stringify({ idMesa: mesaSeleccionada }),
+            data: JSON.stringify({ idMesa: idMesa, estado: 'Cerrar' }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function () {
-                btn.classList.add('btn-danger'); // Cambiar clase del botón a cerrar
-                btn.textContent = 'Cerrar'; // Cambiar texto del botón a cerrar
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-danger');
+                btn.textContent = 'Cerrar';
                 $('#modalConfirmar').modal('hide');
-                $('#numeroMesa').text(mesaSeleccionada); // Mostrar número de mesa seleccionada
-                $('#seccionPedidos').show(); // Mostrar sección de pedidos
+                window.location.href = 'Pedi2.aspx?IdMesa=' + idMesa;
             },
             error: function (xhr, status, error) {
                 console.error(error);
             }
         });
-    } else if (accion === 'cerrar') {
-        // Aquí puedes agregar la lógica para cerrar la mesa si es necesario
     }
 }
+
+$(document).ready(function () {
+    $('#btnAceptar').on('click', function () {
+        confirmarMesa();
+    });
+});
