@@ -33,10 +33,16 @@ namespace tp_cuatrimestral_equipo_24
                 InsumosNegocio negocioInsumos = new InsumosNegocio();
                 listaInsumos = negocioInsumos.ListarConSpInsumo();
 
-                listaPedidos = new List<Pedido>();
+                if (listaPedidos == null)
+                {
+                    listaPedidos = new List<Pedido>();
+                }
 
                 GridView1.DataSource = listaInsumos;
                 GridView1.DataBind();
+                GridViewPedidos.DataSource = listaPedidos;
+                GridViewPedidos.DataBind();
+                CalcularTotal();
             }
         }
 
@@ -155,8 +161,8 @@ namespace tp_cuatrimestral_equipo_24
             }
             lblTotal.Text = total.ToString("C");
         }
-
-        public class Pedido
+    
+public class Pedido
         {
             public string Nombre { get; set; }
             public int Cantidad { get; set; }

@@ -8,39 +8,41 @@
     <link href="/CSS/EstilosSalon.css" rel="stylesheet" />
     <script src="/JS/ScriptsSalon.js"></script>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p class="title">Salón</p>
+    <div class="salon">
+        <p class="title">Salón</p>
+        <asp:GridView CssClass="tablaConEstilo" ID="dgvMesas" runat="server" DataKeyNames="IdMesa" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvMesas_SelectedIndexChanged" OnPageIndexChanging="dgvMesas_PageIndexChanging" AllowPaging="true" PageSize="5">
+            <Columns>
+                <asp:BoundField HeaderText="Mesa #" DataField="Numero" />
+                <asp:BoundField HeaderText="Estado" DataField="Estado" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button ID="btnAbrirMesa" runat="server" Text="Abrir Mesa" CssClass="btn btn-primary mesa-btn" OnClick="btnAbrirMesa_Click" Visible='<%# !Convert.ToBoolean(Eval("Estado")) %>' />
+                        <asp:Button ID="btnCargarPedidos" runat="server" Text="Cargar Pedidos" CssClass="btn btn-primary mesa-btn" OnClick="btnCargarPedidos_Click" Visible='<%# Convert.ToBoolean(Eval("Estado")) %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
 
-    <asp:GridView CssClass="tablaConEstilo" ID="dgvMesas" runat="server" DataKeyNames="IdMesa" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvMesas_SelectedIndexChanged" OnPageIndexChanging="dgvMesas_PageIndexChanging" AllowPaging="true" PageSize="5">
-        <Columns>
-            <asp:BoundField HeaderText="Mesa #" DataField="Numero" />
-            <asp:BoundField HeaderText="Estado" DataField="Estado" />
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:Button ID="btnAbrirCerrar" runat="server" Text='<%# Eval("Estado").ToString() == "1" ? "Cerrar Mesa" : "Abrir Mesa" %>' CommandArgument='<%# Eval("IdMesa") %>' OnClick="btnAbrirCerrar_Click" CssClass='<%# Eval("Estado").ToString() == "1" ? "btn btn-sm btn-danger" : "btn btn-sm btn-primary" %>' data-idmesa='<%# Eval("IdMesa") %>' data-numeromesa='<%# Eval("Numero") %>' data-toggle="modal" data-target="#modalConfirmar" />
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-
-    <!-- Modal de Confirmación -->
-    <div class="modal fade" id="modalConfirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmar Acción</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ¿Estás seguro de querer realizar esta acción?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary" />
+        <div id="modalConfirmar" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmar Apertura de Mesa</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalMensaje">¿Estás seguro de que deseas abrir esta mesa?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <asp:Button ID="btnAceptarModal" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClick="btnAceptarModal_Click" />
+                    </div>
                 </div>
             </div>
         </div>
+
+        <asp:HiddenField ID="hdfIdMesa" runat="server" />
     </div>
 </asp:Content>

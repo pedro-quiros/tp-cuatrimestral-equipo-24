@@ -24,12 +24,21 @@ namespace tp_cuatrimestral_equipo_24
         protected global::System.Web.UI.WebControls.GridView dgvMesas;
 
         /// <summary>
-        /// btnAceptar control.
+        /// btnAceptarModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAceptar;
+        protected global::System.Web.UI.WebControls.Button btnAceptarModal;
+
+        /// <summary>
+        /// hdfIdMesa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdfIdMesa;
     }
 }

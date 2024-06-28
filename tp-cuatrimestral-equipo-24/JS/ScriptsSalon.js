@@ -6,7 +6,7 @@
     if (mesaAbierta) {
         window.location.href = 'Pedi2.aspx?mesa=' + numeroMesa;
     } else {
-        $('#modalConfirmar .modal-body').text('¿Desea abrir la mesa ' + numeroMesa + '?');
+        $('#modalMensaje').text('¿Desea abrir la mesa ' + numeroMesa + '?');
         $('#modalConfirmar').data('accion', 'abrir');
         $('#modalConfirmar').data('btn', btn);
         $('#modalConfirmar').data('idMesa', idMesa);
@@ -23,15 +23,14 @@ function confirmarMesa() {
         $.ajax({
             type: "POST",
             url: "Salon.aspx/ConfirmarAbrirCerrarMesa",
-            data: JSON.stringify({ idMesa: idMesa, estado: 'Cerrar' }),
+            data: JSON.stringify({ idMesa: idMesa, estado: 'Abrir' }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function () {
                 btn.classList.remove('btn-primary');
                 btn.classList.add('btn-danger');
-                btn.textContent = 'Cerrar';
+                btn.textContent = 'Cargar Pedido';
                 $('#modalConfirmar').modal('hide');
-                window.location.href = 'Pedi2.aspx?IdMesa=' + idMesa;
             },
             error: function (xhr, status, error) {
                 console.error(error);
@@ -40,8 +39,16 @@ function confirmarMesa() {
     }
 }
 
+function cerrarModalConfirmacion() {
+    $('#modalConfirmar').modal('hide');
+}
+
 $(document).ready(function () {
     $('#btnAceptar').on('click', function () {
         confirmarMesa();
+    });
+
+    $('#btnCancelar').on('click', function () {
+        cerrarModalConfirmacion();
     });
 });

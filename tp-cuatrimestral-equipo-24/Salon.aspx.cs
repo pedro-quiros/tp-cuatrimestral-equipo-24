@@ -30,15 +30,41 @@ namespace tp_cuatrimestral_equipo_24
             // Lógica para manejar la selección de una mesa si es necesario
         }
 
-        protected void btnAbrirCerrar_Click(object sender, EventArgs e)
+        protected void btnAbrirMesa_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            int idMesa = Convert.ToInt32(btn.CommandArgument);
+            int idMesa = ObtenerIdMesaDesdeBoton((Control)sender);
 
-            mesaNegocio.AbrirCerrarMesa(idMesa);
-            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Estado de la mesa actualizado exitosamente');", true);
+            // Mostrar el modal de confirmación
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", "$('#modalConfirmar').modal('show');", true);
 
-            CargarDatosGridView();
+            // Guardar el Id de la mesa que se está abriendo para poder usarlo al aceptar en el modal
+            hdfIdMesa.Value = idMesa.ToString();
+        }
+
+        protected void btnCargarPedidos_Click(object sender, EventArgs e)
+        {
+            int idMesa = ObtenerIdMesaDesdeBoton((Control)sender);
+
+            // Llamar al método de negocio para abrir la mesa (si es necesario)
+            // No necesitas implementar la lógica de abrir la mesa nuevamente aquí, ya que el botón "Cargar Pedidos" asume que la mesa ya está abierta.
+            Response.Redirect($"Pedi2.aspx?IdMesa={idMesa}");
+        }
+
+        protected void btnAceptarModal_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(hdfIdMesa.Value))
+            {
+                int idMesa = Convert.ToInt32(hdfIdMesa.Value);
+
+                // Llamar al método de negocio para abrir la mesa
+                mesaNegocio.AbrirCerrarMesa(idMesa);
+
+                // Actualizar la vista de la mesa en el GridView
+                ActualizarEstadoMesa(idMesa, true); // true indica que la mesa está abierta
+
+                // Ocultar el modal después de aceptar
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "OcultarModal", "$('#modalConfirmar').modal('hide');", true);
+            }
         }
 
         private void CargarDatosGridView()
@@ -48,13 +74,42 @@ namespace tp_cuatrimestral_equipo_24
             dgvMesas.DataBind();
         }
 
-
-        protected void btnAceptar_Click(object sender, EventArgs e)
+        private int ObtenerIdMesaDesdeBoton(Control button)
         {
-            
+            GridViewRow row = (GridViewRow)button.NamingContainer;
+            int index = row.RowIndex;
+            int idMesa = Convert.ToInt32(dgvMesas.DataKeys[index].Value);
+            return idMesa;
         }
 
+        private void ActualizarEstadoMesa(int idMesa, bool estadoAbierto)
+        {
+            // Buscar la fila correspondiente en el GridView y actualizar su estado visualmente
+            foreach (GridViewRow row in dgvMesas.Rows)
+            {
+                int mesaId = Convert.ToInt32(dgvMesas.DataKeys[row.RowIndex].Value);
+                if (mesaId == idMesa)
+                {
+                    // Actualizar el texto del botón y su visibilidad según el estado de la mesa
+                    Button btnAbrirMesa = (Button)row.FindControl("btnAbrirMesa");
+                    Button btnCargarPedidos = (Button)row.FindControl("btnCargarPedidos");
+
+                    btnAbrirMesa.Visible = !estadoAbierto;
+                    btnCargarPedidos.Visible = estadoAbierto;
+
+                    // Puedes cambiar el texto del botón según el estado si es necesario
+                    if (estadoAbierto)
+                    {
+                        btnAbrirMesa.Text = "Mesa Abierta";
+                    }
+                    else
+                    {
+                        btnAbrirMesa.Text = "Abrir Mesa";
+                    }
+
+                    break;
+                }
+            }
+        }
     }
-
-
 }
