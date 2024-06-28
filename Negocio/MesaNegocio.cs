@@ -1,6 +1,6 @@
-﻿using Dominio;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using Dominio;
 
 namespace Negocio
 {
@@ -18,30 +18,46 @@ namespace Negocio
 
                 while (datos.Lector.Read())
                 {
-                    Mesas aux = new Mesas();
-                    try
+                    Mesas mesa = new Mesas
                     {
-                        aux.Id = (int)datos.Lector["IdMesa"];
-                        aux.Estado = Convert.ToBoolean(datos.Lector["Estado"]);
-                        // Puedes omitir IdFactura si no lo necesitas en esta lista de mesas
+                        Id = (int)datos.Lector["IdMesa"],
+                        Numero = (int)datos.Lector["Numero"],
+                        Estado = (bool)datos.Lector["Estado"]
+                    };
 
-                        lista.Add(aux);
-                    }
-                    catch (InvalidCastException ex)
-                    {
-                        Console.WriteLine("Error de conversión: " + ex.Message);
-                        throw new Exception($"Error de conversión: {ex.Message}", ex);
-                    }
+                    lista.Add(mesa);
                 }
-                return lista;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al listar las mesas: " + ex.Message, ex);
+                throw ex;
             }
             finally
             {
                 datos.CerrarConexion();
+            }
+
+            return lista;
+        }
+
+        public void AbrirCerrarMesa(int idMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("SP_AbrirCerrarMesa");
+                datos.SeterParametros("@Id", idMesa);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+               // datos.impiarParametros();
             }
         }
     }

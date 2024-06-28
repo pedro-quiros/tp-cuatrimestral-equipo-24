@@ -1,8 +1,10 @@
-﻿using Dominio;
-using Negocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Web.Services;
+using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Negocio;
 
 namespace tp_cuatrimestral_equipo_24
 {
@@ -18,24 +20,43 @@ namespace tp_cuatrimestral_equipo_24
 
         private void CargarMesas()
         {
-            MesaNegocio negocio = new MesaNegocio();
-            List<Mesas> mesas = negocio.ListarConSpMesa();
+            MesaNegocio mesaNegocio = new MesaNegocio();
+            List<Mesas> ListaMesas = mesaNegocio.ListarConSpMesa();
+            Session["ListadoMesas"] = ListaMesas;
+            dgvMesas.DataSource = ListaMesas;
+            dgvMesas.DataBind();
+        }
 
-            foreach (Mesas mesa in mesas)
-            {
-                Button btnMesa = FindControl($"btnMesa{mesa.Id}") as Button;
-                if (btnMesa != null)
-                {
-                    if (mesa.Estado)
-                    {
-                        btnMesa.CssClass = "mesa-btn clicked";
-                    }
-                    else
-                    {
-                        btnMesa.CssClass = "mesa-btn";
-                    }
-                }
-            }
+        protected void dgvMesas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvMesas.PageIndex = e.NewPageIndex;
+            CargarMesas();
+        }
+
+        protected void dgvMesas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvMesas.SelectedDataKey.Value.ToString();
+            Response.Redirect("Pedi2.aspx?IdMesa=" + id);
+        }
+
+        [WebMethod]
+        public static void ConfirmarAbrirCerrarMesa(int idMesa)
+        {
+            Salon salonPage = new Salon();
+            salonPage.AbrirCerrarMesa(idMesa);
+        }
+
+        private void AbrirCerrarMesa(int idMesa)
+        {
+            MesaNegocio mesaNegocio = new MesaNegocio();
+            mesaNegocio.AbrirCerrarMesa(idMesa);
+            CargarMesas();
+            // No es necesario redireccionar aquí, ya que se maneja desde JavaScript
+        }
+
+        protected void btnAbrirCerrar_Click(object sender, EventArgs e)
+        {
+            // Este método no necesita una implementación directa aquí
         }
     }
 }

@@ -173,3 +173,85 @@ BEGIN
     DELETE FROM Insumo
     WHERE IdInsumo = @IdInsumo
 END
+
+
+
+CREATE TABLE Mesa(
+	IdMesa INT PRIMARY KEY IDENTITY(1,1),
+	Estado BIT NULL DEFAULT 0,
+	Numero INT,
+	)
+drop table Mesa
+	/*
+CREATE TABLE [dbo].[Mesa](
+	[IdMesa] [int] IDENTITY(1,1) NOT NULL,
+	[IdFactura] [int] NULL,
+	[Estado] [bit] NULL,
+ CONSTRAINT [PK_Mesa] PRIMARY KEY CLUSTERED 
+(
+	[IdMesa] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+*/
+GO
+
+-- Insertar una mesa con estado abierto y sin factura asociada
+INSERT INTO Mesa (Numero)
+VALUES (2);
+
+select * from mesa
+
+exec SP_ListarMesas
+ALTER PROCEDURE SP_ListarMesas
+AS
+BEGIN
+    SELECT IdMesa, Numero, Estado 
+	FROM Mesa
+END
+
+
+---
+CREATE PROCEDURE SP_AbrirCerrarMesa
+    @IdMesa INT
+AS
+BEGIN
+    -- Declarar una variable para almacenar el estado actual de la mesa
+    DECLARE @EstadoActual BIT;
+
+    -- Obtener el estado actual de la mesa
+    SELECT @EstadoActual = Estado
+    FROM Mesa
+    WHERE IdMesa = @IdMesa;
+
+    -- Cambiar el estado de la mesa
+    IF @EstadoActual = 1
+    BEGIN
+        -- Si la mesa está abierta, cerrarla
+        UPDATE Mesa
+        SET Estado = 0
+        WHERE IdMesa = @IdMesa;
+    END
+    ELSE
+    BEGIN
+        -- Si la mesa está cerrada, abrirla
+        UPDATE Mesa
+        SET Estado = 1
+        WHERE IdMesa = @IdMesa;
+    END
+END;
+
+
+
+-- Cambiar el estado de la mesa con IdMesa = 1
+EXEC SP_AbrirCerrarMesa @IdMesa = 1;
+
+-- Verificar el cambio
+SELECT * FROM Mesa WHERE IdMesa = 1;
+
+
+
+
+
+
+
+---

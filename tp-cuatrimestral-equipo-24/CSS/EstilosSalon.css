@@ -1,12 +1,11 @@
-﻿
-.salon {
-	margin: 50px auto; /* Margen arriba y abajo, centrado horizontalmente */
-	background-color: lightblue; /* Color de fondo suave */
-	padding: 50px; /* Espacio alrededor del salón */
-	border: 1px solid #ccc; /* Borde del salón */
-	border-radius: 5px; /* Bordes redondeados del salón */
-	box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave */
-	width: 60%; /* Ancho del salón */
+﻿.salon {
+	margin: 50px auto;
+	background-color: lightblue;
+	padding: 50px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 60%;
 }
 
 .mesa-btn {
@@ -21,19 +20,60 @@
 	font-size: 18px;
 	cursor: pointer;
 	margin: 20px;
-	transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+	transition: background-color 0.3s ease;
 }
 
 	.mesa-btn.clicked {
-		background-color: #ff0000; /* Color rojo al hacer clic */
-		color: #fff; /* Texto blanco para contraste */
+		background-color: #ff0000;
+		color: #fff;
 	}
 
-.mesa-btn {
-	/* Estilos base para botón de mesa */
+.mesa-activa {
+	background-color: red;
 }
 
-.mesa-activa {
-	background-color: red; /* Color rojo para mesa activa */
-	/* Otros estilos para resaltar mesa activa */
+.tablaConEstilo {
+	width: 40%;
+	border-collapse: collapse;
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
 }
+
+	.tablaConEstilo th, .tablaConEstilo td {
+		border: 1px solid #ddd;
+		padding: 8px;
+	}
+
+	.tablaConEstilo th {
+		padding-top: 12px;
+		padding-bottom: 12px;
+		background-color: #4CAF50;
+		color: white;
+	}
+
+	.tablaConEstilo tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+
+	.tablaConEstilo tr:hover {
+		background-color: #ddd;
+	}
+
+.Ingresar {
+	display: inline-block;
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #007bff;
+	border-radius: 30px;
+	border: 1px solid #007bff;
+	padding: 10px 20px;
+	margin-top: 20px; /* Añade el valor de margen que desees */
+	font-size: 16px; /* Ajusta el tamaño de fuente según tu diseño */
+	transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones para animaciones suaves */
+}
+
+	.Ingresar:hover {
+		background-color: #0056b3; /* Cambia el color al pasar el cursor */
+		border-color: #0056b3; /* Cambia el color del borde al pasar el cursor */
+	}

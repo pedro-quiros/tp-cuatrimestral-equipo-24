@@ -13,20 +13,21 @@ namespace Dominio
 
         public bool Estado {  get; set; }
 
-        public int idFactura {  get; set; }
+        public int Numero{  get; set; }
 
         public Mesas ()
         {
             Id = 0;
             Estado = false;
-           idFactura = 0;
+            Numero = -1;
         }
 
-        public Mesas (int id, bool estado)
+        public Mesas (int id, bool estado, int numero)
         {
             Id = id;
             Estado = estado;
-         this.idFactura = idFactura;
+            Numero = numero;
+
         }
     }
 }
