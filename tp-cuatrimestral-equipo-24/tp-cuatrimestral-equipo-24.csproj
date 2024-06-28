@@ -74,11 +74,12 @@
     <Content Include="Estilos2.css" />
     <Content Include="Estilos3.css" />
     <Content Include="EstilosModificar.css" />
-    <Content Include="EstilosSalon.css" />
+    <Content Include="CSS\EstilosSalon.css" />
     <Content Include="EstilosSoporte.css" />
     <Content Include="EstilosTarjetas.css" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="JS\ScriptsSalon.js" />
     <Content Include="Menu.aspx" />
     <Content Include="ModificarInsumo.aspx" />
     <Content Include="Pedi2.aspx" />

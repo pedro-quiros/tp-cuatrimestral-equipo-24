@@ -19,14 +19,14 @@ namespace Dominio
         {
             Id = 0;
             Estado = false;
-            idFactura = 0;
+           idFactura = 0;
         }
 
-        public Mesas (int id, bool estado, int idFactura)
+        public Mesas (int id, bool estado)
         {
             Id = id;
             Estado = estado;
-            this.idFactura = idFactura;
+         this.idFactura = idFactura;
         }
     }
 }

@@ -29,14 +29,11 @@
 		color: #fff; /* Texto blanco para contraste */
 	}
 
-.mesa-activa {
-	background-color: red; /* Color de fondo rojo para mesas activas */
-	color: white; /* Texto blanco para mesas activas */
+.mesa-btn {
+	/* Estilos base para botón de mesa */
 }
 
-/* Opcional: Estilo para mesas inactivas */
-/*.mesa-inactiva {
-    background-color: gray; 
-    color: black;
-}*/
-
+.mesa-activa {
+	background-color: red; /* Color rojo para mesa activa */
+	/* Otros estilos para resaltar mesa activa */
+}
