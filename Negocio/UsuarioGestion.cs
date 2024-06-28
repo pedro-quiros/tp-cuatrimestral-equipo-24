@@ -94,46 +94,7 @@ namespace Negocio
                 Accesodatos.CerrarConexion();
             }
         }
-        /*
-        public void AgregarUsuario(Usuario usuario)
-        {
-            AccesoDatos Datos = new AccesoDatos();
-            try
-            {
-                Datos.setearProcedimiento("AgregarUsuario");
-                Datos.SeterParametros("@nombreusuario", usuario.NombreUsuario);
-                Datos.SeterParametros("@clave", usuario.Clave);
-                Datos.SeterParametros("@Puesto", usuario.Puesto);
-                Datos.SeterParametros("@activo", usuario.Activo);
-
-                usuario.datos = new DatosPersonales();
-                {
-                    Datos.SeterParametros("@Legajo", usuario.Legajo);
-                    Datos.SeterParametros("@Dni", usuario.Dni);
-                    Datos.SeterParametros("@Nombre", usuario.Nombre);
-                    Datos.SeterParametros("@Apellido", usuario.Apellido);
-                    Datos.SeterParametros("@Fechanacimiento", usuario.Nacimiento);
-                    Datos.SeterParametros("@genero", usuario.Genero);
-                    Datos.SeterParametros("@telefono", usuario.Telefono);
-                    Datos.SeterParametros("@Email", usuario.Email);
-                    Datos.SeterParametros("@domicilio", usuario.Domicilio);
-                }
-
-                     Datos.EjecutarAccion();
-
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("Error al Agregar el usuario: " + ex.Message, ex);
-            }
-            finally
-            {
-                Datos.CerrarConexion();
-            }
-        }
-        */
-
+        
         public void AgregarUsuario(Usuario usuario)
         {
             AccesoDatos Datos = new AccesoDatos();
@@ -159,6 +120,36 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw new Exception("Error al Agregar el usuario: " + ex.Message, ex);
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+        public void ModificarUsuario(Usuario usuario)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.SetearConsulta("Update Usuario2 set NombreUsuario = @NombreUsuario, Puesto=@Puesto,Legajo=@Legajo,DNI=@DNI,Nombre=@Nombre ,Apellido = @Apellido,FechaNacimiento=@Nacimiento,genero=@genero,telefono=@Telefono,Email=@Email,domicilio=@domicilio WHERE IdUsuario = @IdUsuario");
+                Datos.SeterParametros("@IdUsuario", usuario.Id);
+                Datos.SeterParametros("@NombreUsuario", usuario.NombreUsuario);
+                Datos.SeterParametros("@Puesto", usuario.Puesto);
+                Datos.SeterParametros("@Legajo", usuario.Legajo);
+                Datos.SeterParametros("@DNI", usuario.Dni);
+                Datos.SeterParametros("@Nombre", usuario.Nombre);
+                Datos.SeterParametros("@Apellido", usuario.Apellido);
+                Datos.SeterParametros("@Nacimiento", usuario.Nacimiento);
+                Datos.SeterParametros("@Genero", usuario.Genero);
+                Datos.SeterParametros("@Telefono", usuario.Telefono);
+                Datos.SeterParametros("@Email", usuario.Email);
+                Datos.SeterParametros("@Domicilio", usuario.Domicilio);
+
+                Datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al Modificar al Personal: " + ex.Message, ex);
             }
             finally
             {
