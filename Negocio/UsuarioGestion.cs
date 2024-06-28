@@ -136,7 +136,7 @@ namespace Negocio
                 
                 Datos.SeterParametros("@IdUsuario", usuario.Id);
                 Datos.SeterParametros("@NombreUsuario", usuario.NombreUsuario);
-                //Datos.SeterParametros("@Puesto", usuario.Puesto);
+                Datos.SeterParametros("@Puesto", usuario.Puesto);
                 Datos.SeterParametros("@Legajo", usuario.Legajo);
                 Datos.SeterParametros("@DNI", usuario.Dni);
                 Datos.SeterParametros("@Nombre", usuario.Nombre);

@@ -43,6 +43,7 @@ namespace tp_cuatrimestral_equipo_24
                         {
                             txtId.Text = usu.Id.ToString();
                             txtUsuario.Value = usu.NombreUsuario;
+                            txtPuesto.Value = usu.Puesto.ToString();
                             txtLegajo.Value = usu.Legajo.ToString();
                             txtNombrePersonal.Value = usu.Nombre;
                             txtApellido.Value = usu.Apellido;
@@ -163,7 +164,7 @@ namespace tp_cuatrimestral_equipo_24
 
                     nuevoUsuario.Id = int.Parse(txtId.Text);
                     nuevoUsuario.NombreUsuario = txtUsuario.Value;
-                    //nuevoUsuario.Puesto = int.Parse(txtPuesto.Value);
+                    nuevoUsuario.Puesto = int.Parse(txtPuesto.Value);
                     nuevoUsuario.Legajo = int.Parse(txtLegajo.Value);
                     nuevoUsuario.Dni = int.Parse(txtDni.Value);
                     nuevoUsuario.Nombre = txtNombrePersonal.Value;
