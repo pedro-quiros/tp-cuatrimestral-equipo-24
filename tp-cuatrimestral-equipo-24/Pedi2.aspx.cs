@@ -161,8 +161,34 @@ namespace tp_cuatrimestral_equipo_24
             }
             lblTotal.Text = total.ToString("C");
         }
-    
-public class Pedido
+
+        protected void btnCerrarPedido_Click(object sender, EventArgs e)
+        {
+            if (Request.QueryString["mesa"] != null)
+            {
+                int idMesa;
+                if (int.TryParse(Request.QueryString["mesa"], out idMesa))
+                {
+                    MesaNegocio negocioMesa = new MesaNegocio();
+                    negocioMesa.AbrirCerrarMesa(idMesa);
+
+                    // Limpiar pedidos
+                    listaPedidos.Clear();
+                    GridViewPedidos.DataSource = listaPedidos;
+                    GridViewPedidos.DataBind();
+
+                    // Actualizar el estado de la mesa en la interfaz
+                    numeroMesaLabel.Text = string.Empty;
+                    lblTotal.Text = string.Empty;
+                }
+                else
+                {
+                    // Manejar el caso en que el ID de la mesa no es válido
+                }
+            }
+        }
+
+        public class Pedido
         {
             public string Nombre { get; set; }
             public int Cantidad { get; set; }
@@ -170,3 +196,5 @@ public class Pedido
         }
     }
 }
+
+
