@@ -48,6 +48,7 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void btnAceptarModal_Click(object sender, EventArgs e)
         {
+
             if (!string.IsNullOrEmpty(hdfIdMesa.Value))
             {
                 int idMesa = Convert.ToInt32(hdfIdMesa.Value);

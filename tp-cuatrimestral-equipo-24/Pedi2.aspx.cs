@@ -164,6 +164,15 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void btnCerrarPedido_Click(object sender, EventArgs e)
         {
+
+            // Guardar los pedidos en la base de datos
+            // Limpiar pedidos
+            listaPedidos.Clear();
+            GridViewPedidos.DataSource = listaPedidos;
+            GridViewPedidos.DataBind();
+            
+
+            /*
             if (Request.QueryString["mesa"] != null)
             {
                 int idMesa;
@@ -186,6 +195,7 @@ namespace tp_cuatrimestral_equipo_24
                     // Manejar el caso en que el ID de la mesa no es válido
                 }
             }
+            */
         }
 
         public class Pedido
