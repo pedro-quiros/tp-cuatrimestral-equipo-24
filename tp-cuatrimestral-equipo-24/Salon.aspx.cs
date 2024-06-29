@@ -25,10 +25,6 @@ namespace tp_cuatrimestral_equipo_24
             CargarDatosGridView();
         }
 
-        protected void dgvMesas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Lógica para manejar la selección de una mesa si es necesario
-        }
 
         protected void btnAbrirMesa_Click(object sender, EventArgs e)
         {
@@ -73,6 +69,8 @@ namespace tp_cuatrimestral_equipo_24
             dgvMesas.DataSource = listaMesas;
             dgvMesas.DataBind();
         }
+
+
 
         private int ObtenerIdMesaDesdeBoton(Control button)
         {
