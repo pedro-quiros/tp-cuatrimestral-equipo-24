@@ -25,6 +25,12 @@ namespace tp_cuatrimestral_equipo_24
             CargarDatosGridView();
         }
 
+        protected void dgvMesas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtén el ID de la mesa seleccionada
+            string idMesa = dgvMesas.SelectedDataKey.Value.ToString();
+            Response.Redirect($"Pedi2.aspx?IdMesa={idMesa}");
+        }
 
         protected void btnAbrirMesa_Click(object sender, EventArgs e)
         {
@@ -40,20 +46,17 @@ namespace tp_cuatrimestral_equipo_24
         protected void btnCargarPedidos_Click(object sender, EventArgs e)
         {
             int idMesa = ObtenerIdMesaDesdeBoton((Control)sender);
-
-            // Llamar al método de negocio para abrir la mesa (si es necesario)
-            // No necesitas implementar la lógica de abrir la mesa nuevamente aquí, ya que el botón "Cargar Pedidos" asume que la mesa ya está abierta.
+            // Redirige a la página de pedidos para la mesa seleccionada
             Response.Redirect($"Pedi2.aspx?IdMesa={idMesa}");
         }
 
         protected void btnAceptarModal_Click(object sender, EventArgs e)
         {
-
             if (!string.IsNullOrEmpty(hdfIdMesa.Value))
             {
                 int idMesa = Convert.ToInt32(hdfIdMesa.Value);
 
-                // Llamar al método de negocio para abrir la mesa
+                // Llamar al método de negocio para abrir o cerrar la mesa
                 mesaNegocio.AbrirCerrarMesa(idMesa);
 
                 // Actualizar la vista de la mesa en el GridView
@@ -64,15 +67,12 @@ namespace tp_cuatrimestral_equipo_24
             }
         }
 
-
         private void CargarDatosGridView()
         {
             List<Mesas> listaMesas = mesaNegocio.ListarConSpMesa();
             dgvMesas.DataSource = listaMesas;
             dgvMesas.DataBind();
         }
-
-
 
         private int ObtenerIdMesaDesdeBoton(Control button)
         {

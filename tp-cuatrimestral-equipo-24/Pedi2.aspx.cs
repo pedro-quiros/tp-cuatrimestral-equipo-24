@@ -28,6 +28,9 @@ namespace tp_cuatrimestral_equipo_24
                 {
                     string numeroMesa = Request.QueryString["mesa"];
                     numeroMesaLabel.Text = numeroMesa;
+
+                    // Guardar el ID de la mesa en una variable para usarlo más tarde
+                    ViewState["IdMesa"] = numeroMesa;  // Puedes usar ViewState o Session para almacenar temporalmente el ID
                 }
 
                 InsumosNegocio negocioInsumos = new InsumosNegocio();
@@ -45,6 +48,7 @@ namespace tp_cuatrimestral_equipo_24
                 CalcularTotal();
             }
         }
+
 
         protected void filtro_TextChanged(object sender, EventArgs e)
         {
@@ -197,13 +201,14 @@ namespace tp_cuatrimestral_equipo_24
             }
             */
         }
-
+        /*
         public class Pedido
         {
             public string Nombre { get; set; }
             public int Cantidad { get; set; }
             public decimal Precio { get; set; }
         }
+        */
     }
 }
 
