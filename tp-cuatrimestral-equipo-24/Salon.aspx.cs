@@ -25,13 +25,6 @@ namespace tp_cuatrimestral_equipo_24
             CargarDatosGridView();
         }
 
-        protected void dgvMesas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Obtén el ID de la mesa seleccionada
-            string idMesa = dgvMesas.SelectedDataKey.Value.ToString();
-            Response.Redirect($"Pedi2.aspx?IdMesa={idMesa}");
-        }
-
         protected void btnAbrirMesa_Click(object sender, EventArgs e)
         {
             int idMesa = ObtenerIdMesaDesdeBoton((Control)sender);
@@ -46,9 +39,15 @@ namespace tp_cuatrimestral_equipo_24
         protected void btnCargarPedidos_Click(object sender, EventArgs e)
         {
             int idMesa = ObtenerIdMesaDesdeBoton((Control)sender);
-            // Redirige a la página de pedidos para la mesa seleccionada
+
+            // Guardar el ID de la mesa en la sesión
+            Session["IdMesa"] = idMesa;
+
+            // Redirige a la página de pedidos con el ID de la mesa en la URL
             Response.Redirect($"Pedi2.aspx?IdMesa={idMesa}");
         }
+
+
 
         protected void btnAceptarModal_Click(object sender, EventArgs e)
         {
@@ -80,36 +79,6 @@ namespace tp_cuatrimestral_equipo_24
             int index = row.RowIndex;
             int idMesa = Convert.ToInt32(dgvMesas.DataKeys[index].Value);
             return idMesa;
-        }
-
-        private void ActualizarEstadoMesa(int idMesa, bool estadoAbierto)
-        {
-            // Buscar la fila correspondiente en el GridView y actualizar su estado visualmente
-            foreach (GridViewRow row in dgvMesas.Rows)
-            {
-                int mesaId = Convert.ToInt32(dgvMesas.DataKeys[row.RowIndex].Value);
-                if (mesaId == idMesa)
-                {
-                    // Actualizar el texto del botón y su visibilidad según el estado de la mesa
-                    Button btnAbrirMesa = (Button)row.FindControl("btnAbrirMesa");
-                    Button btnCargarPedidos = (Button)row.FindControl("btnCargarPedidos");
-
-                    btnAbrirMesa.Visible = !estadoAbierto;
-                    btnCargarPedidos.Visible = estadoAbierto;
-
-                    // Puedes cambiar el texto del botón según el estado si es necesario
-                    if (estadoAbierto)
-                    {
-                        btnAbrirMesa.Text = "Mesa Abierta";
-                    }
-                    else
-                    {
-                        btnAbrirMesa.Text = "Abrir Mesa";
-                    }
-
-                    break;
-                }
-            }
         }
     }
 }

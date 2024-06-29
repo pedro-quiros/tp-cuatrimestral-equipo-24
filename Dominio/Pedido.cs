@@ -7,8 +7,8 @@ namespace Dominio
     {
         public int IdPedido { get; set; }
         public DateTime FechaHoraGenerado { get; set; }
-        public bool Estado { get; set; }
-        public decimal Total { get; set; } // Actualizamos de float a decimal para mayor precisión en precios
+        public bool Estado { get; set; } // Si el pedido está cerrado o abierto
+        public decimal Total { get; set; } // El total del costo del pedido
         public Mesas Mesa { get; set; } // Relación con la clase Mesas
         public List<ItemPedido> ItemsPedido { get; set; } // Relación con la clase ItemPedido
 
@@ -30,6 +30,29 @@ namespace Dominio
             Total = total;
             Mesa = mesa;
             ItemsPedido = new List<ItemPedido>();
+        }
+
+        // Método para agregar un ítem al pedido
+        public void AgregarItem(ItemPedido item)
+        {
+            ItemsPedido.Add(item);
+            Total += item.Cantidad * item.Precio; // Actualiza el total del pedido
+        }
+
+        // Método para cerrar el pedido
+        public void CerrarPedido()
+        {
+            Estado = false;
+        }
+
+        // Método para recalcular el total del pedido
+        public void RecalcularTotal()
+        {
+            Total = 0;
+            foreach (var item in ItemsPedido)
+            {
+                Total += item.Cantidad * item.Precio;
+            }
         }
     }
 }

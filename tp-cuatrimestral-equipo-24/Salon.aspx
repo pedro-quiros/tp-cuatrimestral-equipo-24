@@ -12,7 +12,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="salon">
         <p class="title">Salón</p>
-        <asp:GridView CssClass="tablaConEstilo" ID="dgvMesas" runat="server" DataKeyNames="IdMesa" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvMesas_SelectedIndexChanged" OnPageIndexChanging="dgvMesas_PageIndexChanging" AllowPaging="true" PageSize="5">
+        <asp:GridView CssClass="tablaConEstilo" ID="dgvMesas" runat="server" DataKeyNames="IdMesa" AutoGenerateColumns="false" OnPageIndexChanging="dgvMesas_PageIndexChanging" AllowPaging="true" PageSize="5">
             <Columns>
                 <asp:BoundField HeaderText="Mesa #" DataField="Numero" />
                 <asp:TemplateField HeaderText="Estado">

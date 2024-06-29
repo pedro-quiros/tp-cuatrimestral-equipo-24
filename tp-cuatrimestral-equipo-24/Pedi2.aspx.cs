@@ -8,15 +8,17 @@ namespace tp_cuatrimestral_equipo_24
 {
     public partial class Pedi2 : System.Web.UI.Page
     {
-        public List<Insumo> listaInsumos
+        private PedidoNegocio pedidoNegocio = new PedidoNegocio();
+
+        private List<Insumo> listaInsumos
         {
             get { return (List<Insumo>)Session["ListadoInsumos"]; }
             set { Session["ListadoInsumos"] = value; }
         }
 
-        public List<Pedido> listaPedidos
+        private List<ItemPedido> listaPedidos
         {
-            get { return (List<Pedido>)Session["Pedidos"]; }
+            get { return (List<ItemPedido>)Session["Pedidos"]; }
             set { Session["Pedidos"] = value; }
         }
 
@@ -24,31 +26,50 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["mesa"] != null)
-                {
-                    string numeroMesa = Request.QueryString["mesa"];
-                    numeroMesaLabel.Text = numeroMesa;
+                int idMesa;
 
-                    // Guardar el ID de la mesa en una variable para usarlo más tarde
-                    ViewState["IdMesa"] = numeroMesa;  // Puedes usar ViewState o Session para almacenar temporalmente el ID
+                // Intenta obtener el ID de la mesa desde los parámetros de la URL
+                if (Request.QueryString["IdMesa"] != null && int.TryParse(Request.QueryString["IdMesa"], out idMesa))
+                {
+                    Session["IdMesa"] = idMesa;
+                }
+                else if (Session["IdMesa"] != null)
+                {
+                    idMesa = (int)Session["IdMesa"];
+                }
+                else
+                {
+                    // Manejar el caso en que no se haya encontrado el ID de la mesa
+                    Response.Redirect("Salon.aspx");
+                    return;
                 }
 
-                InsumosNegocio negocioInsumos = new InsumosNegocio();
-                listaInsumos = negocioInsumos.ListarConSpInsumo();
+                // Utiliza idMesa según sea necesario
+                CargarInsumos();
+                CargarPedidos();
+                numeroMesaLabel.Text = idMesa.ToString();
+            }
+        }
 
-                if (listaPedidos == null)
-                {
-                    listaPedidos = new List<Pedido>();
-                }
+        private void CargarInsumos()
+        {
+            listaInsumos = pedidoNegocio.ListarInsumos();
+            GridView1.DataSource = listaInsumos;
+            GridView1.DataBind();
+        }
 
-                GridView1.DataSource = listaInsumos;
-                GridView1.DataBind();
+        private void CargarPedidos()
+        {
+            if (Session["IdMesa"] != null)
+            {
+                int idMesa = (int)Session["IdMesa"];
+                listaPedidos = pedidoNegocio.ObtenerItemsDePedido(idMesa);
+
                 GridViewPedidos.DataSource = listaPedidos;
                 GridViewPedidos.DataBind();
                 CalcularTotal();
             }
         }
-
 
         protected void filtro_TextChanged(object sender, EventArgs e)
         {
@@ -67,9 +88,8 @@ namespace tp_cuatrimestral_equipo_24
             }
             else
             {
-                InsumosNegocio insumo = new InsumosNegocio();
-                ListaFiltrada = insumo.ListarConSpInsumo();
-                listaInsumos = ListaFiltrada;
+                CargarInsumos();
+                ListaFiltrada = listaInsumos;
             }
             GridView1.DataSource = ListaFiltrada;
             GridView1.DataBind();
@@ -79,7 +99,6 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (listaInsumos == null || listaPedidos == null)
             {
-                // Redirigir al usuario o manejar el caso cuando las listas son nulas
                 return;
             }
 
@@ -88,16 +107,16 @@ namespace tp_cuatrimestral_equipo_24
                 int index = Convert.ToInt32(e.CommandArgument);
                 Insumo insumoSeleccionado = listaInsumos[index];
 
-                Pedido pedidoExistente = listaPedidos.Find(p => p.Nombre == insumoSeleccionado.Nombre);
+                ItemPedido pedidoExistente = listaPedidos.Find(p => p.Insumo.IdInsumo == insumoSeleccionado.IdInsumo);
                 if (pedidoExistente != null)
                 {
                     pedidoExistente.Cantidad++;
                 }
                 else
                 {
-                    Pedido nuevoPedido = new Pedido
+                    ItemPedido nuevoPedido = new ItemPedido
                     {
-                        Nombre = insumoSeleccionado.Nombre,
+                        Insumo = insumoSeleccionado,
                         Cantidad = 1,
                         Precio = insumoSeleccionado.Precio
                     };
@@ -117,16 +136,15 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (listaPedidos == null || listaInsumos == null)
             {
-                // Redirigir al usuario o manejar el caso cuando las listas son nulas
                 return;
             }
 
             int index = Convert.ToInt32(e.CommandArgument);
-            Pedido pedidoSeleccionado = listaPedidos[index];
+            ItemPedido pedidoSeleccionado = listaPedidos[index];
 
             if (e.CommandName == "Aumentar")
             {
-                Insumo insumo = listaInsumos.Find(i => i.Nombre == pedidoSeleccionado.Nombre);
+                Insumo insumo = listaInsumos.Find(i => i.IdInsumo == pedidoSeleccionado.Insumo.IdInsumo);
                 if (insumo != null && insumo.Stock > 0)
                 {
                     pedidoSeleccionado.Cantidad++;
@@ -138,12 +156,22 @@ namespace tp_cuatrimestral_equipo_24
                 if (pedidoSeleccionado.Cantidad > 0)
                 {
                     pedidoSeleccionado.Cantidad--;
-                    Insumo insumo = listaInsumos.Find(i => i.Nombre == pedidoSeleccionado.Nombre);
+                    Insumo insumo = listaInsumos.Find(i => i.IdInsumo == pedidoSeleccionado.Insumo.IdInsumo);
                     if (insumo != null)
                     {
                         insumo.Stock++;
                     }
                 }
+            }
+            else if (e.CommandName == "Eliminar")
+            {
+                // Eliminar el insumo del pedido y actualizar stock
+                Insumo insumo = listaInsumos.Find(i => i.IdInsumo == pedidoSeleccionado.Insumo.IdInsumo);
+                if (insumo != null)
+                {
+                    insumo.Stock += pedidoSeleccionado.Cantidad;
+                }
+                listaPedidos.RemoveAt(index);
             }
 
             GridView1.DataSource = listaInsumos;
@@ -158,58 +186,48 @@ namespace tp_cuatrimestral_equipo_24
             decimal total = 0;
             if (listaPedidos != null)
             {
-                foreach (var pedido in listaPedidos)
+                foreach (ItemPedido item in listaPedidos)
                 {
-                    total += pedido.Cantidad * pedido.Precio;
+                    total += item.Cantidad * item.Precio;
                 }
             }
-            lblTotal.Text = total.ToString("C");
+            TotalLabel.Text = $"Total: {total:C}";
         }
 
-        protected void btnCerrarPedido_Click(object sender, EventArgs e)
+        protected void BtnCerrarPedido_Click(object sender, EventArgs e)
         {
-
-            // Guardar los pedidos en la base de datos
-            // Limpiar pedidos
-            listaPedidos.Clear();
-            GridViewPedidos.DataSource = listaPedidos;
-            GridViewPedidos.DataBind();
-            
-
-            /*
-            if (Request.QueryString["mesa"] != null)
+            if (Session["IdMesa"] != null && listaPedidos != null)
             {
-                int idMesa;
-                if (int.TryParse(Request.QueryString["mesa"], out idMesa))
-                {
-                    MesaNegocio negocioMesa = new MesaNegocio();
-                    negocioMesa.AbrirCerrarMesa(idMesa);
+                int idMesa = (int)Session["IdMesa"];
+                DateTime fechaHora = DateTime.Now;
+                decimal total = 0;
 
-                    // Limpiar pedidos
-                    listaPedidos.Clear();
-                    GridViewPedidos.DataSource = listaPedidos;
-                    GridViewPedidos.DataBind();
-
-                    // Actualizar el estado de la mesa en la interfaz
-                    numeroMesaLabel.Text = string.Empty;
-                    lblTotal.Text = string.Empty;
-                }
-                else
+                foreach (ItemPedido item in listaPedidos)
                 {
-                    // Manejar el caso en que el ID de la mesa no es válido
+                    total += item.Cantidad * item.Precio;
                 }
+
+                pedidoNegocio.InsertarPedido(fechaHora, total, idMesa);
+
+                foreach (ItemPedido item in listaPedidos)
+                {
+                    Insumo insumo = listaInsumos.Find(i => i.IdInsumo == item.Insumo.IdInsumo);
+                    if (insumo != null)
+                    {
+                        pedidoNegocio.AgregarItemPedido(idMesa, insumo.IdInsumo, item.Cantidad, item.Precio);
+                        pedidoNegocio.ActualizarStockInsumo(insumo.IdInsumo, -item.Cantidad);
+                    }
+                }
+
+                // Cerrar mesa y limpiar sesiones
+                pedidoNegocio.AbrirCerrarMesa(idMesa);
+                Session["ListadoInsumos"] = null;
+                Session["Pedidos"] = null;
+                Session["IdMesa"] = null;
+
+                // Redirigir a una página de confirmación o reiniciar el proceso
+                Response.Redirect("Salon.aspx");
             }
-            */
         }
-        /*
-        public class Pedido
-        {
-            public string Nombre { get; set; }
-            public int Cantidad { get; set; }
-            public decimal Precio { get; set; }
-        }
-        */
     }
 }
-
-

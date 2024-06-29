@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Dominio;
 using System.Collections.Generic;
-using Dominio;
+using System;
 
 namespace Negocio
 {
@@ -23,7 +23,6 @@ namespace Negocio
                         IdMesa = (int)datos.Lector["IdMesa"],
                         Numero = (int)datos.Lector["Numero"],
                         Estado = (bool)datos.Lector["Estado"]
-
                     };
 
                     lista.Add(mesa);
@@ -48,7 +47,7 @@ namespace Negocio
             try
             {
                 datos.setearProcedimiento("SP_AbrirCerrarMesa");
-                datos.SeterParametros("@IdMesa", idMesa); // Cambiado a "@IdMesa"
+                datos.SeterParametros("@IdMesa", idMesa);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
