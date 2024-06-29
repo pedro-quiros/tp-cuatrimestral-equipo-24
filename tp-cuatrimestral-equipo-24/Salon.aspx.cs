@@ -56,12 +56,13 @@ namespace tp_cuatrimestral_equipo_24
                 mesaNegocio.AbrirCerrarMesa(idMesa);
 
                 // Actualizar la vista de la mesa en el GridView
-                ActualizarEstadoMesa(idMesa, true); // true indica que la mesa está abierta
+                CargarDatosGridView();
 
                 // Ocultar el modal después de aceptar
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "OcultarModal", "$('#modalConfirmar').modal('hide');", true);
             }
         }
+
 
         private void CargarDatosGridView()
         {

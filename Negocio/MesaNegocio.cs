@@ -23,6 +23,7 @@ namespace Negocio
                         IdMesa = (int)datos.Lector["IdMesa"],
                         Numero = (int)datos.Lector["Numero"],
                         Estado = (bool)datos.Lector["Estado"]
+
                     };
 
                     lista.Add(mesa);

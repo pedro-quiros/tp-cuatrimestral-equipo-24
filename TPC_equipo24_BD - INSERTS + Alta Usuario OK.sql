@@ -197,7 +197,11 @@ GO
 
 -- Insertar una mesa con estado abierto y sin factura asociada
 INSERT INTO Mesa (Numero)
-VALUES (2);
+VALUES (3),
+(4),
+(5),
+(6),
+(7);
 
 select * from mesa
 
@@ -206,41 +210,33 @@ ALTER PROCEDURE SP_ListarMesas
 AS
 BEGIN
     SELECT IdMesa, Numero, Estado 
-	FROM Mesa
+    FROM Mesa
 END
 
-
 ---
-CREATE PROCEDURE SP_AbrirCerrarMesa
+ALTER PROCEDURE SP_AbrirCerrarMesa
     @IdMesa INT
 AS
 BEGIN
-    -- Declarar una variable para almacenar el estado actual de la mesa
     DECLARE @EstadoActual BIT;
 
-    -- Obtener el estado actual de la mesa
     SELECT @EstadoActual = Estado
     FROM Mesa
     WHERE IdMesa = @IdMesa;
 
-    -- Cambiar el estado de la mesa
     IF @EstadoActual = 1
     BEGIN
-        -- Si la mesa está abierta, cerrarla
         UPDATE Mesa
         SET Estado = 0
         WHERE IdMesa = @IdMesa;
     END
     ELSE
     BEGIN
-        -- Si la mesa está cerrada, abrirla
         UPDATE Mesa
         SET Estado = 1
         WHERE IdMesa = @IdMesa;
     END
 END;
-
-
 
 -- Cambiar el estado de la mesa con IdMesa = 1
 EXEC SP_AbrirCerrarMesa @IdMesa = 1;
