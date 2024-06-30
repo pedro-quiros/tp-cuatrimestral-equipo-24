@@ -72,9 +72,9 @@ namespace tp_cuatrimestral_equipo_24
 
                 if (insu.Tipo != "" && insu.Nombre != "" && insu.Descripcion != "" && txtPrecio.Value != "" && txtStock.Value != "")
                 {
-                    InsumosNegocio.Modificar(insu);
+                    InsumosNegocio.ModificarConSpInsumo(insu);
 
-                    MessageBox.Show("Modificado exitosamente :)");
+                    MessageBox.Show("Modificado exitosamente! :)");
                 }
                 else
                 {
