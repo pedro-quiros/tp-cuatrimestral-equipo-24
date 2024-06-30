@@ -1,35 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dominio
+﻿namespace Dominio
 {
     public class ItemPedido
     {
         public int IdItemPedido { get; set; }
-        public Pedido Pedido { get; set; }
-        public Insumo Insumo { get; set; }
+        public Insumo Insumo { get; set; }  // Relación con la clase Insumo
         public int Cantidad { get; set; }
-        public float PrecioUnitario { get; set; }
+        public decimal Precio { get; set; } // Precio del insumo en el momento del pedido
 
-        public ItemPedido() 
+        public ItemPedido()
         {
             IdItemPedido = 0;
-            Pedido = new Pedido();
             Insumo = new Insumo();
             Cantidad = 0;
-            PrecioUnitario = 0;
+            Precio = 0;
         }
 
-        public ItemPedido (int idItemPedido, Pedido pedido, Insumo insumo, int cantidad, float precioUnitario)
+        public ItemPedido(int idItemPedido, Insumo insumo, int cantidad, decimal precio)
         {
             IdItemPedido = idItemPedido;
-            Pedido = pedido;
             Insumo = insumo;
             Cantidad = cantidad;
-            PrecioUnitario = precioUnitario;
+            Precio = precio;
+        }
+
+        // Método para obtener el total del ítem
+        public decimal ObtenerTotal()
+        {
+            return Cantidad * Precio;
         }
     }
 }

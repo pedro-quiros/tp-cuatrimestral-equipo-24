@@ -15,75 +15,39 @@ namespace tp_cuatrimestral_equipo_24
     {
 
         /// <summary>
-        /// btnMesa1 control.
+        /// dgvMesas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa1;
+        protected global::System.Web.UI.WebControls.GridView dgvMesas;
 
         /// <summary>
-        /// btnMesa2 control.
+        /// btnCancelarModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa2;
+        protected global::System.Web.UI.WebControls.Button btnCancelarModal;
 
         /// <summary>
-        /// btnMesa3 control.
+        /// btnAceptarModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa3;
+        protected global::System.Web.UI.WebControls.Button btnAceptarModal;
 
         /// <summary>
-        /// btnMesa4 control.
+        /// hdfIdMesa control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa4;
-
-        /// <summary>
-        /// btnMesa5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa5;
-
-        /// <summary>
-        /// btnMesa6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa6;
-
-        /// <summary>
-        /// btnMesa7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa7;
-
-        /// <summary>
-        /// btnMesa8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMesa8;
+        protected global::System.Web.UI.WebControls.HiddenField hdfIdMesa;
     }
 }

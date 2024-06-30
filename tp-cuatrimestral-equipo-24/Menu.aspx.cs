@@ -25,7 +25,7 @@ namespace tp_cuatrimestral_equipo_24
                 */
 
                 InsumosNegocio insumo = new InsumosNegocio();
-                ListaInsumos = insumo.ListarConSp();
+                ListaInsumos = insumo.ListarConSpInsumo();
                 Session["Listado"] = ListaInsumos;
                 idRep.DataSource = ListaInsumos;
                 idRep.DataBind();
@@ -50,7 +50,7 @@ namespace tp_cuatrimestral_equipo_24
             else
             {
                 InsumosNegocio insumo = new InsumosNegocio();
-                ListaFiltrada = insumo.ListarConSp();
+                ListaFiltrada = insumo.ListarConSpInsumo();
                 Session["Listado"] = ListaFiltrada;
             }
             idRep.DataSource = ListaFiltrada;

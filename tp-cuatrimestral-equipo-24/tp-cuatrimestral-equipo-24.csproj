@@ -74,13 +74,16 @@
     <Content Include="Estilos2.css" />
     <Content Include="Estilos3.css" />
     <Content Include="EstilosModificar.css" />
+    <Content Include="CSS\EstilosSalon.css" />
     <Content Include="EstilosSoporte.css" />
     <Content Include="EstilosTarjetas.css" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="JS\ScriptsSalon.js" />
     <Content Include="Menu.aspx" />
     <Content Include="ModificarInsumo.aspx" />
     <Content Include="ModificarPersonal.aspx" />
+    <Content Include="Pedi2.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="Reporte.aspx" />
     <Content Include="Salon.aspx" />
@@ -155,6 +158,13 @@
     </Compile>
     <Compile Include="ModificarPersonal.aspx.designer.cs">
       <DependentUpon>ModificarPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedi2.aspx.cs">
+      <DependentUpon>Pedi2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedi2.aspx.designer.cs">
+      <DependentUpon>Pedi2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedidos.aspx.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>

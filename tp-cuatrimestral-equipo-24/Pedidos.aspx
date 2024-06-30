@@ -68,5 +68,11 @@
                 <button type="button" class="btn btn-outline-danger">Cerrar pedido</button>
             </div>
         </form>
+            <div id="seccionPedidos" style="display: none;">
+    <h3>Pedido para mesa <span id="numeroMesa"></span></h3>
+    <!-- Aquí va el formulario de pedidos -->
+</div>
     </div>
+
+
 </asp:Content>

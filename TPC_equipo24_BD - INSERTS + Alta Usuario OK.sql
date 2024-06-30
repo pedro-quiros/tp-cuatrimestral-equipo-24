@@ -139,3 +139,115 @@ GO
 
 
 exec MostrarUsuario
+
+
+----------
+
+exec SP_ListarInsumos
+CREATE PROCEDURE SP_ListarInsumos
+AS
+BEGIN
+    SELECT IdInsumo, Nombre, Tipo, Precio, Stock, UrlImagen, Descripcion
+    FROM Insumo
+END
+
+CREATE PROCEDURE SP_ModificarInsumo
+    @IdInsumo INT,
+    @Nombre VARCHAR(50),
+    @Tipo VARCHAR(50),
+    @Precio MONEY,
+    @Stock INT,
+    @UrlImagen VARCHAR(max),
+    @Descripcion VARCHAR(500)
+AS
+BEGIN
+    UPDATE Insumo
+    SET Nombre = @Nombre, Tipo = @Tipo, Precio = @Precio, Stock = @Stock, UrlImagen = @UrlImagen, Descripcion = @Descripcion
+    WHERE IdInsumo = @IdInsumo
+END
+
+CREATE PROCEDURE SP_EliminarInsumo
+    @IdInsumo INT
+AS
+BEGIN
+    DELETE FROM Insumo
+    WHERE IdInsumo = @IdInsumo
+END
+
+
+
+CREATE TABLE Mesa(
+	IdMesa INT PRIMARY KEY IDENTITY(1,1),
+	Estado BIT NULL DEFAULT 0,
+	Numero INT,
+	)
+drop table Mesa
+	/*
+CREATE TABLE [dbo].[Mesa](
+	[IdMesa] [int] IDENTITY(1,1) NOT NULL,
+	[IdFactura] [int] NULL,
+	[Estado] [bit] NULL,
+ CONSTRAINT [PK_Mesa] PRIMARY KEY CLUSTERED 
+(
+	[IdMesa] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+*/
+GO
+
+-- Insertar una mesa con estado abierto y sin factura asociada
+INSERT INTO Mesa (Numero)
+VALUES (3),
+(4),
+(5),
+(6),
+(7);
+
+select * from mesa
+
+exec SP_ListarMesas
+ALTER PROCEDURE SP_ListarMesas
+AS
+BEGIN
+    SELECT IdMesa, Numero, Estado 
+    FROM Mesa
+END
+
+---
+ALTER PROCEDURE SP_AbrirCerrarMesa
+    @IdMesa INT
+AS
+BEGIN
+    DECLARE @EstadoActual BIT;
+
+    SELECT @EstadoActual = Estado
+    FROM Mesa
+    WHERE IdMesa = @IdMesa;
+
+    IF @EstadoActual = 1
+    BEGIN
+        UPDATE Mesa
+        SET Estado = 0
+        WHERE IdMesa = @IdMesa;
+    END
+    ELSE
+    BEGIN
+        UPDATE Mesa
+        SET Estado = 1
+        WHERE IdMesa = @IdMesa;
+    END
+END;
+
+-- Cambiar el estado de la mesa con IdMesa = 1
+EXEC SP_AbrirCerrarMesa @IdMesa = 1;
+
+-- Verificar el cambio
+SELECT * FROM Mesa WHERE IdMesa = 1;
+
+
+
+
+
+
+
+---
