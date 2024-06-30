@@ -8,6 +8,7 @@ namespace Negocio
     {
         private AccesoDatos datos = new AccesoDatos();
 
+        // Método para listar insumos
         public List<Insumo> ListarInsumos()
         {
             List<Insumo> lista = new List<Insumo>();
@@ -24,7 +25,10 @@ namespace Negocio
                         IdInsumo = (int)datos.Lector["IdInsumo"],
                         Nombre = (string)datos.Lector["Nombre"],
                         Stock = (int)datos.Lector["Stock"],
-                        Precio = (decimal)datos.Lector["Precio"]
+                        Precio = (decimal)datos.Lector["Precio"],
+                        Tipo = (string)datos.Lector["Tipo"],  // Asegúrate de que 'Tipo' sea un campo en tu base de datos
+                        Descripcion = datos.Lector["Descripcion"] as string,  // Si puede ser nulo
+                        UrlImagen = datos.Lector["UrlImagen"] as string  // Si puede ser nulo
                     };
 
                     lista.Add(insumo);
@@ -32,7 +36,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al listar insumos", ex);
             }
             finally
             {
@@ -42,6 +46,7 @@ namespace Negocio
             return lista;
         }
 
+        // Método para listar mesas
         public List<Mesas> ListarMesas()
         {
             List<Mesas> lista = new List<Mesas>();
@@ -65,7 +70,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al listar mesas", ex);
             }
             finally
             {
@@ -75,6 +80,7 @@ namespace Negocio
             return lista;
         }
 
+        // Método para abrir o cerrar una mesa
         public void AbrirCerrarMesa(int idMesa)
         {
             try
@@ -85,10 +91,11 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al abrir o cerrar mesa", ex);
             }
         }
 
+        // Método para insertar un pedido
         public void InsertarPedido(DateTime fechaHora, decimal total, int idMesa)
         {
             try
@@ -101,11 +108,11 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al insertar pedido", ex);
             }
         }
 
-
+        // Método para agregar un ítem a un pedido
         public void AgregarItemPedido(int idPedido, int idInsumo, int cantidad, decimal precio)
         {
             try
@@ -119,10 +126,11 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al agregar item al pedido", ex);
             }
         }
 
+        // Método para actualizar el stock de un insumo
         public void ActualizarStockInsumo(int idInsumo, int cantidad)
         {
             try
@@ -134,10 +142,55 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al actualizar stock del insumo", ex);
             }
         }
 
+        // Método para cerrar un pedido
+        public void CerrarPedido(int idPedido)
+        {
+            try
+            {
+                datos.setearProcedimiento("CerrarPedido");
+                datos.SeterParametros("@IdPedido", idPedido);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cerrar el pedido", ex);
+            }
+        }
+        public int CrearPedido(DateTime fechaHora, decimal total, int idMesa)
+        {
+            int idPedido = 0;
+
+            try
+            {
+                datos.setearProcedimiento("CrearPedido");
+                datos.SeterParametros("@FechaHora", fechaHora);
+                datos.SeterParametros("@Total", total);
+                datos.SeterParametros("@IdMesa", idMesa);
+
+                // Asume que el procedimiento almacenado devuelve el ID del nuevo pedido
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    idPedido = (int)datos.Lector["IdPedido"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear el pedido", ex);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return idPedido;
+        }
+
+        // Método para obtener los ítems de un pedido
         public List<ItemPedido> ObtenerItemsDePedido(int idMesa)
         {
             List<ItemPedido> lista = new List<ItemPedido>();
@@ -170,7 +223,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al obtener ítems de pedido", ex);
             }
             finally
             {
