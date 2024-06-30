@@ -17,6 +17,7 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
+                List<Insumo> LimpiarInsumo = new List<Insumo>();
                 /*
                 InsumosNegocio insumo = new InsumosNegocio();
                 Session.Add("ListadoMenu", insumo.ListarConSp());

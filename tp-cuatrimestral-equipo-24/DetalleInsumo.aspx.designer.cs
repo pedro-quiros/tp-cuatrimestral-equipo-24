@@ -11,7 +11,7 @@ namespace tp_cuatrimestral_equipo_24
 {
 
 
-    public partial class DetalleInsumo
+    public partial class ModificarInsumo
     {
 
         /// <summary>
@@ -24,31 +24,31 @@ namespace tp_cuatrimestral_equipo_24
         protected global::System.Web.UI.WebControls.Label lblnombre;
 
         /// <summary>
-        /// Control txtnombre.
+        /// Control txtNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtnombre;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombre;
 
         /// <summary>
-        /// Control lbldescripcion.
+        /// Control LblTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldescripcion;
+        protected global::System.Web.UI.WebControls.Label LblTipo;
 
         /// <summary>
-        /// Control txtDescripcion.
+        /// Control txtTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTipo;
 
         /// <summary>
         /// Control lblprecio.
@@ -66,51 +66,78 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrecio;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPrecio;
 
         /// <summary>
-        /// Control Lblmarca.
+        /// Control lblStock.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lblmarca;
+        protected global::System.Web.UI.WebControls.Label lblStock;
 
         /// <summary>
-        /// Control txtmarca.
+        /// Control txtStock.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtmarca;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtStock;
 
         /// <summary>
-        /// Control lblcategoria.
+        /// Control lblImagen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcategoria;
+        protected global::System.Web.UI.WebControls.Label lblImagen;
 
         /// <summary>
-        /// Control txtCategoria.
+        /// Control txtImagen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCategoria;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtImagen;
 
         /// <summary>
-        /// Control repDetalle.
+        /// Control lbldescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repDetalle;
+        protected global::System.Web.UI.WebControls.Label lbldescripcion;
+
+        /// <summary>
+        /// Control txtDescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDescripcion;
+
+        /// <summary>
+        /// Control btnModificarInsumo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarInsumo;
+
+        /// <summary>
+        /// Control BajaAltaLogica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BajaAltaLogica;
     }
 }

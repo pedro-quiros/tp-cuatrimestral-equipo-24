@@ -15,6 +15,7 @@ namespace Dominio
         public int Stock { get; set; }
         public string UrlImagen { get; set; }       
         public string Descripcion {  get; set; }
+        public bool Activo {  get; set; }
 
         public Insumo() 
         {
@@ -23,6 +24,7 @@ namespace Dominio
             Tipo = "";
             Precio = 0; 
             Stock = 0;
+            Activo = true;
         }
 
         public Insumo (int idInsumo, string nombre, string tipo, decimal precio, int stock)
@@ -32,6 +34,7 @@ namespace Dominio
             Tipo = tipo;
             Precio = precio;
             Stock = stock;
+            Activo= true;
         }
     }
 }

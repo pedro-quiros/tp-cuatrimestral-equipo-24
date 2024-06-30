@@ -91,7 +91,7 @@ namespace Negocio
 
             try
             {
-                string consulta = "SELECT IdInsumo, Nombre, Tipo, Precio, Stock,descripcion,UrlImagen FROM Insumo";
+                string consulta = "SELECT IdInsumo, Nombre, Tipo, Precio, Stock, descripcion, UrlImagen, Activo FROM Insumo";
 
 
                 datos.SetearConsulta(consulta);
@@ -106,6 +106,7 @@ namespace Negocio
                     aux.Stock = (int)datos.Lector["Stock"];
                     aux.Descripcion = (string)datos.Lector["descripcion"];
                     aux.UrlImagen = (string)datos.Lector["UrlImagen"];
+                    aux.Activo = Convert.ToBoolean(datos.Lector["Activo"]);
 
 
                     aux.Precio = (decimal)datos.Lector["Precio"];
@@ -155,7 +156,7 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("INSERT INTO Insumo (Nombre, Tipo, Precio, Stock, UrlImagen, Descripcion) VALUES (@nombre , @tipo, @precio, @stock, @urlImagen, @descripcion)");
+                datos.SetearConsulta("INSERT INTO Insumo (Nombre, Tipo, Precio, Stock, UrlImagen, Descripcion, Activo) VALUES (@nombre , @tipo, @precio, @stock, @urlImagen, @descripcion, 1)");
 
                 datos.SeterParametros("@nombre", nuevo.Nombre);
                 datos.SeterParametros("@tipo", nuevo.Tipo);
@@ -198,7 +199,43 @@ namespace Negocio
             }
         }
 
+        public void BajaLogica(Insumo insumo)
+        {
+            AccesoDatos Accesodatos = new AccesoDatos();
+            try
+            {
+                Accesodatos.SetearConsulta("update Insumo set Activo = 0 where IdInsumo = @IdInsumo");
+                Accesodatos.SeterParametros("@IdInsumo", insumo.IdInsumo);
+                Accesodatos.EjecutarConsulta();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al inactivar el usuario: " + ex.Message, ex);
+            }
+            finally
+            {
+                Accesodatos.CerrarConexion();
+            }
+        }
 
+        public void AltaLogica(Insumo insumo)
+        {
+            AccesoDatos Accesodatos = new AccesoDatos();
+            try
+            {
+                Accesodatos.SetearConsulta("update Insumo set Activo = 1 where IdInsumo = @IdInsumo");
+                Accesodatos.SeterParametros("@IdInsumo", insumo.IdInsumo);
+                Accesodatos.EjecutarConsulta();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al inactivar el usuario: " + ex.Message, ex);
+            }
+            finally
+            {
+                Accesodatos.CerrarConexion();
+            }
+        }
 
 
 
