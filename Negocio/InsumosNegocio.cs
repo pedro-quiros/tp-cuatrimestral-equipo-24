@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -189,8 +190,25 @@ namespace Negocio
             }
         }
 
-
-
+        public void ActualizarStockInsumo(int idInsumo, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_ActualizarStockInsumo");
+                datos.SeterParametros("@IdInsumo", idInsumo);
+                datos.SeterParametros("@Cantidad", cantidad);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el stock del insumo: " + ex.Message, ex);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
     }

@@ -10,7 +10,7 @@ namespace tp_cuatrimestral_equipo_24
     public partial class Pedi2 : System.Web.UI.Page
     {
         private PedidoNegocio pedidoNegocio = new PedidoNegocio();
-        private InsumosNegocio insumoNegocio = new InsumosNegocio(); // Añadido
+        private InsumosNegocio insumoNegocio = new InsumosNegocio();
 
         private List<Insumo> listaInsumos
         {
@@ -33,7 +33,6 @@ namespace tp_cuatrimestral_equipo_24
                     int idMesa = (int)Session["IdMesa"];
                     numeroMesaLabel.Text = idMesa.ToString();
 
-                    // Obtener la lista de insumos y de pedidos
                     try
                     {
                         CargarInsumos();  // Llamar al método para cargar los insumos
@@ -42,7 +41,6 @@ namespace tp_cuatrimestral_equipo_24
                     }
                     catch (Exception ex)
                     {
-                        // Manejo de errores, como registrar el error o mostrar un mensaje
                         ErrorMessage.Text = "Ocurrió un error al cargar los datos: " + ex.Message;
                     }
                 }
@@ -52,6 +50,7 @@ namespace tp_cuatrimestral_equipo_24
                 }
             }
         }
+
         private void CargarInsumos()
         {
             try
@@ -62,7 +61,6 @@ namespace tp_cuatrimestral_equipo_24
             }
             catch (Exception ex)
             {
-                // Manejo de errores, como registrar el error o mostrar un mensaje
                 ErrorMessage.Text = "Ocurrió un error al cargar los insumos: " + ex.Message;
             }
         }
@@ -89,7 +87,9 @@ namespace tp_cuatrimestral_equipo_24
         protected void filtro_TextChanged(object sender, EventArgs e)
         {
             var textoFiltro = Filtro.Text.ToLower();
-            GridView1.DataSource = listaInsumos.Where(i => i.Nombre.ToLower().Contains(textoFiltro) || i.Tipo.ToLower().Contains(textoFiltro)).ToList();
+            GridView1.DataSource = listaInsumos
+                .Where(i => i.Nombre.ToLower().Contains(textoFiltro) || i.Tipo.ToLower().Contains(textoFiltro))
+                .ToList();
             GridView1.DataBind();
         }
 
@@ -99,6 +99,12 @@ namespace tp_cuatrimestral_equipo_24
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 var insumoSeleccionado = listaInsumos[index];
+
+                if (insumoSeleccionado.Stock <= 0)
+                {
+                    ErrorMessage.Text = "No hay suficiente stock para agregar este insumo.";
+                    return;
+                }
 
                 var itemPedido = new ItemPedido
                 {
@@ -123,6 +129,12 @@ namespace tp_cuatrimestral_equipo_24
                     listaPedidos.Add(itemPedido);
                 }
 
+                // Actualizar el stock del insumo en la vista y en el negocio
+                insumoSeleccionado.Stock--;
+                insumoNegocio.ActualizarStockInsumo(insumoSeleccionado.IdInsumo, -1);  // Restar 1 del stock del insumo
+                GridView1.DataSource = listaInsumos;
+                GridView1.DataBind();
+
                 GridViewPedidos.DataSource = listaPedidos;
                 GridViewPedidos.DataBind();
                 CalcularTotal();
@@ -135,8 +147,12 @@ namespace tp_cuatrimestral_equipo_24
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 listaPedidos[index].Cantidad++;
+                listaInsumos.First(i => i.IdInsumo == listaPedidos[index].Insumo.IdInsumo).Stock--;
+                insumoNegocio.ActualizarStockInsumo(listaPedidos[index].Insumo.IdInsumo, -1);  // Restar 1 del stock del insumo
                 GridViewPedidos.DataSource = listaPedidos;
                 GridViewPedidos.DataBind();
+                GridView1.DataSource = listaInsumos;
+                GridView1.DataBind();
                 CalcularTotal();
             }
             else if (e.CommandName == "Disminuir")
@@ -145,24 +161,41 @@ namespace tp_cuatrimestral_equipo_24
                 if (listaPedidos[index].Cantidad > 1)
                 {
                     listaPedidos[index].Cantidad--;
+                    listaInsumos.First(i => i.IdInsumo == listaPedidos[index].Insumo.IdInsumo).Stock++;
+                    insumoNegocio.ActualizarStockInsumo(listaPedidos[index].Insumo.IdInsumo, 1);  // Aumentar 1 del stock del insumo
                 }
                 else
                 {
+                    // Si la cantidad es 1, al eliminar el ítem también se debe actualizar el stock
+                    listaInsumos.First(i => i.IdInsumo == listaPedidos[index].Insumo.IdInsumo).Stock++;
+                    insumoNegocio.ActualizarStockInsumo(listaPedidos[index].Insumo.IdInsumo, 1);  // Aumentar 1 del stock del insumo
                     listaPedidos.RemoveAt(index);
                 }
+
                 GridViewPedidos.DataSource = listaPedidos;
                 GridViewPedidos.DataBind();
+                GridView1.DataSource = listaInsumos;
+                GridView1.DataBind();
                 CalcularTotal();
             }
             else if (e.CommandName == "Eliminar")
             {
                 int index = Convert.ToInt32(e.CommandArgument);
+                // Actualizar el stock del insumo al eliminar el ítem del pedido
+                var idInsumo = listaPedidos[index].Insumo.IdInsumo;
+                var cantidadEliminada = listaPedidos[index].Cantidad;
+                listaInsumos.First(i => i.IdInsumo == idInsumo).Stock += cantidadEliminada;
+                insumoNegocio.ActualizarStockInsumo(idInsumo, cantidadEliminada);  // Aumentar el stock del insumo
                 listaPedidos.RemoveAt(index);
+
                 GridViewPedidos.DataSource = listaPedidos;
                 GridViewPedidos.DataBind();
+                GridView1.DataSource = listaInsumos;
+                GridView1.DataBind();
                 CalcularTotal();
             }
         }
+
         protected void BtnCerrarPedido_Click(object sender, EventArgs e)
         {
             if (Session["IdMesa"] != null && listaPedidos != null && listaPedidos.Count > 0)
@@ -191,7 +224,7 @@ namespace tp_cuatrimestral_equipo_24
                     // Actualizar el stock de los insumos
                     foreach (var item in listaPedidos)
                     {
-                        pedidoNegocio.ActualizarStockInsumo(item.Insumo.IdInsumo, -item.Cantidad);  // Restar la cantidad del stock
+                        insumoNegocio.ActualizarStockInsumo(item.Insumo.IdInsumo, -item.Cantidad);  // Restar la cantidad del stock
                     }
 
                     // Cerrar el pedido
