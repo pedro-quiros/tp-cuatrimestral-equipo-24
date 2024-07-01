@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,8 +18,28 @@ namespace tp_cuatrimestral_equipo_24
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            Usuario usuario;
+            UsuarioGestion UsuGesti = new UsuarioGestion();
+            try
+            {
+                usuario = new Usuario(txtnombre.Text, txtpassword.Text, false);
+                if (UsuGesti.Loguear(usuario))
+                {
+                    Session.Add("UsuarioSeleccionado", usuario);
+                    Response.Redirect("Home.aspx",false);
+                }
+                else 
+                {
+                    Session.Add("Error", "User o pass Incorrecto");
+                    Response.Redirect("Error.aspx", false);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Session.Add("Error",Ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
 
-            Response.Redirect("Home.aspx");
         }
 
         protected void btnRecuperarPass_Click(object sender, EventArgs e)
