@@ -22,7 +22,10 @@ namespace tp_cuatrimestral_equipo_24
             UsuarioGestion UsuGesti = new UsuarioGestion();
             try
             {
-                usuario = new Usuario(txtnombre.Text, txtpassword.Text, false);
+                //txtnombre.Text, txtpassword.Text, false
+                usuario = new Usuario();
+                usuario.NombreUsuario = txtnombre.Text;
+                usuario.Clave = txtpassword.Text;
                 if (UsuGesti.Loguear(usuario))
                 {
                     Session.Add("UsuarioSeleccionado", usuario);
