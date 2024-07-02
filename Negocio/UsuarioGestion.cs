@@ -161,7 +161,6 @@ namespace Negocio
         }
         public bool Loguear(Usuario usuario)
         {
-            //Usuario comparar = new Usuario();
             AccesoDatos datos = new AccesoDatos();  
             try
             {
@@ -173,11 +172,6 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     usuario.Id = (int)datos.Lector["IdUsuario"];
-
-                    //if (comparar.Id > 0)
-                    //{
-                    //    return true;
-                    //}
                     usuario.tipoUsuario = (int)(datos.Lector["Puesto"]) == 2 ? TipoUsuario.GERENTE : TipoUsuario.EMPLEADO;
                     return true;
                 }
@@ -185,8 +179,7 @@ namespace Negocio
             }
             catch (Exception Ex)
             {
-                MessageBox.Show("usuario No encontrado");
-                throw Ex;
+                return false;
             }
             finally
             {

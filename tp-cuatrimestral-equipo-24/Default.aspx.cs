@@ -18,27 +18,29 @@ namespace tp_cuatrimestral_equipo_24
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            Usuario usuario;
+            Usuario usuario = new Usuario();
             UsuarioGestion UsuGesti = new UsuarioGestion();
             try
             {
-                //txtnombre.Text, txtpassword.Text, false
-                usuario = new Usuario();
+                
                 usuario.NombreUsuario = txtnombre.Text;
                 usuario.Clave = txtpassword.Text;
                 if (UsuGesti.Loguear(usuario))
                 {
                     Session.Add("UsuarioSeleccionado", usuario);
                     Response.Redirect("Home.aspx",false);
+                    Response.Write("<script>alert('Inicio de sesión exitoso.');</script>");
                 }
                 else 
                 {
                     Session.Add("Error", "User o pass Incorrecto");
                     Response.Redirect("Error.aspx", false);
+                    Response.Write("<script>alert('Nombre de usuario o contraseña incorrectos.');</script>");
                 }
             }
             catch (Exception Ex)
             {
+                Response.Write("<script>alert('Error: " + Ex.ToString() + "');</script>");
                 Session.Add("Error",Ex.ToString());
                 Response.Redirect("Error.aspx");
             }
