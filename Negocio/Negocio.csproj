@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="EmailServic.cs" />
     <Compile Include="InsumosNegocio.cs" />
     <Compile Include="PermisoHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
