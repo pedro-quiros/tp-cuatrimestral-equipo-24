@@ -24,7 +24,6 @@
             <asp:ListItem Text="Bebidas"></asp:ListItem>
             <asp:ListItem Text="Mostrar todo"></asp:ListItem>
         </asp:DropDownList>
-
     </div>
 
     <section class="body-def">

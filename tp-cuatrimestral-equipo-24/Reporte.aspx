@@ -3,4 +3,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p class="title">Reportes</p>
+
+   <div>
+        <asp:Label ID="LblTipo" runat="server" Text="Filtrar por:" CssClass="control-label"></asp:Label>
+        <asp:DropDownList runat="server" ID="ddlReportesFiltro" class="form-select" aria-label="Default select example"
+            OnSelectedIndexChanged="ddlReportesFiltro_SelectedIndexChanged" AutoPostBack="true">
+            <asp:ListItem Text="Hoy"></asp:ListItem>
+            <asp:ListItem Text="Esta semana"></asp:ListItem>
+            <asp:ListItem Text="Este mes"></asp:ListItem>
+            <asp:ListItem Text="Este año"></asp:ListItem>
+        </asp:DropDownList>
+    </div>
+
+
 </asp:Content>
