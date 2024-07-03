@@ -45,7 +45,7 @@ namespace tp_cuatrimestral_equipo_24
                 case "Hoy":
                     foreach (var item in lista)
                     {
-                        if (item.FechaHoraGenerado == fechaActual)
+                        if (item.FechaHoraGenerado.Date == fechaActual.Date)
                         {
                             listaFiltrada.Add(item);
                         }
