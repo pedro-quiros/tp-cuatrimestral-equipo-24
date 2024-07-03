@@ -15,9 +15,11 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
+                ddlReportesFiltro.Text = "Mostrar todo";
 
                 PedidoNegocio negocio = new PedidoNegocio();
                 List<Pedido> pedidos = negocio.Listar();
+
 
                 Session["Pedido"] = pedidos;
                 idRep.DataSource = pedidos;
