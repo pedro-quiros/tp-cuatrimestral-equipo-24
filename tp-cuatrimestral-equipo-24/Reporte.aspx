@@ -9,11 +9,34 @@
         <asp:DropDownList runat="server" ID="ddlReportesFiltro" class="form-select" aria-label="Default select example"
             OnSelectedIndexChanged="ddlReportesFiltro_SelectedIndexChanged" AutoPostBack="true">
             <asp:ListItem Text="Hoy"></asp:ListItem>
-            <asp:ListItem Text="Esta semana"></asp:ListItem>
             <asp:ListItem Text="Este mes"></asp:ListItem>
             <asp:ListItem Text="Este año"></asp:ListItem>
+            <asp:ListItem Text="Mostrar todo"></asp:ListItem>
         </asp:DropDownList>
     </div>
 
+
+    <section class="body-def">
+    <div class="contenedor-card">
+        <asp:Repeater runat="server" ID="idRep">
+            <ItemTemplate>
+                <div class="card h-100 tarjeta-rest" >
+                    <div class="wrap-text_tarjeta-rest">
+                        <h3><%# Eval("FechaHoraGenerado") %></h3>
+                        <asp:CheckBox ID="CheckBoxActivo" runat="server" Enabled="false" Text="Activo" Checked='<%# Eval("Estado") %>' />
+
+<%--                        <div class="cta_tarjeta-rest">
+                            <a href='<%# "DetalleInsumo.aspx?IdInsumo=" + Eval("IdInsumo") %>'>Detalles</a>
+                        </div>
+                        <div class="mt-auto d-flex justify-content-around">
+                            <asp:Button CssClass="btn-primary" Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
+                        </div>--%>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+
+    </div>
+</section>
 
 </asp:Content>
