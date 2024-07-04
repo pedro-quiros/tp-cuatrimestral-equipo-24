@@ -30,6 +30,7 @@ namespace tp_cuatrimestral_equipo_24
                             $"<b>Nombre:</b> {TxtNombre.Text}<br>" +
                             $"<b>Email:</b> {TxtEmail.Text}<br>" +
                             $"<b>Mensaje:</b> {txtmensaje.Text}";
+                            //$"<b>Fecha:</b> {fecha.Text}";
 
             emailService.armarCorreo(emailDestino, asunto, cuerpo);
 
