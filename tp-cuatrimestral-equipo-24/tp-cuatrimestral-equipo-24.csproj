@@ -88,6 +88,7 @@
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="DetalleReporte.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgregarInsumo.aspx.cs">
@@ -198,6 +199,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleReporte.aspx.cs">
+      <DependentUpon>DetalleReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleReporte.aspx.designer.cs">
+      <DependentUpon>DetalleReporte.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
