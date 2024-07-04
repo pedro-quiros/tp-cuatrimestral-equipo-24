@@ -27,6 +27,18 @@
                         <asp:TextBox ID="txtmensaje" Text="" CssClass="input-mitad" TextMode="MultiLine" runat="server"></asp:TextBox>
                     </label>
                 </div>
+                <div class="fila">
+                    <label>
+                        Puntaje (1 al 10)*:
+                      <asp:TextBox ID="txtpuntaje" Text="" CssClass="input-mitad" runat="server"></asp:TextBox>
+                    </label>
+                </div>
+                <%--<div class="fila">
+                    <label>
+                        Fecha*:
+                        <asp:TextBox ID="txtfecha" Text="" CssClass="input-mitad" TextMode="MultiLine" runat="server"></asp:TextBox>
+                    </label>
+                </div>--%>
                 <asp:Button ID="BtnEnviar" runat="server" Text="Enviar" CssClass="btn-enviar" OnClick="BtnEnviar_Click" />
             </form>
         </div>

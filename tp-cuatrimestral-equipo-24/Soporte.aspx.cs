@@ -17,9 +17,17 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void BtnEnviar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtEmail.Text) || string.IsNullOrWhiteSpace(txtmensaje.Text))
+            DateTime fecha;
+            fecha = DateTime.Now;
+            int puntaje;
+            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtEmail.Text) || string.IsNullOrWhiteSpace(txtmensaje.Text) || string.IsNullOrWhiteSpace(txtpuntaje.Text))
             {
                 Response.Write("<script>alert('Por favor, complete todos los campos obligatorios.');</script>");
+                return;
+            }
+            if(!int.TryParse(txtpuntaje.Text, out puntaje) || (puntaje < 1 || puntaje >10) )
+            {
+                Response.Write("<script>alert('El puntaje debe ser un número entre el 1 y 10.');</script>");
                 return;
             }
 
@@ -29,8 +37,10 @@ namespace tp_cuatrimestral_equipo_24
             string cuerpo = $"<h1>Reseña de Cliente</h1><br>" +
                             $"<b>Nombre:</b> {TxtNombre.Text}<br>" +
                             $"<b>Email:</b> {TxtEmail.Text}<br>" +
-                            $"<b>Mensaje:</b> {txtmensaje.Text}";
-                            //$"<b>Fecha:</b> {fecha.Text}";
+                            $"<b>Mensaje:</b> {txtmensaje.Text}<br>" +
+                            $"<b>Puntaje:</b> {puntaje}<br>" +
+                            $"<b>Fecha:</b> {fecha}<br>";
+                            
 
             emailService.armarCorreo(emailDestino, asunto, cuerpo);
 
@@ -38,10 +48,13 @@ namespace tp_cuatrimestral_equipo_24
             {
                 emailService.EnviarMail();
                 Response.Write("<script>alert('Reseña enviada correctamente.');</script>");
-                // Limpia los campos después de enviar el correo
+                // Limpia los campos después de enviar el correohttps://github.com/pedro-quiros/tp-cuatrimestral-equipo-24
                 TxtNombre.Text = "";
                 TxtEmail.Text = "";
                 txtmensaje.Text = "";
+                txtpuntaje.Text = "";
+                Response.Redirect("Home.aspx");
+                
             }
             catch (Exception ex)
             {
