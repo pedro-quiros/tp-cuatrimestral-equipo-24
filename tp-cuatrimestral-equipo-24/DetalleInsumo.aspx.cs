@@ -41,7 +41,7 @@ namespace tp_cuatrimestral_equipo_24
                         }
 
                         txtNombre.Value = insu.Nombre;
-                        txtTipo.Value = insu.Tipo;
+                        ddlTipo.Text = insu.Tipo;
                         txtPrecio.Value = insu.Precio.ToString();
                         txtStock.Value = insu.Stock.ToString();
                         txtImagen.Value = insu.UrlImagen.ToString();
@@ -78,7 +78,7 @@ namespace tp_cuatrimestral_equipo_24
             {
                 insu.IdInsumo = Convert.ToInt32(Request.QueryString["IdInsumo"]);
                 insu.Nombre = txtNombre.Value;
-                insu.Tipo = txtTipo.Value;
+                insu.Tipo = ddlTipo.Text;
                 insu.Precio = decimal.Parse(txtPrecio.Value);
                 insu.Stock = int.Parse(txtStock.Value);
                 insu.UrlImagen = txtImagen.Value;

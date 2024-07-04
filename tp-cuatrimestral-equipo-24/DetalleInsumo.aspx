@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="detalle-articulo">
-        <h1>MODIFICAR INSUMO</h1>
+        <h1>DETALLE DE INSUMO</h1>
 
         <div class="form-group">
             <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
@@ -14,8 +14,13 @@
         </div>
 
         <div class="form-group">
-            <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="control-label"></asp:Label>
-            <input type="text" class="form-control" id="txtTipo" runat="server" />
+            <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="control-label" ></asp:Label>
+            <asp:DropDownList class="form-select" runat="server" ID="ddlTipo" aria-label="Default select example">
+                <asp:ListItem Text="Desayuno/Merienda" ></asp:ListItem>
+                <asp:ListItem Text="Almuerzo/Cena"></asp:ListItem>
+                <asp:ListItem Text="Postres"></asp:ListItem>
+                <asp:ListItem Text="Bebidas"></asp:ListItem>
+            </asp:DropDownList>
         </div>
 
         <div class="form-group">
@@ -27,7 +32,7 @@
             <asp:Label ID="lblStock" runat="server" Text="Stock:" CssClass="control-label"></asp:Label>
             <input type="text" class="form-control" id="txtStock" runat="server" />
         </div>
-        
+
         <div class="form-group">
             <asp:Label ID="lblImagen" runat="server" Text="UrlImagen:" CssClass="control-label"></asp:Label>
             <input type="text" class="form-control" id="txtImagen" runat="server" />
