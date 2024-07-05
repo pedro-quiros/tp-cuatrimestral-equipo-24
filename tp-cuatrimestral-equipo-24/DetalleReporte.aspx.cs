@@ -18,13 +18,28 @@ namespace tp_cuatrimestral_equipo_24
             PedidoNegocio negocio = new PedidoNegocio();
             listaPedido = negocio.ListarParaReporte();
             int id = Convert.ToInt32(Request.QueryString["IdItemPedido"]);
+            int cantidad = 0;
 
             if(!IsPostBack)
             {
                 Session["Reportes"] = listaPedido;
 
+                foreach (var item in listaPedido)
+                {
+                    foreach (var item2 in item.ItemsPedido)
+                    {
+                        if (item2.IdPedido == id)
+                        {
+                            pedido = item;
+                            cantidad++;
+                        }
+                    }
+                }
 
-                
+                txtPedidos.Text = cantidad.ToString();
+                txtPrecio.Text = pedido.Total.ToString();
+                txtMesa.Text = pedido.IdMesa.ToString();
+
             }
         }
     }
