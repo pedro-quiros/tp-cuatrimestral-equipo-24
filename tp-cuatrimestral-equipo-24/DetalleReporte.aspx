@@ -9,11 +9,11 @@
         <h1>DETALLE DEL REPORTE</h1>
 
         <div class="form-group">
-            <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-            <asp:TextBox type="text" class="form-control" ID="txtNombre" runat="server" ReadOnly="true"></asp:TextBox>
+            <asp:Label ID="lblPedidos" runat="server" Text="Cantidad Pedidos:" CssClass="control-label"></asp:Label>
+            <asp:TextBox type="text" class="form-control" ID="txtPedidos" runat="server" ReadOnly="true"></asp:TextBox>
         </div>
 
-        <div class="form-group">
+<%--        <div class="form-group">
             <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="control-label"></asp:Label>
             <asp:DropDownList class="form-select" runat="server" ID="ddlTipo" aria-label="Default select example" ReadOnly="true">
                 <asp:ListItem Text="Desayuno/Merienda"></asp:ListItem>
@@ -21,7 +21,7 @@
                 <asp:ListItem Text="Postres"></asp:ListItem>
                 <asp:ListItem Text="Bebidas"></asp:ListItem>
             </asp:DropDownList>
-        </div>
+        </div>--%>
 
         <div class="form-group">
             <asp:Label ID="lblprecio" runat="server" Text="Precio: $" CssClass="control-label"></asp:Label>
@@ -29,18 +29,18 @@
         </div>
 
         <div class="form-group">
-            <asp:Label ID="lblStock" runat="server" Text="Stock:" CssClass="control-label"></asp:Label>
-            <asp:TextBox type="text" class="form-control" ID="txtStock" runat="server" ReadOnly="true"></asp:TextBox>
+            <asp:Label ID="lblMesa" runat="server" Text="Mesa:" CssClass="control-label"></asp:Label>
+            <asp:TextBox type="text" class="form-control" ID="txtMesa" runat="server" ReadOnly="true"></asp:TextBox>
         </div>
 
         <div class="form-group">
-            <asp:Label ID="lblImagen" runat="server" Text="UrlImagen:" CssClass="control-label"></asp:Label>
-            <asp:TextBox type="text" class="form-control" ID="txtImagen" runat="server" ReadOnly="true"></asp:TextBox>
+            <asp:Label ID="lblMesero" runat="server" Text="Mesero:" CssClass="control-label"></asp:Label>
+            <asp:TextBox type="text" class="form-control" ID="txtMesero" runat="server" ReadOnly="true"></asp:TextBox>
         </div>
 
         <div class="form-group">
-            <asp:Label ID="lbldescripcion" runat="server" Text="Descripcion:" CssClass="control-label"></asp:Label>
-            <asp:TextBox type="text" class="form-control" ID="txtDescripcion" runat="server" ReadOnly="true"></asp:TextBox>
+            <asp:Label ID="lblReseña" runat="server" Text="Reseña:" CssClass="control-label"></asp:Label>
+            <asp:TextBox type="text" class="form-control" ID="txtReseña" runat="server" ReadOnly="true"></asp:TextBox>
         </div>
 
     </div>
