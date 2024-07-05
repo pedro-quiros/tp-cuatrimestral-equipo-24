@@ -18,7 +18,7 @@ public class Pedido
         IdMesa = 0;
         FechaHoraCreado = DateTime.Now;
         Estado = true;
-        Total = 0;
+ //       Total = 0;
         ItemsPedido = new List<ItemPedido>();
     }
 
@@ -31,25 +31,5 @@ public class Pedido
         Total = total;
         Mesa = mesa;
         ItemsPedido = new List<ItemPedido>();
-    }
-
-    public void AgregarItem(ItemPedido item)
-    {
-        ItemsPedido.Add(item);
-        Total += item.ObtenerTotal();
-    }
-
-    public void RecalcularTotal()
-    {
-        Total = ItemsPedido.Sum(item => item.ObtenerTotal());
-    }
-
-    public void CerrarPedido()
-    {
-        Estado = false;
-        if (Mesa != null)
-        {
-            Mesa.Estado = false;
-        }
     }
 }

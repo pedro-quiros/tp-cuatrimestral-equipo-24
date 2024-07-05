@@ -76,16 +76,7 @@ namespace Negocio
             }
         }
 
-        public List<Insumo> ListarConSp2()
 
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-
-        //    }
-        //}
         public List<Insumo> ListarConSp()
         {
             List<Insumo> lista = new List<Insumo>();
@@ -191,6 +182,16 @@ namespace Negocio
                 datos.SeterParametros("@id", id);
                 datos.EjecutarAccion();
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         public void BajaLogica(Insumo insumo)
         {
             AccesoDatos Accesodatos = new AccesoDatos();

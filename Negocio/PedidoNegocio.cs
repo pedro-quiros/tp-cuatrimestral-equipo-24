@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
@@ -182,33 +183,7 @@ namespace Negocio
                 throw new Exception("Error al cerrar el pedido", ex);
             }
         }
-        public int CrearPedido(DateTime fechaHora, decimal total, int idMesa)
-                {
-            int idPedido = 0;
-
-            try
-            {
-                datos.setearProcedimiento("CrearPedido");
-                datos.SeterParametros("@FechaHora", fechaHora);
-                datos.SeterParametros("@Total", total);
-                datos.SeterParametros("@IdMesa", idMesa);
-
-                // Asume que el procedimiento almacenado devuelve el ID del nuevo pedido
-                datos.ejecutarLectura();
-                if (datos.Lector.Read())
-                {
-                    idPedido = (int)datos.Lector["IdPedido"];
-                }
-                return lista;
-            }
-            catch (Exception ex)
-            {
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-        }
+       
         // Método para obtener los ítems de un pedido
         public List<ItemPedido> ObtenerItemsDePedido(int idPedido)
         {
