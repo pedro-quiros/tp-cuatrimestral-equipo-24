@@ -85,7 +85,7 @@ namespace Negocio
                 datos.CerrarConexion();
             }
 
-            return lista;
+           // return lista;
         }
 
         // Método para abrir o cerrar una mesa
