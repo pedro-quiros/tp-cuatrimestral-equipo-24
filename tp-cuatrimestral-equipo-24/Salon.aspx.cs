@@ -44,7 +44,7 @@ namespace tp_cuatrimestral_equipo_24
             Session["IdMesa"] = idMesa;
 
             // Redirige a la página de pedidos con el ID de la mesa en la URL
-            Response.Redirect($"Pedi2.aspx?IdMesa={idMesa}");
+            Response.Redirect($"Pedidos.aspx?IdMesa={idMesa}");
         }
 
 

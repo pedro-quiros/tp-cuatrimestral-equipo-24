@@ -1,63 +1,55 @@
-﻿using System;
+﻿using Dominio;
 using System.Collections.Generic;
+using System;
 
-namespace Dominio
+public class Pedido
 {
-    public class Pedido
+    public int IdPedido { get; set; }
+    public int IdMesa { get; set; }
+    public DateTime FechaHoraCreado { get; set; }
+    public bool Estado { get; set; }
+    public decimal Total { get; set; }
+    public Mesas Mesa { get; set; }
+    public List<ItemPedido> ItemsPedido { get; set; }
+
+    public Pedido()
     {
-        public int IdPedido { get; set; }
-        public DateTime FechaHoraGenerado { get; set; }
-        public decimal Total { get; set; } // El total del costo del pedido
-        public Mesas Mesa { get; set; } // Relación con la clase Mesas
-        public List<ItemPedido> ItemsPedido { get; set; } // Relación con la clase ItemPedido
+        IdPedido = 0;
+        IdMesa = 0;
+        FechaHoraCreado = DateTime.Now;
+        Estado = true;
+        Total = 0;
+        ItemsPedido = new List<ItemPedido>();
+    }
 
-        public Pedido()
+    public Pedido(int idPedido, int idMesa, DateTime fechaHoraCreado, bool estado, decimal total, Mesas mesa)
+    {
+        IdPedido = idPedido;
+        IdMesa = idMesa;
+        FechaHoraCreado = fechaHoraCreado;
+        Estado = estado;
+        Total = total;
+        Mesa = mesa;
+        ItemsPedido = new List<ItemPedido>();
+    }
+
+    public void AgregarItem(ItemPedido item)
+    {
+        ItemsPedido.Add(item);
+        Total += item.ObtenerTotal();
+    }
+
+    public void RecalcularTotal()
+    {
+        Total = ItemsPedido.Sum(item => item.ObtenerTotal());
+    }
+
+    public void CerrarPedido()
+    {
+        Estado = false;
+        if (Mesa != null)
         {
-            IdPedido = 0;
-            FechaHoraGenerado = DateTime.Now;
-        
-            Total = 0;
-            Mesa = new Mesas();
-            ItemsPedido = new List<ItemPedido>();
-        }
-
-        public Pedido(int idPedido, DateTime fechaHoraGenerado, decimal total, Mesas mesa)
-        {
-            IdPedido = idPedido;
-            FechaHoraGenerado = fechaHoraGenerado;
-            Total = total;
-            Mesa = mesa;
-            ItemsPedido = new List<ItemPedido>();
-        }
-
-        // Método para agregar un ítem al pedido
-        public void AgregarItem(ItemPedido item)
-        {
-            ItemsPedido.Add(item);
-            Total += item.Cantidad * item.Precio; // Actualiza el total del pedido
-        }
-
-        // Método para recalcular el total del pedido
-        public void RecalcularTotal()
-        {
-            Total = 0;
-            foreach (var item in ItemsPedido)
-            {
-                Total += item.Cantidad * item.Precio;
-            }
-        }
-
-        // Método para cerrar el pedido
-        public void CerrarPedido()
-        {
-            // Aquí se asume que ya se guardaron los ítems en la base de datos
-            // y que `Total` se ha calculado correctamente.
-
-            // Se cierra el estado de la mesa al finalizar el pedido
-            if (Mesa != null)
-            {
-                Mesa.Estado = false; // Marcamos la mesa como cerrada
-            }
+            Mesa.Estado = false;
         }
     }
 }

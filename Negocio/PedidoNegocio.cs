@@ -103,24 +103,38 @@ namespace Negocio
         }
 
         // Método para insertar un pedido
-        public void InsertarPedido(DateTime fechaHora, decimal total, int idMesa)
+        public int CrearPedido(DateTime fechaHora, decimal total, int idMesa)
         {
+            int idPedido = 0;
+
             try
             {
-                datos.setearProcedimiento("InsertarPedido");
+                datos.setearProcedimiento("CrearPedido");
                 datos.SeterParametros("@FechaHora", fechaHora);
                 datos.SeterParametros("@Total", total);
                 datos.SeterParametros("@IdMesa", idMesa);
-                datos.EjecutarAccion();
+
+                // Asume que el procedimiento almacenado devuelve el ID del nuevo pedido
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    idPedido = Convert.ToInt32(datos.Lector["IdPedido"]);
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al insertar pedido", ex);
+                throw new Exception("Error al crear el pedido", ex);
             }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            return idPedido;
         }
 
         // Método para agregar un ítem a un pedido
-        public void AgregarItemPedido(int idPedido, int idInsumo, int cantidad, decimal precio)
+        public void AgregarItemPedido(int idPedido, int idInsumo, int cantidad, decimal precioUnitario)
         {
             try
             {
@@ -128,7 +142,7 @@ namespace Negocio
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.SeterParametros("@IdInsumo", idInsumo);
                 datos.SeterParametros("@Cantidad", cantidad);
-                datos.SeterParametros("@Precio", precio);
+                datos.SeterParametros("@PrecioUnitario", precioUnitario);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -154,10 +168,11 @@ namespace Negocio
         }
 
         // Método para cerrar un pedido
-        public void CerrarPedido(int idPedido)
+        public void CerrarPedido(int idPedido, int idMesa)
         {
             try
             {
+                // Cerrar el pedido en la base de datos
                 datos.setearProcedimiento("CerrarPedido");
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.EjecutarAccion();
@@ -193,36 +208,27 @@ namespace Negocio
             {
                 datos.CerrarConexion();
             }
-
-            return idPedido;
         }
-
         // Método para obtener los ítems de un pedido
-        public List<ItemPedido> ObtenerItemsDePedido(int idMesa)
+        public List<ItemPedido> ObtenerItemsDePedido(int idPedido)
         {
             List<ItemPedido> lista = new List<ItemPedido>();
 
             try
             {
                 datos.setearProcedimiento("ObtenerItemsDePedido");
-                datos.SeterParametros("@IdMesa", idMesa);
+                datos.SeterParametros("@IdPedido", idPedido);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Insumo insumo = new Insumo
-                    {
-                        IdInsumo = (int)datos.Lector["IdInsumo"],
-                        Nombre = (string)datos.Lector["Nombre"],  // Asegúrate de que tu procedimiento almacene el nombre del insumo
-                        Precio = (decimal)datos.Lector["Precio"],
-                        Stock = (int)datos.Lector["Stock"]
-                    };
-
                     ItemPedido item = new ItemPedido
                     {
-                        Insumo = insumo,
+                        IdItemPedido = (int)datos.Lector["IdItemPedido"],
+                        IdPedido = (int)datos.Lector["IdPedido"],
+                        IdInsumo = (int)datos.Lector["IdInsumo"],
                         Cantidad = (int)datos.Lector["Cantidad"],
-                        Precio = (decimal)datos.Lector["Precio"]
+                        PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"]
                     };
 
                     lista.Add(item);
