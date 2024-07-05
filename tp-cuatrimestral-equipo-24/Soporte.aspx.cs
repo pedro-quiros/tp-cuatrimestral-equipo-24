@@ -50,12 +50,19 @@ namespace tp_cuatrimestral_equipo_24
             {
                 emailService.EnviarMail();
 
-                Reseña Nuevareseña = new Reseña();
-                Nuevareseña.Nombre = TxtNombre.Text;    
-                Nuevareseña.Email = TxtEmail.Text;
-                Nuevareseña.Fecha = fecha;
-                Nuevareseña.puntaje = puntaje;
-                Nuevareseña.mensaje = txtmensaje.Text;
+                Reseña Nuevareseña = new Reseña
+                {
+                    Nombre = TxtNombre.Text,
+                    Email = TxtEmail.Text,
+                    Fecha = fecha,
+                    puntaje = puntaje,
+                    mensaje = txtmensaje.Text
+                };
+                //Nuevareseña.Nombre = TxtNombre.Text;    
+                //Nuevareseña.Email = TxtEmail.Text;
+                //Nuevareseña.Fecha = fecha;
+                //Nuevareseña.puntaje = puntaje;
+                //Nuevareseña.mensaje = txtmensaje.Text;
 
                 ClientesGestion Client = new ClientesGestion();
                 Client.InsertarReseña(Nuevareseña);
