@@ -45,7 +45,7 @@ namespace tp_cuatrimestral_equipo_24
                 case "Hoy":
                     foreach (var item in lista)
                     {
-              //          if (item.FechaHoraGenerado.Date == fechaActual.Date)
+                        if (item.FechaHoraGenerado.Date == fechaActual.Date)
                         {
                             listaFiltrada.Add(item);
                         }
@@ -55,7 +55,7 @@ namespace tp_cuatrimestral_equipo_24
                 case "Este mes":
                     foreach (var item in lista)
                     {
-                 //       if (item.FechaHoraGenerado.Month == mesActual)
+                        if (item.FechaHoraGenerado.Month == mesActual)
                         {
                             listaFiltrada.Add(item);
                         }
@@ -65,7 +65,7 @@ namespace tp_cuatrimestral_equipo_24
                 case "Este año":
                     foreach (var item in lista)
                     {
-                    //    if (item.FechaHoraGenerado.Year == DateTime.Now.Year)
+                        if (item.FechaHoraGenerado.Year == DateTime.Now.Year)
                         {
                             listaFiltrada.Add(item);
                         }
