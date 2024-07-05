@@ -1,6 +1,12 @@
 ﻿using Dominio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Negocio
 {
@@ -67,6 +73,7 @@ namespace Negocio
 
                     lista.Add(mesa);
                 }
+                return lista;
             }
             catch (Exception ex)
             {
@@ -125,7 +132,7 @@ namespace Negocio
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
-            {
+        {
                 throw new Exception("Error al agregar item al pedido", ex);
             }
         }
@@ -161,7 +168,7 @@ namespace Negocio
             }
         }
         public int CrearPedido(DateTime fechaHora, decimal total, int idMesa)
-        {
+                {
             int idPedido = 0;
 
             try
@@ -177,10 +184,10 @@ namespace Negocio
                 {
                     idPedido = (int)datos.Lector["IdPedido"];
                 }
+                return lista;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al crear el pedido", ex);
             }
             finally
             {

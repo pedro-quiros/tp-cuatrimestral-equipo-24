@@ -7,10 +7,14 @@ using Dominio;
 
 namespace Dominio
 {
+     public enum TipoUsuario
+    {
+        EMPLEADO = 1,
+        GERENTE = 2,
+    }
     public class Usuario 
     {
       
-
         public int Id { get; set; }
 
         public string NombreUsuario { get; set; }
@@ -18,10 +22,10 @@ namespace Dominio
         public string Clave { get; set; }
 
         public int Puesto { get; set; }
+        public TipoUsuario tipoUsuario { get; set; }
 
         public bool Activo { get; set; }
-
-        //   public DatosPersonales datos { get; set; }
+        
         public int Legajo { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -40,8 +44,8 @@ namespace Dominio
             Id = 0;
             NombreUsuario = "";
             Clave = "fip12345";
-            Puesto = 2;
             Activo= true;
+            Puesto = 1;
              Legajo = 0;
             Nombre = "";
             Apellido = "";
@@ -53,7 +57,7 @@ namespace Dominio
             Domicilio = "";
         }
 
-        public Usuario (int id, string nombreUsuario, string clave, int puesto, bool Activado, string nombre, string apellido, int dni, int legajo, DateTime fechaNacimiento, string genero, int telefono, string email, string domicilio)
+        public Usuario (int id, string nombreUsuario, string clave,int puesto , bool Activado, string nombre, string apellido, int dni, int legajo, DateTime fechaNacimiento, string genero, int telefono, string email, string domicilio)
 
         {
             Id = id;
@@ -68,7 +72,6 @@ namespace Dominio
             }
             Puesto = puesto;
             Activo = Activado;
-         //   this.datos = datos;
 
           Legajo = legajo;
             Nombre = nombre;
@@ -79,6 +82,12 @@ namespace Dominio
             Telefono = telefono;
             Email = email;
             Domicilio = domicilio;
+        }
+        public Usuario (string clave,string nombreUsuario,bool gerente)
+        {
+            Clave = clave;
+            NombreUsuario = nombreUsuario;
+            tipoUsuario = gerente ? TipoUsuario.GERENTE : TipoUsuario.EMPLEADO;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace tp_cuatrimestral_equipo_24
 {
 
 
-    public partial class ModificarInsumo
+    public partial class WebForm3
     {
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombre;
+        protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
         /// Control LblTipo.
@@ -42,13 +42,13 @@ namespace tp_cuatrimestral_equipo_24
         protected global::System.Web.UI.WebControls.Label LblTipo;
 
         /// <summary>
-        /// Control txtTipo.
+        /// Control ddlTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTipo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipo;
 
         /// <summary>
         /// Control lblprecio.
@@ -66,7 +66,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPrecio;
+        protected global::System.Web.UI.WebControls.TextBox txtPrecio;
 
         /// <summary>
         /// Control lblStock.
@@ -84,7 +84,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtStock;
+        protected global::System.Web.UI.WebControls.TextBox txtStock;
 
         /// <summary>
         /// Control lblImagen.
@@ -102,7 +102,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtImagen;
+        protected global::System.Web.UI.WebControls.TextBox txtImagen;
 
         /// <summary>
         /// Control lbldescripcion.
@@ -120,15 +120,6 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDescripcion;
-
-        /// <summary>
-        /// Control btnModificarInsumo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarInsumo;
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
     }
 }

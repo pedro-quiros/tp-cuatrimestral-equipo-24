@@ -68,7 +68,6 @@
     <Content Include="AgregarInsumo.aspx" />
     <Content Include="Configuracion.aspx" />
     <Content Include="Delivery.aspx" />
-    <Content Include="DetalleInsumo.aspx" />
     <Content Include="EstilosFiltrar.css" />
     <Content Include="Estilos.css" />
     <Content Include="Estilos2.css" />
@@ -81,7 +80,7 @@
     <Content Include="Home.aspx" />
     <Content Include="JS\ScriptsSalon.js" />
     <Content Include="Menu.aspx" />
-    <Content Include="ModificarInsumo.aspx" />
+    <Content Include="DetalleInsumo.aspx" />
     <Content Include="ModificarPersonal.aspx" />
     <Content Include="Pedi2.aspx" />
     <Content Include="Pedidos.aspx" />
@@ -91,6 +90,8 @@
     <Content Include="UsuarioRegistro.aspx" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="DetalleReporte.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgregarInsumo.aspx.cs">
@@ -113,13 +114,6 @@
     </Compile>
     <Compile Include="Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DetalleInsumo.aspx.cs">
-      <DependentUpon>DetalleInsumo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DetalleInsumo.aspx.designer.cs">
-      <DependentUpon>DetalleInsumo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -145,12 +139,12 @@
     <Compile Include="Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ModificarInsumo.aspx.cs">
-      <DependentUpon>ModificarInsumo.aspx</DependentUpon>
+    <Compile Include="DetalleInsumo.aspx.cs">
+      <DependentUpon>DetalleInsumo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ModificarInsumo.aspx.designer.cs">
-      <DependentUpon>ModificarInsumo.aspx</DependentUpon>
+    <Compile Include="DetalleInsumo.aspx.designer.cs">
+      <DependentUpon>DetalleInsumo.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarPersonal.aspx.cs">
       <DependentUpon>ModificarPersonal.aspx</DependentUpon>
@@ -208,6 +202,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleReporte.aspx.cs">
+      <DependentUpon>DetalleReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleReporte.aspx.designer.cs">
+      <DependentUpon>DetalleReporte.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -11,34 +11,25 @@ namespace tp_cuatrimestral_equipo_24
 {
 
 
-    public partial class Reportes1
+    public partial class WebForm2
     {
 
         /// <summary>
-        /// Control LblTipo.
+        /// Control lblmenssaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTipo;
+        protected global::System.Web.UI.WebControls.Label lblmenssaje;
 
         /// <summary>
-        /// Control ddlReportesFiltro.
+        /// Control txtvolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlReportesFiltro;
-
-        /// <summary>
-        /// Control idRep.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater idRep;
+        protected global::System.Web.UI.WebControls.Button txtvolver;
     }
 }

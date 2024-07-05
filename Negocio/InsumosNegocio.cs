@@ -77,13 +77,23 @@ namespace Negocio
         }
 
         public List<Insumo> ListarConSp2()
+
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+
+        //    }
+        //}
+        public List<Insumo> ListarConSp()
         {
             List<Insumo> lista = new List<Insumo>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                string consulta = "SELECT IdInsumo, Nombre, Tipo, Precio, Stock,descripcion,UrlImagen FROM Insumo";
+                string consulta = "SELECT IdInsumo, Nombre, Tipo, Precio, Stock, descripcion, UrlImagen, Activo FROM Insumo";
 
 
                 datos.SetearConsulta(consulta);
@@ -98,6 +108,7 @@ namespace Negocio
                     aux.Stock = (int)datos.Lector["Stock"];
                     aux.Descripcion = (string)datos.Lector["descripcion"];
                     aux.UrlImagen = (string)datos.Lector["UrlImagen"];
+                    aux.Activo = Convert.ToBoolean(datos.Lector["Activo"]);
 
 
                     aux.Precio = (decimal)datos.Lector["Precio"];
@@ -147,7 +158,7 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("INSERT INTO Insumo (Nombre, Tipo, Precio, Stock, UrlImagen, Descripcion) VALUES (@nombre , @tipo, @precio, @stock, @urlImagen, @descripcion)");
+                datos.SetearConsulta("INSERT INTO Insumo (Nombre, Tipo, Precio, Stock, UrlImagen, Descripcion, Activo) VALUES (@nombre , @tipo, @precio, @stock, @urlImagen, @descripcion, 1)");
 
                 datos.SeterParametros("@nombre", nuevo.Nombre);
                 datos.SeterParametros("@tipo", nuevo.Tipo);
@@ -180,35 +191,84 @@ namespace Negocio
                 datos.SeterParametros("@id", id);
                 datos.EjecutarAccion();
             }
+        public void BajaLogica(Insumo insumo)
+        {
+            AccesoDatos Accesodatos = new AccesoDatos();
+            try
+            {
+                Accesodatos.SetearConsulta("update Insumo set Activo = 0 where IdInsumo = @IdInsumo");
+                Accesodatos.SeterParametros("@IdInsumo", insumo.IdInsumo);
+                Accesodatos.EjecutarConsulta();
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al inactivar el usuario: " + ex.Message, ex);
             }
             finally
             {
-                datos.CerrarConexion();
+                Accesodatos.CerrarConexion();
             }
         }
 
-        public void ActualizarStockInsumo(int idInsumo, int cantidad)
+        public void AltaLogica(Insumo insumo)
         {
-            AccesoDatos datos = new AccesoDatos();
+            AccesoDatos Accesodatos = new AccesoDatos();
             try
             {
-                datos.setearProcedimiento("SP_ActualizarStockInsumo");
-                datos.SeterParametros("@IdInsumo", idInsumo);
-                datos.SeterParametros("@Cantidad", cantidad);
-                datos.EjecutarAccion();
+                Accesodatos.SetearConsulta("update Insumo set Activo = 1 where IdInsumo = @IdInsumo");
+                Accesodatos.SeterParametros("@IdInsumo", insumo.IdInsumo);
+                Accesodatos.EjecutarConsulta();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al actualizar el stock del insumo: " + ex.Message, ex);
+                throw new Exception("Error al inactivar el usuario: " + ex.Message, ex);
             }
             finally
             {
-                datos.CerrarConexion();
+                Accesodatos.CerrarConexion();
             }
         }
+
+
+
+
+        //public void Agregar(Insumo nuevoarticulo)
+        //{
+        //    AccesoDatos Accesodatos = new AccesoDatos();
+        //    try
+        //    {
+
+        //        Accesodatos.setearConsulta("Insert into ARTICULOS(Codigo,Nombre,Descripcion,IdMarca,IdCategoria,Precio) values (@Codigo,@Nombre,@Descripcion,@IdMarca,@IdCategoria,@Precio)");
+        //        Accesodatos.setearParametros("@Codigo", nuevoarticulo.Codigo);
+        //        Accesodatos.setearParametros("@Nombre", nuevoarticulo.Nombre);
+        //        Accesodatos.setearParametros("@Descripcion", nuevoarticulo.descripcion);
+        //        Accesodatos.setearParametros("@IdMarca", nuevoarticulo.idMarca.Id);
+        //        Accesodatos.setearParametros("@IdCategoria", nuevoarticulo.idCategoria.Id);
+        //        Accesodatos.setearParametros("@Precio", nuevoarticulo.Precio);
+        //        Accesodatos.ejecutarAccion();
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        Accesodatos.CerrarConexion();
+
+
+        //    }
+        //    {
+
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        Accesodatos.CerrarConexion();
+
+
+        //    }
 
     }
     }

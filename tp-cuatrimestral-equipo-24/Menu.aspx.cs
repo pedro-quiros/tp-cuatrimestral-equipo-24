@@ -17,12 +17,15 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
+                List<Insumo> LimpiarInsumo = new List<Insumo>();
                 /*
                 InsumosNegocio insumo = new InsumosNegocio();
                 Session.Add("ListadoMenu", insumo.ListarConSp());
                 idRep.DataSource = (List<Insumo>)Session["ListadoMenu"];
                 idRep.DataBind();
                 */
+
+                ddlFiltradoTipo.Text = "Mostrar todo";
 
                 InsumosNegocio insumo = new InsumosNegocio();
                 ListaInsumos = insumo.ListarConSpInsumo();
@@ -65,6 +68,35 @@ namespace tp_cuatrimestral_equipo_24
 
             negocio.eliminar(id);
             Response.Redirect(Request.RawUrl);
+        }
+
+        protected void ddlFiltradoTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string Tipo = ddlFiltradoTipo.Text;
+            List<Insumo> lista = new List<Insumo>();
+
+            if (Session["Listado"] != null)
+            {
+                lista = (List<Insumo>)Session["Listado"];
+            }
+            List<Insumo> listaFiltrada = new List<Insumo>();
+
+            foreach(var item in lista)
+            {
+                if (item.Tipo == Tipo)
+                {
+                    listaFiltrada.Add(item);
+                }
+            }
+
+            if (Tipo == "Mostrar todo")
+            {
+                listaFiltrada = (List<Insumo>)Session["Listado"];
+            }
+
+            idRep.DataSource = listaFiltrada;
+            idRep.DataBind();
+
         }
     }
 }

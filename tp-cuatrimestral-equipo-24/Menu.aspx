@@ -14,6 +14,18 @@
         <asp:TextBox ID="Filtro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" runat="server" CssClass="input-filtrar" />
     </div>
 
+    <div>
+        <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="control-label"></asp:Label>
+        <asp:DropDownList runat="server" ID="ddlFiltradoTipo" class="form-select" aria-label="Default select example" 
+            OnSelectedIndexChanged="ddlFiltradoTipo_SelectedIndexChanged" AutoPostBack="true">
+            <asp:ListItem Text="Desayuno/Merienda"></asp:ListItem>
+            <asp:ListItem Text="Almuerzo/Cena"></asp:ListItem>
+            <asp:ListItem Text="Postres"></asp:ListItem>
+            <asp:ListItem Text="Bebidas"></asp:ListItem>
+            <asp:ListItem Text="Mostrar todo"></asp:ListItem>
+        </asp:DropDownList>
+    </div>
+
     <section class="body-def">
         <div class="contenedor-card">
             <asp:Repeater runat="server" ID="idRep">
@@ -24,10 +36,11 @@
                             <p><%# Eval("Tipo") %></p>
                             <p>Cant. <%# Eval("Stock") %></p>
                             <p><%# Eval("descripcion") %></p>
+                            <asp:CheckBox ID="CheckBoxActivo" runat="server" Enabled="false" Text="Activo" Checked='<%# Eval("Activo") %>' />
                             <h3>$ <%# Eval("Precio") %></h3>
 
                             <div class="cta_tarjeta-rest">
-                                <a href='<%# "ModificarInsumo.aspx?IdInsumo=" + Eval("IdInsumo") %>'>Modificar</a>
+                                <a href='<%# "DetalleInsumo.aspx?IdInsumo=" + Eval("IdInsumo") %>'>Detalles</a>
                             </div>
                             <div class="mt-auto d-flex justify-content-around">
                                 <asp:Button CssClass="btn-primary" Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
@@ -40,9 +53,9 @@
         </div>
     </section>
 
-            <div class="btn btn-outline-danger">
-                 <a href="AgregarInsumo.aspx">AGREGAR INSUMO</a>
-            </div>
+    <div class="btn btn-outline-danger">
+        <a href="AgregarInsumo.aspx">AGREGAR INSUMO</a>
+    </div>
 
 
     <asp:GridView ID="dgvArticulos" runat="server"></asp:GridView>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Dominio;
 
 namespace Negocio
@@ -94,7 +95,7 @@ namespace Negocio
                 Accesodatos.CerrarConexion();
             }
         }
-        
+
         public void AgregarUsuario(Usuario usuario)
         {
             AccesoDatos Datos = new AccesoDatos();
@@ -133,7 +134,7 @@ namespace Negocio
             {
                 //, Puesto = @Puesto
                 Datos.SetearConsulta("Update Usuario2 set NombreUsuario = @NombreUsuario,Legajo=@Legajo,DNI=@DNI,Nombre=@Nombre ,Apellido = @Apellido,FechaNacimiento=@Nacimiento,genero=@genero,telefono=@Telefono,Email=@Email,domicilio=@domicilio WHERE IdUsuario = @IdUsuario");
-                
+
                 Datos.SeterParametros("@IdUsuario", usuario.Id);
                 Datos.SeterParametros("@NombreUsuario", usuario.NombreUsuario);
                 Datos.SeterParametros("@Puesto", usuario.Puesto);
@@ -157,6 +158,34 @@ namespace Negocio
             {
                 Datos.CerrarConexion();
             }
+        }
+        public bool Loguear(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();  
+            try
+            {
+                datos.SetearConsulta("select IdUsuario,Puesto from Usuario2 where NombreUsuario = @Nombreusuario and Clave = @clave");
+                datos.SeterParametros("@Nombreusuario",usuario.NombreUsuario);
+                datos.SeterParametros("@clave",usuario.Clave);
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    usuario.Id = (int)datos.Lector["IdUsuario"];
+                    usuario.tipoUsuario = (int)(datos.Lector["Puesto"]) == 2 ? TipoUsuario.GERENTE : TipoUsuario.EMPLEADO;
+                    return true;
+                }
+                    return false;
+            }
+            catch (Exception Ex)
+            {
+                return false;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
         }
 
     }

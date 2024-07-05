@@ -11,7 +11,11 @@ namespace tp_cuatrimestral_equipo_24
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
+            if (Session["UsuarioSeleccionado"] == null)
+            {
+                Session.Add("Error","Debes loguearte para ingresar");
+                Response.Redirect("Error.aspx",false);
+            }
+        } 
     }
 }

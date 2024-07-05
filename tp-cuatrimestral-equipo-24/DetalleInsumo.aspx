@@ -1,52 +1,53 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="DetalleInsumo.aspx.cs" Inherits="tp_cuatrimestral_equipo_24.DetalleInsumo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="DetalleInsumo.aspx.cs" Inherits="tp_cuatrimestral_equipo_24.ModificarInsumo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mochiy+Pop+One&display=swap">
-    <link href="EstilosDetalle.css" rel="stylesheet" />
+    <link href="EstilosModificar.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="detalle-articulo">
-        <h1>DETALLE ARTICULO</h1>
+        <h1>DETALLE DE INSUMO</h1>
 
         <div class="form-group">
             <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtnombre" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+            <input type="text" class="form-control" id="txtNombre" runat="server" />
         </div>
 
         <div class="form-group">
-            <asp:Label ID="lbldescripcion" runat="server" Text="Descripcion:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+            <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="control-label" ></asp:Label>
+            <asp:DropDownList class="form-select" runat="server" ID="ddlTipo" aria-label="Default select example">
+                <asp:ListItem Text="Desayuno/Merienda" ></asp:ListItem>
+                <asp:ListItem Text="Almuerzo/Cena"></asp:ListItem>
+                <asp:ListItem Text="Postres"></asp:ListItem>
+                <asp:ListItem Text="Bebidas"></asp:ListItem>
+            </asp:DropDownList>
         </div>
 
         <div class="form-group">
             <asp:Label ID="lblprecio" runat="server" Text="Precio: $" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+            <input type="text" class="form-control" id="txtPrecio" runat="server" />
         </div>
 
         <div class="form-group">
-            <asp:Label ID="Lblmarca" runat="server" Text="Marca:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtmarca" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+            <asp:Label ID="lblStock" runat="server" Text="Stock:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtStock" runat="server" />
         </div>
 
         <div class="form-group">
-            <asp:Label ID="lblcategoria" runat="server" Text="Categoria:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+            <asp:Label ID="lblImagen" runat="server" Text="UrlImagen:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtImagen" runat="server" />
         </div>
 
-            <div class="imagen-container">
-                <asp:Repeater runat="server" ID="repDetalle">
-                    <ItemTemplate>
-                        <div class="cardImg h-100">
-                            <img src='<%# Container.DataItem %>' alt="Imagen" class="img-fluid mt-1" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt4xXXEwlOngpYGhvok77NVHkRONev9pOY_XHZ3M29aA&s';" />
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </div>
+        <div class="form-group">
+            <asp:Label ID="lbldescripcion" runat="server" Text="Descripcion:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtDescripcion" runat="server" />
+        </div>
 
     </div>
 
     <div class="mt-auto d-flex justify-content-around">
         <a href="Menu.aspx" class="btnEstandar btn btn-primary btn-back">Volver</a>
-        <a href="Modificar.aspx" class="btnEstandar btn btn-primary btn-back">Modificar</a>
+        <asp:Button CssClass="btnEstandar btn btn-success" ID="btnModificarInsumo" runat="server" Text="Modificar" OnClick="btnModificarInsumo_Click" CommandArgument='<%# Request.QueryString["IdInsumo"] %>' />
+        <asp:Button CssClass="btnEstandar btn btn-success" ID="BajaAltaLogica" runat="server" Text="Inactivar" OnClick="BajaAltaLogica_Click" CommandArgument='<%# Request.QueryString["IdInsumo"] %>' />
     </div>
 </asp:Content>

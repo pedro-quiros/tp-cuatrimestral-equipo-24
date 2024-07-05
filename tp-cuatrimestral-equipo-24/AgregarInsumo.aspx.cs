@@ -28,7 +28,7 @@ namespace tp_cuatrimestral_equipo_24
             {
 
                 nuevoInsumo.Nombre = txtNombre.Value;
-                nuevoInsumo.Tipo = txtTipo.Value;
+                nuevoInsumo.Tipo = ddlTipo.Text;
                 nuevoInsumo.Stock = int.Parse(txtStock.Value);
                 nuevoInsumo.Precio = decimal.Parse(txtPrecio.Value);
                 nuevoInsumo.UrlImagen = txtImagen.Value;
@@ -49,7 +49,7 @@ namespace tp_cuatrimestral_equipo_24
                 {
 
                     nuevoNegocio.AgregarArticulo(nuevoInsumo);
-                    MessageBox.Show("Modificado exitosamente :)");
+                    MessageBox.Show("Agregado exitosamente :)");
                 }
                 else
                 {
