@@ -11,23 +11,18 @@
             font-weight: bold;
             color: #333;
         }
-
         .filter-container {
             margin: 20px 0;
         }
-
         .input-filtrar {
             width: 100%;
         }
-
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: #f9f9f9;
         }
-
         .table-striped tbody tr:nth-of-type(even) {
             background-color: #ffffff;
         }
-
         .error-message {
             color: red;
             font-weight: bold;
@@ -85,7 +80,6 @@
             </div>
         </div>
 
-        <!-- Mensaje de error -->
         <asp:Label ID="ErrorMessage" runat="server" CssClass="error-message"></asp:Label>
     </div>
 </asp:Content>

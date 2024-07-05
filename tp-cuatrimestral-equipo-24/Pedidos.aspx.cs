@@ -25,68 +25,64 @@ namespace tp_cuatrimestral_equipo_24
                 get { return (List<ItemPedido>)Session["Pedidos"]; }
                 set { Session["Pedidos"] = value; }
             }
-
-            protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
             {
-                if (!IsPostBack)
+                if (Session["IdMesa"] != null)
                 {
-                    if (Session["IdMesa"] != null)
-                    {
-                        int idMesa = (int)Session["IdMesa"];
-                        numeroMesaLabel.Text = idMesa.ToString();
+                    int idMesa = (int)Session["IdMesa"];
+                    numeroMesaLabel.Text = idMesa.ToString();
 
-                        try
-                        {
-                            CargarInsumos();  // Llamar al método para cargar los insumos
-                            CargarPedidos(); // Llamar al método para cargar los pedidos
-                            CalcularTotal(); // Llamar al método para calcular el total
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorMessage.Text = "Ocurrió un error al cargar los datos: " + ex.Message;
-                        }
-                    }
-                    else
+                    try
                     {
-                        Response.Redirect("Salon.aspx");
+                        CargarInsumos();
+                        CargarPedidos();
+                        CalcularTotal();
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorMessage.Text = "Ocurrió un error al cargar los datos: " + ex.Message;
                     }
                 }
+                else
+                {
+                    Response.Redirect("Salon.aspx");
+                }
             }
+        }
 
-            private void CargarInsumos()
+        private void CargarInsumos()
+        {
+            try
             {
-                try
-                {
-                    listaInsumos = insumoNegocio.ListarConSpInsumo();  // Cambiado a ListarConSpInsumo
-                    GridView1.DataSource = listaInsumos;
-                    GridView1.DataBind();
-                }
-                catch (Exception ex)
-                {
-                    ErrorMessage.Text = "Ocurrió un error al cargar los insumos: " + ex.Message;
-                }
+                listaInsumos = insumoNegocio.ListarConSpInsumo();
+                GridView1.DataSource = listaInsumos;
+                GridView1.DataBind();
             }
-
-            private void CargarPedidos()
+            catch (Exception ex)
             {
-                if (listaPedidos == null)
-                {
-                    listaPedidos = new List<ItemPedido>();
-                }
-                GridViewPedidos.DataSource = listaPedidos;
-                GridViewPedidos.DataBind();
+                ErrorMessage.Text = "Ocurrió un error al cargar los insumos: " + ex.Message;
             }
+        }
 
-            private void CalcularTotal()
+        private void CargarPedidos()
+        {
+            if (listaPedidos == null)
             {
-                if (listaPedidos != null)
-                {
-                    decimal total = listaPedidos.Sum(p => p.ObtenerTotal());
-                    TotalLabel.Text = total.ToString("C");
-                }
+                listaPedidos = new List<ItemPedido>();
             }
+            GridViewPedidos.DataSource = listaPedidos;
+            GridViewPedidos.DataBind();
+        }
 
-            protected void filtro_TextChanged(object sender, EventArgs e)
+        private void CalcularTotal()
+        {
+            decimal total = listaPedidos.Sum(p => p.ObtenerTotal());
+            TotalLabel.Text = total.ToString("C");
+        }
+
+        protected void filtro_TextChanged(object sender, EventArgs e)
             {
                 var textoFiltro = Filtro.Text.ToLower();
                 GridView1.DataSource = listaInsumos

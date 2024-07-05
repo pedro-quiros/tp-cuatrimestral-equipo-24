@@ -161,20 +161,23 @@ namespace Negocio
         }
 
         // Método para cerrar un pedido
-        public void CerrarPedido(int idPedido)
+        public void CerrarPedido(int idPedido, int idMesa)
         {
             try
             {
+                // Cerrar el pedido en la base de datos
                 datos.setearProcedimiento("CerrarPedido");
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.EjecutarAccion();
+
+                // Reactivar la mesa
+                AbrirCerrarMesa(idMesa);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al cerrar el pedido", ex);
+                throw new Exception("Error al cerrar el pedido y reactivar la mesa", ex);
             }
         }
-
         // Método para obtener los ítems de un pedido
         public List<ItemPedido> ObtenerItemsDePedido(int idPedido)
         {
