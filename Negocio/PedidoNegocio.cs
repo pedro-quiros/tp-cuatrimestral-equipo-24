@@ -57,7 +57,7 @@ namespace Negocio
             try
             {
                 string consulta = "SELECT P.IdPedido, P.Estado, P.FechaHoraGenerado, I.IdItemPedido, I.Cantidad," +
-                    " I.PrecioUnitario, I.IdPedido AS Pedido, INS.IdInsumo, INS.Nombre, M.Numero, MS.Nombre AS NombreMesero, " +
+                    " I.PrecioUnitario, I.IdPedido AS Pedido, INS.IdInsumo, INS.Nombre,M.IdMesa, M.Numero, MS.Nombre AS NombreMesero, " +
                     " MS.Apellido, MS.IdMesero FROM ItemPedido I" +
                     " INNER JOIN PEDIDO P ON I.IdItemPedido = I.IdItemPedido" +
                     " INNER JOIN Insumo INS ON INS.IdInsumo = I.IdInsumo" +
@@ -76,6 +76,7 @@ namespace Negocio
                     aux.FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"];
                     aux.Mesa.Numero = (int)datos.Lector["Numero"];
                     aux.Mesa.IdMesero = (int)datos.Lector["IdMesero"];
+                    aux.Mesa.IdMesa = (int)datos.Lector["IdMesa"];
                     item.IdItemPedido = (int)datos.Lector["IdItemPedido"];
                     item.Cantidad = (int)datos.Lector["Cantidad"];
                     item.PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"];
@@ -123,6 +124,10 @@ namespace Negocio
                 MessageBox.Show(ex.ToString());
                 throw ex;
             }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
 
         public decimal TotalPedidos(int idMesa)
@@ -148,6 +153,10 @@ namespace Negocio
             {
                 MessageBox.Show(ex.ToString());
                 throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
             }
         }
 
