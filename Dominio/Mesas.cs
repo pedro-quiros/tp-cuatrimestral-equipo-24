@@ -11,6 +11,7 @@ namespace Dominio
         public int IdMesa { get; set; }
         public bool Estado { get; set; }
         public int Numero { get; set; }
+        public int IdMesero { get; set; }
 
         public Mesas()
         {

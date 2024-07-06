@@ -7,6 +7,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Negocio
 {
@@ -55,10 +56,13 @@ namespace Negocio
 
             try
             {
-                string consulta = "SELECT P.IdPedido, P.Estado, P.FechaHoraGenerado, I.IdItemPedido, I.Cantidad, " +
-                    "I.PrecioUnitario, I.IdPedido AS Pedido, INS.IdInsumo, INS.Nombre FROM ItemPedido I" +
+                string consulta = "SELECT P.IdPedido, P.Estado, P.FechaHoraGenerado, I.IdItemPedido, I.Cantidad," +
+                    " I.PrecioUnitario, I.IdPedido AS Pedido, INS.IdInsumo, INS.Nombre, M.Numero, MS.Nombre AS NombreMesero, " +
+                    " MS.Apellido, MS.IdMesero FROM ItemPedido I" +
                     " INNER JOIN PEDIDO P ON I.IdItemPedido = I.IdItemPedido" +
-                    " INNER JOIN Insumo INS ON INS.IdInsumo = I.IdInsumo ";
+                    " INNER JOIN Insumo INS ON INS.IdInsumo = I.IdInsumo" +
+                    " INNER JOIN MESA M ON M.IdMesa = P.IdMesa" +
+                    " INNER JOIN MESERO MS ON MS.IdMesa = M.IdMesa ";
 
                 datos.SetearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -70,6 +74,8 @@ namespace Negocio
                     aux.IdPedido = (int)datos.Lector["IdPedido"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     aux.FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"];
+                    aux.Mesa.Numero = (int)datos.Lector["Numero"];
+                    aux.Mesa.IdMesero = (int)datos.Lector["IdMesero"];
                     item.IdItemPedido = (int)datos.Lector["IdItemPedido"];
                     item.Cantidad = (int)datos.Lector["Cantidad"];
                     item.PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"];
@@ -91,6 +97,60 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public int CantidadPedidos(int idMesa)
+        {
+            int cantPed;
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                datos.SetearConsulta("select COUNT(IdPedido) AS CANTIDAD_PEDIDOS, IdMesa from Pedido WHERE IdMesa = @idMesa" +
+                                     " GROUP BY IdMesa" +
+                                     " ORDER BY COUNT(IdPedido)");
+                datos.SeterParametros("@idMesa", idMesa);
+                datos.EjecutarAccion();
+                datos.ejecutarLectura();
+                while(datos.Lector.Read())
+                {
+                    cantPed = (int)datos.Lector["CANTIDAD_PEDIDOS"];
+                    return cantPed;
+                }
+                return -1;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+        }
+
+        public decimal TotalPedidos(int idMesa)
+        {
+            decimal TotalPed;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("select SUM(Total) AS TOTAL_PEDIDOS, IdMesa from Pedido WHERE IdMesa = 1" +
+                                     " GROUP BY IdMesa" +
+                                     " ORDER BY SUM(Total)");
+                datos.SeterParametros("@idMesa", idMesa);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    TotalPed = (decimal)datos.Lector["TOTAL_PEDIDOS"];
+                    return TotalPed;
+                }
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+        }
+
 
         public List<Insumo> ListarInsumos()
         {

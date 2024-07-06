@@ -19,8 +19,12 @@ namespace tp_cuatrimestral_equipo_24
             listaPedido = negocio.ListarParaReporte();
             int id = Convert.ToInt32(Request.QueryString["IdItemPedido"]);
             int cantidad = 0;
+            Reporte r = new Reporte();
 
-            if(!IsPostBack)
+
+            List<Reporte> reportes = new List<Reporte>();
+
+            if (!IsPostBack)
             {
                 Session["Reportes"] = listaPedido;
 
@@ -30,15 +34,23 @@ namespace tp_cuatrimestral_equipo_24
                     {
                         if (item2.IdPedido == id)
                         {
-                            pedido = item;
-                            cantidad++;
+                            r.CantidadPedidos = negocio.CantidadPedidos(item.Mesa.IdMesa);
+                            r.IdMesa = item.Mesa.Numero;
+                            r.IdMesero = item.Mesa.IdMesero;
+                            r.Precio = negocio.TotalPedidos(item.Mesa.IdMesa);
+                            r.FechaHoraGenerado = item.FechaHoraGenerado;
+                            r.Reseña = "hola";
+                            r.PuntajeReseña = 1;
+                            reportes.Add(r);
                         }
                     }
                 }
 
-                txtPedidos.Text = cantidad.ToString();
-                txtPrecio.Text = pedido.Total.ToString();
-                txtMesa.Text = pedido.IdMesa.ToString();
+
+
+                idRep.DataSource = reportes;
+                idRep.DataBind();
+
 
             }
         }
