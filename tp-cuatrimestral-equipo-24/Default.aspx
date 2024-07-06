@@ -37,7 +37,7 @@
                     <asp:Button ID="txtRegistrarse" runat="server" CssClass="Ingresar" Text="Registrarse" />
                
                </div>
-               <asp:Button ID="txtRecupPass" runat="server" CssClass="Ingresar" Text="Olvide contraseña" OnClick="btnRecuperarPass_Click" />
+               <asp:Button ID="txtRecupPass" runat="server" CssClass="Ingresar" Text="Soporte" OnClick="btnRecuperarPass_Click" />
              </div>
         </div>
     </section>

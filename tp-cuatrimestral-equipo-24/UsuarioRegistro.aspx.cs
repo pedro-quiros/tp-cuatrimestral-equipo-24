@@ -194,23 +194,23 @@ namespace tp_cuatrimestral_equipo_24
             {
                 if (string.IsNullOrEmpty(txtUsuario.Value))
                 {
-                    throw new Exception("El nombre de usuario es obligatorio.");
+                    Response.Write("<script>alert('Por favor, complete el nombre del usuario.');</script>");
                 }
                 if (string.IsNullOrEmpty(txtNombrePersonal.Value))
                 {
-                    throw new Exception("El nombre del empleado es obligatorio.");
+                    Response.Write("<script>alert('Por favor, El Nombre del empleado es obligatorio.');</script>");
                 }
                 if (string.IsNullOrEmpty(txtApellido.Value))
                 {
-                    throw new Exception("El apellido del empleado es obligatorio.");
+                    Response.Write("<script>alert('Por favor, El Apellido del empleado es obligatorio.');</script>");
                 }
                 if (string.IsNullOrEmpty(txtDni.Value))
                 {
-                    throw new Exception("El DNI es obligatorio.");
+                    Response.Write("<script>alert('Por favor, El DNI del empleado es obligatorio.');</script>");
                 }
                 if (string.IsNullOrEmpty(txtEmail.Value))
                 {
-                    throw new Exception("El email es obligatorio.");
+                    Response.Write("<script>alert('Por favor, El Gmail del empleado es obligatorio.');</script>");
                 }
                 Usuario nuevoUsuario = new Usuario
                 {

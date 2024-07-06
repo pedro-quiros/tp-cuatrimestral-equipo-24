@@ -58,17 +58,13 @@ namespace tp_cuatrimestral_equipo_24
                     puntaje = puntaje,
                     mensaje = txtmensaje.Text
                 };
-                //Nuevareseña.Nombre = TxtNombre.Text;    
-                //Nuevareseña.Email = TxtEmail.Text;
-                //Nuevareseña.Fecha = fecha;
-                //Nuevareseña.puntaje = puntaje;
-                //Nuevareseña.mensaje = txtmensaje.Text;
+                
 
                 ClientesGestion Client = new ClientesGestion();
                 Client.InsertarReseña(Nuevareseña);
 
                 Response.Write("<script>alert('Reseña enviada correctamente.');</script>");
-                // Limpia los campos después de enviar el correohttps://github.com/pedro-quiros/tp-cuatrimestral-equipo-24
+                
                 TxtNombre.Text = "";
                 TxtEmail.Text = "";
                 txtmensaje.Text = "";
