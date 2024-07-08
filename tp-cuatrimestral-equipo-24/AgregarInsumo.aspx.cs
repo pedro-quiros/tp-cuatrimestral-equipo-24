@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -26,6 +27,31 @@ namespace tp_cuatrimestral_equipo_24
 
             try
             {
+                if (string.IsNullOrEmpty(txtNombre.Value))
+                {
+                    Response.Write("<script>alert('Por favor, complete el nombre del Insumo.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtPrecio.Value))
+                {
+                    Response.Write("<script>alert('Por favor, complete el nombre del Precio.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtStock.Value))
+                {
+                    Response.Write("<script>alert('Por favor, complete el nombre del Stock.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtDescripcion.Value))
+                {
+                    Response.Write("<script>alert('Por favor, complete el nombre de la Descripcion.');</script>");
+                }
+                if (Regex.IsMatch(txtPrecio.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo numeros en el Precio');</script>");
+                }
+                if (Regex.IsMatch(txtStock.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo numeros en el Stock');</script>");
+                }
+
 
                 nuevoInsumo.Nombre = txtNombre.Value;
                 nuevoInsumo.Tipo = ddlTipo.Text;
@@ -57,10 +83,15 @@ namespace tp_cuatrimestral_equipo_24
                     MessageBox.Show("Complete todos los campos mi estimado/a");
                 }
 
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error..");
+            }
+            finally
+            {
+                Response.Redirect("Menu.aspx");
             }
 
         }
