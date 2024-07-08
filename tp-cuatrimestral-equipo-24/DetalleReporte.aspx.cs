@@ -13,33 +13,90 @@ namespace tp_cuatrimestral_equipo_24
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Pedido pedido = new Pedido();
-            List<Pedido> listaPedido = new List<Pedido>();
-            PedidoNegocio negocio = new PedidoNegocio();
-            listaPedido = negocio.ListarParaReporte();
-            int id = Convert.ToInt32(Request.QueryString["IdItemPedido"]);
-            int cantidad = 0;
+            List<Reporte> listaReporte = new List<Reporte>();
+            ReporteNegocio negocio = new ReporteNegocio();
+            listaReporte = negocio.ListarParaReporte();
+            Reporte r = new Reporte();
 
-            if(!IsPostBack)
+            DateTime fechaActual = DateTime.Now.Date;
+
+            string Tipo = "";
+            Tipo = Request.QueryString["Parametro"].ToString();
+
+            List<Reporte> reportes = new List<Reporte>();
+
+            if (!IsPostBack)
             {
-                Session["Reportes"] = listaPedido;
-
-                foreach (var item in listaPedido)
+                switch (Tipo)
                 {
-                    foreach (var item2 in item.ItemsPedido)
-                    {
-                        if (item2.IdPedido == id)
+                    case "Hoy":
+                        foreach (var item in listaReporte)
                         {
-                            pedido = item;
-                            cantidad++;
+                            r = new Reporte();
+                            if (item.FechaHoraGenerado.Date == fechaActual)
+                            {
+                                r.CantidadPedidos = item.CantidadPedidos;
+                                r.IdMesa = item.IdMesa;
+                                r.IdMesero = item.IdMesero;
+                                r.NombreApellidoMesero = item.NombreApellidoMesero;
+                                r.NumeroMesa = item.NumeroMesa;
+                                r.Precio = item.Precio;
+                                r.FechaHoraGenerado = item.FechaHoraGenerado;
+                                r.Reseña = "hola";
+                                r.PuntajeReseña = 1;
+                                reportes.Add(r);
+                            }
                         }
-                    }
+                    break;
+
+                    case "Este mes":
+                        foreach (var item in listaReporte)
+                        {
+                            r = new Reporte();
+                            if (item.FechaHoraGenerado.Month == DateTime.Now.Month)
+                            {
+                                r.CantidadPedidos = item.CantidadPedidos;
+                                r.IdMesa = item.IdMesa;
+                                r.IdMesero = item.IdMesero;
+                                r.NombreApellidoMesero = item.NombreApellidoMesero;
+                                r.NumeroMesa = item.NumeroMesa;
+                                r.Precio = item.Precio;
+                                r.FechaHoraGenerado = item.FechaHoraGenerado;
+                                r.Reseña = "hola";
+                                r.PuntajeReseña = 1;
+                                reportes.Add(r);
+                            }
+                        }
+                        break;
+
+                    case "Este año":
+                        foreach (var item in listaReporte)
+                        {
+                            r = new Reporte();
+                            if (item.FechaHoraGenerado.Year == DateTime.Now.Year)
+                            {
+                                r.CantidadPedidos = item.CantidadPedidos;
+                                r.IdMesa = item.IdMesa;
+                                r.IdMesero = item.IdMesero;
+                                r.NombreApellidoMesero = item.NombreApellidoMesero;
+                                r.NumeroMesa = item.NumeroMesa;
+                                r.Precio = item.Precio;
+                                r.FechaHoraGenerado = item.FechaHoraGenerado;
+                                r.Reseña = "hola";
+                                r.PuntajeReseña = 1;
+                                reportes.Add(r);
+                            }
+                        }
+                        break;
                 }
 
-                txtPedidos.Text = cantidad.ToString();
-                txtPrecio.Text = pedido.Total.ToString();
-                txtMesa.Text = pedido.IdMesa.ToString();
+                Session["Reportes"] = listaReporte;
 
+
+
+
+                idRep.DataSource = reportes;
+                idRep.DataBind();
             }
         }
     }

@@ -20,6 +20,7 @@ public class Pedido
         Estado = true;
         Total = 0;
         ItemsPedido = new List<ItemPedido>();
+        Mesa = new Mesas();
     }
 
     public Pedido(int idPedido, int idMesa, DateTime fechaHoraGenerado, bool estado, decimal total, Mesas mesa)

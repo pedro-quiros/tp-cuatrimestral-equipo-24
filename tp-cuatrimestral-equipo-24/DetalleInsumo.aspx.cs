@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -76,6 +77,33 @@ namespace tp_cuatrimestral_equipo_24
 
             try
             {
+                if (string.IsNullOrEmpty(txtNombre.Value))
+                {
+                    Response.Write("<script>alert('Por favor, complete el nombre del Insumo.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtPrecio.Value))
+                {
+                    Response.Write("<script>alert('Por favor, complete el nombre del Precio.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtStock.Value))
+                {
+                    Response.Write("<script>alert('Por favor, complete el nombre del Stock.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtDescripcion.Value))
+                {
+                    Response.Write("<script>alert('Por favor, complete el nombre de la Descripcion.');</script>");
+                }
+                if (Regex.IsMatch(txtPrecio.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo numeros en el Precio');</script>");
+                }
+                if (Regex.IsMatch(txtStock.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo numeros en el Stock');</script>");
+                }
+
+
+
                 insu.IdInsumo = Convert.ToInt32(Request.QueryString["IdInsumo"]);
                 insu.Nombre = txtNombre.Value;
                 insu.Tipo = ddlTipo.Text;
@@ -87,8 +115,8 @@ namespace tp_cuatrimestral_equipo_24
                 if (insu.Tipo != "" && insu.Nombre != "" && insu.Descripcion != "" && txtPrecio.Value != "" && txtStock.Value != "")
                 {
                     InsumosNegocio.Modificar2(insu);
-
                     MessageBox.Show("Modificado exitosamente :)");
+                    ;
                 }
                 else
                 {

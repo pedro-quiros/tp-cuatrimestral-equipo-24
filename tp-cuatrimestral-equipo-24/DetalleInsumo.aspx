@@ -14,9 +14,9 @@
         </div>
 
         <div class="form-group">
-            <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="control-label" ></asp:Label>
+            <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="control-label"></asp:Label>
             <asp:DropDownList class="form-select" runat="server" ID="ddlTipo" aria-label="Default select example">
-                <asp:ListItem Text="Desayuno/Merienda" ></asp:ListItem>
+                <asp:ListItem Text="Desayuno/Merienda"></asp:ListItem>
                 <asp:ListItem Text="Almuerzo/Cena"></asp:ListItem>
                 <asp:ListItem Text="Postres"></asp:ListItem>
                 <asp:ListItem Text="Bebidas"></asp:ListItem>

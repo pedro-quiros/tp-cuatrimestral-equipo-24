@@ -7,6 +7,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Negocio
 {
@@ -20,7 +21,7 @@ namespace Negocio
 
             try
             {
-                string consulta = "Select IdPedido, Estado, FechaHoraGenerado from Pedido";
+                string consulta = "Select IdPedido, Estado, FechaHoraCreado from Pedido";
 
 
                 datos.SetearConsulta(consulta);
@@ -31,7 +32,7 @@ namespace Negocio
 
                     aux.IdPedido = (int)datos.Lector["IdPedido"];
                     aux.Estado = (bool)datos.Lector["Estado"];
-                    aux.FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"];
+                    aux.FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraCreado"];
 
                     lista.Add(aux);
                 }
@@ -47,43 +48,61 @@ namespace Negocio
             }
         }
 
-        public List<Pedido> ListarParaReporte()
+        
+
+        public int CantidadPedidos(int idMesa)
         {
-            List<Pedido> lista = new List<Pedido>();
-            //return lista;
+            int cantPed;
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                datos.SetearConsulta("select COUNT(IdPedido) AS CANTIDAD_PEDIDOS, IdMesa from Pedido WHERE IdMesa = @idMesa" +
+                                     " GROUP BY IdMesa" +
+                                     " ORDER BY COUNT(IdPedido)");
+                datos.SeterParametros("@idMesa", idMesa);
+                datos.EjecutarAccion();
+                datos.ejecutarLectura();
+                while(datos.Lector.Read())
+                {
+                    cantPed = (int)datos.Lector["CANTIDAD_PEDIDOS"];
+                    return cantPed;
+                }
+                return -1;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public decimal TotalPedidos(int idMesa)
+        {
+            decimal TotalPed;
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                string consulta = "SELECT P.IdPedido, P.Estado, P.FechaHoraGenerado, I.IdItemPedido, I.Cantidad, " +
-                    "I.PrecioUnitario, I.IdPedido AS Pedido, INS.IdInsumo, INS.Nombre FROM ItemPedido I" +
-                    " INNER JOIN PEDIDO P ON I.IdItemPedido = I.IdItemPedido" +
-                    " INNER JOIN Insumo INS ON INS.IdInsumo = I.IdInsumo ";
-
-                datos.SetearConsulta(consulta);
+                datos.SetearConsulta("select SUM(Total) AS TOTAL_PEDIDOS, IdMesa from Pedido WHERE IdMesa = 1" +
+                                     " GROUP BY IdMesa" +
+                                     " ORDER BY SUM(Total)");
+                datos.SeterParametros("@idMesa", idMesa);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    ItemPedido item = new ItemPedido();
-                    Pedido aux = new Pedido();
-
-                    aux.IdPedido = (int)datos.Lector["IdPedido"];
-                    aux.Estado = (bool)datos.Lector["Estado"];
-                    aux.FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"];
-                    item.IdItemPedido = (int)datos.Lector["IdItemPedido"];
-                    item.Cantidad = (int)datos.Lector["Cantidad"];
-                    item.PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"];
-                    item.Pedido.IdPedido = (int)datos.Lector["Pedido"];
-                    item.Insumo.IdInsumo = (int)datos.Lector["IdInsumo"];
-                    item.Insumo.Nombre = (string)datos.Lector["Nombre"];
-                    aux.ItemsPedido.Add(item);
-
-                    lista.Add(aux);
+                    TotalPed = (decimal)datos.Lector["TOTAL_PEDIDOS"];
+                    return TotalPed;
                 }
-                return lista;
+                return -1;
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 throw ex;
             }
             finally
@@ -91,6 +110,7 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
 
         public List<Insumo> ListarInsumos()
         {

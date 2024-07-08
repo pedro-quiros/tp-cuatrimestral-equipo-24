@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace tp_cuatrimestral_equipo_24
 {
@@ -125,42 +126,41 @@ namespace tp_cuatrimestral_equipo_24
         {
             try
             {
-                //// Validar campos obligatorios
-                //if (string.IsNullOrEmpty(txtUsuario.Value))
-                //{
-                //    throw new Exception("El nombre de usuario es obligatorio.");
-                //}
-                //if (string.IsNullOrEmpty(txtNombrePersonal.Value))
-                //{
-                //    throw new Exception("El nombre del empleado es obligatorio.");
-                //}
-                //if (string.IsNullOrEmpty(txtApellido.Value))
-                //{
-                //    throw new Exception("El apellido del empleado es obligatorio.");
-                //}
-                //if (string.IsNullOrEmpty(txtDni.Value))
-                //{
-                //    throw new Exception("El DNI es obligatorio.");
-                //}
-                //if (string.IsNullOrEmpty(txtEmail.Value))
-                //{
-                //    throw new Exception("El email es obligatorio.");
-                //}
+                if (string.IsNullOrEmpty(txtUsuario.Value))
+                {
+                    Response.Write("<script>alert('Por favor, complete el nombre del usuario.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtNombrePersonal.Value))
+                {
+                    Response.Write("<script>alert('El Nombre del empleado es obligatorio.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtApellido.Value))
+                {
+                    Response.Write("<script>alert('El Apellido del empleado es obligatorio.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtDni.Value))
+                {
+                    Response.Write("<script>alert('El DNI del empleado es obligatorio.');</script>");
+                }
+                if (string.IsNullOrEmpty(txtEmail.Value))
+                {
+                    Response.Write("<script>alert('El Gmail del empleado es obligatorio.');</script>");
+                }
+                if (Regex.IsMatch(txtTelefono.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo numeros en el telefono');</script>");
+                }
+                if (Regex.IsMatch(txtPuesto.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo un numero en el Puesto');</script>");
+                }
+                if (Regex.IsMatch(txtDni.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo numeros en el DNI');</script>");
+                }
+
+
                 Usuario nuevoUsuario = new Usuario();
-                //{
-                //    Id = int.Parse(txtId.Text),
-                //    NombreUsuario = txtUsuario.Value,
-                //    Puesto = int.Parse(txtPuesto.Value),
-                //    Legajo = int.Parse(txtLegajo.Value),
-                //    Dni = int.Parse(txtDni.Value),
-                //    Nombre = txtNombrePersonal.Value,
-                //    Apellido = txtApellido.Value,
-                //    Nacimiento = Convert.ToDateTime((txtNacimiento.Value)),
-                //    Genero = ddlGenero.Value,
-                //    Telefono = int.Parse(txtTelefono.Value),
-                //    Email = txtEmail.Value,
-                //    Domicilio = txtDomicilio.Value
-                //};
 
                     nuevoUsuario.Id = int.Parse(txtId.Text);
                     nuevoUsuario.NombreUsuario = txtUsuario.Value;
@@ -176,10 +176,19 @@ namespace tp_cuatrimestral_equipo_24
                     nuevoUsuario.Domicilio = txtDomicilio.Value;
 
                     UsuarioGestion gestionUsuario = new UsuarioGestion();
+                if (Regex.IsMatch(txtNombrePersonal.Value, @"^[a-zA-Z]+$") && Regex.IsMatch(txtApellido.Value, @"^[a-zA-Z]+$"))
+                {
                     gestionUsuario.ModificarUsuario(nuevoUsuario);
-
-                    // Redirigir a otra página o mostrar un mensaje de éxito
+                    Response.Write("<script>alert('Usuario Modificado.');</script>");
                     Response.Redirect("Home.aspx");
+
+                }
+                else
+                {
+                    Response.Write("<script>alert('Los campos Nombre y Apellido no pueden contener numeros');</script>");
+                }
+
+                // Redirigir a otra página o mostrar un mensaje de éxito
                 }
                 catch (Exception ex)
                 {
@@ -194,23 +203,35 @@ namespace tp_cuatrimestral_equipo_24
             {
                 if (string.IsNullOrEmpty(txtUsuario.Value))
                 {
-                    throw new Exception("El nombre de usuario es obligatorio.");
+                    Response.Write("<script>alert('Por favor, complete el nombre del usuario.');</script>");
                 }
                 if (string.IsNullOrEmpty(txtNombrePersonal.Value))
                 {
-                    throw new Exception("El nombre del empleado es obligatorio.");
+                    Response.Write("<script>alert('El Nombre del empleado es obligatorio.');</script>");
                 }
                 if (string.IsNullOrEmpty(txtApellido.Value))
                 {
-                    throw new Exception("El apellido del empleado es obligatorio.");
+                    Response.Write("<script>alert('Por favor, El Apellido del empleado es obligatorio.');</script>");
                 }
                 if (string.IsNullOrEmpty(txtDni.Value))
                 {
-                    throw new Exception("El DNI es obligatorio.");
+                    Response.Write("<script>alert('Por favor, El DNI del empleado es obligatorio.');</script>");
                 }
                 if (string.IsNullOrEmpty(txtEmail.Value))
                 {
-                    throw new Exception("El email es obligatorio.");
+                    Response.Write("<script>alert('Por favor, El Gmail del empleado es obligatorio.');</script>");
+                }
+                if (Regex.IsMatch(txtTelefono.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo numeros en el telefono');</script>");
+                }
+                if (Regex.IsMatch(txtPuesto.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo un numero en el Puesto');</script>");
+                }
+                if (Regex.IsMatch(txtDni.Value, @"\D"))
+                {
+                    Response.Write("<script>alert('Ingresar solo numeros en el DNI');</script>");
                 }
                 Usuario nuevoUsuario = new Usuario
                 {
@@ -230,17 +251,22 @@ namespace tp_cuatrimestral_equipo_24
                 };
 
                 UsuarioGestion gestionUsuario = new UsuarioGestion();
-                gestionUsuario.AgregarUsuario(nuevoUsuario);
-
+                if(Regex.IsMatch(txtNombrePersonal.Value, @"^[a-zA-Z]+$") && Regex.IsMatch(txtApellido.Value, @"^[a-zA-Z]+$"))
+                {
+                    gestionUsuario.AgregarUsuario(nuevoUsuario);
+                    Response.Redirect("Home.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Los campos Nombre y Apellido no pueden contener numeros');</script>");
+                }
                 // Redirigir a otra página o mostrar un mensaje de éxito
-                Response.Redirect("Home.aspx");
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex);
             }
         }
-
 
     }
 }

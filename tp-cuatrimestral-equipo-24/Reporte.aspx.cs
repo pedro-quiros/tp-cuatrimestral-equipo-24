@@ -15,15 +15,15 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
-                ddlReportesFiltro.Text = "Mostrar todo";
+                ddlReportesFiltro.Text = "-";
 
                 PedidoNegocio negocio = new PedidoNegocio();
                 List<Pedido> pedidos = negocio.Listar();
 
 
                 Session["Pedido"] = pedidos;
-                idRep.DataSource = pedidos;
-                idRep.DataBind();
+                //idRep.DataSource = pedidos;
+                //idRep.DataBind();
             }
         }
 
@@ -34,6 +34,7 @@ namespace tp_cuatrimestral_equipo_24
             DateTime fechaActual = DateTime.Now;
             int mesActual = DateTime.Now.Month;
 
+            string Parametro;
             if (Session["Pedido"] != null)
             {
                 lista = (List<Pedido>)Session["Pedido"];
@@ -43,42 +44,21 @@ namespace tp_cuatrimestral_equipo_24
             switch (Tipo)
             {
                 case "Hoy":
-                    foreach (var item in lista)
-                    {
-                        if (item.FechaHoraGenerado.Date == fechaActual.Date)
-                        {
-                            listaFiltrada.Add(item);
-                        }
-                    }
+                    Parametro = "Hoy";
+                    Response.Redirect("DetalleReporte.aspx?Parametro=" + Parametro, false);
                 break;
 
                 case "Este mes":
-                    foreach (var item in lista)
-                    {
-                        if (item.FechaHoraGenerado.Month == mesActual)
-                        {
-                            listaFiltrada.Add(item);
-                        }
-                    }
+                    Parametro = "Este mes";
+                    Response.Redirect("DetalleReporte.aspx?Parametro=" + Parametro, false);
                 break;
 
                 case "Este año":
-                    foreach (var item in lista)
-                    {
-                        if (item.FechaHoraGenerado.Year == DateTime.Now.Year)
-                        {
-                            listaFiltrada.Add(item);
-                        }
-                    }
-                break;
-
-                case "Mostrar todo":
-                    listaFiltrada = lista;
+                    Parametro = "Este año";
+                    Response.Redirect("DetalleReporte.aspx?Parametro=" + Parametro, false);
                 break;
             }
 
-            idRep.DataSource = listaFiltrada;
-            idRep.DataBind();
         }
     }
 }

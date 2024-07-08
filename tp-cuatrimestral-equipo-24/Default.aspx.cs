@@ -27,9 +27,9 @@ namespace tp_cuatrimestral_equipo_24
                 usuario.Clave = txtpassword.Text;
                 if (UsuGesti.Loguear(usuario))
                 {
+                    Response.Write("<script>alert('Inicio de sesión exitoso.');</script>");
                     Session.Add("UsuarioSeleccionado", usuario);
                     Response.Redirect("Home.aspx",false);
-                    Response.Write("<script>alert('Inicio de sesión exitoso.');</script>");
                 }
                 else 
                 {
