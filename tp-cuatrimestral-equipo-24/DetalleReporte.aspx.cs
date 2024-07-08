@@ -14,44 +14,61 @@ namespace tp_cuatrimestral_equipo_24
         protected void Page_Load(object sender, EventArgs e)
         {
             Pedido pedido = new Pedido();
-            List<Pedido> listaPedido = new List<Pedido>();
+            List<Reporte> listaReporte = new List<Reporte>();
             PedidoNegocio negocio = new PedidoNegocio();
-            listaPedido = negocio.ListarParaReporte();
-            int id = Convert.ToInt32(Request.QueryString["IdItemPedido"]);
+            listaReporte = negocio.ListarParaReporte();
+            int id = Convert.ToInt32(Request.QueryString["IdPedido"]);
             int cantidad = 0;
             Reporte r = new Reporte();
 
+            DateTime fechaActual = DateTime.Now.Date;
+
+            int nuevo;
+            string Tipo = "";
+            Tipo = Request.QueryString["Parametro"].ToString();
 
             List<Reporte> reportes = new List<Reporte>();
 
             if (!IsPostBack)
             {
-                Session["Reportes"] = listaPedido;
-
-                foreach (var item in listaPedido)
+                switch (Tipo)
                 {
-                    foreach (var item2 in item.ItemsPedido)
-                    {
-                        if (item2.IdPedido == id)
+                    case "Hoy":
+                        nuevo = 1;
+                        foreach (var item in listaReporte)
                         {
-                            r.CantidadPedidos = negocio.CantidadPedidos(item.Mesa.IdMesa);
-                            r.IdMesa = item.Mesa.Numero;
-                            r.IdMesero = item.Mesa.IdMesero;
-                            r.Precio = negocio.TotalPedidos(item.Mesa.IdMesa);
-                            r.FechaHoraGenerado = item.FechaHoraGenerado;
-                            r.Reseña = "hola";
-                            r.PuntajeReseña = 1;
-                            reportes.Add(r);
+                            r = new Reporte();
+                            if (item.FechaHoraGenerado.Date == fechaActual)
+                            {
+                                r.CantidadPedidos = item.CantidadPedidos;
+                                r.IdMesa = item.IdMesa;
+                                r.IdMesero = item.IdMesero;
+                                r.NumeroMesa = item.NumeroMesa;
+                                r.Precio = item.Precio;
+                                r.FechaHoraGenerado = item.FechaHoraGenerado;
+                                r.Reseña = "hola";
+                                r.PuntajeReseña = 1;
+                                reportes.Add(r);
+                            }
                         }
-                    }
+                    break;
+
+                    case "Este mes":
+                        nuevo = 2;
+                        break;
+
+                    case "Este año":
+                        nuevo = 3;
+                        break;
                 }
+
+                Session["Reportes"] = listaReporte;
+
 
 
 
                 idRep.DataSource = reportes;
                 idRep.DataBind();
-
-
             }
         }
     }

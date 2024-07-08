@@ -14,12 +14,12 @@
             <asp:ListItem Text="Hoy"></asp:ListItem>
             <asp:ListItem Text="Este mes"></asp:ListItem>
             <asp:ListItem Text="Este año"></asp:ListItem>
-            <asp:ListItem Text="Mostrar todo"></asp:ListItem>
+            <asp:ListItem Text="-"></asp:ListItem>
         </asp:DropDownList>
     </div>
 
 
-    <section class="body-def">
+<%--    <section class="body-def">
         <div class="contenedor-card">
             <asp:Repeater runat="server" ID="idRep">
                 <ItemTemplate>
@@ -40,6 +40,6 @@
             </asp:Repeater>
 
         </div>
-    </section>
+    </section>--%>
 
 </asp:Content>

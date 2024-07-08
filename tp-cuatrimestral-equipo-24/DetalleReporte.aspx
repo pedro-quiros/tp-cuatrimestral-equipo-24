@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="detalle-articulo">
-        <h1>DETALLE DEL REPORTE</h1>
+        <h1>REPORTE POR MESA</h1>
 
 
 
@@ -30,9 +30,6 @@
                 <div class="col order-first">
                     PuntajeReseña
                 </div>
-                <div class="col order-first">
-                    FechaGenerado
-                </div>
             </div>
         </div>
         <asp:Repeater runat="server" ID="idRep">
@@ -47,7 +44,7 @@
                                 <p><%# Eval("Precio") %></p>
                             </div>
                             <div class="col order-first">
-                                <p><%# Eval("IdMesa") %></p>
+                                <p><%# Eval("NumeroMesa") %></p>
                             </div>
                             <div class="col order-first">
                                 <p><%# Eval("IdMesero") %></p>
@@ -57,9 +54,6 @@
                             </div>
                             <div class="col order-first">
                                 <p><%# Eval("PuntajeReseña") %></p>
-                            </div>
-                            <div class="col order-first">
-                                <p><%# Eval("FechaHoraGenerado") %></p>
                             </div>
                         </div>
                     </div>

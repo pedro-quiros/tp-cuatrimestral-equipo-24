@@ -48,42 +48,34 @@ namespace Negocio
             }
         }
 
-        public List<Pedido> ListarParaReporte()
+        public List<Reporte> ListarParaReporte()
         {
-            List<Pedido> lista = new List<Pedido>();
+            List<Reporte> lista = new List<Reporte>();
             //return lista;
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                string consulta = "SELECT P.IdPedido, P.Estado, P.FechaHoraGenerado, I.IdItemPedido, I.Cantidad," +
-                    " I.PrecioUnitario, I.IdPedido AS Pedido, INS.IdInsumo, INS.Nombre,M.IdMesa, M.Numero, MS.Nombre AS NombreMesero, " +
-                    " MS.Apellido, MS.IdMesero FROM ItemPedido I" +
-                    " INNER JOIN PEDIDO P ON I.IdItemPedido = I.IdItemPedido" +
-                    " INNER JOIN Insumo INS ON INS.IdInsumo = I.IdInsumo" +
-                    " INNER JOIN MESA M ON M.IdMesa = P.IdMesa" +
-                    " INNER JOIN MESERO MS ON MS.IdMesa = M.IdMesa ";
+                string consulta = "SELECT M.IdMesa, M.Numero, MS.IdMesero, MS.Apellido, MS.Nombre,COUNT(P.IdPedido) AS CantPedidos, " +
+                                  "SUM(P.Total) AS PrecioTotal, MAX(P.FechaHoraGenerado) AS FechaHoraGenerado " +
+                                  "FROM Mesa M " +
+                                  "INNER JOIN Pedido P ON P.IdMesa = M.IdMesa " +
+                                  "INNER JOIN Mesero MS ON MS.IdMesa = M.IdMesa " +
+                                  "GROUP BY M.IdMesa, M.Numero, MS.IdMesero, MS.Apellido, MS.Nombre " +
+                                  "ORDER BY CantPedidos, PrecioTotal;";
 
                 datos.SetearConsulta(consulta);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    ItemPedido item = new ItemPedido();
-                    Pedido aux = new Pedido();
+                    Reporte aux = new Reporte();
 
-                    aux.IdPedido = (int)datos.Lector["IdPedido"];
-                    aux.Estado = (bool)datos.Lector["Estado"];
+                    aux.IdMesa = (int)datos.Lector["IdMesa"];
+                    aux.NumeroMesa = (int)datos.Lector["Numero"];
+                    aux.IdMesero = (int)datos.Lector["IdMesero"];
+                    aux.CantidadPedidos = (int)datos.Lector["CantPedidos"];
+                    aux.Precio = (decimal)datos.Lector["PrecioTotal"];
                     aux.FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"];
-                    aux.Mesa.Numero = (int)datos.Lector["Numero"];
-                    aux.Mesa.IdMesero = (int)datos.Lector["IdMesero"];
-                    aux.Mesa.IdMesa = (int)datos.Lector["IdMesa"];
-                    item.IdItemPedido = (int)datos.Lector["IdItemPedido"];
-                    item.Cantidad = (int)datos.Lector["Cantidad"];
-                    item.PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"];
-                    item.Pedido.IdPedido = (int)datos.Lector["Pedido"];
-                    item.Insumo.IdInsumo = (int)datos.Lector["IdInsumo"];
-                    item.Insumo.Nombre = (string)datos.Lector["Nombre"];
-                    aux.ItemsPedido.Add(item);
 
                     lista.Add(aux);
                 }
