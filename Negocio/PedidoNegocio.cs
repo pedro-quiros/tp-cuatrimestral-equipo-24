@@ -21,7 +21,7 @@ namespace Negocio
 
             try
             {
-                string consulta = "Select IdPedido, Estado, FechaHoraGenerado from Pedido";
+                string consulta = "Select IdPedido, Estado, FechaHoraCreado from Pedido";
 
 
                 datos.SetearConsulta(consulta);
@@ -32,7 +32,7 @@ namespace Negocio
 
                     aux.IdPedido = (int)datos.Lector["IdPedido"];
                     aux.Estado = (bool)datos.Lector["Estado"];
-                    aux.FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"];
+                    aux.FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraCreado"];
 
                     lista.Add(aux);
                 }
