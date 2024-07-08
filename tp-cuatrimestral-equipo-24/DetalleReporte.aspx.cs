@@ -13,17 +13,13 @@ namespace tp_cuatrimestral_equipo_24
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Pedido pedido = new Pedido();
             List<Reporte> listaReporte = new List<Reporte>();
-            PedidoNegocio negocio = new PedidoNegocio();
+            ReporteNegocio negocio = new ReporteNegocio();
             listaReporte = negocio.ListarParaReporte();
-            int id = Convert.ToInt32(Request.QueryString["IdPedido"]);
-            int cantidad = 0;
             Reporte r = new Reporte();
 
             DateTime fechaActual = DateTime.Now.Date;
 
-            int nuevo;
             string Tipo = "";
             Tipo = Request.QueryString["Parametro"].ToString();
 
@@ -34,7 +30,6 @@ namespace tp_cuatrimestral_equipo_24
                 switch (Tipo)
                 {
                     case "Hoy":
-                        nuevo = 1;
                         foreach (var item in listaReporte)
                         {
                             r = new Reporte();
@@ -43,6 +38,7 @@ namespace tp_cuatrimestral_equipo_24
                                 r.CantidadPedidos = item.CantidadPedidos;
                                 r.IdMesa = item.IdMesa;
                                 r.IdMesero = item.IdMesero;
+                                r.NombreApellidoMesero = item.NombreApellidoMesero;
                                 r.NumeroMesa = item.NumeroMesa;
                                 r.Precio = item.Precio;
                                 r.FechaHoraGenerado = item.FechaHoraGenerado;
@@ -54,11 +50,43 @@ namespace tp_cuatrimestral_equipo_24
                     break;
 
                     case "Este mes":
-                        nuevo = 2;
+                        foreach (var item in listaReporte)
+                        {
+                            r = new Reporte();
+                            if (item.FechaHoraGenerado.Month == DateTime.Now.Month)
+                            {
+                                r.CantidadPedidos = item.CantidadPedidos;
+                                r.IdMesa = item.IdMesa;
+                                r.IdMesero = item.IdMesero;
+                                r.NombreApellidoMesero = item.NombreApellidoMesero;
+                                r.NumeroMesa = item.NumeroMesa;
+                                r.Precio = item.Precio;
+                                r.FechaHoraGenerado = item.FechaHoraGenerado;
+                                r.Reseña = "hola";
+                                r.PuntajeReseña = 1;
+                                reportes.Add(r);
+                            }
+                        }
                         break;
 
                     case "Este año":
-                        nuevo = 3;
+                        foreach (var item in listaReporte)
+                        {
+                            r = new Reporte();
+                            if (item.FechaHoraGenerado.Year == DateTime.Now.Year)
+                            {
+                                r.CantidadPedidos = item.CantidadPedidos;
+                                r.IdMesa = item.IdMesa;
+                                r.IdMesero = item.IdMesero;
+                                r.NombreApellidoMesero = item.NombreApellidoMesero;
+                                r.NumeroMesa = item.NumeroMesa;
+                                r.Precio = item.Precio;
+                                r.FechaHoraGenerado = item.FechaHoraGenerado;
+                                r.Reseña = "hola";
+                                r.PuntajeReseña = 1;
+                                reportes.Add(r);
+                            }
+                        }
                         break;
                 }
 

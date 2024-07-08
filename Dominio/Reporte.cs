@@ -16,6 +16,7 @@ namespace Dominio
         public int PuntajeReseña { get; set; }
         public DateTime FechaHoraGenerado { get; set; }
         public int NumeroMesa { get; set; }
+        public string NombreApellidoMesero { get; set; }
 
         public Reporte()
         {
@@ -27,11 +28,12 @@ namespace Dominio
             PuntajeReseña = 1;
             FechaHoraGenerado = DateTime.Now;
             NumeroMesa = 0;
+            NombreApellidoMesero = "";
         }
 
 
         public Reporte (int cantidadPedidos, decimal precio, int idMesa, int idMesero, string reseña, int puntajeReseña, 
-                        DateTime fechaHoraGenerado, int numeroMesa)
+                        DateTime fechaHoraGenerado, int numeroMesa, string nombreApellidoMesero)
         {
             CantidadPedidos = cantidadPedidos;
             Precio = precio;
@@ -41,6 +43,7 @@ namespace Dominio
             PuntajeReseña = puntajeReseña;
             FechaHoraGenerado = fechaHoraGenerado;
             NumeroMesa = numeroMesa;
+            NombreApellidoMesero = nombreApellidoMesero;
         }
     }
 }

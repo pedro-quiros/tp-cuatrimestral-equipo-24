@@ -47,7 +47,7 @@
                                 <p><%# Eval("NumeroMesa") %></p>
                             </div>
                             <div class="col order-first">
-                                <p><%# Eval("IdMesero") %></p>
+                                <p><%# Eval("NombreApellidoMesero ")%></p>
                             </div>
                             <div class="col order-first">
                                 <p><%# Eval("Reseña") %></p>
