@@ -104,18 +104,18 @@ CREATE TABLE [dbo].[Mesero](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 
---- TABLA Reseña
+--- TABLA Rese a
 GO
-CREATE TABLE [dbo].[Reseña](
-	[IdReseña] [int] IDENTITY(1,1) NOT NULL,
+CREATE TABLE [dbo].[Rese a](
+	[IdRese a] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [varchar](100) NULL,
 	[Email] [varchar](200) NULL,
 	[Fecha] [date] NULL,
 	[Puntaje] [int] NULL,
 	[mensaje] [varchar](max) NULL,
- CONSTRAINT [PK_Reseña] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Rese a] PRIMARY KEY CLUSTERED 
 (
-	[IdReseña] ASC
+	[IdRese a] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
@@ -208,9 +208,9 @@ REFERENCES [dbo].[Insumo] ([IdInsumo])
 GO
 ALTER TABLE [dbo].[Pedido] CHECK CONSTRAINT [Fk_Pedido_Insumo]
 GO
-ALTER TABLE [dbo].[Reseña]  WITH CHECK ADD  CONSTRAINT [CHK_Puntaje_mesa] CHECK  (([Puntaje]>=(1) AND [Puntaje]<=(10)))
+ALTER TABLE [dbo].[Rese a]  WITH CHECK ADD  CONSTRAINT [CHK_Puntaje_mesa] CHECK  (([Puntaje]>=(1) AND [Puntaje]<=(10)))
 GO
-ALTER TABLE [dbo].[Reseña] CHECK CONSTRAINT [CHK_Puntaje_mesa]
+ALTER TABLE [dbo].[Rese a] CHECK CONSTRAINT [CHK_Puntaje_mesa]
 GO
 
 
@@ -464,14 +464,14 @@ END;
 
 -----------------------------
 
-CREATE proc [dbo].[Insertarreseña] 
+CREATE proc [dbo].[Insertarrese a] 
 @nombre varchar(100),
 @email varchar(100),
 @fecha date ,
 @puntaje int,
 @msj varchar(max)
 as
-INSERT INTO Reseña
+INSERT INTO Rese a
         (Nombre, Email, Fecha, Puntaje, mensaje)
         VALUES
         (@Nombre, @email, @fecha, @puntaje, @msj)
@@ -480,3 +480,10 @@ GO
 
 
 -------------------------------
+------- INSERT DE PRUEBA PEDIDO
+insert into Pedido (Estado, FechaHoraGenerado, Total, IdMesa) VALUES
+(1, '4/7/2024', 3000, 1), (1, '3/7/2024', 4000, 2), (1, '07-03-2024', 5000, 3), (1, '06-03-2024', 6000, 4)
+
+
+
+select * from Reseña

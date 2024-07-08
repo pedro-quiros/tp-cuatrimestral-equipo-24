@@ -34,18 +34,18 @@
                 <img src="img/icoCamarero.png" alt="ícono de camarero" />
             </a>
 
-            <a class="logoNav" href="Delivery.aspx" title="Delivery">
+<%--            <a class="logoNav" href="Delivery.aspx" title="Delivery">
                 <img src="img/icoDelivery.png" alt="ícono de delivery" />
-            </a>
+            </a>--%>
 
             <a class="logoNav" href="Reporte.aspx" title="Reporte">
                 <img src="img/icoReporte.png" alt="ícono de reportes" />
             </a>
 
 
-            <a class="logoNav" href="UsuarioRegistro.aspx" title="Gestionar usuarios">
+<%--            <a class="logoNav" href="UsuarioRegistro.aspx" title="Gestionar usuarios">
                 <img src="img/icoAgregarUsuario.png" alt="ícono de agregar usuario" />
-            </a>
+            </a>--%>
             <a class="logoNav" href="Soporte.aspx" title="Soporte">
                 <img src="img/icoSoporte.png" alt="ícono de soporte" />
             </a>
