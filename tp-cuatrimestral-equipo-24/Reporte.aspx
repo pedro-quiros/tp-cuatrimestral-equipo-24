@@ -40,6 +40,6 @@
             </asp:Repeater>
 
         </div>
-    </section>--%>--%>
+    </section>--%>
 
 </asp:Content>
