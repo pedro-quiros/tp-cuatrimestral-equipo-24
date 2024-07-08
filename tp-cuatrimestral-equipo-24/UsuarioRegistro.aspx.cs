@@ -178,8 +178,10 @@ namespace tp_cuatrimestral_equipo_24
                     UsuarioGestion gestionUsuario = new UsuarioGestion();
                     gestionUsuario.ModificarUsuario(nuevoUsuario);
 
-                    // Redirigir a otra página o mostrar un mensaje de éxito
-                    Response.Redirect("Home.aspx");
+                Response.Write("<script>alert('Usuario Modificado.');</script>");
+
+                // Redirigir a otra página o mostrar un mensaje de éxito
+                Response.Redirect("Home.aspx");
                 }
                 catch (Exception ex)
                 {
