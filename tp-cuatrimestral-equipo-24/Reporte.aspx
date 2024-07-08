@@ -34,12 +34,12 @@
                             <%--                        <div class="mt-auto d-flex justify-content-around">
                             <asp:Button CssClass="btn-primary" Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
                         </div>--%>
-                        </div>
+<%--                        </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
 
         </div>
-    </section>--%>
+    </section>--%>--%>
 
 </asp:Content>
