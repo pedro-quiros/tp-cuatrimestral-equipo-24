@@ -20,14 +20,14 @@
                     Mesa
                 </div>
                 <div class="col order-first">
+                    Id Mesero
+                </div>
+                <div class="col order-first">
                     Mesero
                 </div>
-                <div class="col order-first">
-                    Reseña
-                </div>
-                <div class="col order-first">
+<%--                <div class="col order-first">
                     PuntajeReseña
-                </div>
+                </div>--%>
             </div>
         </div>
         <asp:Repeater runat="server" ID="idRep">
@@ -45,14 +45,14 @@
                                 <p><%# Eval("NumeroMesa") %></p>
                             </div>
                             <div class="col order-first">
+                                <p><%# Eval("IdMesero") %></p>
+                            </div>
+                            <div class="col order-first">
                                 <p><%# Eval("NombreApellidoMesero ")%></p>
                             </div>
-                            <div class="col order-first">
-                                <p><%# Eval("Reseña") %></p>
-                            </div>
-                            <div class="col order-first">
+<%--                            <div class="col order-first">
                                 <p><%# Eval("PuntajeReseña") %></p>
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                 </table>
