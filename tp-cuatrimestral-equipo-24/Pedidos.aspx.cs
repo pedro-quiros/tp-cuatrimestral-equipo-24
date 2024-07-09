@@ -3,28 +3,29 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace tp_cuatrimestral_equipo_24
+{
+    public partial class Pedidos : System.Web.UI.Page
     {
-        public partial class Pedidos : System.Web.UI.Page
+        private PedidoNegocio pedidoNegocio = new PedidoNegocio();
+        private InsumosNegocio insumoNegocio = new InsumosNegocio();
+        private MesaNegocio mesaNegocio = new MesaNegocio();
+
+        private List<Insumo> listaInsumos
         {
-            private PedidoNegocio pedidoNegocio = new PedidoNegocio();
-            private InsumosNegocio insumoNegocio = new InsumosNegocio();
+            get { return (List<Insumo>)Session["ListadoInsumos"]; }
+            set { Session["ListadoInsumos"] = value; }
+        }
 
-            private List<Insumo> listaInsumos
-            {
-                get { return (List<Insumo>)Session["ListadoInsumos"]; }
-                set { Session["ListadoInsumos"] = value; }
-            }
+        private List<ItemPedido> listaPedidos
+        {
+            get { return (List<ItemPedido>)Session["Pedidos"]; }
+            set { Session["Pedidos"] = value; }
+        }
 
-            private List<ItemPedido> listaPedidos
-            {
-                get { return (List<ItemPedido>)Session["Pedidos"]; }
-                set { Session["Pedidos"] = value; }
-            }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -83,153 +84,169 @@ namespace tp_cuatrimestral_equipo_24
         }
 
         protected void filtro_TextChanged(object sender, EventArgs e)
-            {
-                var textoFiltro = Filtro.Text.ToLower();
-                GridView1.DataSource = listaInsumos
-                    .Where(i => i.Nombre.ToLower().Contains(textoFiltro) || i.Tipo.ToLower().Contains(textoFiltro))
-                    .ToList();
-                GridView1.DataBind();
-            }
+        {
+            var textoFiltro = Filtro.Text.ToLower();
+            GridView1.DataSource = listaInsumos
+                .Where(i => i.Nombre.ToLower().Contains(textoFiltro) || i.Tipo.ToLower().Contains(textoFiltro))
+                .ToList();
+            GridView1.DataBind();
+        }
 
-            protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
-            {
-                if (e.CommandName == "Agregar")
-                {
-                    int index = Convert.ToInt32(e.CommandArgument);
-                    var insumoSeleccionado = listaInsumos[index];
-
-                    if (insumoSeleccionado.Stock <= 0)
-                    {
-                        ErrorMessage.Text = "No hay suficiente stock para agregar este insumo.";
-                        return;
-                    }
-
-                    var itemPedido = new ItemPedido
-                    {
-                        Insumo = insumoSeleccionado,
-                        IdInsumo = insumoSeleccionado.IdInsumo,
-                        Cantidad = 1,  // Asumimos una cantidad inicial de 1
-                        PrecioUnitario = insumoSeleccionado.Precio
-                    };
-
-                    if (listaPedidos == null)
-                    {
-                        listaPedidos = new List<ItemPedido>();
-                    }
-
-                    // Verificar si el ítem ya está en la lista
-                    var itemExistente = listaPedidos.FirstOrDefault(i => i.Insumo.IdInsumo == insumoSeleccionado.IdInsumo);
-                    if (itemExistente != null)
-                    {
-                        itemExistente.Cantidad++;
-                    }
-                    else
-                    {
-                        listaPedidos.Add(itemPedido);
-                    }
-
-                    // Actualizar el stock del insumo en la vista y en el negocio
-                    insumoSeleccionado.Stock--;
-                    insumoNegocio.ActualizarStockInsumo(insumoSeleccionado.IdInsumo, -1);  // Restar 1 del stock del insumo
-                    GridView1.DataSource = listaInsumos;
-                    GridView1.DataBind();
-
-                    GridViewPedidos.DataSource = listaPedidos;
-                    GridViewPedidos.DataBind();
-                    CalcularTotal();
-                }
-            }
-
-            protected void GridViewPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Agregar")
             {
                 int index = Convert.ToInt32(e.CommandArgument);
-                var itemPedido = listaPedidos[index];
-                var insumo = listaInsumos.First(i => i.IdInsumo == itemPedido.IdInsumo);
+                var insumoSeleccionado = listaInsumos[index];
 
-                if (e.CommandName == "Aumentar")
+                if (insumoSeleccionado.Stock <= 0)
                 {
-                    if (insumo.Stock > 0)
-                    {
-                        itemPedido.Cantidad++;
-                        insumo.Stock--;
-                        insumoNegocio.ActualizarStockInsumo(itemPedido.IdInsumo, -1);
-                    }
-                    else
-                    {
-                        ErrorMessage.Text = "No hay suficiente stock para aumentar este ítem.";
-                    }
+                    ErrorMessage.Text = "No hay suficiente stock para agregar este insumo.";
+                    return;
                 }
-                else if (e.CommandName == "Disminuir")
+
+                var itemPedido = new ItemPedido
                 {
-                    if (itemPedido.Cantidad > 1)
-                    {
-                        itemPedido.Cantidad--;
-                        insumo.Stock++;
-                        insumoNegocio.ActualizarStockInsumo(itemPedido.IdInsumo, 1);
-                    }
-                    else
-                    {
-                        insumo.Stock += itemPedido.Cantidad;
-                        insumoNegocio.ActualizarStockInsumo(itemPedido.IdInsumo, itemPedido.Cantidad);
-                        listaPedidos.RemoveAt(index);
-                    }
+                    Insumo = insumoSeleccionado,
+                    IdInsumo = insumoSeleccionado.IdInsumo,
+                    Cantidad = 1,  // Asumimos una cantidad inicial de 1
+                    PrecioUnitario = insumoSeleccionado.Precio
+                };
+
+                if (listaPedidos == null)
+                {
+                    listaPedidos = new List<ItemPedido>();
                 }
-                else if (e.CommandName == "Eliminar")
+
+                // Verificar si el ítem ya está en la lista
+                var itemExistente = listaPedidos.FirstOrDefault(i => i.Insumo.IdInsumo == insumoSeleccionado.IdInsumo);
+                if (itemExistente != null)
+                {
+                    itemExistente.Cantidad++;
+                }
+                else
+                {
+                    listaPedidos.Add(itemPedido);
+                }
+
+                // Actualizar el stock del insumo en la vista y en el negocio
+                insumoSeleccionado.Stock--;
+                insumoNegocio.ActualizarStockInsumo(insumoSeleccionado.IdInsumo, -1);  // Restar 1 del stock del insumo
+                GridView1.DataSource = listaInsumos;
+                GridView1.DataBind();
+
+                GridViewPedidos.DataSource = listaPedidos;
+                GridViewPedidos.DataBind();
+                CalcularTotal();
+            }
+        }
+
+        protected void GridViewPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            var itemPedido = listaPedidos[index];
+            var insumo = listaInsumos.First(i => i.IdInsumo == itemPedido.IdInsumo);
+
+            if (e.CommandName == "Aumentar")
+            {
+                if (insumo.Stock > 0)
+                {
+                    itemPedido.Cantidad++;
+                    insumo.Stock--;
+                    insumoNegocio.ActualizarStockInsumo(itemPedido.IdInsumo, -1);
+                }
+                else
+                {
+                    ErrorMessage.Text = "No hay suficiente stock para aumentar este ítem.";
+                }
+            }
+            else if (e.CommandName == "Disminuir")
+            {
+                if (itemPedido.Cantidad > 1)
+                {
+                    itemPedido.Cantidad--;
+                    insumo.Stock++;
+                    insumoNegocio.ActualizarStockInsumo(itemPedido.IdInsumo, 1);
+                }
+                else
                 {
                     insumo.Stock += itemPedido.Cantidad;
                     insumoNegocio.ActualizarStockInsumo(itemPedido.IdInsumo, itemPedido.Cantidad);
                     listaPedidos.RemoveAt(index);
                 }
-
-                GridViewPedidos.DataSource = listaPedidos;
-                GridViewPedidos.DataBind();
-                GridView1.DataSource = listaInsumos;
-                GridView1.DataBind();
-                CalcularTotal();
+            }
+            else if (e.CommandName == "Eliminar")
+            {
+                insumo.Stock += itemPedido.Cantidad;
+                insumoNegocio.ActualizarStockInsumo(itemPedido.IdInsumo, itemPedido.Cantidad);
+                listaPedidos.RemoveAt(index);
             }
 
-            protected void BtnCerrarPedido_Click(object sender, EventArgs e)
+            GridViewPedidos.DataSource = listaPedidos;
+            GridViewPedidos.DataBind();
+            GridView1.DataSource = listaInsumos;
+            GridView1.DataBind();
+            CalcularTotal();
+        }
+
+        //protected void BtnCerrarPedido_Click(object sender, EventArgs e)
+        //{
+        //    mesaNegocio.CerrarMesa((int)Session["IdMesa"]);
+        //    Response.Redirect("Salon.aspx");
+
+        //}
+        protected void BtnCerrarPedido_Click(object sender, EventArgs e)
+        {
+            if (Session["IdMesa"] != null && listaPedidos != null && listaPedidos.Count > 0)
             {
-                if (Session["IdMesa"] != null && listaPedidos != null && listaPedidos.Count > 0)
+                try
                 {
-                    try
+                    int idMesa = (int)Session["IdMesa"];
+                    var fechaHora = DateTime.Now;
+                    var totalPedido = listaPedidos.Sum(p => p.ObtenerTotal());
+
+                    // Crear un nuevo pedido y obtener su ID
+                    int idPedido = pedidoNegocio.CrearPedido(fechaHora, totalPedido, idMesa);
+                    if (idPedido <= 0)
                     {
-                        int idMesa = (int)Session["IdMesa"];
-                        var fechaHora = DateTime.Now;
-                        var totalPedido = listaPedidos.Sum(p => p.ObtenerTotal());
-
-                        // Crear un nuevo pedido y obtener su ID
-                        int idPedido = pedidoNegocio.CrearPedido(fechaHora, totalPedido, idMesa);
-                        if (idPedido <= 0)
-                        {
-                            throw new Exception("No se pudo crear el pedido.");
-                        }
-
-                        // Agregar los ítems al pedido
-                        foreach (var item in listaPedidos)
-                        {
-                            pedidoNegocio.AgregarItemPedido(idPedido, item.IdInsumo, item.Cantidad, item.PrecioUnitario);
-                        }
-
-                        // Limpiar sesión
-                        Session.Remove("IdMesa");
-                        Session.Remove("Pedidos");
-                        Session.Remove("ListadoInsumos");
-
-                        // Redirigir a la página de salón
-                        Response.Redirect("Salon.aspx");
+                        throw new Exception("No se pudo crear el pedido.");
                     }
-                    catch (Exception ex)
+
+                    // Agregar los ítems al pedido
+                    foreach (var item in listaPedidos)
                     {
-                        // Manejo de errores
-                        ErrorMessage.Text = "Ocurrió un error al cerrar el pedido: " + ex.Message;
+                        pedidoNegocio.AgregarItemPedido(idPedido, item.IdInsumo, item.Cantidad, item.PrecioUnitario);
                     }
+
+                    // Cerrar el pedido
+                    pedidoNegocio.CerrarPedido(idPedido);
+
+                    // Cerrar la mesa
+                    MesaNegocio mesaNegocio = new MesaNegocio();
+                    mesaNegocio.CerrarMesa(idMesa);  // Llamamos al método para cerrar la mesa
+
+                    // Limpiar sesión
+                    Session.Remove("IdMesa");
+                    Session.Remove("Pedidos");
+                    Session.Remove("ListadoInsumos");
+
+                    // Redirigir a la página de salón
+                    Response.Redirect("Salon.aspx");
                 }
-                else
+                catch (Exception ex)
                 {
-                    // Mostrar un mensaje de error si no hay pedidos
-                    ErrorMessage.Text = "No hay pedidos para cerrar.";
+                    // Manejo de errores
+                    ErrorMessage.Text = "Ocurrió un error al cerrar el pedido: " + ex.Message;
                 }
+            }
+            else
+            {
+                // Mostrar un mensaje de error si no hay pedidos
+                ErrorMessage.Text = "No hay pedidos para cerrar.";
             }
         }
+
+
+
     }
+}

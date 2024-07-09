@@ -183,20 +183,6 @@ namespace Negocio
             return lista;
         }
 
-        // Método para abrir o cerrar una mesa
-        public void AbrirCerrarMesa(int idMesa)
-        {
-            try
-            {
-                datos.setearProcedimiento("SP_AbrirCerrarMesa");
-                datos.SeterParametros("@IdMesa", idMesa);
-                datos.EjecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al abrir o cerrar mesa", ex);
-            }
-        }
 
         // Método para insertar un pedido
         public void InsertarPedido(DateTime fechaHora, decimal total, int idMesa)
@@ -215,23 +201,23 @@ namespace Negocio
             }
         }
 
-        // Método para agregar un ítem a un pedido
-        public void AgregarItemPedido(int idPedido, int idInsumo, int cantidad, decimal precio)
+        public void AgregarItemPedido(int idPedido, int idInsumo, int cantidad, decimal precioUnitario)
         {
             try
             {
-                datos.setearProcedimiento("AgregarItemPedido");
+                datos.setearProcedimiento("SP_AgregarItemPedido");
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.SeterParametros("@IdInsumo", idInsumo);
                 datos.SeterParametros("@Cantidad", cantidad);
-                datos.SeterParametros("@Precio", precio);
+                datos.SeterParametros("@PrecioUnitario", precioUnitario);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al agregar item al pedido", ex);
+                throw new Exception("Error al agregar el ítem al pedido: " + ex.Message);
             }
         }
+
 
         // Método para actualizar el stock de un insumo
         public void ActualizarStockInsumo(int idInsumo, int cantidad)
@@ -249,49 +235,83 @@ namespace Negocio
             }
         }
 
-        // Método para cerrar un pedido
         public void CerrarPedido(int idPedido)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearProcedimiento("CerrarPedido");
+                string consulta = "UPDATE Pedido SET Estado = 1 WHERE IdPedido = @IdPedido";
+                datos.SetearConsulta(consulta);
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al cerrar el pedido", ex);
-            }
-        }
-        public int CrearPedido(DateTime fechaHora, decimal total, int idMesa)
-        {
-            int idPedido = 0;
-
-            try
-            {
-                datos.setearProcedimiento("CrearPedido");
-                datos.SeterParametros("@FechaHora", fechaHora);
-                datos.SeterParametros("@Total", total);
-                datos.SeterParametros("@IdMesa", idMesa);
-
-                // Asume que el procedimiento almacenado devuelve el ID del nuevo pedido
-                datos.ejecutarLectura();
-                if (datos.Lector.Read())
-                {
-                    idPedido = (int)datos.Lector["IdPedido"];
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al crear el pedido", ex);
+                throw new Exception("Error al cerrar el pedido: " + ex.Message);
             }
             finally
             {
                 datos.CerrarConexion();
             }
-
-            return idPedido;
         }
+        public int CrearPedido(DateTime fechaHora, decimal totalPedido, int idMesa)
+        {
+            try
+            {
+                // Definir la consulta SQL para insertar un nuevo pedido
+                string consulta = @"
+            INSERT INTO Pedido (IdMesa, FechaHoraGenerado, Estado, Total)
+            VALUES (@IdMesa, @FechaHoraGenerado, @Estado, @Total);
+            SELECT SCOPE_IDENTITY() AS IdPedido;";
+
+                // Configurar la consulta y establecer los parámetros
+                datos.SetearConsulta(consulta);
+                datos.SeterParametros("@FechaHoraGenerado", fechaHora);
+                datos.SeterParametros("@Total", totalPedido);
+                datos.SeterParametros("@IdMesa", idMesa);
+                datos.SeterParametros("@Estado", 1);  // Estado 1 representa "Abierto"
+
+                // Ejecutar la consulta e identificar el nuevo IdPedido generado
+                datos.ejecutarLectura();
+                datos.Lector.Read();
+                int idPedido = Convert.ToInt32(datos.Lector["IdPedido"]);
+                datos.CerrarConexion();
+
+                // Retornar el IdPedido generado
+                return idPedido;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear el pedido: " + ex.Message);
+            }
+        }
+
+        //public int CrearPedido(DateTime fechaHora, decimal totalPedido, int idMesa)
+        //{
+        //    try
+        //    {
+        //        datos.setearProcedimiento("SP_CrearPedido");
+        //        datos.SeterParametros("@FechaHoraGenerado", fechaHora);
+        //        datos.SeterParametros("@Total", totalPedido);
+        //        datos.SeterParametros("@IdMesa", idMesa);
+        //        datos.SeterParametros("@Estado", 1);  // Estado 1 representa "Abierto"
+        //        datos.EjecutarAccion();
+
+        //        // Obtener el IdPedido generado
+        //        datos.SetearConsulta("SELECT SCOPE_IDENTITY()");
+
+        //        datos.Lector.Read();
+        //        int idPedido = Convert.ToInt32(datos.Lector["IdPedido"]);
+        //        datos.CerrarConexion();
+
+        //        return idPedido;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Error al crear el pedido: " + ex.Message);
+        //    }
+        //}
+
 
         // Método para obtener los ítems de un pedido
         public List<ItemPedido> ObtenerItemsDePedido(int idMesa)
