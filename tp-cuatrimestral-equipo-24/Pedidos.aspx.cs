@@ -13,6 +13,7 @@ namespace tp_cuatrimestral_equipo_24
         private PedidoNegocio pedidoNegocio = new PedidoNegocio();
         private InsumosNegocio insumoNegocio = new InsumosNegocio();
         private MesaNegocio mesaNegocio = new MesaNegocio();
+        private AccesoDatos datos = new AccesoDatos();
 
         private List<Insumo> listaInsumos
         {
@@ -206,6 +207,7 @@ namespace tp_cuatrimestral_equipo_24
                     var totalPedido = listaPedidos.Sum(p => p.ObtenerTotal());
 
                     // Crear un nuevo pedido y obtener su ID
+                    datos.LimpiarParametros(); // Limpiar antes de crear el pedido
                     int idPedido = pedidoNegocio.CrearPedido(fechaHora, totalPedido, idMesa);
                     if (idPedido <= 0)
                     {
@@ -215,10 +217,12 @@ namespace tp_cuatrimestral_equipo_24
                     // Agregar los ítems al pedido
                     foreach (var item in listaPedidos)
                     {
+                        datos.LimpiarParametros(); // Limpiar antes de agregar cada ítem
                         pedidoNegocio.AgregarItemPedido(idPedido, item.IdInsumo, item.Cantidad, item.PrecioUnitario);
                     }
 
                     // Cerrar el pedido
+                    datos.LimpiarParametros(); // Limpiar antes de cerrar el pedido
                     pedidoNegocio.CerrarPedido(idPedido);
 
                     // Cerrar la mesa
@@ -244,7 +248,6 @@ namespace tp_cuatrimestral_equipo_24
                 ErrorMessage.Text = "No hay pedidos para cerrar.";
             }
         }
-
 
 
 

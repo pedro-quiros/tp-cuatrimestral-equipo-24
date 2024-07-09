@@ -228,6 +228,7 @@ namespace Negocio
             try
             {
                 string consulta = "UPDATE Pedido SET Estado = 1 WHERE IdPedido = @IdPedido";
+                datos.LimpiarParametros(); // Limpiar los parámetros antes de usarlos
                 datos.SetearConsulta(consulta);
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.EjecutarAccion();
