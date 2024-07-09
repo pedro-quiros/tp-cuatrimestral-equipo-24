@@ -222,7 +222,6 @@ namespace tp_cuatrimestral_equipo_24
                     pedidoNegocio.CerrarPedido(idPedido);
 
                     // Cerrar la mesa
-                    MesaNegocio mesaNegocio = new MesaNegocio();
                     mesaNegocio.CerrarMesa(idMesa);  // Llamamos al método para cerrar la mesa
 
                     // Limpiar sesión
@@ -245,6 +244,7 @@ namespace tp_cuatrimestral_equipo_24
                 ErrorMessage.Text = "No hay pedidos para cerrar.";
             }
         }
+
 
 
 
