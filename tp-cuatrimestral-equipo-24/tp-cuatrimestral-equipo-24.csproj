@@ -68,6 +68,7 @@
     <Content Include="AgregarInsumo.aspx" />
     <Content Include="Configuracion.aspx" />
     <Content Include="Delivery.aspx" />
+    <Content Include="Detalle_Reseñas.aspx" />
     <Content Include="EstilosFiltrar.css" />
     <Content Include="Estilos.css" />
     <Content Include="Estilos2.css" />
@@ -113,6 +114,13 @@
     </Compile>
     <Compile Include="Delivery.aspx.designer.cs">
       <DependentUpon>Delivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Detalle_Reseñas.aspx.cs">
+      <DependentUpon>Detalle_Reseñas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Detalle_Reseñas.aspx.designer.cs">
+      <DependentUpon>Detalle_Reseñas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

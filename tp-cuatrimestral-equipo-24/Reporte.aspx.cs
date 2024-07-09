@@ -60,5 +60,10 @@ namespace tp_cuatrimestral_equipo_24
             }
 
         }
+
+        protected void txtReseña_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Detalle_Reseñas.aspx");
+        }
     }
 }

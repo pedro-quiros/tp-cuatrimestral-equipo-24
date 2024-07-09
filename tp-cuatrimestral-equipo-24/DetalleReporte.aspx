@@ -8,8 +8,6 @@
     <div class="detalle-articulo">
         <h1>REPORTE POR MESA</h1>
 
-
-
         <div class="container text-center">
             <div class="row">
                 <div class="col order-last">

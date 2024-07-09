@@ -11,34 +11,34 @@ namespace tp_cuatrimestral_equipo_24
 {
 
 
-    public partial class Reportes1
+    public partial class Detalle_Reseñas
     {
 
         /// <summary>
-        /// Control LblTipo.
+        /// Control idRep.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTipo;
+        protected global::System.Web.UI.WebControls.Repeater idRep;
 
         /// <summary>
-        /// Control ddlReportesFiltro.
+        /// Control lblPositivas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlReportesFiltro;
+        protected global::System.Web.UI.WebControls.Label lblPositivas;
 
         /// <summary>
-        /// Control txtReseña.
+        /// Control lblNegativas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button txtReseña;
+        protected global::System.Web.UI.WebControls.Label lblNegativas;
     }
 }

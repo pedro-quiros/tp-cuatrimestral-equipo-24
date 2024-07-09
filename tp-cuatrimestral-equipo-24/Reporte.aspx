@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="EstilosTarjetas.css" rel="stylesheet" />
     <link href="EstilosFiltrar.css" rel="stylesheet" />
+    <link href="Estilos2.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p class="title">Reportes</p>
@@ -18,8 +19,18 @@
         </asp:DropDownList>
     </div>
 
+    <div class="title">
+        <h2>RESEÑAS DEL <span>RESTAURANTE</span>, BYTES Y BOCADOS</h2>
+    </div>
+    <div class="mb-3 row">
+        <asp:Button ID="txtReseña" runat="server" CssClass="" Text="Ver" OnClick="txtReseña_Click" />
+    </div>
 
-<%--    <section class="body-def">
+
+
+
+
+    <%--    <section class="body-def">
         <div class="contenedor-card">
             <asp:Repeater runat="server" ID="idRep">
                 <ItemTemplate>
@@ -34,12 +45,11 @@
                             <%--                        <div class="mt-auto d-flex justify-content-around">
                             <asp:Button CssClass="btn-primary" Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
                         </div>--%>
-<%--                        </div>
+    <%--                        </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
 
         </div>
     </section>--%>
-
 </asp:Content>
