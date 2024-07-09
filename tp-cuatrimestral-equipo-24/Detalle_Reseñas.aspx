@@ -13,46 +13,49 @@
                     Email
                 </div>
                 <div class="col">
+                    Fecha
+                </div>
+                <div class="col order-first">
                     Mensaje
                 </div>
                 <div class="col order-first">
                     Puntaje
                 </div>
-                <div class="col order-first">
-                    Fecha
-                </div>
             </div>
-        </div>
 
-        <asp:Repeater runat="server" ID="idRep">
-            <ItemTemplate>
-                <table class="table table-bordered">
-                    <div class="container text-center">
-                        <div class="row">
-                            <div class="col order-last">
-                                <p><%# Eval("Email") %></p>
-                            </div>
-                            <div class="col order-first">
-                                <p><%# Eval("mensaje") %></p>
-                            </div>
-                            <div class="col">
-                                <p><%# Eval("Puntaje") %></p>
-                            </div>
-                            <div class="col">
-                                <p><%# Eval("Fecha") %></p>
-                            </div>
+
+    <asp:Repeater runat="server" ID="idRep">
+        <ItemTemplate>
+            <table class="table table-bordered">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col order-last">
+                            <p><%# Eval("Email") %></p>
+                        </div>
+                        <div class="col">
+                            <p><%# Eval("Puntaje") %></p>
+                        </div>
+                        <div class="col">
+                            <p><%# Eval("Fecha") %></p>
+                        </div>
+                        <div class="col order-first">
+                            <p><%# Eval("mensaje") %></p>
                         </div>
                     </div>
-                </table>
-            </ItemTemplate>
-        </asp:Repeater>
+                </div>
+            </table>
+        </ItemTemplate>
+    </asp:Repeater>
+    </div>
 
-        <%-- Contador Neg y Pos --%>
-        <div class="container text-center mt-4">
-            <div class="alert alert-info">
-                <h4>Contador de Reseñas</h4>
-                <p>Positivas: <asp:Label runat="server" ID="lblPositivas"></asp:Label></p>
-                <p>Negativas: <asp:Label runat="server" ID="lblNegativas"></asp:Label></p>
-            </div>
+    <%-- Contador Neg y Pos --%>
+    <div class="container text-center mt-4">
+        <div class="alert alert-info">
+            <h4>Contador de Reseñas</h4>
+            <p>Positivas:
+                <asp:Label runat="server" ID="lblPositivas"></asp:Label></p>
+            <p>Negativas:
+                <asp:Label runat="server" ID="lblNegativas"></asp:Label></p>
         </div>
+    </div>
 </asp:Content>
