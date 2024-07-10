@@ -23,8 +23,8 @@
         <h2>RESEÑAS DEL RESTAURANTE </h2>
     </div>
 
-    <div class="mb-3 row text-center">
-        <asp:Button ID="txtReseña" runat="server" CssClass="Ver" Text="Ver" OnClick="txtReseña_Click" />
+    <div class="mb-3 row">
+        <asp:Button ID="txtReseña" runat="server" CssClass="btn btn-outline-primary" Text="Ver" OnClick="txtReseña_Click" />
     </div>
 
 </asp:Content>

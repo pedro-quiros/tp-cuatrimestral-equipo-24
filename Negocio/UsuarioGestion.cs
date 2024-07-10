@@ -39,7 +39,7 @@ namespace Negocio
                         aux.Nacimiento = DateTime.Parse(datos.Lector["FechaNacimiento"].ToString());
 
                         aux.Genero = datos.Lector["Genero"].ToString();
-                        aux.Domicilio = datos.Lector["Domicilio"].ToString();
+                        aux.Domicilio = datos.Lector["Domicilio"].ToString(); 
 
                     }
                     catch (InvalidCastException ex)
