@@ -1,0 +1,19 @@
+﻿/* Botón Ver */
+.Ver {
+    display: inline-block;
+    text-decoration: none; /* No necesario para botones, pero no hace daño */
+    color: #ffffff;
+    background-color: #0a8c64; /* Color de fondo inicial */
+    border-radius: 15px; /* Reducción del borde redondeado */
+    border: 1px solid #0a8c64;
+    padding: 10px 20px; /* Ajuste del padding para tamaño más pequeño */
+    margin-top: 20px;
+    transition: .5s;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+    .Ver:hover {
+        background-color: #065f45;
+        border-color: #065f45;
+        color: #fff;
+    }
