@@ -18,12 +18,12 @@
             <input type="text" class="form-control" id="txtUsuario" runat="server" />
         </div>
 
-                <div class="form-group">
+        <div class="form-group">
             <asp:Label ID="lblClave" runat="server" Text="Password:" CssClass="control-label"></asp:Label>
             <input type="text" class="form-control" id="txtClave" runat="server" />
         </div>
 
-                <div class="form-group">
+        <div class="form-group">
             <asp:Label ID="lblPuesto" runat="server" Text="Puesto:" CssClass="control-label"></asp:Label>
             <input type="text" class="form-control" id="txtPuesto" runat="server" />
         </div>
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-           <input type="text" class="form-control" id="txtNombrePersonal" runat="server" />
+            <input type="text" class="form-control" id="txtNombrePersonal" runat="server" />
         </div>
 
         <div class="form-group">
@@ -43,14 +43,14 @@
             <input type="text" class="form-control" id="txtApellido" runat="server" />
         </div>
 
-<div class="form-group">
-    <asp:Label ID="lblDni" runat="server" Text="DNI:" CssClass="control-label"></asp:Label>
-    <input type="text" class="form-control" id="txtDni" runat="server" />
-</div>
+        <div class="form-group">
+            <asp:Label ID="lblDni" runat="server" Text="DNI:" CssClass="control-label"></asp:Label>
+            <input type="text" class="form-control" id="txtDni" runat="server" />
+        </div>
 
         <div class="form-group">
             <asp:Label ID="LblNacimineto" runat="server" Text="Fecha de Nacimiento:" CssClass="control-label"></asp:Label>
-            <asp:TextBox ID="txtNacimiento" runat="server" CssClass="form-control" textMode="Date"></asp:TextBox>
+            <asp:TextBox ID="txtNacimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             <%--<input type="text" class="form-control" id="txtNacimiento" textMode="Date" runat="server" />--%>
         </div>
 

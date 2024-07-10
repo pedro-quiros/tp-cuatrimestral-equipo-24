@@ -85,6 +85,7 @@
     <Content Include="DetalleInsumo.aspx" />
     <Content Include="ModificarPersonal.aspx" />
     <Content Include="Pedidos.aspx" />
+    <Content Include="RegistroLogin.aspx" />
     <Content Include="Reporte.aspx" />
     <Content Include="Salon.aspx" />
     <Content Include="Soporte.aspx" />
@@ -169,6 +170,13 @@
       <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistroLogin.aspx.cs">
+      <DependentUpon>RegistroLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroLogin.aspx.designer.cs">
+      <DependentUpon>RegistroLogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reporte.aspx.cs">
       <DependentUpon>Reporte.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

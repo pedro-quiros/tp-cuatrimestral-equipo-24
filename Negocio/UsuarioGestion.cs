@@ -190,6 +190,28 @@ namespace Negocio
             }
 
         }
+        public void AgregarUsuarioLogin(Usuario usuario)
+        {
+            AccesoDatos Datos = new AccesoDatos();
+            try
+            {
+                Datos.setearProcedimiento("InsertarusuarioLogin");
+                Datos.SeterParametros("@Email", usuario.Email);
+                Datos.SeterParametros("@NombreUsuario", usuario.NombreUsuario);
+                Datos.SeterParametros("@Clave", usuario.Clave);
+                
+
+                Datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al Agregar el usuario: " + ex.Message, ex);
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
 
     }
 }
