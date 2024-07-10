@@ -34,7 +34,10 @@ namespace Negocio
                         aux.Email = datos.Lector["Email"].ToString();
                         aux.Dni = Convert.ToInt32(datos.Lector["Dni"]);
                         aux.Telefono = Convert.ToInt32(datos.Lector["Telefono"]);
-                        aux.Nacimiento = Convert.ToDateTime(datos.Lector["FechaNacimiento"]);
+
+                        if (!(datos.Lector["FechaNacimiento"] is DBNull))
+                        aux.Nacimiento = DateTime.Parse(datos.Lector["FechaNacimiento"].ToString());
+
                         aux.Genero = datos.Lector["Genero"].ToString();
                         aux.Domicilio = datos.Lector["Domicilio"].ToString();
 
@@ -132,7 +135,7 @@ namespace Negocio
             AccesoDatos Datos = new AccesoDatos();
             try
             {
-                //, Puesto = @Puesto
+                
                 Datos.SetearConsulta("Update Usuario2 set NombreUsuario = @NombreUsuario,Legajo=@Legajo,DNI=@DNI,Nombre=@Nombre ,Apellido = @Apellido,FechaNacimiento=@Nacimiento,genero=@genero,telefono=@Telefono,Email=@Email,domicilio=@domicilio WHERE IdUsuario = @IdUsuario");
 
                 Datos.SeterParametros("@IdUsuario", usuario.Id);

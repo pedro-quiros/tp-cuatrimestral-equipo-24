@@ -50,7 +50,8 @@
 
         <div class="form-group">
             <asp:Label ID="LblNacimineto" runat="server" Text="Fecha de Nacimiento:" CssClass="control-label"></asp:Label>
-            <input type="text" class="form-control" id="txtNacimiento" runat="server" />
+            <asp:TextBox ID="txtNacimiento" runat="server" CssClass="form-control" textMode="Date"></asp:TextBox>
+            <%--<input type="text" class="form-control" id="txtNacimiento" textMode="Date" runat="server" />--%>
         </div>
 
         <div class="form-group">

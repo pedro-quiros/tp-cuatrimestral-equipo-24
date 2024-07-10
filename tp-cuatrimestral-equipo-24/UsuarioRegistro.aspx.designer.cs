@@ -174,7 +174,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNacimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtNacimiento;
 
         /// <summary>
         /// Control lblgenero.
