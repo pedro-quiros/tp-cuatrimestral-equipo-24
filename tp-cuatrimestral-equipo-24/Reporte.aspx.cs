@@ -11,6 +11,7 @@ namespace tp_cuatrimestral_equipo_24
 {
     public partial class Reportes1 : System.Web.UI.Page
     {
+        public string Parametro;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -29,12 +30,13 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void ddlReportesFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnMesa.Visible = true;
+            btnMesero.Visible = true;
             string Tipo = ddlReportesFiltro.Text;
             List<Pedido> lista = new List<Pedido>();
             DateTime fechaActual = DateTime.Now;
             int mesActual = DateTime.Now.Month;
 
-            string Parametro;
             if (Session["Pedido"] != null)
             {
                 lista = (List<Pedido>)Session["Pedido"];
@@ -45,18 +47,18 @@ namespace tp_cuatrimestral_equipo_24
             {
                 case "Hoy":
                     Parametro = "Hoy";
-                    Response.Redirect("DetalleReporte.aspx?Parametro=" + Parametro, false);
-                break;
+                    //Response.Redirect("ReporteMesa.aspx?Parametro=" + Parametro, false);
+                    break;
 
                 case "Este mes":
                     Parametro = "Este mes";
-                    Response.Redirect("DetalleReporte.aspx?Parametro=" + Parametro, false);
-                break;
+                    //Response.Redirect("ReporteMesa.aspx?Parametro=" + Parametro, false);
+                    break;
 
                 case "Este año":
                     Parametro = "Este año";
-                    Response.Redirect("DetalleReporte.aspx?Parametro=" + Parametro, false);
-                break;
+                    //Response.Redirect("ReporteMesa.aspx?Parametro=" + Parametro, false);
+                    break;
             }
 
         }
@@ -64,6 +66,22 @@ namespace tp_cuatrimestral_equipo_24
         protected void txtReseña_Click(object sender, EventArgs e)
         {
             Response.Redirect("Detalle_Reseñas.aspx");
+        }
+
+        protected void btnMesa_Click(object sender, EventArgs e)
+        {
+            DateTime fechaActual = DateTime.Now;
+            int mesActual = DateTime.Now.Month;
+
+            Response.Redirect("ReporteMesa.aspx?Parametro=" + ddlReportesFiltro.Text, false);
+        }
+
+        protected void btnMesero_Click(object sender, EventArgs e)
+        {
+            DateTime fechaActual = DateTime.Now;
+            int mesActual = DateTime.Now.Month;
+
+            Response.Redirect("ReporteMesero.aspx?Parametro=" + ddlReportesFiltro.Text, false);
         }
     }
 }
