@@ -64,11 +64,10 @@ namespace tp_cuatrimestral_equipo_24
                 UsuarioGestion gestionUsuario = new UsuarioGestion();
 
                 gestionUsuario.AgregarUsuarioLogin(usuario);
-                Response.Redirect("Home.aspx", false);
+                Response.Redirect("Default.aspx", false);
             }
             catch (Exception ex)
             {
-
                 Session.Add("Error", ex);
             }
 

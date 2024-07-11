@@ -11,10 +11,13 @@ namespace tp_cuatrimestral_equipo_24
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Error"]!= null)
+
+            if (Session["Error"] != null)
             {
                 lblmenssaje.Text = Session["Error"].ToString();
             }
+            Session["Error"] = null;
+
 
         }
 
