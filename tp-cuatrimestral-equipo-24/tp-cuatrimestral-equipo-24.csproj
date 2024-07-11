@@ -87,13 +87,14 @@
     <Content Include="Pedidos.aspx" />
     <Content Include="RegistroLogin.aspx" />
     <Content Include="Reporte.aspx" />
+    <Content Include="ReporteMesero.aspx" />
     <Content Include="Salon.aspx" />
     <Content Include="Soporte.aspx" />
     <Content Include="UsuarioRegistro.aspx" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
-    <Content Include="DetalleReporte.aspx" />
+    <Content Include="ReporteMesa.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgregarInsumo.aspx.cs">
@@ -184,6 +185,13 @@
     <Compile Include="Reporte.aspx.designer.cs">
       <DependentUpon>Reporte.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ReporteMesero.aspx.cs">
+      <DependentUpon>ReporteMesero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteMesero.aspx.designer.cs">
+      <DependentUpon>ReporteMesero.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Salon.aspx.cs">
       <DependentUpon>Salon.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -219,12 +227,12 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DetalleReporte.aspx.cs">
-      <DependentUpon>DetalleReporte.aspx</DependentUpon>
+    <Compile Include="ReporteMesa.aspx.cs">
+      <DependentUpon>ReporteMesa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DetalleReporte.aspx.designer.cs">
-      <DependentUpon>DetalleReporte.aspx</DependentUpon>
+    <Compile Include="ReporteMesa.aspx.designer.cs">
+      <DependentUpon>ReporteMesa.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

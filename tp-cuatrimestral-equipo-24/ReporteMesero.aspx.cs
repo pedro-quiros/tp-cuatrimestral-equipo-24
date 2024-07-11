@@ -9,13 +9,13 @@ using System.Web.UI.WebControls;
 
 namespace tp_cuatrimestral_equipo_24
 {
-    public partial class WebForm3 : System.Web.UI.Page
+    public partial class ReporteMesero : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             List<Reporte> listaReporte = new List<Reporte>();
             ReporteNegocio negocio = new ReporteNegocio();
-            listaReporte = negocio.ListarParaReporte();
+            listaReporte = negocio.ListarPorMesero();
             Reporte r = new Reporte();
 
             DateTime fechaActual = DateTime.Now.Date;
@@ -35,15 +35,12 @@ namespace tp_cuatrimestral_equipo_24
                             r = new Reporte();
                             if (item.FechaHoraGenerado.Date == fechaActual)
                             {
-                                r.CantidadPedidos = item.CantidadPedidos;
-                                r.IdMesa = item.IdMesa;
-                                r.IdMesero = item.IdMesero;
                                 r.NombreApellidoMesero = item.NombreApellidoMesero;
-                                r.NumeroMesa = item.NumeroMesa;
-                                r.Precio = item.Precio;
+                                r.IdMesero = item.IdMesero;
+                                r.NumeroMesaParaMesero = item.NumeroMesaParaMesero;
                                 r.FechaHoraGenerado = item.FechaHoraGenerado;
-                                r.Reseña = "hola";
-                                r.PuntajeReseña = 1;
+                                r.Precio = item.Precio;
+                                r.CantidadPedidos = item.CantidadPedidos;
                                 reportes.Add(r);
                             }
                         }
@@ -55,19 +52,16 @@ namespace tp_cuatrimestral_equipo_24
                             r = new Reporte();
                             if (item.FechaHoraGenerado.Month == DateTime.Now.Month)
                             {
-                                r.CantidadPedidos = item.CantidadPedidos;
-                                r.IdMesa = item.IdMesa;
-                                r.IdMesero = item.IdMesero;
                                 r.NombreApellidoMesero = item.NombreApellidoMesero;
-                                r.NumeroMesa = item.NumeroMesa;
-                                r.Precio = item.Precio;
+                                r.IdMesero = item.IdMesero;
+                                r.NumeroMesaParaMesero = item.NumeroMesaParaMesero;
                                 r.FechaHoraGenerado = item.FechaHoraGenerado;
-                                r.Reseña = "hola";
-                                r.PuntajeReseña = 1;
+                                r.Precio = item.Precio;
+                                r.CantidadPedidos = item.CantidadPedidos;
                                 reportes.Add(r);
                             }
                         }
-                        break;
+                    break;
 
                     case "Este año":
                         foreach (var item in listaReporte)
@@ -75,25 +69,19 @@ namespace tp_cuatrimestral_equipo_24
                             r = new Reporte();
                             if (item.FechaHoraGenerado.Year == DateTime.Now.Year)
                             {
-                                r.CantidadPedidos = item.CantidadPedidos;
-                                r.IdMesa = item.IdMesa;
-                                r.IdMesero = item.IdMesero;
                                 r.NombreApellidoMesero = item.NombreApellidoMesero;
-                                r.NumeroMesa = item.NumeroMesa;
-                                r.Precio = item.Precio;
+                                r.IdMesero = item.IdMesero;
+                                r.NumeroMesaParaMesero = item.NumeroMesaParaMesero;
                                 r.FechaHoraGenerado = item.FechaHoraGenerado;
-                                r.Reseña = "hola";
-                                r.PuntajeReseña = 1;
+                                r.Precio = item.Precio;
+                                r.CantidadPedidos = item.CantidadPedidos;
                                 reportes.Add(r);
                             }
                         }
-                        break;
+                    break;
                 }
 
-                Session["Reportes"] = listaReporte;
-
-
-
+                Session["ReportesMesero"] = listaReporte;
 
                 idRep.DataSource = reportes;
                 idRep.DataBind();
