@@ -34,8 +34,8 @@
                 </div>
                 <div class="mb-3 row">
                     <asp:Button ID="txtIngresar" runat="server" CssClass="Ingresar" Text="Iniciar Sesión" OnClick="btnIngresar_Click" />
-                    <asp:Button ID="txtRegistrarse" runat="server" CssClass="Ingresar" Text="Registrarse" OnClick="txtRegistrarse_Click" />
-               
+                    <asp:Button ID="btnRegistrarse" runat="server" CssClass="Ingresar" Text="Registrarse" OnClick="btnRegistrarse_Click"  />
+                   
                </div>
                <asp:Button ID="txtRecupPass" runat="server" CssClass="Ingresar" Text="Soporte" OnClick="btnRecuperarPass_Click" />
              </div>

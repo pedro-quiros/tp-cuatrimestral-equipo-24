@@ -53,9 +53,10 @@ namespace tp_cuatrimestral_equipo_24
             Response.Redirect("Soporte.aspx");
         }
 
-        protected void txtRegistrarse_Click(object sender, EventArgs e)
+        protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
             Response.Redirect("RegistroLogin.aspx");
         }
     }
 }
+

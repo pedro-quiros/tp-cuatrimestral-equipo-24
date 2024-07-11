@@ -164,6 +164,7 @@ namespace tp_cuatrimestral_equipo_24
 
                     nuevoUsuario.Id = int.Parse(txtId.Text);
                     nuevoUsuario.NombreUsuario = txtUsuario.Value;
+                    nuevoUsuario.Clave = txtClave.Value;    
                     nuevoUsuario.Puesto = int.Parse(txtPuesto.Value);
                     nuevoUsuario.Legajo = int.Parse(txtLegajo.Value);
                     nuevoUsuario.Dni = int.Parse(txtDni.Value);

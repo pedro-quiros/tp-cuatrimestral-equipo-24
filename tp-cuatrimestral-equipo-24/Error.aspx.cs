@@ -20,7 +20,7 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void txtvolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Defalut.aspx");
+            Response.Redirect("RegistroLogin.aspx");
         }
     }
 }

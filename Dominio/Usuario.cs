@@ -37,8 +37,6 @@ namespace Dominio
         public string Domicilio { get; set; }
 
 
-
-
         public Usuario() 
         {
             Id = 0;
