@@ -3,10 +3,12 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace tp_cuatrimestral_equipo_24
 {
@@ -39,6 +41,17 @@ namespace tp_cuatrimestral_equipo_24
                 usuario.Email = txtEmail.Text;
                 usuario.NombreUsuario = txtUsuario.Text;
                 usuario.Clave = txtPassword.Text;
+                usuario.Puesto = int.Parse(txtpuesto.Text);
+                usuario.Activo = true;
+                usuario.Dni = int.Parse(txtdni.Text);
+                usuario.Nombre= txtNombre.Text;
+                usuario.Apellido = txtApellido.Text;
+                usuario.Nacimiento = DateTime.Parse((txtnacimiento.Text));
+                usuario.Genero = ddlGenero.Value;
+                usuario.Telefono = int.Parse(txttelefono.Text);
+                usuario.Domicilio = txtdomicilio.Text;                            
+
+                
 
                 UsuarioGestion gestionUsuario = new UsuarioGestion();
 
