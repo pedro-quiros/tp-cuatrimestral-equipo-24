@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
     <section id="inicio">
 
-        <div>1 es em
+        <div>
             <div class="presentacion">
                 <p class="bienvenida">Bienvenidos</p>
                 <h2>AL <span>RESTAURANTE</span>, BYTES Y BOCADOS</h2>

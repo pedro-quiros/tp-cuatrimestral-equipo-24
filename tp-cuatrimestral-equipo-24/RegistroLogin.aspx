@@ -22,7 +22,10 @@
 
             <div class="mb-3">
                 <label class="form-label">Puesto:</label>
-                <asp:TextBox ID="txtpuesto" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:DropDownList runat="server" ID="ddlPuesto" CssClass="form-select">
+                    <asp:ListItem Text="Empleado" />
+                    <asp:ListItem Text="Gerente" />
+                </asp:DropDownList>
             </div>
             <%--<div class="mb-3">
                 <label class="form-label">Activo</label>
@@ -48,12 +51,13 @@
             <div class="form-group">
                 <asp:Label ID="lblgenero" runat="server" Text="Género:" CssClass="form-label"></asp:Label>
                 <div class="col-sm-10">
-                    <select class="form-select" id="ddlGenero" runat="server" cssclass="form-control">
-                        <option selected>Seleccione una opción</option>
-                        <option value="1">Hombre</option>
-                        <option value="2">Mujer</option>
-                        <option value="3">Otro</option>
-                    </select>
+                    <div class="col-sm-10">
+                        <asp:DropDownList ID="ddlGenero" runat="server" CssClass="form-select">
+                            <asp:ListItem Text="Hombre" />
+                            <asp:ListItem Text="Mujer" />
+                            <asp:ListItem Text="Otro" />
+                        </asp:DropDownList>
+                    </div>
                 </div>
             </div>
 

@@ -44,7 +44,15 @@ namespace tp_cuatrimestral_equipo_24
                         {
                             txtId.Text = usu.Id.ToString();
                             txtUsuario.Value = usu.NombreUsuario;
-                            txtPuesto.Value = usu.Puesto.ToString();
+                            switch (usu.Puesto)
+                            {
+                                case 1:
+                                    ddlPuesto.Text = "Empleado";
+                                    break;
+                                case 2:
+                                    ddlPuesto.Text = "Gerente";
+                                    break;
+                            }
                             txtLegajo.Value = usu.Legajo.ToString();
                             txtNombrePersonal.Value = usu.Nombre;
                             txtApellido.Value = usu.Apellido;
@@ -52,7 +60,7 @@ namespace tp_cuatrimestral_equipo_24
                             txtEmail.Value = usu.Email;
                             txtDomicilio.Value = usu.Domicilio;
                             txtNacimiento.Text = usu.Nacimiento.ToString("yyyy-MM-dd");
-                            ddlGenero.Value = usu.Genero;
+                            ddlGenero.Text = usu.Genero;
                             txtTelefono.Value = usu.Telefono.ToString();
 
                             txtDni.Value = usu.Dni.ToString();
@@ -150,10 +158,10 @@ namespace tp_cuatrimestral_equipo_24
                 {
                     Response.Write("<script>alert('Ingresar solo numeros en el telefono');</script>");
                 }
-                if (Regex.IsMatch(txtPuesto.Value, @"\D"))
-                {
-                    Response.Write("<script>alert('Ingresar solo un numero en el Puesto');</script>");
-                }
+                //if (Regex.IsMatch(txtPuesto.Value, @"\D"))
+                //{
+                //    Response.Write("<script>alert('Ingresar solo un numero en el Puesto');</script>");
+                //}
                 if (Regex.IsMatch(txtDni.Value, @"\D"))
                 {
                     Response.Write("<script>alert('Ingresar solo numeros en el DNI');</script>");
@@ -162,21 +170,30 @@ namespace tp_cuatrimestral_equipo_24
 
                 Usuario nuevoUsuario = new Usuario();
 
-                    nuevoUsuario.Id = int.Parse(txtId.Text);
-                    nuevoUsuario.NombreUsuario = txtUsuario.Value;
-                    nuevoUsuario.Clave = txtClave.Value;    
-                    nuevoUsuario.Puesto = int.Parse(txtPuesto.Value);
-                    nuevoUsuario.Legajo = int.Parse(txtLegajo.Value);
-                    nuevoUsuario.Dni = int.Parse(txtDni.Value);
-                    nuevoUsuario.Nombre = txtNombrePersonal.Value;
-                    nuevoUsuario.Apellido = txtApellido.Value;
-                    nuevoUsuario.Nacimiento = DateTime.Parse((txtNacimiento.Text));
-                    nuevoUsuario.Genero = ddlGenero.Value;
-                    nuevoUsuario.Telefono = int.Parse(txtTelefono.Value);
-                    nuevoUsuario.Email = txtEmail.Value;
-                    nuevoUsuario.Domicilio = txtDomicilio.Value;
+                nuevoUsuario.Id = int.Parse(txtId.Text);
+                nuevoUsuario.NombreUsuario = txtUsuario.Value;
+                nuevoUsuario.Clave = txtClave.Value;
+                switch (ddlPuesto.Text)
+                {
+                    case "Empleado":
+                        nuevoUsuario.Puesto = 1;
+                    break;
+                    case "Gerente":
+                        nuevoUsuario.Puesto = 2;                        
+                    break;
+                }
 
-                    UsuarioGestion gestionUsuario = new UsuarioGestion();
+                nuevoUsuario.Legajo = int.Parse(txtLegajo.Value);
+                nuevoUsuario.Dni = int.Parse(txtDni.Value);
+                nuevoUsuario.Nombre = txtNombrePersonal.Value;
+                nuevoUsuario.Apellido = txtApellido.Value;
+                nuevoUsuario.Nacimiento = DateTime.Parse((txtNacimiento.Text));
+                nuevoUsuario.Genero = ddlGenero.Text;
+                nuevoUsuario.Telefono = int.Parse(txtTelefono.Value);
+                nuevoUsuario.Email = txtEmail.Value;
+                nuevoUsuario.Domicilio = txtDomicilio.Value;
+
+                UsuarioGestion gestionUsuario = new UsuarioGestion();
                 if (Regex.IsMatch(txtNombrePersonal.Value, @"^[a-zA-Z]+$") && Regex.IsMatch(txtApellido.Value, @"^[a-zA-Z]+$"))
                 {
                     gestionUsuario.ModificarUsuario(nuevoUsuario);
@@ -190,11 +207,11 @@ namespace tp_cuatrimestral_equipo_24
                 }
 
                 // Redirigir a otra página o mostrar un mensaje de éxito
-                }
-                catch (Exception ex)
-                {
-                    Session.Add("error", ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -226,33 +243,47 @@ namespace tp_cuatrimestral_equipo_24
                 {
                     Response.Write("<script>alert('Ingresar solo numeros en el telefono');</script>");
                 }
-                if (Regex.IsMatch(txtPuesto.Value, @"\D"))
-                {
-                    Response.Write("<script>alert('Ingresar solo un numero en el Puesto');</script>");
-                }
+                //if (Regex.IsMatch(txtPuesto.Value, @"\D"))
+                //{
+                //    Response.Write("<script>alert('Ingresar solo un numero en el Puesto');</script>");
+                //}
                 if (Regex.IsMatch(txtDni.Value, @"\D"))
                 {
                     Response.Write("<script>alert('Ingresar solo numeros en el DNI');</script>");
                 }
+
+                int Puesto = 0;
+
+                switch (ddlPuesto.Text)
+                {
+                    case "Empleado":
+                        Puesto = 1;
+                        break;
+                    case "Gerente":
+                        Puesto = 2;
+                        break;
+                }
+
                 Usuario nuevoUsuario = new Usuario
                 {
                     NombreUsuario = txtUsuario.Value,
                     Clave = txtClave.Value,
-                    Puesto = int.Parse(txtPuesto.Value),
+
+                    Puesto = Puesto,
                     Activo = true,
                     Legajo = int.Parse(txtLegajo.Value),
                     Dni = int.Parse(txtDni.Value),
                     Nombre = txtNombrePersonal.Value,
                     Apellido = txtApellido.Value,
                     Nacimiento = DateTime.Parse((txtNacimiento.Text)),
-                    Genero = ddlGenero.Value,
+                    Genero = ddlGenero.Text,
                     Telefono = int.Parse(txtTelefono.Value),
                     Email = txtEmail.Value,
                     Domicilio = txtDomicilio.Value
                 };
 
                 UsuarioGestion gestionUsuario = new UsuarioGestion();
-                if(Regex.IsMatch(txtNombrePersonal.Value, @"^[a-zA-Z]+$") && Regex.IsMatch(txtApellido.Value, @"^[a-zA-Z]+$"))
+                if (Regex.IsMatch(txtNombrePersonal.Value, @"^[a-zA-Z]+$") && Regex.IsMatch(txtApellido.Value, @"^[a-zA-Z]+$"))
                 {
                     gestionUsuario.AgregarUsuario(nuevoUsuario);
                     Response.Redirect("Home.aspx");

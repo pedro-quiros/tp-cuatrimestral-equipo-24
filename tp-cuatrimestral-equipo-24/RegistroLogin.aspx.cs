@@ -41,13 +41,21 @@ namespace tp_cuatrimestral_equipo_24
                 usuario.Email = txtEmail.Text;
                 usuario.NombreUsuario = txtUsuario.Text;
                 usuario.Clave = txtPassword.Text;
-                usuario.Puesto = int.Parse(txtpuesto.Text);
+                switch (ddlPuesto.Text)
+                {
+                    case "Empleado":
+                        usuario.Puesto = 1;
+                        break;
+                    case "Gerente":
+                        usuario.Puesto = 2;
+                        break;
+                }
                 usuario.Activo = true;
                 usuario.Dni = int.Parse(txtdni.Text);
                 usuario.Nombre= txtNombre.Text;
                 usuario.Apellido = txtApellido.Text;
                 usuario.Nacimiento = DateTime.Parse((txtnacimiento.Text));
-                usuario.Genero = ddlGenero.Value;
+                usuario.Genero = ddlGenero.Text;
                 usuario.Telefono = int.Parse(txttelefono.Text);
                 usuario.Domicilio = txtdomicilio.Text;                            
 
