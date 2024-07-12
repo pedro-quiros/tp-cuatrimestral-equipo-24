@@ -70,6 +70,7 @@
     <Content Include="Delivery.aspx" />
     <Content Include="Detalle_Reseñas.aspx" />
     <Content Include="EstiloHome.css" />
+    <Content Include="Estilopagos.css" />
     <Content Include="EstiloReg_Login.css" />
     <Content Include="Estiloreportes.css" />
     <Content Include="EstilosFiltrar.css" />
@@ -88,6 +89,7 @@
     <Content Include="Menu.aspx" />
     <Content Include="DetalleInsumo.aspx" />
     <Content Include="ModificarPersonal.aspx" />
+    <Content Include="Pagos.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="RegistroLogin.aspx" />
     <Content Include="Reporte.aspx" />
@@ -173,6 +175,13 @@
     </Compile>
     <Compile Include="ModificarPersonal.aspx.designer.cs">
       <DependentUpon>ModificarPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagos.aspx.cs">
+      <DependentUpon>Pagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagos.aspx.designer.cs">
+      <DependentUpon>Pagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedidos.aspx.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>
