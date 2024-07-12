@@ -11,11 +11,18 @@ namespace tp_cuatrimestral_equipo_24
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UsuarioSeleccionado"] == null)
+            if (!IsPostBack)
             {
-                Session.Add("Error","Debes loguearte para ingresar");
-                Response.Redirect("Error.aspx",false);
+                int P = Convert.ToInt32(Session["Puesto"]);
+                if (P == 1)
+                {
+                    aReportes.Attributes["href"] = "#";
+                    aReportes.Attributes["onclick"] = "alert('No tiene autorizacion'); return false;";
+                    aListadoUsuarios.Attributes["href"] = "#";
+                    aListadoUsuarios.Attributes["onclick"] = "alert('No tiene autorizacion'); return false;";
+                }
+
             }
-        } 
+        }
     }
 }

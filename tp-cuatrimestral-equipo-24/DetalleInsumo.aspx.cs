@@ -18,7 +18,12 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
-
+                int P = Convert.ToInt32(Session["Puesto"]);
+                if(P == 1)
+                {
+                    btnModificarInsumo.Visible = false;
+                    BajaAltaLogica.Visible = false;
+                }
                 Insumo seleccionado = new Insumo();
                 InsumosNegocio negocio = new InsumosNegocio();
                 List<Insumo> listaInsu = new List<Insumo>();

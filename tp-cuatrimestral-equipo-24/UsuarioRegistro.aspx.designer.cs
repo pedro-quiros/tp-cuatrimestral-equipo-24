@@ -69,22 +69,22 @@ namespace tp_cuatrimestral_equipo_24
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtClave;
 
         /// <summary>
-        /// Control lblPuesto.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPuesto;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control txtPuesto.
+        /// Control ddlPuesto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPuesto;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPuesto;
 
         /// <summary>
         /// Control lbllegajo.
@@ -174,7 +174,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNacimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtNacimiento;
 
         /// <summary>
         /// Control lblgenero.
@@ -192,7 +192,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlGenero;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGenero;
 
         /// <summary>
         /// Control lblTelefono.

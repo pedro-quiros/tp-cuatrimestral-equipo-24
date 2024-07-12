@@ -15,6 +15,15 @@ namespace tp_cuatrimestral_equipo_24
     {
 
         /// <summary>
+        /// Control lblErrorMessage.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblErrorMessage;
+
+        /// <summary>
         /// Control lblmenssaje.
         /// </summary>
         /// <remarks>
@@ -22,14 +31,5 @@ namespace tp_cuatrimestral_equipo_24
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmenssaje;
-
-        /// <summary>
-        /// Control txtvolver.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button txtvolver;
     }
 }

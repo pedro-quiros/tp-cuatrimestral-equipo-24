@@ -13,8 +13,10 @@ namespace tp_cuatrimestral_equipo_24
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            
+            if (Session["UsuarioSeleccionado"] != null)
+            {
+                Response.Redirect("RegistroLogin.aspx",false);
+            }
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
@@ -27,6 +29,10 @@ namespace tp_cuatrimestral_equipo_24
                 usuario.Clave = txtpassword.Text;
                 if (UsuGesti.Loguear(usuario))
                 {
+                    int Puesto = 0;
+                    Puesto = UsuGesti.BuscarPuesto(usuario);
+                    Session.Add("Puesto", Puesto);
+
                     Response.Write("<script>alert('Inicio de sesión exitoso.');</script>");
                     Session.Add("UsuarioSeleccionado", usuario);
                     Response.Redirect("Home.aspx",false);
@@ -52,5 +58,11 @@ namespace tp_cuatrimestral_equipo_24
 
             Response.Redirect("Soporte.aspx");
         }
+
+        protected void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RegistroLogin.aspx");
+        }
     }
 }
+

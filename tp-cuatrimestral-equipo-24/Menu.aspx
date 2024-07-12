@@ -40,11 +40,11 @@
                             <h3>$ <%# Eval("Precio") %></h3>
 
                             <div class="cta_tarjeta-rest">
-                                <a href='<%# "DetalleInsumo.aspx?IdInsumo=" + Eval("IdInsumo") %>'>Detalles</a>
+                                <a href='<%# "DetalleInsumo.aspx?IdInsumo=" + Eval("IdInsumo") %>'>Detalles</a>                             
                             </div>
-                            <div class="mt-auto d-flex justify-content-around">
+<%--                            <div class="mt-auto d-flex justify-content-around">
                                 <asp:Button CssClass="btn-primary" Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                 </ItemTemplate>

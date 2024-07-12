@@ -17,7 +17,7 @@
 
 
         <div class="navegador">
-            <a class="nav-brand" href="Home.aspx">[Bytes y Bocados]</a>
+            <a ID="aHome" runat="server" class="nav-brand" href="Home.aspx">[Bytes y Bocados]</a>
 
             <a class="logoNav" href="Home.aspx" title="Ir a la página de inicio">
                 <img src="img/icoHome.png" alt="ícono de la página de inicio" />
@@ -38,12 +38,11 @@
                 <img src="img/icoDelivery.png" alt="ícono de delivery" />
             </a>--%>
 
-            <a class="logoNav" href="Reporte.aspx" title="Reporte">
+            <a ID="aReportes" class="logoNav" href="Reporte.aspx" title="Reporte" runat="server">
                 <img src="img/icoReporte.png" alt="ícono de reportes" />
             </a>
 
-
-<%--            <a class="logoNav" href="UsuarioRegistro.aspx" title="Gestionar usuarios">
+            <a ID="aListadoUsuarios" runat="server" class="logoNav" href="ListadoUsuarios.aspx" title="Gestionar usuarios">
                 <img src="img/icoAgregarUsuario.png" alt="ícono de agregar usuario" />
             </a>--%>
             <a class="logoNav" href="Soporte.aspx" title="Soporte">

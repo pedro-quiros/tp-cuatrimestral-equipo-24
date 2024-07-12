@@ -9,6 +9,41 @@ namespace Negocio
 {
     public class ClientesGestion
     {
+        public List<Reseña> ListarParaReseña()
+        {
+            List<Reseña> lista = new List<Reseña>();
+            AccesoDatos datos = new AccesoDatos();
+           
+            try
+            {
+                string consulta = "select Email,mensaje,Puntaje,Fecha from Reseña";
+
+                datos.SetearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Reseña aux = new Reseña();
+                    aux.Email = datos.Lector["Email"].ToString();
+                    aux.mensaje = datos.Lector["mensaje"].ToString();
+                    aux.puntaje = (int)datos.Lector["Puntaje"];
+                    aux.Fecha = (DateTime)datos.Lector["Fecha"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+
+
         public void InsertarReseña(Reseña reseña)
         {
             AccesoDatos Datos = new AccesoDatos();
@@ -64,5 +99,6 @@ namespace Negocio
                 Datos.CerrarConexion();
             }
         }
+        
     }
 }

@@ -1,0 +1,51 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://previews.123rf.com/images/yupiramos/yupiramos1307/yupiramos130700939/20982775-restaurante-de-piel-sobre-fondo-de-color-rosa-ilustraci%C3%B3n-vectorial.jpg");
+    background-size: cover;
+    background-color: #f5f0f0b6; /* Color de fondo rojo claro */
+    color: #721c24; /* Color del texto rojo oscuro */
+    min-height: 100vh; /* Para que el cuerpo ocupe al menos toda la pantalla visible */
+    position: relative; /* Para que el footer se posicione correctamente */
+    font-size: 18px; /* Tamaño de fuente base */
+}
+
+h1 {
+    font-size: 3em; /* Tamaño de fuente del h1 */
+    margin: 20px 0; /* Espaciado alrededor del h1 */
+    text-align: center; /* Centrar el texto del h1 */
+}
+
+label, .asp-label {
+    font-size: 1.5em; /* Tamaño de fuente de la etiqueta */
+    display: block; /* Asegurar que la etiqueta ocupe toda la línea */
+    margin: 10px 0; /* Espaciado alrededor de la etiqueta */
+    text-align: center; /* Centrar el texto de la etiqueta */
+}
+
+#wrapper {
+    min-height: 100vh; /* Para que el wrapper ocupe al menos toda la pantalla visible */
+    display: flex;
+    flex-direction: column;
+}
+
+.error-container {
+    text-align: center;
+    padding: 50px;
+    margin: auto;
+    max-width: 600px;
+    background-color: #f8d7da;
+    border-radius: 10px;
+    margin-top: 50px; /* Espacio superior */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
