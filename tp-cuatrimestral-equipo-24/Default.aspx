@@ -39,7 +39,7 @@
                     <asp:Button ID="txtIngresar" runat="server" CssClass="Ingresar" Text="Iniciar Sesión" OnClick="btnIngresar_Click" />
                     <asp:Button ID="btnRegistrarse" runat="server" CssClass="Ingresar" Text="Registrarse" PostBackUrl="~/RegistroLogin.aspx" OnClick="btnRegistrarse_Click" />
                 </div>
-                    <asp:Button ID="txtRecupPass" runat="server" CssClass="Ingresar" Text="Reseña" OnClick="btnRecuperarPass_Click" />
+                    <asp:Button ID="txtRecupPass" runat="server" CssClass="Ingresar" Text="Reseña" OnClick="btnRecuperarPass_Click"/>
             </div>
         </section>
     </form>

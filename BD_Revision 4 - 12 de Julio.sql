@@ -2,6 +2,7 @@ CREATE DATABASE TPC_equipo24_BD
 GO
 USE [TPC_equipo24_BD]
 
+GO
 ---  TABLA DATOS PERSONALES
 CREATE TABLE [dbo].[Datos_Personales](
 	[IdDatosPersonales] [int] NOT NULL,
@@ -23,7 +24,6 @@ UNIQUE NONCLUSTERED
 	[Legajo] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-
 
 --- TABLA FACTURA
 GO
@@ -83,14 +83,6 @@ CREATE TABLE [dbo].[Insumo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
---- TABLA MESA
-GO
-CREATE TABLE Mesa(
-	IdMesa INT PRIMARY KEY IDENTITY(1,1),
-	IdFactura INT NULL,
-	Estado BIT NULL DEFAULT 0,
-	Numero INT,
-	)
 --- TABLA MESERO
 GO
 CREATE TABLE [dbo].[Mesero](
@@ -98,24 +90,37 @@ CREATE TABLE [dbo].[Mesero](
 	[Nombre] [nchar](10) NULL,
 	[Apellido] [nchar](10) NULL,
 	[Estado] [nchar](10) NULL,
+	[IdMesa] [int] NOT NULL,
+
  CONSTRAINT [PK_Mesero] PRIMARY KEY CLUSTERED 
 (
 	[IdMesero] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 
---- TABLA Rese a
+--- TABLA MESA
 GO
-CREATE TABLE [dbo].[Rese a](
-	[IdRese a] [int] IDENTITY(1,1) NOT NULL,
+CREATE TABLE Mesa (
+    IdMesa INT PRIMARY KEY IDENTITY(1,1),
+    IdFactura INT NULL,
+    Estado BIT NULL DEFAULT 0,
+    Numero INT,
+    IdMesero INT,
+    CONSTRAINT FK_Mesa_Meseroo FOREIGN KEY (IdMesero) REFERENCES Mesero(IdMesero)
+);
+
+--- TABLA Reseña
+GO
+CREATE TABLE [dbo].[Reseña](
+	[IdReseña] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [varchar](100) NULL,
 	[Email] [varchar](200) NULL,
 	[Fecha] [date] NULL,
 	[Puntaje] [int] NULL,
 	[mensaje] [varchar](max) NULL,
- CONSTRAINT [PK_Rese a] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Reseña] PRIMARY KEY CLUSTERED 
 (
-	[IdRese a] ASC
+	[IdReseña] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
@@ -141,22 +146,50 @@ PRIMARY KEY CLUSTERED
 	[IdUsuario] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
 
+GO
 --- TABLA PEDIDO
 GO
+--CREATE TABLE [dbo].[Pedido](
+--    [IdPedido] [int] IDENTITY(1,1) NOT NULL,
+--	--[IdItemPedido] [int] NULL,   
+--	----[IdInsumo] [int] NOT NULL,   
+--	[IdMesa] [int] NOT NULL,
+--	[IdMesero] [int] NOT NULL,
+--    [FechaHoraGenerado] [datetime] NOT NULL,
+--    [Estado] [bit] NOT NULL,
+--	[Total] [money] NOT NULL,
+	
+--    CONSTRAINT [PK_Pedido] PRIMARY KEY CLUSTERED ([IdPedido] ASC),
+--	CONSTRAINT FK_MESERO_PEDIDO foreign key (IdMesero) references Mesero(IdMesero),
+--    CONSTRAINT [FK_Pedido_Mesa] FOREIGN KEY ([IdMesa]) REFERENCES [dbo].[Mesa] ([IdMesa]),
+--	----CONSTRAINT [Fk_Pedido_Insumo] FOREIGN KEY([IdInsumo]) REFERENCES [dbo].[Insumo] ([IdInsumo]) --- ver
+--) ON [PRIMARY]
+
 CREATE TABLE [dbo].[Pedido](
     [IdPedido] [int] IDENTITY(1,1) NOT NULL,
-    [IdMesa] [int] NOT NULL,
+	[IdMesa] [int] NOT NULL,
+	[IdMesero] [int] NOT NULL,
     [FechaHoraGenerado] [datetime] NOT NULL,
     [Estado] [bit] NOT NULL,
 	[Total] [money] NOT NULL,
     CONSTRAINT [PK_Pedido] PRIMARY KEY CLUSTERED ([IdPedido] ASC),
-    CONSTRAINT [FK_Pedido_Mesa] FOREIGN KEY ([IdMesa]) REFERENCES [dbo].[Mesa]([IdMesa])
+	CONSTRAINT FK_MESERO_PEDIDO FOREIGN KEY (IdMesero) REFERENCES Mesero(IdMesero),
+    CONSTRAINT [FK_Pedido_Mesa] FOREIGN KEY ([IdMesa]) REFERENCES [dbo].[Mesa] ([IdMesa])
 ) ON [PRIMARY]
-
 --- TABLA ITEMPEDIDO
 GO
+--CREATE TABLE [dbo].[ItemPedido](
+--    [IdItemPedido] [int] IDENTITY(1,1) NOT NULL,
+--    [IdPedido] [int] NOT NULL,
+--    [IdInsumo] [int] NOT NULL,
+--    [Cantidad] [int] NOT NULL,
+--    [PrecioUnitario] [money] NOT NULL,
+--    CONSTRAINT [PK_ItemPedido] PRIMARY KEY CLUSTERED ([IdItemPedido] ASC),
+--    --CONSTRAINT [FK_ItemPedido_Pedido] FOREIGN KEY ([IdPedido]) REFERENCES [dbo].[Pedido]([IdPedido]),
+--    CONSTRAINT [FK_ItemPedido_Insumo] FOREIGN KEY ([IdInsumo]) REFERENCES [dbo].[Insumo]([IdInsumo])
+--) ON [PRIMARY]
+
 CREATE TABLE [dbo].[ItemPedido](
     [IdItemPedido] [int] IDENTITY(1,1) NOT NULL,
     [IdPedido] [int] NOT NULL,
@@ -169,28 +202,28 @@ CREATE TABLE [dbo].[ItemPedido](
 ) ON [PRIMARY]
 
 
---- TABLA USUARIO 2
-GO
-create TABLE [dbo].[Usuario2](
-	[IdUsuario] [int] IDENTITY(1,1) NOT NULL,
-	[NombreUsuario] [varchar](50) NULL,
-	[Clave] [varchar](50) NULL,
-	[Puesto] [int] NULL,
-	[Activo] [bit] NULL,
-	[Legajo] [int] NULL,
-	[DNI] [int] NULL,
-	[Nombre] [varchar](200) NULL,
-	[Apellido] [varchar](200) NULL,
-	[FechaNacimiento] [date] NULL,
-	[genero] [varchar](50) NULL,
-	[Telefono] [int] NULL,
-	[Email] [varchar](200) NULL,
-	[domicilio] [varchar](200) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[IdUsuario] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+----- TABLA USUARIO 2
+--GO
+--create TABLE [dbo].[Usuario2](
+--	[IdUsuario] [int] IDENTITY(1,1) NOT NULL,
+--	[NombreUsuario] [varchar](50) NULL,
+--	[Clave] [varchar](50) NULL,
+--	[Puesto] [int] NULL,
+--	[Activo] [bit] NULL,
+--	[Legajo] [int] NULL,
+--	[DNI] [int] NULL,
+--	[Nombre] [varchar](200) NULL,
+--	[Apellido] [varchar](200) NULL,
+--	[FechaNacimiento] [date] NULL,
+--	[genero] [varchar](50) NULL,
+--	[Telefono] [int] NULL,
+--	[Email] [varchar](200) NULL,
+--	[domicilio] [varchar](200) NULL,
+--PRIMARY KEY CLUSTERED 
+--(
+--	[IdUsuario] ASC
+--)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+--) ON [PRIMARY]
 
 
 --- ALTERS
@@ -198,23 +231,47 @@ PRIMARY KEY CLUSTERED
 ALTER TABLE [dbo].[Datos_Personales]  WITH CHECK ADD FOREIGN KEY([IdDatosPersonales])
 REFERENCES [dbo].[Usuario2] ([IdUsuario])
 GO
-ALTER TABLE [dbo].[Pedido]  WITH CHECK ADD  CONSTRAINT [Fk_Pedido] FOREIGN KEY([IdItemPedido])
-REFERENCES [dbo].[ItemPedido] ([IdItemPedido])
-GO
-ALTER TABLE [dbo].[Pedido] CHECK CONSTRAINT [Fk_Pedido]
-GO
-ALTER TABLE [dbo].[Pedido]  WITH CHECK ADD  CONSTRAINT [Fk_Pedido_Insumo] FOREIGN KEY([IdInsumo])
-REFERENCES [dbo].[Insumo] ([IdInsumo])
-GO
-ALTER TABLE [dbo].[Pedido] CHECK CONSTRAINT [Fk_Pedido_Insumo]
-GO
-ALTER TABLE [dbo].[Rese a]  WITH CHECK ADD  CONSTRAINT [CHK_Puntaje_mesa] CHECK  (([Puntaje]>=(1) AND [Puntaje]<=(10)))
-GO
-ALTER TABLE [dbo].[Rese a] CHECK CONSTRAINT [CHK_Puntaje_mesa]
-GO
 
+
+--ALTER TABLE [dbo].[Pedido]  WITH CHECK ADD  CONSTRAINT [Fk_Pedido] FOREIGN KEY([IdItemPedido])
+--REFERENCES [dbo].[ItemPedido] ([IdItemPedido])
+
+--GO
+--ALTER TABLE [dbo].[Pedido] CHECK CONSTRAINT [Fk_Pedido]
+
+GO
+------------ALTER TABLE [dbo].[Pedido] CHECK CONSTRAINT [Fk_Pedido_Insumo]
+GO
+--ALTER TABLE [dbo].[Reseña]  WITH CHECK ADD  CONSTRAINT [CHK_Puntaje_mesa] CHECK  (([Puntaje]>=(1) AND [Puntaje]<=(10)))
+GO
+--ALTER TABLE [dbo].[Reseña] CHECK CONSTRAINT [CHK_Puntaje_mesa]
+
+--GO
 
 --- PROCEDIMIENTOS ALMACENADOS USUARIO
+GO
+create proc InsertarusuarioLogin
+    @Email VARCHAR(200),
+	@NombreUsuario VARCHAR(50),
+    @Clave VARCHAR(50),
+    @Puesto INT,
+    @Activo BIT,
+    @DNI INT,
+    @Nombre VARCHAR(200),
+    @Apellido VARCHAR(200),
+    @Nacimiento DATE,
+    @genero VARCHAR(50),
+    @Telefono INT,
+    @domicilio VARCHAR(200)
+as
+IF EXISTS(SELECT 1 FROM Usuario2 WHERE Email = @Email)
+RAISERROR('Ya existe un Usuario con ese Email, POR FAVOR INGRESE DE NUEVO',16,1)
+ELSE
+INSERT INTO Usuario2
+        (NombreUsuario, Clave, Email,Puesto, Activo, DNI, Nombre, Apellido, FechaNacimiento, genero, Telefono,domicilio)
+        VALUES
+        (@NombreUsuario, @Clave, @Email,@Puesto, @Activo, @DNI, @Nombre, @Apellido, @Nacimiento, @genero, @Telefono,@domicilio)
+		
 GO
 create Procedure [dbo].[AltaLogicaUsuario]
 @IdUsuario int
@@ -235,10 +292,10 @@ U.Telefono,U.Email,U.Domicilio
 from Usuario2 U
 GO
 
-
 CREATE proc [dbo].[editar_Personal]
 	@IdUsuario int,
 	@NombreUsuario VARCHAR(50),
+	@password VARCHAR(50),
     @Puesto INT,
     @Legajo INT,
     @DNI INT,
@@ -251,9 +308,9 @@ CREATE proc [dbo].[editar_Personal]
     @domicilio VARCHAR(200)
 as
 if EXISTS (SELECT IdUsuario FROM Usuario2 where DNI   = @DNI)
-RAISERROR ('N  de documento en Uso, usa otro N  de documento por favor', 16,1)
+RAISERROR ('Nº de documento en Uso, usa otro Nº de documento por favor', 16,1)
 else 
-update Usuario2 set NombreUsuario  =@NombreUsuario,Puesto=@Puesto,Legajo=@Legajo,DNI=@DNI,Nombre=@Nombre ,Apellido = @Apellido,   
+update Usuario2 set NombreUsuario  =@NombreUsuario,Clave = @password,Puesto=@Puesto,Legajo=@Legajo,DNI=@DNI,Nombre=@Nombre ,Apellido = @Apellido,   
 FechaNacimiento=@Nacimiento,genero=@genero,telefono=@Telefono,Email=@Email,domicilio=@domicilio
 WHERE @IdUsuario = IdUsuario
 GO
@@ -290,7 +347,8 @@ insert into Usuario2 (NombreUsuario, Clave, Puesto, Activo, Legajo, DNI, Nombre,
 VALUES
 ('FacuPino', 'river912', 1, 1, 123456789, 123456789, 'Facundo', 'Pino', '01/03/2004', 'M', 123456789, 'facupino@gmail.com', 'yVaElTercero 912'),
 ('Mailomono', 'ElBichoSiu', 1, 1, 987654321, 987654321, 'Isma', 'Oreste', '06/26/2004', 'M', 987654321, 'ismaores@gmail.com', 'Messi 1812'),
-('Pedrito', 'VanPersie', 1, 1, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'M', 012345678, 'pedrito@gmail.com', 'LaNaranjaMecanica 1978')
+('Pedrito', 'VanPersie', 1, 1, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'M', 012345678, 'pedrito@gmail.com', 'LaNaranjaMecanica 1978'),
+('a', 'a', 1, 2, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'M', 012345678, 'pedrito2@gmail.com', 'LaNaranjaMecanica 1978')
 
 --- INSERT Datos INSUMO
 GO
@@ -339,6 +397,7 @@ BEGIN
     WHERE IdInsumo = @IdInsumo
 END
 
+GO
 CREATE PROCEDURE SP_EliminarInsumo
     @IdInsumo INT
 AS
@@ -371,7 +430,7 @@ END
 --END
 
 
-
+GO
 CREATE PROCEDURE SP_ActualizarStockInsumo
     @IdInsumo INT,
     @Cantidad INT
@@ -383,8 +442,72 @@ BEGIN
 END;
 
 
--------------------------------------------------------------
+--GO
 --CREATE PROCEDURE SP_CrearPedido
+--    @IdInsumo INT,
+--    @IdMesa INT,
+--    @IdMesero INT,
+--    @FechaHoraGenerado DATETIME,
+--    @Estado BIT,
+--    @Total MONEY
+--AS
+--BEGIN
+--    -- Verificar si el IdInsumo es válido
+--    IF NOT EXISTS (SELECT 1 FROM Insumo WHERE IdInsumo = @IdInsumo)
+--    BEGIN
+--        RAISERROR('El IdInsumo proporcionado no existe.', 16, 1);
+--        RETURN;
+--    END
+
+--    -- Insertar el pedido
+--    INSERT INTO Pedido (IdInsumo, IdMesa, IdMesero, FechaHoraGenerado, Estado, Total)
+--    VALUES (@IdInsumo, @IdMesa, @IdMesero, @FechaHoraGenerado, @Estado, @Total);
+
+--    -- Retornar el Id del pedido recién creado
+--    SELECT SCOPE_IDENTITY() AS IdPedido;
+--END
+-------------------------------------------------------------
+GO
+CREATE PROCEDURE SP_CrearPedido
+    @IdMesa INT,
+    @IdMesero INT,
+    @FechaHoraGenerado DATETIME,
+    @Estado BIT,
+    @Total MONEY,
+    @ItemsPedido TABLE (IdInsumo INT, Cantidad INT, PrecioUnitario MONEY)
+AS
+BEGIN
+    -- Iniciar una transacción
+    BEGIN TRANSACTION;
+
+    BEGIN TRY
+        -- Insertar en la tabla Pedido
+        INSERT INTO [dbo].[Pedido] (IdMesa, IdMesero, FechaHoraGenerado, Estado, Total)
+        VALUES (@IdMesa, @IdMesero, @FechaHoraGenerado, @Estado, @Total);
+
+        -- Obtener el IdPedido recién creado
+        DECLARE @IdPedido INT;
+        SET @IdPedido = SCOPE_IDENTITY();
+
+        -- Insertar los items del pedido
+        INSERT INTO [dbo].[ItemPedido] (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
+        SELECT @IdPedido, IdInsumo, Cantidad, PrecioUnitario
+        FROM @ItemsPedido;
+
+        -- Confirmar la transacción
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        -- Si ocurre un error, deshacer la transacción
+        ROLLBACK TRANSACTION;
+
+        -- Propagar el error
+        THROW;
+    END CATCH;
+END;
+
+GO
+--CREATE PROCEDURE SP_CrearPedidoOK1957
 --    @IdMesa INT,
 --    @FechaHoraGenerado DATETIME,
 --    @Estado BIT,
@@ -397,24 +520,16 @@ END;
 --    SELECT SCOPE_IDENTITY() AS IdPedido;
 --END;
 
----
-CREATE PROCEDURE SP_CerrarPedido
-    @IdPedido INT
-AS
-BEGIN
-    UPDATE Pedido
-    SET Estado = 1  -- Estado 1 representa "Cerrado"
-    WHERE IdPedido = @IdPedido;
-END;
-
-
-
-
-
-
-
-
-
+-----
+--GO
+--CREATE PROCEDURE SP_CerrarPedido
+--    @IdPedido INT
+--AS
+--BEGIN
+--    UPDATE Pedido
+--    SET Estado = 1  -- Estado 1 representa "Cerrado"
+--    WHERE IdPedido = @IdPedido;
+--END;
 
 --CREATE PROCEDURE [dbo].[SP_AgregarItemPedido] ---ok
 --    @IdPedido INT,
@@ -432,7 +547,7 @@ END;
 --    COMMIT TRANSACTION;
 --END
 
-
+GO
 CREATE PROCEDURE [dbo].[SP_ObtenerPedidoPorId] ---ok
     @IdPedido INT
 AS
@@ -442,21 +557,18 @@ BEGIN
     WHERE IdPedido = @IdPedido;
 END
 
-
+GO
 CREATE PROCEDURE [dbo].[SP_ActualizarPedido] ---ok
     @IdPedido INT,
     @Total DECIMAL(18,2)
 AS
 BEGIN
-    UPDATE Pedidos
+    UPDATE Pedido
     SET Total = @Total
     WHERE IdPedido = @IdPedido;
 END
 
-
-
-
-
+GO
 CREATE PROCEDURE SP_CerrarPedidoYGenerarFactura
     @IdPedido INT,
     @IdFormatoPago INT,
@@ -485,36 +597,22 @@ BEGIN
 END;
 
 -----------------------------
-
-CREATE proc [dbo].[Insertarrese a] 
+GO
+CREATE proc [dbo].[Insertarreseña] 
 @nombre varchar(100),
 @email varchar(100),
 @fecha date ,
 @puntaje int,
 @msj varchar(max)
 as
-INSERT INTO Rese a
+INSERT INTO Reseña
         (Nombre, Email, Fecha, Puntaje, mensaje)
         VALUES
         (@Nombre, @email, @fecha, @puntaje, @msj)
 GO
 
 
-
--------------------------------
-------- INSERT DE PRUEBA PEDIDO
-insert into Pedido (Estado, FechaHoraGenerado, Total, IdMesa) VALUES
-(1, '4/7/2024', 3000, 1), (1, '3/7/2024', 4000, 2), (1, '07-03-2024', 5000, 3), (1, '06-03-2024', 6000, 4)
-
-
-
-select * from Reseña
-
 ---------------------------------------------
-alter table pedido
-add IdMesero int
-add CONSTRAINT FK_MESERO_PEDIDO foreign key (IdMesero) references Mesero(IdMesero)
-
 
 create or alter Procedure SP_ContReseñas 
 as 
@@ -528,21 +626,7 @@ begin
     WHERE Puntaje BETWEEN 1 AND 5
 END
 
-insert into Pedido (Estado, FechaHoraGenerado, Total, IdMesa, IdMesero) VALUES
-(1, '07/08/2024', 4000, 5, 1), (1, '07/08/2024', 4000, 1, 2), 
-(1, '07-07-2024', 5000, 3, 3), (1, '06-07-2024', 6000, 4, 4), 
-(1, '06-03-2024', 6000, 6, 5), (1, '07-08-2024', 6000, 2, 7)
-
-insert into ItemPedido (Cantidad, PrecioUnitario, IdInsumo, IdPedido) VALUES
-(6, 2000, 1, 2), 
-(2, 10000, 2, 3), 
-(2, 5000, 3, 4), 
-(4, 10000, 4, 5),
-(1, 20000, 7, 1), 
-(2, 10000, 6, 2), 
-(4, 3000, 5, 3)
-
-
+GO
 INSERT INTO MESERO (Nombre, Apellido, Estado, IdMesa) VALUES
 ('Andres', 'Cuccitini', 1, 2),
 ('Julian', 'Araña', 1, 4),
@@ -551,6 +635,7 @@ INSERT INTO MESERO (Nombre, Apellido, Estado, IdMesa) VALUES
 ('Cuti', 'Romero', 1, 1), 
 ('Licha', 'Carnicero', 1, 3)
 
+GO
 INSERT INTO Mesa (Estado, Numero) VALUES
 (1, 1), 
 (1, 2), 
@@ -559,10 +644,8 @@ INSERT INTO Mesa (Estado, Numero) VALUES
 (1, 5), 
 (1, 6)
 
-
-
-
 -------------------------------------------------
+GO
 CREATE PROCEDURE [dbo].[SP_AbrirMesaYCrearPedido] --OK
     @IdMesa INT,
     @FechaHoraGenerado DATETIME,
@@ -573,12 +656,12 @@ BEGIN
 
     -- Abrir la mesa
 
-    UPDATE Mesas
+    UPDATE Mesa
     SET Estado = 1  -- 1 para abierto
     WHERE IdMesa = @IdMesa;
 
     -- Crear el pedido
-    INSERT INTO Pedidos (IdMesa, FechaHoraGenerado, Estado, Total)
+    INSERT INTO Pedido (IdMesa, FechaHoraGenerado, Estado, Total)
     VALUES (@IdMesa, @FechaHoraGenerado, 1, 0);  -- 1 para estado activo, Total inicial es 0
 
     -- Obtener el IdPedido del nuevo pedido
@@ -588,6 +671,7 @@ BEGIN
 END
 
 ---
+GO
 CREATE PROCEDURE [dbo].[SP_CerrarMesaYPedido] --OK
     @IdMesa INT,
     @IdPedido INT
@@ -596,7 +680,7 @@ BEGIN
     BEGIN TRANSACTION;
 
     -- Cerrar el pedido
-    UPDATE Pedidos
+    UPDATE Pedido
     SET Estado = 0  -- 0 para cerrado
     WHERE IdPedido = @IdPedido;
 
@@ -606,30 +690,38 @@ BEGIN
     FROM ItemPedido
     WHERE IdPedido = @IdPedido;
 
-    UPDATE Pedidos
+    UPDATE Pedido
     SET Total = @Total
     WHERE IdPedido = @IdPedido;
 
     -- Cerrar la mesa
-    UPDATE Mesas
+    UPDATE Mesa
     SET Estado = 0  -- 0 para cerrado
     WHERE IdMesa = @IdMesa;
 
     COMMIT TRANSACTION;
 END
 
-
-
+---
+GO
+CREATE PROCEDURE SP_ObtenerPedidoPorMesa
+    @IdMesa INT
+AS
+BEGIN
+    SELECT IdPedido, Estado, FechaHoraGenerado, Total
+    FROM Pedido
+    WHERE IdMesa = @IdMesa AND Estado = 1 
+END
 ---
 
-
-
-UPDATE Mesa
-SET Estado = 0
-WHERE Estado = 1
-
-SELECT * FROM Pedido
-
-select * from pedido
-select * from ItemPedido
-exec SP_ListarMesas
+GO
+CREATE PROCEDURE InsertarItemPedido
+    @IdPedido INT,
+    @IdInsumo INT,
+    @Cantidad INT,
+    @PrecioUnitario DECIMAL(18,2)
+AS
+BEGIN
+    INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
+    VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario)
+END
