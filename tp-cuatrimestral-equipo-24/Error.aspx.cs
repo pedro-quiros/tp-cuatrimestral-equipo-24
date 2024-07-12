@@ -5,10 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace tp_cuatrimestral_equipo_24
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -17,7 +20,6 @@ namespace tp_cuatrimestral_equipo_24
                 lblmenssaje.Text = Session["Error"].ToString();
             }
             Session["Error"] = null;
-
 
         }
 
