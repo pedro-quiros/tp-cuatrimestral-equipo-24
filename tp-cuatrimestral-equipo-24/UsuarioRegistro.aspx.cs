@@ -64,6 +64,7 @@ namespace tp_cuatrimestral_equipo_24
                             txtTelefono.Value = usu.Telefono.ToString();
 
                             txtDni.Value = usu.Dni.ToString();
+                            btnGuardar.Visible = false;
 
                         }
                         else
@@ -95,6 +96,8 @@ namespace tp_cuatrimestral_equipo_24
                 {
                     btnLogico.Text = "Reactivar";
                 }
+                
+                    
 
             }
         }
