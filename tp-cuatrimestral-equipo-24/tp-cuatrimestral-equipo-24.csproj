@@ -69,6 +69,7 @@
     <Content Include="Configuracion.aspx" />
     <Content Include="Delivery.aspx" />
     <Content Include="Detalle_Reseñas.aspx" />
+    <Content Include="EstiloHome.css" />
     <Content Include="EstiloReg_Login.css" />
     <Content Include="Estiloreportes.css" />
     <Content Include="EstilosFiltrar.css" />
@@ -83,6 +84,7 @@
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="JS\ScriptsSalon.js" />
+    <Content Include="ListadoUsuarios.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="DetalleInsumo.aspx" />
     <Content Include="ModificarPersonal.aspx" />
@@ -136,6 +138,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoUsuarios.aspx.cs">
+      <DependentUpon>ListadoUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoUsuarios.aspx.designer.cs">
+      <DependentUpon>ListadoUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>

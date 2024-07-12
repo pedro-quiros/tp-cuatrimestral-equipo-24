@@ -42,8 +42,7 @@
                 <img src="img/icoReporte.png" alt="ícono de reportes" />
             </a>
 
-
-            <a class="logoNav" href="UsuarioRegistro.aspx" title="Gestionar usuarios">
+            <a ID="aListadoUsuarios" runat="server" class="logoNav" href="ListadoUsuarios.aspx" title="Gestionar usuarios">
                 <img src="img/icoAgregarUsuario.png" alt="ícono de agregar usuario" />
             </a>
             <a class="logoNav" href="Soporte.aspx" title="Soporte">

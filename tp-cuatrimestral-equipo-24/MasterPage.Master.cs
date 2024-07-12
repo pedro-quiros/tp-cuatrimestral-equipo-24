@@ -17,9 +17,9 @@ namespace tp_cuatrimestral_equipo_24
                 if (P == 1)
                 {
                     aReportes.Attributes["href"] = "#";
-                    aReportes.Attributes["onclick"] = "alert('No tiene autorizacion'); return false;"; 
-                    //aHome.Attributes["href"] = "#";
-                    //aHome.Attributes["onclick"] = "alert('No tiene autorizacion'); return false;";
+                    aReportes.Attributes["onclick"] = "alert('No tiene autorizacion'); return false;";
+                    aListadoUsuarios.Attributes["href"] = "#";
+                    aListadoUsuarios.Attributes["onclick"] = "alert('No tiene autorizacion'); return false;";
                 }
 
             }

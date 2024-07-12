@@ -12,64 +12,30 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
-
-                //PermisoHelper.VerificarPermisoGerente(Session);
-                CargarDatosGridView();
-            }
-        }
-
-        protected void dgvUsuario_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            dgvUsuario.PageIndex = e.NewPageIndex;
-            CargarDatosGridView();
-        }
-
-        protected void dgvUsuario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string id = dgvUsuario.SelectedDataKey.Value.ToString();
-            Response.Redirect("UsuarioRegistro.aspx?IdUsuario=" + id);
-        }
-
-        private void CargarDatosGridView()
-        {
-            UsuarioGestion UsuarioG = new UsuarioGestion();
-            List<Usuario> ListaUsuarios = UsuarioG.ListarConSpUsuario();
-            Session["Listado"] = ListaUsuarios;
-            dgvUsuario.DataSource = ListaUsuarios;
-            dgvUsuario.DataBind();
-        }
-
-        protected void filtro_TextChanged(object sender, EventArgs e)
-        {
-
-            List<Usuario> ListaFiltrada = new List<Usuario>();
-
-            if (Session["ListadoUsuarios"] != null && Session["ListadoUsuarios"] is List<Usuario>)
-            {
-                if (Filtro.Text == "")
+                Usuario usuario = new Usuario();
+                string nombreCompleto;
+                int p = 0;
+                if (Session["UsuarioSeleccionado"] != null)
                 {
-                    ListaFiltrada = (List<Usuario>)Session["ListadoUsuarios"];
-                }
-                else
-                {
-                    ListaFiltrada = ((List<Usuario>)Session["ListadoUsuarios"]).FindAll(X => X.NombreUsuario.ToUpper().Contains(Filtro.Text.ToUpper()));
+                    usuario = (Usuario)Session["UsuarioSeleccionado"];
+                    nombreCompleto = string.Concat("Bienvenido ", usuario.NombreUsuario, "!");
+                    lblMensaje.Text = nombreCompleto;
+                    if (Session["Puesto"] != null)
+                    {
+                        p = Convert.ToInt32(Session["Puesto"]);
+                        switch (p)
+                        {
+                            case 1:
+                                lblPuesto.Text = "Usted ingreso como Empleado";
+                            break;
+
+                            case 2:
+                                lblPuesto.Text = "Usted ingreso como Gerente";
+                            break;
+                        }
+                    }
                 }
             }
-            else
-            {
-                UsuarioGestion usuarioG = new UsuarioGestion();
-                ListaFiltrada = usuarioG.ListarConSpUsuario();
-                Session["ListadoUsuarios"] = ListaFiltrada;
-            }
-            dgvUsuario.DataSource = ListaFiltrada;
-            dgvUsuario.DataBind();
-        }
-
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            string Parametro = "Parametro";
-
-            Response.Redirect("UsuarioRegistro.aspx?Parametro=" + Parametro, false);
         }
     }
 
