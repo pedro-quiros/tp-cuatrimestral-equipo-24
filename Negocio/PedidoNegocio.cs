@@ -1,79 +1,71 @@
 ﻿using Dominio;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Negocio
 {
     public class PedidoNegocio
     {
         private AccesoDatos datos = new AccesoDatos();
+
         public List<Pedido> Listar()
         {
             List<Pedido> lista = new List<Pedido>();
-            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                string consulta = "Select IdPedido, Estado, FechaHoraCreado from Pedido";
-
-
+                string consulta = "SELECT IdPedido, Estado, FechaHoraGenerado FROM Pedido";
                 datos.SetearConsulta(consulta);
                 datos.ejecutarLectura();
+
                 while (datos.Lector.Read())
                 {
-                    Pedido aux = new Pedido();
-
-                    aux.IdPedido = (int)datos.Lector["IdPedido"];
-                    aux.Estado = (bool)datos.Lector["Estado"];
-                    aux.FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraCreado"];
+                    Pedido aux = new Pedido
+                    {
+                        IdPedido = (int)datos.Lector["IdPedido"],
+                        Estado = (bool)datos.Lector["Estado"],
+                        FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"]
+                    };
 
                     lista.Add(aux);
                 }
-                return lista;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al listar los pedidos", ex);
             }
             finally
             {
                 datos.CerrarConexion();
             }
-        }
 
-        
+            return lista;
+        }
 
         public int CantidadPedidos(int idMesa)
         {
-            int cantPed;
-            AccesoDatos datos = new AccesoDatos();
-            
             try
             {
-                datos.SetearConsulta("select COUNT(IdPedido) AS CANTIDAD_PEDIDOS, IdMesa from Pedido WHERE IdMesa = @idMesa" +
-                                     " GROUP BY IdMesa" +
-                                     " ORDER BY COUNT(IdPedido)");
+                datos.LimpiarParametros();
+                datos.SetearConsulta(@"
+                    SELECT COUNT(IdPedido) AS CANTIDAD_PEDIDOS
+                    FROM Pedido
+                    WHERE IdMesa = @idMesa
+                    GROUP BY IdMesa");
                 datos.SeterParametros("@idMesa", idMesa);
-                datos.EjecutarAccion();
                 datos.ejecutarLectura();
-                while(datos.Lector.Read())
+
+                if (datos.Lector.Read())
                 {
-                    cantPed = (int)datos.Lector["CANTIDAD_PEDIDOS"];
-                    return cantPed;
+                    return (int)datos.Lector["CANTIDAD_PEDIDOS"];
                 }
-                return -1;
+
+                return -1;  // Indica que no se encontraron pedidos para la mesa
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                throw ex;
+                throw new Exception("Error al contar los pedidos", ex);
             }
             finally
             {
@@ -83,27 +75,27 @@ namespace Negocio
 
         public decimal TotalPedidos(int idMesa)
         {
-            decimal TotalPed;
-            AccesoDatos datos = new AccesoDatos();
-
             try
             {
-                datos.SetearConsulta("select SUM(Total) AS TOTAL_PEDIDOS, IdMesa from Pedido WHERE IdMesa = 1" +
-                                     " GROUP BY IdMesa" +
-                                     " ORDER BY SUM(Total)");
+                datos.LimpiarParametros();
+                datos.SetearConsulta(@"
+                    SELECT SUM(Total) AS TOTAL_PEDIDOS
+                    FROM Pedido
+                    WHERE IdMesa = @idMesa
+                    GROUP BY IdMesa");
                 datos.SeterParametros("@idMesa", idMesa);
                 datos.ejecutarLectura();
-                while (datos.Lector.Read())
+
+                if (datos.Lector.Read())
                 {
-                    TotalPed = (decimal)datos.Lector["TOTAL_PEDIDOS"];
-                    return TotalPed;
+                    return (decimal)datos.Lector["TOTAL_PEDIDOS"];
                 }
-                return -1;
+
+                return 0;  // Si no hay pedidos, el total es 0
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                throw ex;
+                throw new Exception("Error al calcular el total de los pedidos", ex);
             }
             finally
             {
@@ -111,13 +103,13 @@ namespace Negocio
             }
         }
 
-
         public List<Insumo> ListarInsumos()
         {
             List<Insumo> lista = new List<Insumo>();
 
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("SP_ListarInsumos");
                 datos.ejecutarLectura();
 
@@ -149,13 +141,13 @@ namespace Negocio
             return lista;
         }
 
-        // Método para listar mesas
         public List<Mesas> ListarMesas()
         {
             List<Mesas> lista = new List<Mesas>();
 
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("SP_ListarMesas");
                 datos.ejecutarLectura();
 
@@ -183,26 +175,11 @@ namespace Negocio
             return lista;
         }
 
-        // Método para abrir o cerrar una mesa
-        public void AbrirCerrarMesa(int idMesa)
-        {
-            try
-            {
-                datos.setearProcedimiento("SP_AbrirCerrarMesa");
-                datos.SeterParametros("@IdMesa", idMesa);
-                datos.EjecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al abrir o cerrar mesa", ex);
-            }
-        }
-
-        // Método para insertar un pedido
         public void InsertarPedido(DateTime fechaHora, decimal total, int idMesa)
         {
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("InsertarPedido");
                 datos.SeterParametros("@FechaHora", fechaHora);
                 datos.SeterParametros("@Total", total);
@@ -215,29 +192,33 @@ namespace Negocio
             }
         }
 
-        // Método para agregar un ítem a un pedido
-        public void AgregarItemPedido(int idPedido, int idInsumo, int cantidad, decimal precio)
+        public void AgregarItemPedido(int idPedido, int idInsumo, int cantidad, decimal precioUnitario)
         {
             try
             {
-                datos.setearProcedimiento("AgregarItemPedido");
+                datos.LimpiarParametros();
+                string consulta = @"
+                    INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
+                    VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario)";
+
+                datos.SetearConsulta(consulta);
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.SeterParametros("@IdInsumo", idInsumo);
                 datos.SeterParametros("@Cantidad", cantidad);
-                datos.SeterParametros("@Precio", precio);
+                datos.SeterParametros("@PrecioUnitario", precioUnitario);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al agregar item al pedido", ex);
+                throw new Exception("Error al agregar el ítem al pedido: " + ex.Message);
             }
         }
 
-        // Método para actualizar el stock de un insumo
         public void ActualizarStockInsumo(int idInsumo, int cantidad)
         {
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("ActualizarStockInsumo");
                 datos.SeterParametros("@IdInsumo", idInsumo);
                 datos.SeterParametros("@Cantidad", cantidad);
@@ -249,57 +230,108 @@ namespace Negocio
             }
         }
 
-        // Método para cerrar un pedido
         public void CerrarPedido(int idPedido)
         {
             try
             {
-                datos.setearProcedimiento("CerrarPedido");
+                datos.LimpiarParametros();
+                string consulta = "UPDATE Pedido SET Estado = 1 WHERE IdPedido = @IdPedido";
+                datos.SetearConsulta(consulta);
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al cerrar el pedido", ex);
+                throw new Exception("Error al cerrar el pedido: " + ex.Message);
+            }
+            finally
+            {
+                datos.CerrarConexion();
             }
         }
-        public int CrearPedido(DateTime fechaHora, decimal total, int idMesa)
+
+        public int CrearPedido(DateTime fechaHora, decimal totalPedido, int idMesa)
         {
-            int idPedido = 0;
+            try
+            {
+                datos.LimpiarParametros();
+                string consulta = @"
+                    INSERT INTO Pedido (IdMesa, FechaHoraGenerado, Estado, Total)
+                    VALUES (@IdMesa, @FechaHoraGenerado, @Estado, @Total);
+                    SELECT SCOPE_IDENTITY() AS IdPedido";
+
+                datos.SetearConsulta(consulta);
+                datos.SeterParametros("@FechaHoraGenerado", fechaHora);
+                datos.SeterParametros("@Total", totalPedido);
+                datos.SeterParametros("@IdMesa", idMesa);
+                datos.SeterParametros("@Estado", 1);  // Estado 1 representa "Abierto"
+                datos.ejecutarLectura();
+                datos.Lector.Read();
+                int idPedido = Convert.ToInt32(datos.Lector["IdPedido"]);
+                datos.CerrarConexion();
+                return idPedido;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear el pedido: " + ex.Message);
+            }
+        }
+
+        public List<ItemPedido> ListarItemsPedido(int idPedido)
+        {
+            List<ItemPedido> lista = new List<ItemPedido>();
 
             try
             {
-                datos.setearProcedimiento("CrearPedido");
-                datos.SeterParametros("@FechaHora", fechaHora);
-                datos.SeterParametros("@Total", total);
-                datos.SeterParametros("@IdMesa", idMesa);
+                datos.LimpiarParametros();
+                string consulta = @"
+                    SELECT i.IdInsumo, i.Nombre, ip.Cantidad, ip.PrecioUnitario
+                    FROM ItemPedido ip
+                    INNER JOIN Insumo i ON ip.IdInsumo = i.IdInsumo
+                    WHERE ip.IdPedido = @IdPedido";
 
-                // Asume que el procedimiento almacenado devuelve el ID del nuevo pedido
+                datos.SetearConsulta(consulta);
+                datos.SeterParametros("@IdPedido", idPedido);
                 datos.ejecutarLectura();
-                if (datos.Lector.Read())
+
+                while (datos.Lector.Read())
                 {
-                    idPedido = (int)datos.Lector["IdPedido"];
+                    Insumo insumo = new Insumo
+                    {
+                        IdInsumo = (int)datos.Lector["IdInsumo"],
+                        Nombre = (string)datos.Lector["Nombre"],
+                        Precio = (decimal)datos.Lector["PrecioUnitario"]
+                    };
+
+                    ItemPedido item = new ItemPedido
+                    {
+                        Insumo = insumo,
+                        Cantidad = (int)datos.Lector["Cantidad"],
+                        PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"]
+                    };
+
+                    lista.Add(item);
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al crear el pedido", ex);
+                throw new Exception("Error al listar los ítems del pedido", ex);
             }
             finally
             {
                 datos.CerrarConexion();
             }
 
-            return idPedido;
+            return lista;
         }
 
-        // Método para obtener los ítems de un pedido
         public List<ItemPedido> ObtenerItemsDePedido(int idMesa)
         {
             List<ItemPedido> lista = new List<ItemPedido>();
 
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("ObtenerItemsDePedido");
                 datos.SeterParametros("@IdMesa", idMesa);
                 datos.ejecutarLectura();
@@ -309,7 +341,7 @@ namespace Negocio
                     Insumo insumo = new Insumo
                     {
                         IdInsumo = (int)datos.Lector["IdInsumo"],
-                        Nombre = (string)datos.Lector["Nombre"],  // Asegúrate de que tu procedimiento almacene el nombre del insumo
+                        Nombre = (string)datos.Lector["Nombre"],
                         Precio = (decimal)datos.Lector["Precio"],
                         Stock = (int)datos.Lector["Stock"]
                     };
@@ -317,8 +349,7 @@ namespace Negocio
                     ItemPedido item = new ItemPedido
                     {
                         Insumo = insumo,
-                        Cantidad = (int)datos.Lector["Cantidad"],
-                     //   Precio = (decimal)datos.Lector["Precio"]
+                        Cantidad = (int)datos.Lector["Cantidad"]
                     };
 
                     lista.Add(item);
@@ -335,6 +366,5 @@ namespace Negocio
 
             return lista;
         }
-
     }
 }

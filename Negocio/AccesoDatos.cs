@@ -92,5 +92,11 @@ namespace Negocio
                 lector.Close();
             conexion.Close();
         }
+
+        public void LimpiarParametros()
+        {
+            comando.Parameters.Clear();
+        }
+
     }
 }

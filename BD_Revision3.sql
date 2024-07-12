@@ -351,6 +351,7 @@ END
 --- PROCEDIMIENTOS MESAS
 
 GO
+
 CREATE PROCEDURE SP_ListarMesas
 AS
 BEGIN
@@ -359,36 +360,15 @@ BEGIN
 END
 
 ---
-CREATE PROCEDURE SP_AbrirCerrarMesa
-    @IdMesa INT
-AS
-BEGIN
-    DECLARE @EstadoActual BIT;
-
-    SELECT @EstadoActual = Estado
-    FROM Mesa
-    WHERE IdMesa = @IdMesa;
-
-    IF @EstadoActual IS NULL
-    BEGIN
-        RAISERROR('La mesa no existe.', 16, 1);
-        RETURN;
-    END
-
-    IF @EstadoActual = 1
-    BEGIN
-        UPDATE Mesa
-        SET Estado = 0
-        WHERE IdMesa = @IdMesa;
-    END
-    ELSE
-    BEGIN
-        UPDATE Mesa
-        SET Estado = 1
-        WHERE IdMesa = @IdMesa;
-    END
-END;
-
+--CREATE PROCEDURE [dbo].[SP_AbrirCerrarMesa]
+--    @IdMesa INT,
+--    @Estado BIT  -- 1 para abrir, 0 para cerrar
+--AS
+--BEGIN
+--    UPDATE Mesas
+--    SET Estado = @Estado
+--    WHERE IdMesa = @IdMesa;
+--END
 
 
 
@@ -404,36 +384,78 @@ END;
 
 
 -------------------------------------------------------------
+--CREATE PROCEDURE SP_CrearPedido
+--    @IdMesa INT,
+--    @FechaHoraGenerado DATETIME,
+--    @Estado BIT,
+--    @Total MONEY
+--AS
+--BEGIN
+--    INSERT INTO Pedido (IdMesa, FechaHoraGenerado, Estado, Total)
+--    VALUES (@IdMesa, @FechaHoraGenerado, @Estado, @Total);
 
-CREATE PROCEDURE SP_CrearPedido
-    @IdMesa INT,
-    @FechaHoraGenerado DATETIME,
-    @Estado BIT,
-    @Total MONEY
+--    SELECT SCOPE_IDENTITY() AS IdPedido;
+--END;
+
+---
+CREATE PROCEDURE SP_CerrarPedido
+    @IdPedido INT
 AS
 BEGIN
-    INSERT INTO Pedido (IdMesa, FechaHoraGenerado, Estado, Total)
-    VALUES (@IdMesa, @FechaHoraGenerado, @Estado, @Total);
-
-    SELECT SCOPE_IDENTITY() AS IdPedido;
+    UPDATE Pedido
+    SET Estado = 1  -- Estado 1 representa "Cerrado"
+    WHERE IdPedido = @IdPedido;
 END;
 
 
-CREATE PROCEDURE SP_AgregarItemPedido
+
+
+
+
+
+
+
+
+--CREATE PROCEDURE [dbo].[SP_AgregarItemPedido] ---ok
+--    @IdPedido INT,
+--    @IdInsumo INT,
+--    @Cantidad INT,
+--    @PrecioUnitario DECIMAL(18,2)
+--AS
+--BEGIN
+--    BEGIN TRANSACTION;
+
+--    -- Agregar un ítem al pedido
+--    INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
+--    VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario);
+
+--    COMMIT TRANSACTION;
+--END
+
+
+CREATE PROCEDURE [dbo].[SP_ObtenerPedidoPorId] ---ok
+    @IdPedido INT
+AS
+BEGIN
+    SELECT IdPedido, IdMesa, FechaHoraGenerado, Estado, Total
+    FROM Pedidos
+    WHERE IdPedido = @IdPedido;
+END
+
+
+CREATE PROCEDURE [dbo].[SP_ActualizarPedido] ---ok
     @IdPedido INT,
-    @IdInsumo INT,
-    @Cantidad INT,
-    @PrecioUnitario MONEY
+    @Total DECIMAL(18,2)
 AS
 BEGIN
-    -- Insertar el  tem en la tabla ItemPedido
-    INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
-    VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario);
+    UPDATE Pedidos
+    SET Total = @Total
+    WHERE IdPedido = @IdPedido;
+END
 
-    -- Actualizar el stock del insumo
-    EXEC SP_ActualizarStockInsumo @IdInsumo, @Cantidad;
-END;
-GO
+
+
+
 
 CREATE PROCEDURE SP_CerrarPedidoYGenerarFactura
     @IdPedido INT,
@@ -487,3 +509,127 @@ insert into Pedido (Estado, FechaHoraGenerado, Total, IdMesa) VALUES
 
 
 select * from Reseña
+
+---------------------------------------------
+alter table pedido
+add IdMesero int
+add CONSTRAINT FK_MESERO_PEDIDO foreign key (IdMesero) references Mesero(IdMesero)
+
+
+create or alter Procedure SP_ContReseñas 
+as 
+begin 
+	select COUNT(Puntaje) as POSITIVOS 
+	from Reseña 
+	where Puntaje BETWEEN  6 and 10 
+
+	SELECT COUNT(Puntaje) AS Negativos 
+    FROM Reseña 
+    WHERE Puntaje BETWEEN 1 AND 5
+END
+
+insert into Pedido (Estado, FechaHoraGenerado, Total, IdMesa, IdMesero) VALUES
+(1, '07/08/2024', 4000, 5, 1), (1, '07/08/2024', 4000, 1, 2), 
+(1, '07-07-2024', 5000, 3, 3), (1, '06-07-2024', 6000, 4, 4), 
+(1, '06-03-2024', 6000, 6, 5), (1, '07-08-2024', 6000, 2, 7)
+
+insert into ItemPedido (Cantidad, PrecioUnitario, IdInsumo, IdPedido) VALUES
+(6, 2000, 1, 2), 
+(2, 10000, 2, 3), 
+(2, 5000, 3, 4), 
+(4, 10000, 4, 5),
+(1, 20000, 7, 1), 
+(2, 10000, 6, 2), 
+(4, 3000, 5, 3)
+
+
+INSERT INTO MESERO (Nombre, Apellido, Estado, IdMesa) VALUES
+('Andres', 'Cuccitini', 1, 2),
+('Julian', 'Araña', 1, 4),
+('Lauta', 'Toro', 1, 2),
+('Dibu', 'Martinez', 1, 2), 
+('Cuti', 'Romero', 1, 1), 
+('Licha', 'Carnicero', 1, 3)
+
+INSERT INTO Mesa (Estado, Numero) VALUES
+(1, 1), 
+(1, 2), 
+(1, 3), 
+(1, 4), 
+(1, 5), 
+(1, 6)
+
+
+
+
+-------------------------------------------------
+CREATE PROCEDURE [dbo].[SP_AbrirMesaYCrearPedido] --OK
+    @IdMesa INT,
+    @FechaHoraGenerado DATETIME,
+    @IdPedido INT OUTPUT
+AS
+BEGIN
+    BEGIN TRANSACTION;
+
+    -- Abrir la mesa
+
+    UPDATE Mesas
+    SET Estado = 1  -- 1 para abierto
+    WHERE IdMesa = @IdMesa;
+
+    -- Crear el pedido
+    INSERT INTO Pedidos (IdMesa, FechaHoraGenerado, Estado, Total)
+    VALUES (@IdMesa, @FechaHoraGenerado, 1, 0);  -- 1 para estado activo, Total inicial es 0
+
+    -- Obtener el IdPedido del nuevo pedido
+    SET @IdPedido = SCOPE_IDENTITY();
+
+    COMMIT TRANSACTION;
+END
+
+---
+CREATE PROCEDURE [dbo].[SP_CerrarMesaYPedido] --OK
+    @IdMesa INT,
+    @IdPedido INT
+AS
+BEGIN
+    BEGIN TRANSACTION;
+
+    -- Cerrar el pedido
+    UPDATE Pedidos
+    SET Estado = 0  -- 0 para cerrado
+    WHERE IdPedido = @IdPedido;
+
+    -- Actualizar el total del pedido
+    DECLARE @Total DECIMAL(18,2);
+    SELECT @Total = SUM(Cantidad * PrecioUnitario)
+    FROM ItemPedido
+    WHERE IdPedido = @IdPedido;
+
+    UPDATE Pedidos
+    SET Total = @Total
+    WHERE IdPedido = @IdPedido;
+
+    -- Cerrar la mesa
+    UPDATE Mesas
+    SET Estado = 0  -- 0 para cerrado
+    WHERE IdMesa = @IdMesa;
+
+    COMMIT TRANSACTION;
+END
+
+
+
+---
+
+
+
+UPDATE Mesa
+SET Estado = 0
+WHERE Estado = 1
+
+SELECT * FROM Pedido
+
+select * from pedido
+select * from ItemPedido
+exec SP_ListarMesas

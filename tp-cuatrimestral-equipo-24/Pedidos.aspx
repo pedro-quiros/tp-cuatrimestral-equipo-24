@@ -73,7 +73,7 @@
             </Columns>
         </asp:GridView>
 
-        <h3>Total: <asp:Label ID="TotalLabel" runat="server" Text=""></asp:Label></h3>
+        <h3 class="mt-5">Total: <asp:Label ID="TotalLabel" runat="server" Text=""></asp:Label></h3>
         <div class="row g-3">
             <div class="col-auto">
                 <asp:Button ID="BtnCerrarPedido" runat="server" CssClass="btn btn-outline-danger" Text="Cerrar pedido" OnClick="BtnCerrarPedido_Click" />

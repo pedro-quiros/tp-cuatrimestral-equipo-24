@@ -10,6 +10,7 @@ namespace tp_cuatrimestral_equipo_24
     public partial class Salon : System.Web.UI.Page
     {
         private MesaNegocio mesaNegocio = new MesaNegocio();
+        private PedidoNegocio pedidoNegocio = new PedidoNegocio();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -47,22 +48,42 @@ namespace tp_cuatrimestral_equipo_24
             Response.Redirect($"Pedidos.aspx?IdMesa={idMesa}");
         }
 
-
-
         protected void btnAceptarModal_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(hdfIdMesa.Value))
             {
                 int idMesa = Convert.ToInt32(hdfIdMesa.Value);
 
-                // Llamar al método de negocio para abrir o cerrar la mesa
-                mesaNegocio.AbrirCerrarMesa(idMesa);
+                try
+                {
+                    // Abrir la mesa
+                    mesaNegocio.AbrirMesa(idMesa);
 
-                // Actualizar la vista de la mesa en el GridView
-                CargarDatosGridView();
+                    // Crear un nuevo pedido relacionado con la mesa
+                    var fechaHora = DateTime.Now;
+                    var totalPedido = 0.0m;  // El total del pedido es inicialmente 0
+                    int idPedido = pedidoNegocio.CrearPedido(fechaHora, totalPedido, idMesa);
 
-                // Ocultar el modal después de aceptar
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "OcultarModal", "$('#modalConfirmar').modal('hide');", true);
+                    // Verificar que el pedido se creó exitosamente
+                    if (idPedido <= 0)
+                    {
+                        throw new Exception("No se pudo crear el pedido.");
+                    }
+
+                    // Asignar el IdPedido a la sesión para poder usarlo en la página
+                    Session["IdPedido"] = idPedido;
+
+                    // Actualizar la vista de la mesa en el GridView
+                    CargarDatosGridView();
+
+                    // Ocultar el modal después de aceptar
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "OcultarModal", "$('#modalConfirmar').modal('hide');", true);
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de errores
+                    throw new Exception("Ocurrió un error al abrir la mesa y crear el pedido." + ex.Message);
+                }
             }
         }
 
