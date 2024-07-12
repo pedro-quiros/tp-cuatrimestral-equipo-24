@@ -18,7 +18,7 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
-                PermisoHelper.VerificarPermisoGerente(Session);
+                //PermisoHelper.VerificarPermisoGerente(Session);
                 UsuarioGestion usuarioGest = new UsuarioGestion();
                 Usuario seleccionado = new Usuario();
                 List<Usuario> listaUsu = new List<Usuario>();
@@ -220,6 +220,7 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+         
 
             try
             {

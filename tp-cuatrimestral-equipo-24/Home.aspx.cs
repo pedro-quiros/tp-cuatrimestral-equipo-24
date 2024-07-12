@@ -12,7 +12,7 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
-                PermisoHelper.VerificarPermisoGerente(Session);
+                //PermisoHelper.VerificarPermisoGerente(Session);
                 CargarDatosGridView();
             }
         }
