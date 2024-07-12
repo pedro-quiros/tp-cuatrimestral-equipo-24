@@ -51,7 +51,7 @@ namespace tp_cuatrimestral_equipo_24
         protected global::System.Web.UI.WebControls.Button txtIngresar;
 
         /// <summary>
-        /// Control btnRegistrarse.
+        /// btnRegistrarse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
