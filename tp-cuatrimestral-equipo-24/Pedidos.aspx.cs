@@ -196,7 +196,94 @@ namespace tp_cuatrimestral_equipo_24
         //    Response.Redirect("Salon.aspx");
 
         //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         protected void BtnCerrarPedido_Click(object sender, EventArgs e)
+        {
+            if (Session["IdMesa"] != null && listaPedidos != null && listaPedidos.Count > 0)
+            {
+                try
+                {
+                    int idMesa = (int)Session["IdMesa"];
+                    var fechaHora = DateTime.Now;
+                    var totalPedido = listaPedidos.Sum(p => p.ObtenerTotal());
+
+                    // Crear un nuevo pedido y obtener su ID
+                    datos.LimpiarParametros(); // Limpiar antes de crear el pedido
+                    int idPedido = pedidoNegocio.CrearPedido(fechaHora, totalPedido, idMesa);
+                    if (idPedido <= 0)
+                    {
+                        throw new Exception("No se pudo crear el pedido.");
+                    }
+
+                    // Agregar los ítems al pedido
+                    foreach (var item in listaPedidos)
+                    {
+                        datos.LimpiarParametros(); // Limpiar antes de agregar cada ítem
+                        pedidoNegocio.AgregarItemPedido(idPedido, item.IdInsumo, item.Cantidad, item.PrecioUnitario);
+                    }
+
+                    // Cerrar el pedido
+                    datos.LimpiarParametros(); // Limpiar antes de cerrar el pedido
+                    pedidoNegocio.CerrarPedido(idPedido);
+
+                    // Cerrar la mesa
+                    mesaNegocio.CerrarMesa(idMesa);  // Llamamos al método para cerrar la mesa
+
+                    // Limpiar sesión
+                    Session.Remove("IdMesa");
+                    Session.Remove("Pedidos");
+                    Session.Remove("ListadoInsumos");
+
+                    // Redirigir a la página de salón
+                    Response.Redirect("Salon.aspx");
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de errores
+                    ErrorMessage.Text = "Ocurrió un error al cerrar el pedido: " + ex.Message;
+                }
+            }
+            else
+            {
+                // Mostrar un mensaje de error si no hay pedidos
+                ErrorMessage.Text = "No hay pedidos para cerrar.";
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        protected void BtnCerrarPedido_ClickViejo(object sender, EventArgs e)
         {
             if (Session["IdMesa"] != null && listaPedidos != null && listaPedidos.Count > 0)
             {

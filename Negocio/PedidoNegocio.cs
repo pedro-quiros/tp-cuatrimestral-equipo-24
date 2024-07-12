@@ -47,6 +47,7 @@ namespace Negocio
         {
             try
             {
+                datos.LimpiarParametros();
                 datos.SetearConsulta(@"
                     SELECT COUNT(IdPedido) AS CANTIDAD_PEDIDOS
                     FROM Pedido
@@ -76,6 +77,7 @@ namespace Negocio
         {
             try
             {
+                datos.LimpiarParametros();
                 datos.SetearConsulta(@"
                     SELECT SUM(Total) AS TOTAL_PEDIDOS
                     FROM Pedido
@@ -107,6 +109,7 @@ namespace Negocio
 
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("SP_ListarInsumos");
                 datos.ejecutarLectura();
 
@@ -144,6 +147,7 @@ namespace Negocio
 
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("SP_ListarMesas");
                 datos.ejecutarLectura();
 
@@ -175,6 +179,7 @@ namespace Negocio
         {
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("InsertarPedido");
                 datos.SeterParametros("@FechaHora", fechaHora);
                 datos.SeterParametros("@Total", total);
@@ -191,6 +196,7 @@ namespace Negocio
         {
             try
             {
+                datos.LimpiarParametros();
                 string consulta = @"
                     INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
                     VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario)";
@@ -212,6 +218,7 @@ namespace Negocio
         {
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("ActualizarStockInsumo");
                 datos.SeterParametros("@IdInsumo", idInsumo);
                 datos.SeterParametros("@Cantidad", cantidad);
@@ -227,8 +234,8 @@ namespace Negocio
         {
             try
             {
+                datos.LimpiarParametros();
                 string consulta = "UPDATE Pedido SET Estado = 1 WHERE IdPedido = @IdPedido";
-                datos.LimpiarParametros(); // Limpiar los parámetros antes de usarlos
                 datos.SetearConsulta(consulta);
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.EjecutarAccion();
@@ -243,15 +250,15 @@ namespace Negocio
             }
         }
 
-
         public int CrearPedido(DateTime fechaHora, decimal totalPedido, int idMesa)
         {
             try
             {
+                datos.LimpiarParametros();
                 string consulta = @"
-            INSERT INTO Pedido (IdMesa, FechaHoraGenerado, Estado, Total)
-            VALUES (@IdMesa, @FechaHoraGenerado, @Estado, @Total);
-            SELECT SCOPE_IDENTITY() AS IdPedido";
+                    INSERT INTO Pedido (IdMesa, FechaHoraGenerado, Estado, Total)
+                    VALUES (@IdMesa, @FechaHoraGenerado, @Estado, @Total);
+                    SELECT SCOPE_IDENTITY() AS IdPedido";
 
                 datos.SetearConsulta(consulta);
                 datos.SeterParametros("@FechaHoraGenerado", fechaHora);
@@ -270,13 +277,13 @@ namespace Negocio
             }
         }
 
-
         public List<ItemPedido> ListarItemsPedido(int idPedido)
         {
             List<ItemPedido> lista = new List<ItemPedido>();
 
             try
             {
+                datos.LimpiarParametros();
                 string consulta = @"
                     SELECT i.IdInsumo, i.Nombre, ip.Cantidad, ip.PrecioUnitario
                     FROM ItemPedido ip
@@ -324,6 +331,7 @@ namespace Negocio
 
             try
             {
+                datos.LimpiarParametros();
                 datos.setearProcedimiento("ObtenerItemsDePedido");
                 datos.SeterParametros("@IdMesa", idMesa);
                 datos.ejecutarLectura();
