@@ -416,21 +416,21 @@ END;
 
 
 
-CREATE PROCEDURE [dbo].[SP_AgregarItemPedido] ---ok
-    @IdPedido INT,
-    @IdInsumo INT,
-    @Cantidad INT,
-    @PrecioUnitario DECIMAL(18,2)
-AS
-BEGIN
-    BEGIN TRANSACTION;
+--CREATE PROCEDURE [dbo].[SP_AgregarItemPedido] ---ok
+--    @IdPedido INT,
+--    @IdInsumo INT,
+--    @Cantidad INT,
+--    @PrecioUnitario DECIMAL(18,2)
+--AS
+--BEGIN
+--    BEGIN TRANSACTION;
 
-    -- Agregar un ítem al pedido
-    INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
-    VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario);
+--    -- Agregar un ítem al pedido
+--    INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
+--    VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario);
 
-    COMMIT TRANSACTION;
-END
+--    COMMIT TRANSACTION;
+--END
 
 
 CREATE PROCEDURE [dbo].[SP_ObtenerPedidoPorId] ---ok
@@ -629,3 +629,7 @@ SET Estado = 0
 WHERE Estado = 1
 
 SELECT * FROM Pedido
+
+select * from pedido
+select * from ItemPedido
+exec SP_ListarMesas
