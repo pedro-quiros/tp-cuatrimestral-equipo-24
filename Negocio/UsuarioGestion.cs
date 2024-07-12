@@ -239,5 +239,32 @@ namespace Negocio
             }
         }
 
+        public int BuscarPuesto(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("select Puesto from Usuario2 where NombreUsuario = @nombreUsuario and Clave = @clave");
+                datos.SeterParametros("@nombreUsuario", usuario.NombreUsuario);
+                datos.SeterParametros("@clave", usuario.Clave);
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    usuario.Puesto = Convert.ToInt32(datos.Lector["Puesto"]);
+                }
+                return usuario.Puesto;
+            }
+            catch
+            (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 }

@@ -60,15 +60,15 @@ namespace tp_cuatrimestral_equipo_24
             idRep.DataBind();
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            InsumosNegocio negocio = new InsumosNegocio();
-            System.Web.UI.WebControls.Button btn = (System.Web.UI.WebControls.Button)sender;
-            int id = Convert.ToInt32(btn.CommandArgument);
+        //protected void btnEliminar_Click(object sender, EventArgs e)
+        //{
+        //    InsumosNegocio negocio = new InsumosNegocio();
+        //    System.Web.UI.WebControls.Button btn = (System.Web.UI.WebControls.Button)sender;
+        //    int id = Convert.ToInt32(btn.CommandArgument);
 
-            negocio.eliminar(id);
-            Response.Redirect(Request.RawUrl);
-        }
+        //    negocio.eliminar(id);
+        //    Response.Redirect(Request.RawUrl);
+        //}
 
         protected void ddlFiltradoTipo_SelectedIndexChanged(object sender, EventArgs e)
         {

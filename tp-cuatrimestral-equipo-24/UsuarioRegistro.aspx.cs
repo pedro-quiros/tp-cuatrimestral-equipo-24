@@ -18,6 +18,13 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
+                string Para = "Parametro";
+                if (Request.QueryString["Parametro"] == Para)
+                {
+                    btnModificar.Visible = false;
+                    btnLogico.Visible = false;
+                }
+
                 //PermisoHelper.VerificarPermisoGerente(Session);
                 UsuarioGestion usuarioGest = new UsuarioGestion();
                 Usuario seleccionado = new Usuario();
@@ -48,7 +55,7 @@ namespace tp_cuatrimestral_equipo_24
                             switch (usu.Puesto)
                             {
                                 case 1:
-                                    ddlPuesto.Text = "Empleado";
+                                    ddlPuesto.Text = "Empleado";                                
                                     break;
                                 case 2:
                                     ddlPuesto.Text = "Gerente";

@@ -12,6 +12,7 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
+
                 //PermisoHelper.VerificarPermisoGerente(Session);
                 CargarDatosGridView();
             }
@@ -66,7 +67,9 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("UsuarioRegistro.aspx");
+            string Parametro = "Parametro";
+
+            Response.Redirect("UsuarioRegistro.aspx?Parametro=" + Parametro, false);
         }
     }
 
