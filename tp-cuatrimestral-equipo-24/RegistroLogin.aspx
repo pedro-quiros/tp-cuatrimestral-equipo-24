@@ -73,7 +73,7 @@
 
 
         <asp:Button ID="btnRegistrarse" runat="server" Text="Registrarse" CssClass="botons" OnClick="btnRegistrarse_Click" />
-        <a href="/">Cancelar</a>
+        <a href="Default.aspx">Cancelar</a>
 
     </div>
 

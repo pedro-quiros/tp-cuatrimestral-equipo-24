@@ -18,6 +18,7 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
+                PermisoHelper.VerificarPermisoGerente(Session);
                 UsuarioGestion usuarioGest = new UsuarioGestion();
                 Usuario seleccionado = new Usuario();
                 List<Usuario> listaUsu = new List<Usuario>();
