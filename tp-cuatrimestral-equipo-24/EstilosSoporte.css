@@ -1,6 +1,9 @@
-﻿#contacto {
+﻿/*#contacto {
     padding: 100px 15px;
-    background-color: #f3f3f3;
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("https://previews.123rf.com/images/yupiramos/yupiramos1307/yupiramos130700939/20982775-restaurante-de-piel-sobre-fondo-de-color-rosa-ilustraci%C3%B3n-vectorial.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
 }
 
     #contacto .titulo-seccion {
@@ -8,15 +11,19 @@
         text-align: center;
         font-size: 22px;
         text-transform: uppercase;
-        color: #111135;
+        color: #ffffff;
         text-decoration: underline;
         text-decoration-color: #d3d3d3;
         text-decoration-thickness: 5px;
     }
 
     #contacto .contenedor-form {
-        max-width: 1100px;
+        max-width: 600px;
         margin: auto;
+        background: rgba(255, 255, 255, 0.8);*/ /* Fondo blanco con opacidad */
+        /*padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
         #contacto .contenedor-form .fila {
@@ -26,20 +33,39 @@
         #contacto .contenedor-form .mitad {
             display: flex;
             justify-content: space-between;
-        }
+            gap: 15px;*/ /* Espacio entre los elementos en flex */
+        /*}
 
         #contacto .contenedor-form input,
         #contacto .contenedor-form textarea {
-            padding: 20px;
-            border-radius: 20px;
+            padding: 10px;
+            border-radius: 10px;
             border: 1px solid #919191;
-            width: 100%; /* Asegura que los inputs y textarea ocupen todo el ancho disponible */
-        }
+            width: 100%;*/ /* Asegura que los inputs y textarea ocupen todo el ancho disponible */
+            /*box-sizing: border-box;*/ /* Incluye el padding y el border dentro del width */
+        /*}
 
-        #contacto .contenedor-form .mitad input {
-            width: 100%; /* Ajusta el ancho de los inputs cuando están en una fila con dos columnas */
-        }
+        #contacto .contenedor-form .input-mitad {
+            width: 48%;*/ /* Ajusta el ancho de los inputs cuando están en una fila con dos columnas */
+        /*}
 
         #contacto .contenedor-form .input-full {
             width: 100%;
         }
+
+.btn-enviar {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+    .btn-enviar:hover {
+        background-color: #45a049;
+    }*/
