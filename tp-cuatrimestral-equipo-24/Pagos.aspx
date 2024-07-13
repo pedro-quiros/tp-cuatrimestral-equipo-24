@@ -29,8 +29,8 @@
         
     </div>
 
-    <div class="form-register" >
-        <h4> Recibo de Pago </h4>
+    <div class="form-register" id="divtext" visible="false" runat="server" >
+        <h4 id="htext" runat="server" Visible="false"> Recibo de Pago </h4>
 
         <div class="mb-3">
             <label id="lblMesa" runat="server" class="form-label" ReadOnly="true" Visible="false">Num de Mesa: </label>
