@@ -50,40 +50,58 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void btnAceptarModal_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(hdfIdMesa.Value))
+            try
             {
+                // Verifica si el IdMesa está en la sesión
+                if (string.IsNullOrEmpty(hdfIdMesa.Value))
+                {
+                    throw new Exception("El IdMesa no está disponible en el modal.");
+                }
+
                 int idMesa = Convert.ToInt32(hdfIdMesa.Value);
 
-                try
+                // Verifica si el usuario está en la sesión
+                if (Session["UsuarioSeleccionado"] == null)
                 {
-                    // Abrir la mesa
-                    mesaNegocio.AbrirMesa(idMesa);
-
-                    // Crear un nuevo pedido relacionado con la mesa
-                    var fechaHora = DateTime.Now;
-                    var totalPedido = 0.0m;  // El total del pedido es inicialmente 0
-                    int idPedido = pedidoNegocio.CrearPedido(fechaHora, totalPedido, idMesa);
-
-                    // Verificar que el pedido se creó exitosamente
-                    if (idPedido <= 0)
-                    {
-                        throw new Exception("No se pudo crear el pedido.");
-                    }
-
-                    // Asignar el IdPedido a la sesión para poder usarlo en la página
-                    Session["IdPedido"] = idPedido;
-
-                    // Actualizar la vista de la mesa en el GridView
-                    CargarDatosGridView();
-
-                    // Ocultar el modal después de aceptar
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "OcultarModal", "$('#modalConfirmar').modal('hide');", true);
+                    throw new Exception("El UsuarioSeleccionado no está en la sesión.");
                 }
-                catch (Exception ex)
+
+                Usuario usuario = (Usuario)Session["UsuarioSeleccionado"];
+                int idUsuario = usuario.Id; // Asegúrate de que la propiedad Id esté definida en la clase Usuario
+
+                // Abrir la mesa
+                mesaNegocio.AbrirMesa(idMesa);
+
+                // Crear un nuevo pedido relacionado con la mesa
+                var fechaHora = DateTime.Now;
+                var totalPedido = 0.0m;  // El total del pedido es inicialmente 0
+                int idPedido = pedidoNegocio.CrearPedido(fechaHora, totalPedido, idMesa, idUsuario);
+
+                // Verificar que el pedido se creó exitosamente
+                if (idPedido <= 0)
                 {
-                    // Manejo de errores
-                    throw new Exception("Ocurrió un error al abrir la mesa y crear el pedido." + ex.Message);
+                    throw new Exception("No se pudo crear el pedido.");
                 }
+
+                // Asignar el IdPedido a la sesión para poder usarlo en la página
+                Session["IdPedido"] = idPedido;
+
+                // Actualizar la vista de la mesa en el GridView
+                CargarDatosGridView();
+
+                // Ocultar el modal después de aceptar
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "OcultarModal", "$('#modalConfirmar').modal('hide');", true);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                // Muestra un mensaje de error en la interfaz de usuario
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarError", $"alert('Ocurrió un error al abrir la mesa y crear el pedido. Detalles: {ex.Message}');", true);
+            }
+            finally
+            {
+                // Vuelve a cargar el GridView después de ocultar el modal
+                CargarDatosGridView();
             }
         }
 

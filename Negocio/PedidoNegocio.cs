@@ -197,11 +197,7 @@ namespace Negocio
             try
             {
                 datos.LimpiarParametros();
-                string consulta = @"
-                    INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
-                    VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario)";
-
-                datos.SetearConsulta(consulta);
+                datos.SetearConsulta("INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario) VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario)");
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.SeterParametros("@IdInsumo", idInsumo);
                 datos.SeterParametros("@Cantidad", cantidad);
@@ -212,7 +208,12 @@ namespace Negocio
             {
                 throw new Exception("Error al agregar el ítem al pedido: " + ex.Message);
             }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
+
 
         public void ActualizarStockInsumo(int idInsumo, int cantidad)
         {
@@ -235,8 +236,7 @@ namespace Negocio
             try
             {
                 datos.LimpiarParametros();
-                string consulta = "UPDATE Pedido SET Estado = 1 WHERE IdPedido = @IdPedido";
-                datos.SetearConsulta(consulta);
+                datos.SetearConsulta("UPDATE Pedido SET Estado = 'Cerrado' WHERE IdPedido = @IdPedido");
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.EjecutarAccion();
             }
@@ -250,32 +250,43 @@ namespace Negocio
             }
         }
 
-        public int CrearPedido(DateTime fechaHora, decimal totalPedido, int idMesa)
+        public int CrearPedido(DateTime fechaHora, decimal total, int idMesa, int idUsuario)
         {
             try
             {
                 datos.LimpiarParametros();
-                string consulta = @"
-                    INSERT INTO Pedido (IdMesa, FechaHoraGenerado, Estado, Total)
-                    VALUES (@IdMesa, @FechaHoraGenerado, @Estado, @Total);
-                    SELECT SCOPE_IDENTITY() AS IdPedido";
-
-                datos.SetearConsulta(consulta);
-                datos.SeterParametros("@FechaHoraGenerado", fechaHora);
-                datos.SeterParametros("@Total", totalPedido);
+                datos.SetearConsulta("INSERT INTO Pedido (FechaHora, Total, IdMesa, IdUsuario) VALUES (@FechaHora, @Total, @IdMesa, @IdUsuario)");
+                datos.SeterParametros("@FechaHora", fechaHora);
+                datos.SeterParametros("@Total", total);
                 datos.SeterParametros("@IdMesa", idMesa);
-                datos.SeterParametros("@Estado", 1);  // Estado 1 representa "Abierto"
+                datos.SeterParametros("@IdUsuario", idUsuario);
+                datos.EjecutarAccion();
+
+                datos.LimpiarParametros();
+                datos.SetearConsulta("SELECT MAX(IdPedido) FROM Pedido WHERE IdMesa = @IdMesa AND FechaHora = @FechaHora");
+                datos.SeterParametros("@IdMesa", idMesa);
+                datos.SeterParametros("@FechaHora", fechaHora);
                 datos.ejecutarLectura();
-                datos.Lector.Read();
-                int idPedido = Convert.ToInt32(datos.Lector["IdPedido"]);
-                datos.CerrarConexion();
-                return idPedido;
+
+                if (datos.Lector.Read())
+                {
+                    return (int)datos.Lector[0];
+                }
+                else
+                {
+                    throw new Exception("No se pudo obtener el ID del pedido.");
+                }
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al crear el pedido: " + ex.Message);
             }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
+
 
         public List<ItemPedido> ListarItemsPedido(int idPedido)
         {

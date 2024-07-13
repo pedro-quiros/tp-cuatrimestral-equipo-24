@@ -746,3 +746,18 @@ add CONSTRAINT FK_PEDIDO_USUARIO foreign key (IdUsuario) references Usuario2(IdU
 alter table Mesa
 add IdUsuario INT
 add CONSTRAINT FK_MESA_USUARIO foreign key (IdUsuario) references Usuario2(IdUsuario)
+
+
+
+update Mesa SET IdUsuario = 1  where IdMesa =  1
+update Mesa SET IdUsuario = 1  where IdMesa =  2
+update Mesa SET IdUsuario = 1  where IdMesa =  3
+update Mesa SET IdUsuario = 2  where IdMesa =  4
+update Mesa SET IdUsuario = 2  where IdMesa =  5
+update Mesa SET IdUsuario = 2  where IdMesa =  6
+update Mesa SET IdUsuario = 2  where IdMesa =  7
+update Mesa SET IdUsuario = 3  where IdMesa =  8
+update Mesa SET IdUsuario = 3  where IdMesa =  9
+update Mesa SET IdUsuario = 3  where IdMesa =  10
+update Mesa SET IdUsuario = 3  where IdMesa =  11
+
