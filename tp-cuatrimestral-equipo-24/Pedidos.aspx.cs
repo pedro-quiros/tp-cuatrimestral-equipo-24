@@ -31,6 +31,12 @@ namespace tp_cuatrimestral_equipo_24
         {
             if (!IsPostBack)
             {
+                if (Session["UsuarioSeleccionado"] == null)
+                {
+                    Response.Redirect("RegistroLogin.aspx");
+                    return;
+                }
+
                 if (Session["IdMesa"] != null)
                 {
                     int idMesa = (int)Session["IdMesa"];
@@ -53,6 +59,7 @@ namespace tp_cuatrimestral_equipo_24
                 }
             }
         }
+
 
         private void CargarInsumos()
         {
@@ -190,40 +197,26 @@ namespace tp_cuatrimestral_equipo_24
             CalcularTotal();
         }
 
-        //protected void BtnCerrarPedido_Click(object sender, EventArgs e)
-        //{
-        //    mesaNegocio.CerrarMesa((int)Session["IdMesa"]);
-        //    Response.Redirect("Salon.aspx");
-
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        protected void BtnCerrarPedido_Click(object sender, EventArgs e)
+         protected void BtnCerrarPedido_Click(object sender, EventArgs e)
         {
             if (Session["IdMesa"] != null && listaPedidos != null && listaPedidos.Count > 0)
             {
                 try
                 {
                     int idMesa = (int)Session["IdMesa"];
-                    int idUsuario = (int)Session["IdUsuario"]; // Asegúrate de tener el IdUsuario en la sesión
-                    var fechaHora = DateTime.Now;
+                    Usuario usuario = (Usuario)Session["UsuarioSeleccionado"];
+
+                    if (usuario == null || usuario.Id == 0)
+                    {
+                        throw new Exception("El ID de usuario no está presente en la sesión.");
+                    }
+
+                    int idUsuario = usuario.Id; // Asegúrate de que este valor sea el correcto
+                    var fechaHoraGenerado = DateTime.Now;
                     var totalPedido = listaPedidos.Sum(p => p.ObtenerTotal());
 
                     // Crear un nuevo pedido y obtener su ID
-                    int idPedido = pedidoNegocio.CrearPedido(fechaHora, totalPedido, idMesa, idUsuario);
+                    int idPedido = pedidoNegocio.CrearPedido(fechaHoraGenerado, totalPedido, idMesa, idUsuario);
                     if (idPedido <= 0)
                     {
                         throw new Exception("No se pudo crear el pedido.");
@@ -239,7 +232,7 @@ namespace tp_cuatrimestral_equipo_24
                     pedidoNegocio.CerrarPedido(idPedido);
 
                     // Cerrar la mesa
-                    mesaNegocio.CerrarMesa(idMesa);  // Llamamos al método para cerrar la mesa
+                    mesaNegocio.CerrarMesa(idMesa);
 
                     // Limpiar sesión
                     Session.Remove("IdMesa");
@@ -252,7 +245,7 @@ namespace tp_cuatrimestral_equipo_24
                 catch (Exception ex)
                 {
                     // Manejo de errores
-                    ErrorMessage.Text = "Ocurrió un error al cerrar el pedido: " + ex.Message;
+                    ErrorMessage.Text = "Ocurrió un error al cerrar el pedido: " + ex.Message + " | StackTrace: " + ex.StackTrace;
                 }
             }
             else
@@ -261,8 +254,6 @@ namespace tp_cuatrimestral_equipo_24
                 ErrorMessage.Text = "No hay pedidos para cerrar.";
             }
         }
-
-
 
 
     }

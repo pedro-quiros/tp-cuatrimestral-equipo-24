@@ -30,6 +30,7 @@ namespace tp_cuatrimestral_equipo_24
                 if (UsuGesti.Loguear(usuario))
                 {
                     int Puesto = UsuGesti.BuscarPuesto(usuario);
+                    // El ID de usuario ya debería estar asignado en el método Loguear
                     Session.Add("Puesto", Puesto);
                     Session.Add("UsuarioSeleccionado", usuario); // Asegúrate de que aquí también estás guardando el usuario completo
 
@@ -50,6 +51,7 @@ namespace tp_cuatrimestral_equipo_24
                 Response.Redirect("Error.aspx");
             }
         }
+
 
 
         protected void btnRecuperarPass_Click(object sender, EventArgs e)

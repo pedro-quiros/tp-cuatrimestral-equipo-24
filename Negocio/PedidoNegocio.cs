@@ -233,10 +233,12 @@ namespace Negocio
 
         public void CerrarPedido(int idPedido)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.LimpiarParametros();
-                datos.SetearConsulta("UPDATE Pedido SET Estado = 'Cerrado' WHERE IdPedido = @IdPedido");
+                datos.SetearConsulta("UPDATE Pedido SET Estado = @Estado WHERE IdPedido = @IdPedido");
+                datos.SeterParametros("@Estado", false); // Usamos un valor booleano en lugar de una cadena
                 datos.SeterParametros("@IdPedido", idPedido);
                 datos.EjecutarAccion();
             }
@@ -250,22 +252,24 @@ namespace Negocio
             }
         }
 
-        public int CrearPedido(DateTime fechaHora, decimal total, int idMesa, int idUsuario)
+        public int CrearPedido(DateTime fechaHoraGenerado, decimal total, int idMesa, int idUsuario)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.LimpiarParametros();
-                datos.SetearConsulta("INSERT INTO Pedido (FechaHora, Total, IdMesa, IdUsuario) VALUES (@FechaHora, @Total, @IdMesa, @IdUsuario)");
-                datos.SeterParametros("@FechaHora", fechaHora);
+                datos.SetearConsulta("INSERT INTO Pedido (FechaHoraGenerado, Total, IdMesa, IdMesero, Estado) VALUES (@FechaHoraGenerado, @Total, @IdMesa, @IdUsuario, @Estado)");
+                datos.SeterParametros("@FechaHoraGenerado", fechaHoraGenerado);
                 datos.SeterParametros("@Total", total);
                 datos.SeterParametros("@IdMesa", idMesa);
-                datos.SeterParametros("@IdUsuario", idUsuario);
+                datos.SeterParametros("@IdUsuario", idUsuario); // Este debe corresponder a la columna IdMesero
+                datos.SeterParametros("@Estado", true); // Agregamos el valor de Estado
                 datos.EjecutarAccion();
 
                 datos.LimpiarParametros();
-                datos.SetearConsulta("SELECT MAX(IdPedido) FROM Pedido WHERE IdMesa = @IdMesa AND FechaHora = @FechaHora");
+                datos.SetearConsulta("SELECT MAX(IdPedido) FROM Pedido WHERE IdMesa = @IdMesa AND FechaHoraGenerado = @FechaHoraGenerado");
                 datos.SeterParametros("@IdMesa", idMesa);
-                datos.SeterParametros("@FechaHora", fechaHora);
+                datos.SeterParametros("@FechaHoraGenerado", fechaHoraGenerado);
                 datos.ejecutarLectura();
 
                 if (datos.Lector.Read())
@@ -286,6 +290,7 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
 
 
         public List<ItemPedido> ListarItemsPedido(int idPedido)
