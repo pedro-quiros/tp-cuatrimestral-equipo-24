@@ -3,12 +3,54 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="EstilosFiltrar.css" rel="stylesheet" />
     <style>
-        .tablaConEstilo {
-            width: 40%;
-            border-collapse: collapse;
-            margin: 0 auto;
-            text-align: center;
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("https://previews.123rf.com/images/yupiramos/yupiramos1307/yupiramos130700939/20982775-restaurante-de-piel-sobre-fondo-de-color-rosa-ilustraci%C3%B3n-vectorial.jpg");
+            background-size: cover;
             font-family: 'Roboto', sans-serif;
+        }
+
+        .title {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .filter-container i {
+                color: white;
+                margin-right: 10px;
+            }
+
+        .label-filtrar {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .input-filtrar {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        .tablaConEstilo {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            text-align: center;
+            background-color: white;
+            opacity: 0.9;
+            /*font-family: 'Roboto', sans-serif;*/
         }
 
             .tablaConEstilo th, .tablaConEstilo td {
@@ -51,7 +93,7 @@
             }
 
         .button-container {
-            width: 40%;
+            width: 80%;
             margin: 20px auto 0; /* Centrado y con margen superior */
             text-align: right; /* Alineado a la derecha */
         }
@@ -67,8 +109,8 @@
         <asp:TextBox ID="Filtro" AutoPostBack="true" OnTextChanged="Filtro_TextChanged" runat="server" CssClass="input-filtrar" />
     </div>
 
-    <asp:GridView CssClass="tablaConEstilo" ID="dgvUsuario" runat="server" DataKeyNames="Id" AutoGenerateColumns="false" 
-     OnSelectedIndexChanged="dgvUsuario_SelectedIndexChanged" OnPageIndexChanging="dgvUsuario_PageIndexChanging" AllowPaging="true" PageSize="5">
+    <asp:GridView CssClass="tablaConEstilo" ID="dgvUsuario" runat="server" DataKeyNames="Id" AutoGenerateColumns="false"
+        OnSelectedIndexChanged="dgvUsuario_SelectedIndexChanged" OnPageIndexChanging="dgvUsuario_PageIndexChanging" AllowPaging="true" PageSize="5">
         <Columns>
             <asp:BoundField HeaderText="ID Empleado" DataField="Id" />
             <asp:BoundField HeaderText="Usuario" DataField="NombreUsuario" />

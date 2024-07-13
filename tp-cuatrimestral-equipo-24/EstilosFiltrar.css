@@ -1,4 +1,12 @@
-﻿.filter-container {
+﻿.title {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.filter-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,8 +15,8 @@
 }
 
 .label-filtrar {
-    display: flex; /* Permite alinear el ícono y el texto en la misma línea */
-    align-items: center; /* Alinea el ícono verticalmente con el texto */
+    display: flex;
+    align-items: center;
     font-size: 20px;
     font-weight: bold;
     margin-right: 10px;
@@ -21,14 +29,15 @@
     border: 2px solid #ccc;
     border-radius: 4px;
     width: 400px;
-    box-sizing: border-box; /* Garantiza que el ancho especificado incluya el padding */
+    box-sizing: border-box;
 }
 
     .input-filtrar:focus {
-        outline: none; /* Elimina el contorno al enfocar */
+        outline: none;
+        
     }
 
     .input-filtrar:focus,
     .input-filtrar:hover {
-        border-color: #007bff; /* Cambia el color del borde al enfocar o pasar el mouse */
+        border-color: #007bff;
     }
