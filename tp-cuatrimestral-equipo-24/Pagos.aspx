@@ -5,63 +5,43 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="form-register">
+    <div class="recibo-container">
 
+        <h4>Formulario Pago</h4>
 
-        <h4>Formulario Pago </h4>
-
-        <div class="form-group">
-            <asp:Label ID="lblpagos" runat="server" Text="Pagos:" CssClass="form-label"></asp:Label>
-            <div class="col-sm-10">
-                <div class="col-sm-10">
-                    <asp:DropDownList ID="ddlPagos" runat="server" CssClass="form-select">
-                        <asp:ListItem Text="Efectivo" />
-                        <asp:ListItem Text="Credito" />
-                        <asp:ListItem Text="Debito" />
-                        <asp:ListItem Text="Tranferencia" />
-                    </asp:DropDownList>
-                </div>
-            </div>
+        <div class="recibo-group">
+            <asp:Label ID="lblpagos" runat="server" Text="Pagos:" CssClass="recibo-label"></asp:Label>
+            <asp:DropDownList ID="ddlPagos" runat="server" CssClass="recibo-select">
+                <asp:ListItem Text="Efectivo" />
+                <asp:ListItem Text="Credito" />
+                <asp:ListItem Text="Debito" />
+                <asp:ListItem Text="Tranferencia" />
+            </asp:DropDownList>
         </div>
-        
-            <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="botons" OnClick ="btnConfirmar_Click" />
-            <a href="Menu.aspx" class="btnEstandar btn btn-primary btn-back">Volver</a>
-        
+
+        <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="recibo-button" OnClick="btnConfirmar_Click" />
+        <a href="Menu.aspx" class="recibo-back">Volver</a>
     </div>
 
-    <div class="form-register" id="divtext" visible="false" runat="server" >
-        <h4 id="htext" runat="server" Visible="false"> Recibo de Pago </h4>
-
-        <div class="mb-3">
-            <label id="lblMesa" runat="server" class="form-label" ReadOnly="true" Visible="false">Num de Mesa: </label>
-            <asp:TextBox ID="txtMesa" runat="server" CssClass="controls" ReadOnly="true" Visible="false"></asp:TextBox>
+    <div class="recibo-container" id="divtext" visible="false" runat="server">
+        <div class="receipt">
+            <h1 id="htext" runat="server" visible="false">Recibo de Pago</h1>
+            <p>***************************************</p>
+            <p>RECIBO DE CAJA</p>
+            <p>***************************************</p>
+            <p id="lblMesa" runat="server" visible="false">Num de Mesa: <span id="txtMesa" runat="server"></span></p>
+            <p id="lblmesero" runat="server" visible="false">Mesero: <span id="txtMesero" runat="server"></span></p>
+            <p id="lblFecha" runat="server" visible="false">Fecha: <span id="Txtfecha" runat="server"></span></p>
+            <p id="lbltotal" runat="server" visible="false">Total: <span id="txtTotal" runat="server"></span></p>
+            <p id="lblTipo" runat="server" visible="false">Tipo de Pago: <span id="txtTipo" runat="server"></span></p>
+            <p id="lblconsumicion" runat="server" visible="false">Consumición: <span id="txtConsumicion" runat="server"></span></p>
+            <p>***************************************</p>
+            <p>Total cost: <span id="totalCost"></span></p>
+            <p>***************************************</p>
+            <p>Note: <span id="note"></span>ESPERO QUE LE HAYA GUSTADO</p>
+            <p>***************************************</p>
+            <p>GRACIAS!</p>
         </div>
-
-        <div class="mb-3">
-            <label id="lblmesero" runat="server" class="form-label" ReadOnly="true" Visible="false">Mesero:</label>
-            <asp:TextBox ID="txtMesero" runat="server" CssClass="controls" ReadOnly="true" Visible="false"></asp:TextBox>
-        </div>
-
-        <div class="mb-3">
-            <label id="lblFecha" runat="server" class="form-label" ReadOnly="true" Visible="false">Fecha:</label>
-            <asp:TextBox ID="Txtfecha" runat="server" CssClass="controls" ReadOnly="true" Visible="false"></asp:TextBox>
-        </div>
-
-        <div class="mb-3">
-            <label id="lbltotal" runat="server" class="form-label" ReadOnly="true" Visible="false">Total:</label>
-            <asp:TextBox ID="txtTotal" runat="server" CssClass="controls" ReadOnly="true" Visible="false"></asp:TextBox>
-        </div>
-
-        <div class="mb-3">
-            <label id="lblTipo" runat="server" class="form-label" ReadOnly="true" Visible="false">Tipo de Pago:</label>
-            <asp:TextBox ID="txtTipo" runat="server" CssClass="controls" ReadOnly="true" Visible="false"></asp:TextBox>
-        </div>
-
-        <div class="mb-3">
-            <label id="lblconsumicion" runat="server" class="form-label" ReadOnly="true" Visible="false">Consumicion:</label>
-            <asp:TextBox ID="txtConsumicion" runat="server" CssClass="controls" ReadOnly="true" Visible="false"></asp:TextBox>
-        </div>
-
     </div>
 
 

@@ -16,21 +16,29 @@ namespace tp_cuatrimestral_equipo_24
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
-            divtext.Visible = true;
-            htext.Visible  = true;
+            // Asignar valores a los controles
+            txtMesa.InnerText = "5"; // Ejemplo
+            txtMesero.InnerText = "Juan Perez"; // Ejemplo
+            Txtfecha.InnerText = DateTime.Now.ToString("yyyy-MM-dd");
+            txtTotal.InnerText = "$50.00"; // Ejemplo
+            txtTipo.InnerText = ddlPagos.SelectedItem.Text;
+            txtConsumicion.InnerText = "Pizza, Refresco"; // Ejemplo
+
+            // Mostrar los controles con los valores asignados
             lblMesa.Visible = true;
+            txtMesa.Visible = true;
             lblmesero.Visible = true;
+            txtMesero.Visible = true;
             lblFecha.Visible = true;
+            Txtfecha.Visible = true;
             lbltotal.Visible = true;
+            txtTotal.Visible = true;
             lblTipo.Visible = true;
+            txtTipo.Visible = true;
             lblconsumicion.Visible = true;
-            
-            txtMesa.Visible = true; 
-            txtMesero.Visible = true; 
-            Txtfecha.Visible = true; 
-            txtTotal.Visible = true; 
-            txtTipo.Visible = true; 
-            txtConsumicion.Visible = true; 
+            txtConsumicion.Visible = true;
+            htext.Visible = true;
+            divtext.Visible = true;
         }
     }
 }
