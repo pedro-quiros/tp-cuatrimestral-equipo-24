@@ -17,11 +17,11 @@ namespace Negocio
             string ApellidoMesero;
             try
             {
-                string consulta = "SELECT M.IdMesa, M.Numero, MS.IdMesero, MS.Apellido, MS.Nombre,COUNT(P.IdPedido) AS CantPedidos," +
-                    " SUM(P.Total) AS PrecioTotal, MAX(P.FechaHoraCreado) AS FechaHoraGenerado FROM Mesa M" +
+                string consulta = "SELECT M.IdMesa, M.Numero, MS.IdUsuario, MS.Apellido, MS.Nombre,COUNT(P.IdPedido) AS CantPedidos," +
+                    " SUM(P.Total) AS PrecioTotal, MAX(P.FechaHoraGenerado) AS FechaHoraGenerado FROM Mesa M" +
                     " INNER JOIN Pedido P ON P.IdMesa = M.IdMesa" +
-                    " INNER JOIN Mesero MS ON MS.IdMesero = M.IdMesero " +
-                    " GROUP BY M.IdMesa, M.Numero, MS.IdMesero, MS.Apellido, MS.Nombre " +
+                    " INNER JOIN Usuario2 MS ON MS.IdUsuario = M.IdUsuario" +
+                    " GROUP BY M.IdMesa, M.Numero, MS.IdUsuario, MS.Apellido, MS.Nombre" +
                     " ORDER BY CantPedidos, PrecioTotal";
 
                 datos.SetearConsulta(consulta);
@@ -32,7 +32,7 @@ namespace Negocio
 
                     aux.IdMesa = (int)datos.Lector["IdMesa"];
                     aux.NumeroMesa = (int)datos.Lector["Numero"];
-                    aux.IdMesero = (int)datos.Lector["IdMesero"];
+                    aux.IdMesero = (int)datos.Lector["IdUsuario"];
                     NombreMesero = datos.Lector["Nombre"].ToString();
                     ApellidoMesero = datos.Lector["Apellido"].ToString();
                     aux.NombreApellidoMesero = string.Concat(NombreMesero, " ", ApellidoMesero);
@@ -62,12 +62,12 @@ namespace Negocio
             string ApellidoMesero;
             try
             {
-                accesoDatos.SetearConsulta("SELECT MS.Apellido, MS.Nombre, MS.IdMesero,(SELECT STRING_AGG(M.Numero, ', ')  " +
-                    " FROM Mesa M  WHERE M.IdMesero = MS.IdMesero) AS NumeroMesas," +
-                    " MAX(P.FechaHoraCreado) AS FechaHoraGenerado, SUM(P.Total) AS PrecioTotal,COUNT(P.IdPedido) AS CantPedidos" +
-                    " FROM Mesero MS " +
-                    " INNER JOIN Pedido P ON P.IdMesero = MS.IdMesero" +
-                    " GROUP BY MS.Apellido, MS.Nombre, MS.IdMesero" +
+                accesoDatos.SetearConsulta("SELECT MS.Apellido, MS.Nombre, MS.IdUsuario,(SELECT STRING_AGG(M.Numero, ', ')" +
+                    " FROM Mesa M  WHERE M.IdUsuario = MS.IdUsuario) AS NumeroMesas," +
+                    " MAX(P.FechaHoraGenerado) AS FechaHoraGenerado, SUM(P.Total) AS PrecioTotal,COUNT(P.IdPedido) AS CantPedidos" +
+                    " FROM Usuario2 MS" +
+                    " INNER JOIN Pedido P ON P.IdUsuario = MS.IdUsuario" +
+                    " GROUP BY MS.Apellido, MS.Nombre, MS.IdUsuario" +
                     " ORDER BY PrecioTotal, CantPedidos, NumeroMesas");
                 accesoDatos.ejecutarLectura();
 
@@ -78,7 +78,7 @@ namespace Negocio
                     NombreMesero = accesoDatos.Lector["Apellido"].ToString();
                     ApellidoMesero = accesoDatos.Lector["Nombre"].ToString();
                     aux.NombreApellidoMesero = string.Concat(NombreMesero, " ", ApellidoMesero);
-                    aux.IdMesero = (int)accesoDatos.Lector["IdMesero"];
+                    aux.IdMesero = (int)accesoDatos.Lector["IdUsuario"];
                     aux.NumeroMesaParaMesero = accesoDatos.Lector["NumeroMesas"].ToString();
                     aux.FechaHoraGenerado = (DateTime)accesoDatos.Lector["FechaHoraGenerado"];
                     aux.Precio = (decimal)accesoDatos.Lector["PrecioTotal"];

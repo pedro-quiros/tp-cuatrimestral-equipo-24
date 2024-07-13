@@ -44,7 +44,7 @@
 
             <a ID="aListadoUsuarios" runat="server" class="logoNav" href="ListadoUsuarios.aspx" title="Gestionar usuarios">
                 <img src="img/icoAgregarUsuario.png" alt="ícono de agregar usuario" />
-            </a>--%>
+            </a>
             <a class="logoNav" href="Soporte.aspx" title="Soporte">
                 <img src="img/icoSoporte.png" alt="ícono de soporte" />
             </a>
