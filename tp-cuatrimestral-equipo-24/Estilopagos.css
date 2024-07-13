@@ -1,12 +1,17 @@
-﻿.body-recibo {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #f4f4f4;
+﻿body {
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.body-recibo {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Asegura que ocupe al menos el alto de la ventana */
+    padding: 20px; /* Opcional: Añade un poco de espacio alrededor */
 }
 
 .recibo-container {
@@ -25,7 +30,6 @@
 }
 
     .recibo-container h4 {
-        text-align: center;
         margin-bottom: 20px;
     }
 
@@ -39,15 +43,13 @@
 }
 
 .recibo-label {
-    display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    text-align: center;
 }
 
 .recibo-select,
 .recibo-input {
-    width: 80%; /* Ajusta el ancho según sea necesario */
+    width: 80%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -56,15 +58,13 @@
 }
 
 .recibo-button {
-    display: block;
-    width: 80%; /* Ajusta el ancho según sea necesario */
+    width: 80%;
     padding: 10px;
     background-color: #28a745;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    text-align: center;
     font-size: 16px;
 }
 
@@ -73,15 +73,13 @@
     }
 
 .recibo-back {
-    display: block;
-    width: 80%; /* Ajusta el ancho según sea necesario */
+    width: 80%;
     padding: 10px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    text-align: center;
     font-size: 16px;
     margin-top: 10px;
     text-decoration: none;
@@ -89,4 +87,27 @@
 
     .recibo-back:hover {
         background-color: #0056b3;
+    }
+
+.receipt {
+    background: #fff;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    border: 2px solid #000;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+    .receipt h1 {
+        margin-bottom: 20px;
+    }
+
+    .receipt p {
+        margin: 5px 0;
     }
