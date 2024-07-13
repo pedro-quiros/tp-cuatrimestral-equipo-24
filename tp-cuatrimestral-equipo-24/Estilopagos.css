@@ -3,6 +3,8 @@
     padding: 0;
     background-color: #f4f4f4;
     font-family: 'Courier New', Courier, monospace;
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("https://img.freepik.com/foto-gratis/superficie-metal-rayado-estilo-grunge-oscuro_1048-12951.jpg");
+    background-size: cover;
 }
 
 .body-recibo {
@@ -12,6 +14,14 @@
     align-items: center;
     min-height: 100vh; /* Asegura que ocupe al menos el alto de la ventana */
     padding: 20px; /* Opcional: Añade un poco de espacio alrededor */
+}
+
+
+
+#wrapper {
+    min-height: 100vh; /* Para que el wrapper ocupe al menos toda la pantalla visible */
+    display: flex;
+    flex-direction: column;
 }
 
 .recibo-container {
