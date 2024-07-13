@@ -1,104 +1,92 @@
-﻿* {
+﻿.body-recibo {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-body {
-    background-image: url('fondologinReg.jpg');
-    background-size: cover;
-    background-position: center;
-    font-family: 'calibri', sans-serif;
-    color: #ffffff;
+.recibo-container {
+    background: #fff;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    border: 2px solid #000;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.form-register {
-    width: 400px;
-    background: #24303c;
-    padding: 30px;
-    margin: auto;
-    margin-top: 100px;
-    border-radius: 4px;
-    font-family: 'calibri', sans-serif;
-    color: white;
-    box-shadow: 7px 13px 37px #000;
-    text-align: center; /* Centrar el contenido del formulario */
-}
-
-    .form-register h4 {
-        font-size: 22px;
+    .recibo-container h4 {
+        text-align: center;
         margin-bottom: 20px;
-        text-align: center; /* Centrar el título */
     }
 
-.controls {
+.recibo-group {
+    margin-bottom: 15px;
     width: 100%;
-    background: #24303c;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.recibo-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.recibo-select,
+.recibo-input {
+    width: 80%; /* Ajusta el ancho según sea necesario */
+    padding: 8px;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid #1f53c5;
-    font-family: 'calibri', sans-serif;
-    font-size: 18px;
-    color: white;
-    text-align: left; /* Alineación del texto a la izquierda */
-}
-
-.form-register p {
-    height: 40px;
+    margin-bottom: 10px;
     text-align: center;
-    font-size: 18px;
-    line-height: 40px;
 }
 
-.form-register a {
-    color: white;
-    text-decoration: none;
+.recibo-button {
     display: block;
-    text-align: center;
-    margin-top: 10px;
-}
-
-    .form-register a:hover {
-        color: white;
-        text-decoration: underline;
-    }
-
-.form-register .botons {
-    width: 100%;
-    background: #1f53c5;
+    width: 80%; /* Ajusta el ancho según sea necesario */
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
     border: none;
-    padding: 12px;
-    color: white;
-    margin: 16px 0;
-    font-size: 16px;
+    border-radius: 4px;
     cursor: pointer;
+    text-align: center;
+    font-size: 16px;
 }
 
-    .form-register .botons:hover {
-        background-color: #0a8c64;
+    .recibo-button:hover {
+        background-color: #218838;
     }
 
-/* Ajustar la longitud de los TextBox */
-.form-register .controls {
-    width: 100%; /* Asegurarse de que el ancho sea del 100% del contenedor */
-    max-width: 350px; /* Limitar el ancho máximo */
-    margin: 0 auto; /* Centrar los TextBox */
-}
-
-.form-label {
-    text-align: left; /* Asegurar que los labels se alineen a la izquierda */
+.recibo-back {
     display: block;
-    margin-bottom: 8px;
+    width: 80%; /* Ajusta el ancho según sea necesario */
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+    text-decoration: none;
 }
 
-
-/*footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}*/
+    .recibo-back:hover {
+        background-color: #0056b3;
+    }

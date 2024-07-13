@@ -75,7 +75,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMesa;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtMesa;
 
         /// <summary>
         /// Control lblmesero.
@@ -93,7 +93,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMesero;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtMesero;
 
         /// <summary>
         /// Control lblFecha.
@@ -111,7 +111,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txtfecha;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Txtfecha;
 
         /// <summary>
         /// Control lbltotal.
@@ -129,7 +129,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTotal;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtTotal;
 
         /// <summary>
         /// Control lblTipo.
@@ -147,7 +147,7 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtTipo;
 
         /// <summary>
         /// Control lblconsumicion.
@@ -165,6 +165,6 @@ namespace tp_cuatrimestral_equipo_24
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtConsumicion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtConsumicion;
     }
 }
