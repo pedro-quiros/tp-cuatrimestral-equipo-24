@@ -348,7 +348,7 @@ VALUES
 ('FacuPino', 'river912', 1, 1, 123456789, 123456789, 'Facundo', 'Pino', '01/03/2004', 'M', 123456789, 'facupino@gmail.com', 'yVaElTercero 912'),
 ('Mailomono', 'ElBichoSiu', 1, 1, 987654321, 987654321, 'Isma', 'Oreste', '06/26/2004', 'M', 987654321, 'ismaores@gmail.com', 'Messi 1812'),
 ('Pedrito', 'VanPersie', 1, 1, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'M', 012345678, 'pedrito@gmail.com', 'LaNaranjaMecanica 1978'),
-('a', 'a', 1, 2, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'M', 012345678, 'pedrito2@gmail.com', 'LaNaranjaMecanica 1978')
+('a', 'a', 1, 2, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'H', 012345678, 'pedrito2@gmail.com', 'LaNaranjaMecanica 1978')
 
 --- INSERT Datos INSUMO
 GO
@@ -725,3 +725,24 @@ BEGIN
     INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
     VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario)
 END
+
+
+------------------------------------
+
+alter table pedido 
+drop FK_MESERO_PEDIDO
+drop column IdMesero
+alter table Mesa
+drop FK_Mesa_Meseroo
+drop column IdMesero
+drop table Mesero
+drop table Gerente
+
+
+
+alter table Pedido
+add IdUsuario INT
+add CONSTRAINT FK_PEDIDO_USUARIO foreign key (IdUsuario) references Usuario2(IdUsuario)
+alter table Mesa
+add IdUsuario INT
+add CONSTRAINT FK_MESA_USUARIO foreign key (IdUsuario) references Usuario2(IdUsuario)
