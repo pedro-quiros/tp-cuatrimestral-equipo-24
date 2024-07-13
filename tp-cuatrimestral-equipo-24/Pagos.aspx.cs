@@ -11,12 +11,13 @@ namespace tp_cuatrimestral_equipo_24
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
-            
+            divtext.Visible = true;
+            htext.Visible  = true;
             lblMesa.Visible = true;
             lblmesero.Visible = true;
             lblFecha.Visible = true;
