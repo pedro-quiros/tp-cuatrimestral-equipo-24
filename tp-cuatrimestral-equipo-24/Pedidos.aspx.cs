@@ -239,7 +239,7 @@ namespace tp_cuatrimestral_equipo_24
                     Session.Remove("Pedidos");
                     Session.Remove("ListadoInsumos");
 
-                    // Redirigir a la página de salón
+                    // Redirigir a la página de salón 
                     Response.Redirect("Salon.aspx");
                 }
                 catch (Exception ex)
