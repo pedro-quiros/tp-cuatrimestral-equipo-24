@@ -367,7 +367,14 @@ namespace Negocio
             try
             {
                 datos.LimpiarParametros();
-                datos.setearProcedimiento("ObtenerItemsDePedido");
+                // Usar una consulta SQL directa en lugar del procedimiento almacenado
+                datos.SetearConsulta(@"
+            SELECT ip.IdInsumo, i.Nombre, ip.Cantidad, ip.PrecioUnitario
+            FROM ItemPedido ip
+            INNER JOIN Pedido p ON ip.IdPedido = p.IdPedido
+            INNER JOIN Insumo i ON ip.IdInsumo = i.IdInsumo
+            WHERE p.IdMesa = @IdMesa AND p.Estado = 1
+        ");
                 datos.SeterParametros("@IdMesa", idMesa);
                 datos.ejecutarLectura();
 
@@ -379,7 +386,7 @@ namespace Negocio
                         {
                             IdInsumo = (int)datos.Lector["IdInsumo"],
                             Nombre = (string)datos.Lector["Nombre"],
-                            Precio = (decimal)datos.Lector["Precio"],
+                            Precio = (decimal)datos.Lector["PrecioUnitario"],  // PrecioUnitario es el precio de cada unidad del ítem
                         },
                         Cantidad = (int)datos.Lector["Cantidad"],
                         PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"]
@@ -399,6 +406,7 @@ namespace Negocio
 
             return lista;
         }
+
 
     }
 }

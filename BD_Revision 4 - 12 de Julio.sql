@@ -781,3 +781,9 @@ select * from Usuario2
 --update Mesa SET IdUsuario = 3  where IdMesa =  11
 -------------------------------------------------------------------
 
+SELECT IdPedido, Estado, FechaHoraGenerado, IdUsuario FROM Pedido
+
+select * from Pedido
+select * from ItemPedido where IdPedido = 58
+
+select * from mesa
