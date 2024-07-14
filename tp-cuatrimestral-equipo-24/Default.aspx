@@ -11,6 +11,26 @@
 <body>
     <form id="form1" runat="server">
 
+
+
+
+
+
+        
+alter PROCEDURE ObtenerItemsDePedido
+    @IdMesa INT
+AS
+BEGIN
+    SELECT ip.IdInsumo, i.Nombre, ip.Cantidad, ip.PrecioUnitario
+    FROM ItemPedido ip
+    INNER JOIN Pedido p ON ip.IdPedido = p.IdPedido
+    INNER JOIN Insumo i ON ip.IdInsumo = i.IdInsumo
+    WHERE p.IdMesa = @IdMesa AND p.Estado = 1
+END
+
+
+
+
         <section id="inicio">
             <%--
                 <div class="contenedor-boton">

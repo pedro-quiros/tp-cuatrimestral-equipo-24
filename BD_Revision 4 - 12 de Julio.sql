@@ -432,16 +432,6 @@ END
 
 
 GO
-CREATE PROCEDURE SP_ActualizarStockInsumo
-    @IdInsumo INT,
-    @Cantidad INT
-AS
-BEGIN
-    UPDATE Insumo
-    SET Stock = Stock + @Cantidad
-    WHERE IdInsumo = @IdInsumo;
-END;
-
 
 --GO
 --CREATE PROCEDURE SP_CrearPedido
@@ -726,6 +716,18 @@ BEGIN
     INSERT INTO ItemPedido (IdPedido, IdInsumo, Cantidad, PrecioUnitario)
     VALUES (@IdPedido, @IdInsumo, @Cantidad, @PrecioUnitario)
 END
+GO
+
+CREATE PROCEDURE ObtenerItemsDePedido
+    @IdMesa INT
+AS
+BEGIN
+    SELECT ip.IdInsumo, i.Nombre, ip.Cantidad, ip.PrecioUnitario
+    FROM ItemPedido ip
+    INNER JOIN Pedido p ON ip.IdPedido = p.IdPedido
+    INNER JOIN Insumo i ON ip.IdInsumo = i.IdInsumo
+    WHERE p.IdMesa = @IdMesa AND p.Estado = 1
+END
 
 
 ------------------------------------
@@ -777,10 +779,5 @@ select * from Usuario2
 --update Mesa SET IdUsuario = 3  where IdMesa =  9
 --update Mesa SET IdUsuario = 3  where IdMesa =  10
 --update Mesa SET IdUsuario = 3  where IdMesa =  11
+-------------------------------------------------------------------
 
-
-
-SELECT IdPedido, Estado, FechaHoraGenerado, IdUsuario FROM Pedido
-
-select * from Pedido
-select * from ItemPedido where IdPedido = 6
