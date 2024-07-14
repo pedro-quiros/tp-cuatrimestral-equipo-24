@@ -232,6 +232,26 @@ namespace Negocio
                 throw new Exception("Error al actualizar stock del insumo", ex);
             }
         }
+        public void ActualizarTotalPedido(int idPedido, decimal total)
+        {
+            try
+            {
+                datos.LimpiarParametros();
+                datos.SetearConsulta("UPDATE Pedido SET Total = @Total WHERE IdPedido = @IdPedido");
+                datos.SeterParametros("@Total", total);
+                datos.SeterParametros("@IdPedido", idPedido);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el total del pedido", ex);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
 
         public void CerrarPedido(int idPedido)
         {
@@ -353,18 +373,16 @@ namespace Negocio
 
                 while (datos.Lector.Read())
                 {
-                    Insumo insumo = new Insumo
-                    {
-                        IdInsumo = (int)datos.Lector["IdInsumo"],
-                        Nombre = (string)datos.Lector["Nombre"],
-                        Precio = (decimal)datos.Lector["Precio"],
-                        Stock = (int)datos.Lector["Stock"]
-                    };
-
                     ItemPedido item = new ItemPedido
                     {
-                        Insumo = insumo,
-                        Cantidad = (int)datos.Lector["Cantidad"]
+                        Insumo = new Insumo
+                        {
+                            IdInsumo = (int)datos.Lector["IdInsumo"],
+                            Nombre = (string)datos.Lector["Nombre"],
+                            Precio = (decimal)datos.Lector["Precio"],
+                        },
+                        Cantidad = (int)datos.Lector["Cantidad"],
+                        PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"]
                     };
 
                     lista.Add(item);
@@ -381,5 +399,6 @@ namespace Negocio
 
             return lista;
         }
+
     }
 }

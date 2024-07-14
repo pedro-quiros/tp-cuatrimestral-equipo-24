@@ -77,13 +77,27 @@ namespace tp_cuatrimestral_equipo_24
 
         private void CargarPedidos()
         {
-            if (listaPedidos == null)
+            try
             {
-                listaPedidos = new List<ItemPedido>();
+                // Obtiene el ID de la mesa desde la sesión
+                int idMesa = (int)Session["IdMesa"];
+
+                // Obtiene los ítems del pedido para la mesa
+                listaPedidos = pedidoNegocio.ObtenerItemsDePedido(idMesa);
+
+                // Establece el origen de datos del GridView de pedidos
+                GridViewPedidos.DataSource = listaPedidos;
+                GridViewPedidos.DataBind();
+
+                // Calcula el total del pedido
+                CalcularTotal();
             }
-            GridViewPedidos.DataSource = listaPedidos;
-            GridViewPedidos.DataBind();
+            catch (Exception ex)
+            {
+                ErrorMessage.Text = "Ocurrió un error al cargar los pedidos: " + ex.Message;
+            }
         }
+
 
         private void CalcularTotal()
         {
@@ -197,7 +211,7 @@ namespace tp_cuatrimestral_equipo_24
             CalcularTotal();
         }
 
-         protected void BtnCerrarPedido_Click(object sender, EventArgs e)
+        protected void BtnCerrarPedido_Click(object sender, EventArgs e)
         {
             if (Session["IdMesa"] != null && listaPedidos != null && listaPedidos.Count > 0)
             {
@@ -211,22 +225,20 @@ namespace tp_cuatrimestral_equipo_24
                         throw new Exception("El ID de usuario no está presente en la sesión.");
                     }
 
-                    int idUsuario = usuario.Id; // Asegúrate de que este valor sea el correcto
-                    var fechaHoraGenerado = DateTime.Now;
-                    var totalPedido = listaPedidos.Sum(p => p.ObtenerTotal());
+                    int idUsuario = usuario.Id;
 
-                    // Crear un nuevo pedido y obtener su ID
-                    int idPedido = pedidoNegocio.CrearPedido(fechaHoraGenerado, totalPedido, idMesa, idUsuario);
-                    if (idPedido <= 0)
-                    {
-                        throw new Exception("No se pudo crear el pedido.");
-                    }
+                    // Usar el IdPedido de la sesión
+                    int idPedido = (int)Session["IdPedido"];
+                    var totalPedido = listaPedidos.Sum(p => p.ObtenerTotal());
 
                     // Agregar los ítems al pedido
                     foreach (var item in listaPedidos)
                     {
                         pedidoNegocio.AgregarItemPedido(idPedido, item.IdInsumo, item.Cantidad, item.PrecioUnitario);
                     }
+
+                    // Actualizar el total del pedido
+                    pedidoNegocio.ActualizarTotalPedido(idPedido, totalPedido);
 
                     // Cerrar el pedido
                     pedidoNegocio.CerrarPedido(idPedido);
@@ -254,6 +266,7 @@ namespace tp_cuatrimestral_equipo_24
                 ErrorMessage.Text = "No hay pedidos para cerrar.";
             }
         }
+
 
 
     }
