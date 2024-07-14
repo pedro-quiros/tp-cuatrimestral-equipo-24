@@ -348,7 +348,8 @@ VALUES
 ('FacuPino', 'river912', 1, 1, 123456789, 123456789, 'Facundo', 'Pino', '01/03/2004', 'M', 123456789, 'facupino@gmail.com', 'yVaElTercero 912'),
 ('Mailomono', 'ElBichoSiu', 1, 1, 987654321, 987654321, 'Isma', 'Oreste', '06/26/2004', 'M', 987654321, 'ismaores@gmail.com', 'Messi 1812'),
 ('Pedrito', 'VanPersie', 1, 1, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'M', 012345678, 'pedrito@gmail.com', 'LaNaranjaMecanica 1978'),
-('a', 'a', 1, 2, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'H', 012345678, 'pedrito2@gmail.com', 'LaNaranjaMecanica 1978')
+('a', 'a', 1, 1, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'H', 0123456738, 'pedrito3@gmail.com', 'LaNaranjaMecanica 1978'),
+('b', 'b', 2, 1, 012345678, 012345678, 'Pedro', 'Quiros', '12/09/2001', 'H', 012345678, 'pedrito2@gmail.com', 'LaNaranjaMecanica 1978')
 
 --- INSERT Datos INSUMO
 GO
@@ -731,35 +732,55 @@ END
 
 alter table pedido 
 drop FK_MESERO_PEDIDO
+
+alter table pedido 
 drop column IdMesero
+
 alter table Mesa
 drop FK_Mesa_Meseroo
-drop column IdMesero
-drop table Mesero
-drop table Gerente
 
+alter table Mesa
+drop column IdMesero
+
+drop table Mesero
+
+drop table Gerente
 
 
 alter table Pedido
 add IdUsuario INT
+
+alter table Pedido
 add CONSTRAINT FK_PEDIDO_USUARIO foreign key (IdUsuario) references Usuario2(IdUsuario)
+
 alter table Mesa
 add IdUsuario INT
+
+alter table Mesa
 add CONSTRAINT FK_MESA_USUARIO foreign key (IdUsuario) references Usuario2(IdUsuario)
 
+select * from Pedido
+select * from ItemPedido
 
-
-update Mesa SET IdUsuario = 1  where IdMesa =  1
-update Mesa SET IdUsuario = 1  where IdMesa =  2
-update Mesa SET IdUsuario = 1  where IdMesa =  3
-update Mesa SET IdUsuario = 2  where IdMesa =  4
-update Mesa SET IdUsuario = 2  where IdMesa =  5
-update Mesa SET IdUsuario = 2  where IdMesa =  6
-update Mesa SET IdUsuario = 2  where IdMesa =  7
-update Mesa SET IdUsuario = 3  where IdMesa =  8
-update Mesa SET IdUsuario = 3  where IdMesa =  9
-update Mesa SET IdUsuario = 3  where IdMesa =  10
-update Mesa SET IdUsuario = 3  where IdMesa =  11
+select * from Usuario2
 
 
 
+--update Mesa SET IdUsuario = 1  where IdMesa =  1
+--update Mesa SET IdUsuario = 1  where IdMesa =  2
+--update Mesa SET IdUsuario = 1  where IdMesa =  3
+--update Mesa SET IdUsuario = 2  where IdMesa =  4
+--update Mesa SET IdUsuario = 2  where IdMesa =  5
+--update Mesa SET IdUsuario = 2  where IdMesa =  6
+--update Mesa SET IdUsuario = 2  where IdMesa =  7
+--update Mesa SET IdUsuario = 3  where IdMesa =  8
+--update Mesa SET IdUsuario = 3  where IdMesa =  9
+--update Mesa SET IdUsuario = 3  where IdMesa =  10
+--update Mesa SET IdUsuario = 3  where IdMesa =  11
+
+
+
+SELECT IdPedido, Estado, FechaHoraGenerado, IdUsuario FROM Pedido
+
+select * from Pedido
+select * from ItemPedido where IdPedido = 6

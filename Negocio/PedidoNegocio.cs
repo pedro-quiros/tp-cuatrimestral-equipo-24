@@ -15,7 +15,7 @@ namespace Negocio
 
             try
             {
-                string consulta = "SELECT IdPedido, Estado, FechaHoraGenerado FROM Pedido";
+                string consulta = "SELECT IdPedido, Estado, FechaHoraGenerado, IdUsuario FROM Pedido";
                 datos.SetearConsulta(consulta);
                 datos.ejecutarLectura();
 
@@ -25,7 +25,8 @@ namespace Negocio
                     {
                         IdPedido = (int)datos.Lector["IdPedido"],
                         Estado = (bool)datos.Lector["Estado"],
-                        FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"]
+                        FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"],
+                        IdUsuario = (int)datos.Lector["IdUsuario"]  // Agregado
                     };
 
                     lista.Add(aux);
@@ -175,7 +176,7 @@ namespace Negocio
             return lista;
         }
 
-        public void InsertarPedido(DateTime fechaHora, decimal total, int idMesa)
+        public void InsertarPedido(DateTime fechaHora, decimal total, int idMesa, int idUsuario)
         {
             try
             {
@@ -184,6 +185,8 @@ namespace Negocio
                 datos.SeterParametros("@FechaHora", fechaHora);
                 datos.SeterParametros("@Total", total);
                 datos.SeterParametros("@IdMesa", idMesa);
+                datos.SeterParametros("@IdUsuario", idUsuario); // Este debe corresponder a la columna IdUsuario
+                datos.SeterParametros("@Estado", true); // Agregamos el valor de Estado
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -213,7 +216,6 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-
 
         public void ActualizarStockInsumo(int idInsumo, int cantidad)
         {
@@ -254,15 +256,14 @@ namespace Negocio
 
         public int CrearPedido(DateTime fechaHoraGenerado, decimal total, int idMesa, int idUsuario)
         {
-            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.LimpiarParametros();
-                datos.SetearConsulta("INSERT INTO Pedido (FechaHoraGenerado, Total, IdMesa, IdMesero, Estado) VALUES (@FechaHoraGenerado, @Total, @IdMesa, @IdUsuario, @Estado)");
+                datos.SetearConsulta("INSERT INTO Pedido (FechaHoraGenerado, Total, IdMesa, IdUsuario, Estado) VALUES (@FechaHoraGenerado, @Total, @IdMesa, @IdUsuario, @Estado)");
                 datos.SeterParametros("@FechaHoraGenerado", fechaHoraGenerado);
                 datos.SeterParametros("@Total", total);
                 datos.SeterParametros("@IdMesa", idMesa);
-                datos.SeterParametros("@IdUsuario", idUsuario); // Este debe corresponder a la columna IdMesero
+                datos.SeterParametros("@IdUsuario", idUsuario); // Este debe corresponder a la columna IdUsuario
                 datos.SeterParametros("@Estado", true); // Agregamos el valor de Estado
                 datos.EjecutarAccion();
 
@@ -290,8 +291,6 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-
-
 
         public List<ItemPedido> ListarItemsPedido(int idPedido)
         {
