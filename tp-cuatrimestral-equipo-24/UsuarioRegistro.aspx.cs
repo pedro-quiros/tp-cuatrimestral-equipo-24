@@ -126,12 +126,12 @@ namespace tp_cuatrimestral_equipo_24
                 if (usu.Activo == true)
                 {
                     usuario.BajaLogica(usu);
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("ListadoUsuarios.aspx");
                 }
                 else
                 {
                     usuario.AltaLogica(usu);
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("ListadoUsuarios.aspx");
                 }
 
             }
@@ -209,7 +209,7 @@ namespace tp_cuatrimestral_equipo_24
                 {
                     gestionUsuario.ModificarUsuario(nuevoUsuario);
                     Response.Write("<script>alert('Usuario Modificado.');</script>");
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("ListadoUsuarios.aspx");
 
                 }
                 else
@@ -298,7 +298,7 @@ namespace tp_cuatrimestral_equipo_24
                 if (Regex.IsMatch(txtNombrePersonal.Value, @"^[a-zA-Z]+$") && Regex.IsMatch(txtApellido.Value, @"^[a-zA-Z]+$"))
                 {
                     gestionUsuario.AgregarUsuario(nuevoUsuario);
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("ListadoUsuarios.aspx");
                 }
                 else
                 {

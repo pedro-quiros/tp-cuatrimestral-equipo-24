@@ -17,7 +17,7 @@ namespace tp_cuatrimestral_equipo_24
                 int p = 0;
                 if (Session["UsuarioSeleccionado"] != null)
                 {
-                    usuario = (Usuario)Session["UsuarioSeleccionado"];
+                    usuario = (Usuario)Session["Bienvenida"];
                     nombreCompleto = string.Concat("Bienvenido ", usuario.NombreUsuario, "!");
                     lblMensaje.Text = nombreCompleto;
                     if (Session["Puesto"] != null)

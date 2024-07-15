@@ -13,10 +13,10 @@ namespace tp_cuatrimestral_equipo_24
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UsuarioSeleccionado"] != null)
-            {
-                Response.Redirect("RegistroLogin.aspx",false);
-            }
+            //if (Session["UsuarioSeleccionado"] != null)
+            //{
+            //    Response.Redirect("RegistroLogin.aspx",false);
+            //}
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
@@ -32,6 +32,7 @@ namespace tp_cuatrimestral_equipo_24
                     int Puesto = UsuGesti.BuscarPuesto(usuario);
                     // El ID de usuario ya debería estar asignado en el método Loguear
                     Session.Add("Puesto", Puesto);
+                    Session.Add("Bienvenida", usuario);
                     Session.Add("UsuarioSeleccionado", usuario); // Asegúrate de que aquí también estás guardando el usuario completo
 
                     Response.Write("<script>alert('Inicio de sesión exitoso.');</script>");

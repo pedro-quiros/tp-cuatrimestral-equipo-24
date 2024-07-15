@@ -23,10 +23,10 @@ namespace Negocio
                 {
                     Pedido aux = new Pedido
                     {
-                        IdPedido = (int)datos.Lector["IdPedido"],
+                        IdPedido = Convert.ToInt32(datos.Lector["IdPedido"]),
                         Estado = (bool)datos.Lector["Estado"],
                         FechaHoraGenerado = (DateTime)datos.Lector["FechaHoraGenerado"],
-                        IdUsuario = (int)datos.Lector["IdUsuario"]  // Agregado
+                        IdUsuario = Convert.ToInt32(datos.Lector["IdUsuario"])  // Agregado
                     };
 
                     lista.Add(aux);
