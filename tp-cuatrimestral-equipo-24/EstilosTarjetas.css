@@ -62,22 +62,22 @@
     }
 
 /* Asegurar que el contenido de la tarjeta sea legible en todos los tamaños de pantalla */
-@media (max-width: 1200px) {
+/*@media (max-width: 1200px) {
     .contenedor-card {
-        grid-template-columns: repeat(3, 1fr); /* Ajusta a tres columnas en pantallas medianas */
-    }
+        grid-template-columns: repeat(3, 1fr);*/ /* Ajusta a tres columnas en pantallas medianas */
+    /*}
 }
 
 @media (max-width: 900px) {
     .contenedor-card {
-        grid-template-columns: repeat(2, 1fr); /* Ajusta a dos columnas en pantallas pequeñas */
-    }
+        grid-template-columns: repeat(2, 1fr);*/ /* Ajusta a dos columnas en pantallas pequeñas */
+    /*}
 }
 
 @media (max-width: 600px) {
     .contenedor-card {
-        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
-    }
+        grid-template-columns: 1fr;*/ /* Una columna en pantallas muy pequeñas */
+    /*}
 
     .tarjeta-rest {
         height: auto;
@@ -85,8 +85,8 @@
 
     .wrap-text_tarjeta-rest {
         position: relative;
-        background: rgba(0, 0, 0, 0.5); /* Fondo oscuro más transparente en pantallas pequeñas */
-    }
-}
+        background: rgba(0, 0, 0, 0.5);*/ /* Fondo oscuro más transparente en pantallas pequeñas */
+    /*}
+}*/
 
 
