@@ -30,9 +30,9 @@
             <a class="logoNav" href="Menu.aspx" title="Menú">
                 <img src="img/icoMenu.png" alt="ícono de menú" />
             </a>
-            <a class="logoNav" href="Pedidos.aspx" title="Crear pedido">
+<%--            <a class="logoNav" href="Pedidos.aspx" title="Crear pedido">
                 <img src="img/icoCamarero.png" alt="ícono de camarero" />
-            </a>
+            </a>--%>
 
 <%--         <a class="logoNav" href="Delivery.aspx" title="Delivery">
                 <img src="img/icoDelivery.png" alt="ícono de delivery" />
