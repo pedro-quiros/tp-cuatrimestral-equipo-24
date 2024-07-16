@@ -4,6 +4,35 @@
     <link href="EstilosTarjetas.css" rel="stylesheet" />
     <link href="EstilosFiltrar.css" rel="stylesheet" />
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("https://previews.123rf.com/images/yupiramos/yupiramos1307/yupiramos130700939/20982775-restaurante-de-piel-sobre-fondo-de-color-rosa-ilustraci%C3%B3n-vectorial.jpg");
+            background-size: cover;
+            background-color: #f5f0f0b6; /* Color de fondo rojo claro */
+            color: #721c24; /* Color del texto rojo oscuro */
+            min-height: 100vh; /* Para que el cuerpo ocupe al menos toda la pantalla visible */
+            position: relative; /* Para que el footer se posicione correctamente */
+        }
+
+        #wrapper {
+            min-height: 100vh; /* Para que el wrapper ocupe al menos toda la pantalla visible */
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .label-filtrar {
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-right: 10px;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+        }
+
         .btn-container {
             display: flex;
             justify-content: center;
