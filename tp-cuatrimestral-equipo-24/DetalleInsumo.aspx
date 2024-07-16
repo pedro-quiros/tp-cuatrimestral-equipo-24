@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mochiy+Pop+One&display=swap">
-    <link href="EstilosModificar.css" rel="stylesheet" />
+    
     <style>
         body {
             margin: 0;
@@ -50,6 +50,58 @@
             .btn-custom:active {
                 background-color: #07395c; /* Color rojo aún más oscuro al hacer clic */
                 transform: scale(1); /* Regresa el botón a su tamaño original al hacer clic */
+            }
+
+        /* Estilo para detalle */
+        .detalle-articulo {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #0a5489, #1a1717); /* Fondo gradiente */
+            color: #fff; /* Color del texto blanco */
+            text-align: center; /* Centra el contenido */
+        }
+
+            .detalle-articulo .form-group {
+                margin-bottom: 1.5rem;
+                text-align: left; /* Alinea el texto a la izquierda */
+                color: #fff; /* Color del texto de los labels */
+            }
+
+            .detalle-articulo .form-control {
+                color: #000; /* Color del texto de los inputs */
+            }
+
+            .detalle-articulo .imagen-container {
+                text-align: center;
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+                .detalle-articulo .imagen-container img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 8px;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+            .detalle-articulo .button-container {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+
+            .detalle-articulo .btn {
+                padding: 10px 20px;
+                border-radius: 4px;
+                text-align: center;
+                cursor: pointer;
             }
     </style>
 

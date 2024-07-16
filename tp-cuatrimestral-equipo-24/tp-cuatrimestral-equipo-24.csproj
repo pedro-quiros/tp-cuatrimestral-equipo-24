@@ -77,7 +77,6 @@
     <Content Include="Estilos.css" />
     <Content Include="Estilos2.css" />
     <Content Include="Estilos3.css" />
-    <Content Include="EstilosModificar.css" />
     <Content Include="CSS\EstilosSalon.css" />
     <Content Include="EstilosSoporte.css" />
     <Content Include="EstilosTarjetas.css" />
