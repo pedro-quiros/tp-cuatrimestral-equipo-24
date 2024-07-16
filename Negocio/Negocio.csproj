@@ -54,6 +54,7 @@
     <Compile Include="EmailServic.cs" />
     <Compile Include="InsumosNegocio.cs" />
     <Compile Include="MesaNegocio.cs" />
+    <Compile Include="PagosNegocio.cs" />
     <Compile Include="PedidoNegocio.cs" />
     <Compile Include="PermisoHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
