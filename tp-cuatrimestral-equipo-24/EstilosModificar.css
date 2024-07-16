@@ -51,22 +51,6 @@
     }
 
 
-.logoCarrito {
-    margin-left: 10px;
-}
-
-.contador {
-    margin-left: 30px;
-    margin-right: 10px;
-    background-color: black;
-    color: #ffffff;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-}
-
 /*SECCION BODY */
 
 body {
@@ -130,6 +114,8 @@ h1 {
     .reflected-header h1 {
         font-size: 3rem;
     }
+
+
 /*estilo para detalle*/
 .detalle-articulo {
     max-width: 800px;
@@ -173,3 +159,5 @@ h1 {
         text-align: center;
         cursor: pointer;
     }
+
+
