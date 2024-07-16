@@ -3,9 +3,37 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="EstilosTarjetas.css" rel="stylesheet" />
     <link href="EstilosFiltrar.css" rel="stylesheet" />
+    <style>
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
 
-    
+        .btn-custom {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: #dc3545; /* Color rojo para el botón */
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
 
+            .btn-custom:hover {
+                background-color: #c82333; /* Color rojo más oscuro al pasar el mouse */
+                transform: scale(1.05); /* Efecto de agrandar el botón al pasar el mouse */
+            }
+
+            .btn-custom:active {
+                background-color: #bd2130; /* Color rojo aún más oscuro al hacer clic */
+                transform: scale(1); /* Regresa el botón a su tamaño original al hacer clic */
+            }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -54,8 +82,8 @@
         </div>
     </section>
 
-    <div class="btn btn-outline-danger">
-        <a href="AgregarInsumo.aspx">AGREGAR INSUMO</a>
+    <div class="btn-container">
+        <a href="AgregarInsumo.aspx" class="btn-custom">AGREGAR INSUMO</a>
     </div>
 
 
