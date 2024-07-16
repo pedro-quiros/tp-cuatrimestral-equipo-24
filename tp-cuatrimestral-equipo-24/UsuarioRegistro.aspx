@@ -82,7 +82,7 @@
             <asp:Label ID="lblDomicilio" runat="server" Text="Domicilio:" CssClass="control-label"></asp:Label>
             <input type="text" class="form-control" id="txtDomicilio" runat="server" />
         </div>
-
+        <div>
         <form class="row g-3">
             <div class="col-auto">
                 <asp:Button ID="btnLogico" runat="server" Text="Inactivar" OnClick="btnInactivo_Click" CssClass="btn btn-outline-success" />
@@ -90,5 +90,7 @@
                 <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn btn-outline-success" />
             </div>
         </form>
+
+        </div>
     </div>
 </asp:Content>

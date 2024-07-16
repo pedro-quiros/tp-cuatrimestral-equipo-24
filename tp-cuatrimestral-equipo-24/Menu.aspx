@@ -3,20 +3,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="EstilosTarjetas.css" rel="stylesheet" />
     <link href="EstilosFiltrar.css" rel="stylesheet" />
+
+    
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p class="title">Menú</p>
 
     <div class="filter-container">
-        <i class="fas fa-search">Buscar</i>
-        <asp:Label ID="LabelFiltrar" runat="server" Text="" CssClass="label-filtrar"></asp:Label>
+        <%--<i class="fas fa-search">Buscar</i>--%>
+        <asp:Label ID="LabelFiltrar" runat="server" Text="Buscar" CssClass="label-filtrar"></asp:Label>
         <asp:TextBox ID="Filtro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" runat="server" CssClass="input-filtrar" />
     </div>
 
-    <div>
-        <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="control-label"></asp:Label>
-        <asp:DropDownList runat="server" ID="ddlFiltradoTipo" class="form-select" aria-label="Default select example" 
+    <div class="filter-container">
+        <asp:Label ID="LblTipo" runat="server" Text="Tipo:" CssClass="label-filtrar"></asp:Label>
+        <asp:DropDownList runat="server" ID="ddlFiltradoTipo" class="form-select" aria-label="Default select example"
             OnSelectedIndexChanged="ddlFiltradoTipo_SelectedIndexChanged" AutoPostBack="true">
             <asp:ListItem Text="Desayuno/Merienda"></asp:ListItem>
             <asp:ListItem Text="Almuerzo/Cena"></asp:ListItem>
@@ -40,11 +43,9 @@
                             <h3>$ <%# Eval("Precio") %></h3>
 
                             <div class="cta_tarjeta-rest">
-                                <a href='<%# "DetalleInsumo.aspx?IdInsumo=" + Eval("IdInsumo") %>'>Detalles</a>                             
+                                <a href='<%# "DetalleInsumo.aspx?IdInsumo=" + Eval("IdInsumo") %>'>Detalles</a>
                             </div>
-<%--                            <div class="mt-auto d-flex justify-content-around">
-                                <asp:Button CssClass="btn-primary" Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" CommandArgument='<%# Eval("IdInsumo") %>' CommandName="IdInsumo" />
-                            </div>--%>
+
                         </div>
                     </div>
                 </ItemTemplate>

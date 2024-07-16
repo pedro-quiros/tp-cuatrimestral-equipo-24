@@ -1,11 +1,13 @@
-﻿.contenedor-card {
+﻿/* Contenedor de las tarjetas */
+.contenedor-card {
     max-width: 1400px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* Ajusta a cuatro columnas */
     gap: 1rem;
 }
 
+/* Estilo para las tarjetas */
 .tarjeta-rest {
     background-repeat: no-repeat;
     height: 400px;
@@ -14,35 +16,75 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    background-size: cover;
+    position: relative; /* Para posicionar el contenido dentro de la tarjeta */
 }
 
+/* Envoltura de texto dentro de la tarjeta */
 .wrap-text_tarjeta-rest {
     color: #fff;
     padding: 0.5rem;
     border-radius: 6px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    position: absolute; /* Posiciona el contenido en la parte inferior de la tarjeta */
+    bottom: 0; /* Al fondo de la tarjeta */
+    width: 100%; /* Para que ocupe todo el ancho de la tarjeta */
 }
-    .wrap-text_tarjeta-rest p {
+
+    .wrap-text_tarjeta-rest p, .wrap-text_tarjeta-rest h3 {
+        margin: 0;
         color: #f2f2f2;
     }
 
+/* Estilo del botón de llamada a la acción */
 .cta_tarjeta-rest {
     background-color: #FFC300;
     padding: 0.25rem 1rem;
     border-radius: 4px;
     text-align: center;
+    margin-top: 0.5rem; /* Añadir un margen superior para separar del contenido */
 }
 
     .cta_tarjeta-rest a {
         color: #fff;
         font-weight: bold;
         display: block;
-
+        text-decoration: none; /* Eliminar subrayado en enlaces */
     }
 
-    .cta_tarjeta-rest secundary {
+    /* Estilo del botón secundario (si es necesario) */
+    .cta_tarjeta-rest.secundary {
         background-color: #ff0000;
         padding: 0.25rem 1rem;
         border-radius: 4px;
         text-align: center;
+        margin-top: 0.5rem; /* Añadir un margen superior para separar del contenido */
     }
+
+/* Asegurar que el contenido de la tarjeta sea legible en todos los tamaños de pantalla */
+@media (max-width: 1200px) {
+    .contenedor-card {
+        grid-template-columns: repeat(3, 1fr); /* Ajusta a tres columnas en pantallas medianas */
+    }
+}
+
+@media (max-width: 900px) {
+    .contenedor-card {
+        grid-template-columns: repeat(2, 1fr); /* Ajusta a dos columnas en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 600px) {
+    .contenedor-card {
+        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    }
+
+    .tarjeta-rest {
+        height: auto;
+    }
+
+    .wrap-text_tarjeta-rest {
+        position: relative;
+        background: rgba(0, 0, 0, 0.5); /* Fondo oscuro más transparente en pantallas pequeñas */
+    }
+}
