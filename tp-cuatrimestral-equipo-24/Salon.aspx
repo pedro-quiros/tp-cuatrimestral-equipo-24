@@ -7,6 +7,81 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="/CSS/EstilosSalon.css" rel="stylesheet" />
     <script src="/JS/ScriptsSalon.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("https://previews.123rf.com/images/yupiramos/yupiramos1307/yupiramos130700939/20982775-restaurante-de-piel-sobre-fondo-de-color-rosa-ilustraci%C3%B3n-vectorial.jpg");
+            background-size: cover;
+            background-color: #f5f0f0b6; /* Color de fondo rojo claro */
+            color: #721c24; /* Color del texto rojo oscuro */
+            min-height: 100vh; /* Para que el cuerpo ocupe al menos toda la pantalla visible */
+            position: relative; /* Para que el footer se posicione correctamente */
+        }
+
+        #wrapper {
+            min-height: 100vh; /* Para que el wrapper ocupe al menos toda la pantalla visible */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .filter-container i {
+                color: white;
+                margin-right: 10px;
+            }
+
+        .label-filtrar {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .input-filtrar {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        .tablaConEstilo {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            text-align: center;
+            background-color: white;
+            opacity: 0.9;
+            /*font-family: 'Roboto', sans-serif;*/
+        }
+
+            .tablaConEstilo th, .tablaConEstilo td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .tablaConEstilo th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .tablaConEstilo tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .tablaConEstilo tr:hover {
+                background-color: #ddd;
+            }
+        
+    </style>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

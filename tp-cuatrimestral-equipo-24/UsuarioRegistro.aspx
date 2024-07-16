@@ -2,6 +2,25 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Estilos.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("https://previews.123rf.com/images/yupiramos/yupiramos1307/yupiramos130700939/20982775-restaurante-de-piel-sobre-fondo-de-color-rosa-ilustraci%C3%B3n-vectorial.jpg");
+            background-size: cover;
+            background-color: #f5f0f0b6; /* Color de fondo rojo claro */
+            color: #721c24; /* Color del texto rojo oscuro */
+            min-height: 100vh; /* Para que el cuerpo ocupe al menos toda la pantalla visible */
+            position: relative; /* Para que el footer se posicione correctamente */
+        }
+
+        #wrapper {
+            min-height: 100vh; /* Para que el wrapper ocupe al menos toda la pantalla visible */
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p class="title">Administración de usuarios</p>
@@ -26,7 +45,7 @@
         <div class="form-group">
             <asp:Label ID="Label1" runat="server" Text="Puesto:" CssClass="control-label"></asp:Label>
             <asp:DropDownList runat="server" ID="ddlPuesto" CssClass="form-select">
-                <asp:ListItem Text="Empleado"/>
+                <asp:ListItem Text="Empleado" />
                 <asp:ListItem Text="Gerente" />
             </asp:DropDownList>
         </div>
@@ -54,7 +73,7 @@
         <div class="form-group">
             <asp:Label ID="LblNacimineto" runat="server" Text="Fecha de Nacimiento:" CssClass="control-label"></asp:Label>
             <asp:TextBox ID="txtNacimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
-           
+
         </div>
 
         <div class="form-group">
@@ -83,13 +102,13 @@
             <input type="text" class="form-control" id="txtDomicilio" runat="server" />
         </div>
         <div>
-        <form class="row g-3">
-            <div class="col-auto">
-                <asp:Button ID="btnLogico" runat="server" Text="Inactivar" OnClick="btnInactivo_Click" CssClass="btn btn-outline-success" />
-                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-outline-success" />
-                <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn btn-outline-success" />
-            </div>
-        </form>
+            <form class="row g-3">
+                <div class="col-auto">
+                    <asp:Button ID="btnLogico" runat="server" Text="Inactivar" OnClick="btnInactivo_Click" CssClass="btn btn-outline-success" />
+                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-outline-success" />
+                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn btn-outline-success" />
+                </div>
+            </form>
 
         </div>
     </div>
