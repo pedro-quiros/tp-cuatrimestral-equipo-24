@@ -112,7 +112,8 @@
     </section>
 
     <div class="btn-container">
-        <a href="AgregarInsumo.aspx" class="btn-custom">AGREGAR INSUMO</a>
+        <asp:Button Text="AGREGAR INSUMO" ID="btnAgregarInsumo" class="btn-custom" OnClick="btnAgregarInsumo_Click" runat="server" />
+        <%--<a href="AgregarInsumo.aspx" class="btn-custom">AGREGAR INSUMO</a>--%>
     </div>
 
 
